@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { SpeedInsights } from "@vercel/speed-insights/next" // import SpeedInsights from Vercel
+import { Analytics } from "@vercel/analytics/react" // import Analytics from Vercel
 
 export const metadata: Metadata = {
 	title: {
@@ -58,7 +59,8 @@ export default function RootLayout({
 						<Navbar />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
 							{children}
-							<SpeedInsights />
+							<SpeedInsights /> {/* SpeedInsights component from Vercel */}
+							<Analytics /> {/* Analytics component from Vercel */}	
 						</main>
 						<footer className="w-full flex items-center justify-center py-3">
 							<Link
