@@ -8,6 +8,7 @@ import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { SpeedInsights } from "@vercel/speed-insights/next" // import SpeedInsights from Vercel
 import { Analytics } from "@vercel/analytics/react" // import Analytics from Vercel
+import SubscriberMilestones from "@/components/subscribermilestones";
 
 export const metadata: Metadata = {
 	title: {
@@ -63,15 +64,22 @@ export default function RootLayout({
 							<Analytics /> {/* Analytics component from Vercel */}	
 						</main>
 						<footer className="w-full flex items-center justify-center py-3">
-							<Link
-								isExternal
-								className="flex items-center gap-1 text-current"
-								href="#"
-								title="Superteam"
-							>
-								<span className="text-default-600">Subscribers:</span>
-								<p className="text-primary">0</p>/ 100 &quot;S&quot; required to kick start this Experiment. Watch this space for update on this daily!
-							</Link>
+							<div className="flex flex-col">
+								<Link
+									isExternal
+									className="flex items-center gap-1 text-current"
+									href="#"
+									title="Superteam"
+								>
+									<span className="text-default-600">Subscribers:</span>
+									<p className="text-primary">1</p>
+									/ 10000 &quot;S&quot; required to kick start the 
+									Experimental Mission 2 Solana Ecosystem Daily &quot;S&quot; Newsletter. 
+									Watch this space for update!
+								</Link>
+							
+								<SubscriberMilestones />
+							</div>
 						</footer>
 					</div>
 				</Providers>
@@ -79,3 +87,4 @@ export default function RootLayout({
 		</html>
 	);
 }
+
