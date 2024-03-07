@@ -1,6 +1,9 @@
 "use client"
-// Directory.tsx
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
+
+//Categories and statuses for filtering
+const categories = ['Finance', 'Games', 'Analytics', 'Wallet', 'Exchanges', 'Multichain'];
+const statuses = ['live', 'maintenance', 'coming soon'];
 
 // Mock data for dApps, you can replace this with your actual data source
 const dApps = [
@@ -48,39 +51,92 @@ const dApps = [
 ];
 
 
-
 export default function Directory() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterCategory, setFilterCategory] = useState('All');
+  const [filterStatus, setFilterStatus] = useState('All');
+  const [isListView, setIsListView] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  // Filter dApps based on the search term
-  const filtereddApps = dApps.filter((dApp) =>
-    dApp.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredDApps = dApps.filter(
+    (dApp) =>
+      (dApp.name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (filterCategory === 'All' || dApp.category === filterCategory) &&
+      (filterStatus === 'All' || dApp.status === filterStatus)
   );
+
+  const sortedDApps = filteredDApps.sort((a, b) => a.name.localeCompare(b.name));
+
+  // Pagination: Calculate the right dApps to display
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentDApps = sortedDApps.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page
+  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
 
   return (
     <div className="container mx-auto px-4">
-      <div className="mb-4">
+      {/* Search and filter controls */}
+      <div className="flex flex-col md:flex-row justify-between mb-4">
         <input
           type="text"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded mb-4 md:mb-0"
           placeholder="Search for dApps..."
-          onChange={handleSearchChange}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <select
+          className="p-2 border rounded"
+          value={filterCategory}
+          onChange={(e) => setFilterCategory(e.target.value)}
+        >
+          <option value="All">All Categories</option>
+          {categories.map((category, idx) => (
+            <option key={idx} value={category}>{category}</option>
+          ))}
+        </select>
+        <select
+          className="p-2 border rounded"
+          value={filterStatus}
+          onChange={(e) => setFilterStatus(e.target.value)}
+        >
+          <option value="All">All Statuses</option>
+          {statuses.map((status, idx) => (
+            <option key={idx} value={status}>{status}</option>
+          ))}
+        </select>
+        <button
+          onClick={() => setIsListView(!isListView)}
+          className="p-2 border rounded"
+        >
+          {isListView ? 'Grid View' : 'List View'}
+        </button>
       </div>
-      <div className="grid md:grid-cols-3 gap-4">
-        {filtereddApps.map((dApp) => (
-          <div key={dApp.id} className="border p-4 rounded-lg shadow">
+
+      {/* Display dApps */}
+      <div className={isListView ? 'flex flex-col' : 'grid md:grid-cols-3 gap-4'}>
+        {currentDApps.map((dApp) => (
+          <div key={dApp.id} className="border p-4 rounded-lg shadow mb-4">
             <h3 className="text-xl font-semibold text-purple-500">{dApp.name}</h3>
             <p className="text-gray-600">{dApp.description}</p>
-            <p className="text-sm mt-2">
-              <strong>Category:</strong> {dApp.category}
-            </p>
-            {/* You can add more dApp details here */}
+            <p className="text-sm mt-2"><strong>Category:</strong> {dApp.category}</p>
+            <p className="text-sm"><strong>Status:</strong> {dApp.status}</p>
+            {/* More dApp details here */}
           </div>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-center mt-4">
+        {Array.from(Array(Math.ceil(sortedDApps.length / itemsPerPage)).keys()).map(number => (
+          <button
+            key={number}
+            onClick={() => paginate(number + 1)}
+            className={`p-2 border rounded mx-1 ${currentPage === number + 1 ? 'bg-blue-500 text-white' : ''}`}
+          >
+            {number + 1}
+          </button>
         ))}
       </div>
     </div>
