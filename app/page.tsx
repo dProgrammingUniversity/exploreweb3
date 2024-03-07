@@ -82,7 +82,7 @@ export default function Home() {
 						<p className="text-gray-700 text-base">
 							My mission 2 is to curate a newsletter summarizing these discoveries daily for interested Solana community subscribers. 
 								<br/>
-								The newsletter kick-starts with the first 100 subscribers! So, if you are excited to dive deep into 
+								The newsletter kick-starts with the first 10000 subscribers! So, if you are excited to dive deep into 
 								Solana with us, hit subscribe.
 						</p>
 					</div>
