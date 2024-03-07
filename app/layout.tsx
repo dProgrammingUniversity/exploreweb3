@@ -66,11 +66,11 @@ export default function RootLayout({
 							<Link
 								isExternal
 								className="flex items-center gap-1 text-current"
-								href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-								title="nextui.org homepage"
+								href="#"
+								title="Superteam"
 							>
-								<span className="text-default-600">Powered by</span>
-								<p className="text-primary">NextUI</p>
+								<span className="text-default-600">Subscribers:</span>
+								<p className="text-primary">0</p>/ 100 &quot;S&quot; required to kick start this Experiment. Watch this space for update on this daily!
 							</Link>
 						</footer>
 					</div>
