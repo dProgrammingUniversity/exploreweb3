@@ -72,7 +72,7 @@ export default function RootLayout({
 									title="Superteam"
 								>
 									<span className="text-default-600">Subscribers:</span>
-									<p className="text-primary">1</p>
+									<p className="text-primary">10</p>
 									/ 10000 &quot;S&quot; required to kick start the 
 									Experimental Mission 2 Solana Ecosystem Daily &quot;S&quot; Newsletter. 
 									Watch this space for update!

@@ -7,7 +7,7 @@ const SubscriberMilestones = () => {
   
   const milestones = [
     { target: 1, day: 2, date: '6th March 2024' },
-    { target: 10, day: 'TBA', date: 'TBA' },
+    { target: 10, day: 6, date: '10th March 2024' },
     { target: 100, day: 'TBA', date: 'TBA' },
     { target: 500, day: 'TBA', date: 'TBA' },
     { target: 750, day: 'TBA', date: 'TBA' },
