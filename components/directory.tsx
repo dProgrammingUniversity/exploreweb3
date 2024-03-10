@@ -1,5 +1,7 @@
 "use client"
 import { SetStateAction, useState } from 'react';
+import Link from 'next/link';
+
 
 //Categories and statuses for filtering
 const categories = ['Finance', 'Games', 'Analytics', 'Wallet', 'Exchanges', 'Multichain'];
@@ -117,13 +119,15 @@ export default function Directory() {
       {/* Display dApps */}
       <div className={isListView ? 'flex flex-col' : 'grid md:grid-cols-3 gap-4'}>
         {currentDApps.map((dApp) => (
-          <div key={dApp.id} className="border p-4 rounded-lg shadow mb-4">
-            <h3 className="text-xl font-semibold text-purple-500">{dApp.name}</h3>
-            <p className="text-gray-600">{dApp.description}</p>
-            <p className="text-sm mt-2"><strong>Category:</strong> {dApp.category}</p>
-            <p className="text-sm"><strong>Status:</strong> {dApp.status}</p>
-            {/* More dApp details here */}
-          </div>
+          
+            <div key={dApp.id} className="border p-4 rounded-lg shadow mb-4 ">
+              <h3 className="text-xl font-semibold text-purple-500">{dApp.name}</h3>
+              <p className="text-gray-600">{dApp.description}</p>
+              <p className="text-sm mt-2"><strong>Category:</strong> {dApp.category}</p>
+              <p className="text-sm"><strong>Status:</strong> {dApp.status}</p>
+              {/* More dApp details here */}
+            </div>
+          
         ))}
       </div>
 

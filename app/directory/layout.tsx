@@ -1,3 +1,4 @@
+// exploresol/app/directory/layout.tsx
 export default function DirectoryLayout({
 	children,
 }: {
