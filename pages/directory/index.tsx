@@ -3,16 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { GetStaticProps } from 'next';
-import DirectoryComponent from '@/components/directory'; 
+import Directory from '@/components/directory'; 
 
-// Define a type for your dApps
-type DApp = {
-  slug: string;
-  name: string;
-  description: string;
-  category: string;
-  status: string;
-};
 
 export const getStaticProps: GetStaticProps = async () => {
   const directoryPath = path.join(process.cwd(), 'directorycontents');
@@ -33,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const DirectoryPage = ({dApps}: {dApps: any[]}) => {
-  return <DirectoryComponent dApps={dApps} />;
+  return <Directory dApps={dApps} />;
 };
 
 export default DirectoryPage;
