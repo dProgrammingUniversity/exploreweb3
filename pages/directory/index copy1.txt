@@ -1,14 +1,13 @@
-// pages/directory/index.tsx
+// exploresol/pages/directory/index.tsx
 import { title } from '@/components/primitives';
 import { GetStaticProps } from 'next';
 import Directory from '@/components/directory';
-import { getDirectorySummaries } from '../directory/getDirectorySummaries';
+import { getDirectorySummaries } from './getDirectorySummaries';
 
 export const getStaticProps: GetStaticProps = async () => {
   const dApps = getDirectorySummaries();
   return { props: { dApps } };
 };
-
 
 
 const DirectoryPage = ({ dApps }) => {

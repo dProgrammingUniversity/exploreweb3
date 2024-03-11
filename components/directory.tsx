@@ -13,8 +13,16 @@ const categories = [
 ];
 const statuses = ['live', 'maintenance', 'coming soon'];
 
+// Define a type for your dApps
+type DApp = {
+  slug: string;
+  name: string;
+  description: string;
+  category: string;
+  status: string;
+};
 
-const Directory = ({dApps}) => {
+const Directory = ({dApps}: {dApps: any[]}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
