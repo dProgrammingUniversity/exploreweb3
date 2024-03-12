@@ -1,4 +1,4 @@
-// exploresol/pages/directory/[slug]/page.tsx
+// exploresol/pages/directory/[slug].tsx
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
