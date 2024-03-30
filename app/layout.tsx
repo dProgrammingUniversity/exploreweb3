@@ -70,7 +70,7 @@ export default function RootLayout({
 									isExternal
 									className="flex items-center gap-1 text-current"
 									href="#"
-									title="Superteam"
+									title="S"
 								>
 									<span className="text-default-600">Subscribers:</span>
 									<p className="text-primary">10</p>
