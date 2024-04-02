@@ -1,0 +1,75 @@
+/* dashboard.css */
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    background-color: #1F2937; /* Replace with your preferred color */
+  }
+  
+  .sidebar {
+    width: 16rem; /* 64px */
+    background-color: #111827; /* Replace with your preferred color */
+    padding: 1rem; /* 16px */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* 4px */
+  }
+  
+  .sidebar-link {
+    color: white;
+    padding: 0.625rem 1rem; /* 10px 16px */
+    border-radius: 0.25rem; /* 4px */
+    transition: background-color 200ms;
+  }
+  
+  .sidebar-link:hover {
+    background-color: #374151;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 2.5rem; /* 40px */
+    font-size: 1.5rem; /* 24px */
+    font-weight: bold;
+  }
+  
+  .content-heading {
+    color: white;
+    margin-bottom: 1.5rem; /* 24px */
+  }
+  
+  .content-links {
+    display: flex;
+    gap: 1rem; /* 16px */
+  }
+  
+  .content-link {
+    color: white;
+    padding: 0.5rem 1rem; /* 8px 16px */
+    border-radius: 0.25rem; /* 4px */
+    transition: background-color 200ms;
+  }
+  
+  .content-link-blue {
+    background-color: #3B82F6;
+  }
+  
+  .content-link-blue:hover {
+    background-color: #2563EB;
+  }
+  
+  .content-link-green {
+    background-color: #10B981;
+  }
+  
+  .content-link-green:hover {
+    background-color: #059669;
+  }
+  
+  .content-link-red {
+    background-color: #EF4444;
+  }
+  
+  .content-link-red:hover {
+    background-color: #DC2626;
+  }
+  
