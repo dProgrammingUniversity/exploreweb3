@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
 const ListingDetailPage = () => {
-  const [listing, setListing] = useState(null);
+  const [listing, setListing] = useState<ListingType | null>(null); // used pre-define type ListingType in globalTypes.ts
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const supabaseClient = createClient();
 
   // Function to fetch listing data
-  const fetchListingData = async (slug) => {
+  const fetchListingData = async (slug: string) => {
     setLoading(true);
     const { data, error } = await supabaseClient
       .from('listings')
