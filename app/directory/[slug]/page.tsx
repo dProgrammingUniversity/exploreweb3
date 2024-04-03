@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
 const ListingDetailPage = () => {
-  const [listing, setListing] = useState<ListingType | null>(null); // used pre-define type ListingType in globalTypes.ts
+  const [listing, setListing] = useState<ListingType | null>(null); // used pre-define type Listing Types in globalTypes.ts
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const supabaseClient = createClient();
