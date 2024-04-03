@@ -5,12 +5,11 @@ import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
 const ListingDetailPage = () => {
-  const [listing, setListing] = useState<ListingType | null>(null); // used pre-define type Listing Types in globalTypes.ts
+  const [listing, setListing] = useState<ListingType | null>(null);
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const supabaseClient = createClient();
 
-  // Function to fetch listing data
   const fetchListingData = async (slug: string) => {
     setLoading(true);
     const { data, error } = await supabaseClient
@@ -27,35 +26,66 @@ const ListingDetailPage = () => {
     setLoading(false);
   };
 
-  // Effect to fetch data on mount and when pathname changes
   useEffect(() => {
-    const slug = pathname.split('/').pop(); // Get the last segment of the pathname which is the slug
+    const slug = pathname.split('/').pop();
     if (slug) {
       fetchListingData(slug);
     }
   }, [pathname]);
 
-  // Display loading state
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Display error state
   if (!listing) {
     return <div>Listing not found</div>;
   }
 
-  // Display the listing details
+  // UI Layout starts here
   return (
-    <div className="flex-1 w-full flex flex-col items-center">
-      <div className="animate-in flex-1 flex flex-col gap-20 opacity-100 max-w-4xl px-3">
-        <main className="flex-1 flex flex-col gap-6">
-          <h2 className="font-bold text-4xl mb-4">{listing.name}</h2>
-          <img src={listing.logo_url} alt={listing.name} className="w-full h-auto" />
-          <p>{listing.short_description}</p>
-          <p>{listing.full_description}</p>
-          <p>{listing.website}</p>
-          {/* Add other listing details as needed */}
+    <div className="flex-1 w-full px-4 py-6 bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto">
+        <header className="text-center mb-8 bg-purple-900">
+          <h1 className="text-4xl font-bold mb-2">{listing.name}</h1>
+          <p className="text-lg">{listing.category} | {listing.status}</p>
+        </header>
+        <main className="grid md:grid-cols-3 gap-8">
+          <div className="md:col-span-2">
+            <img src={listing.logo_url} alt={listing.name} className="w-full h-64 object-cover mb-6 rounded" />
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">About</h2>
+              <p>{listing.short_description}</p>
+              <p>{listing.full_description}</p>
+            </div>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Details</h2>
+              <p>Blockchain: {listing.blockchain}</p>
+              <p>Use Case: {listing.use_case}</p>
+              <p>Year Founded: {listing.year_founded}</p>
+            </div>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Resources</h2>
+              <p>Website: <a href={listing.website} className="text-blue-500">{listing.website}</a></p>
+              <p>Roadmap: <a href={listing.roadmap_url} className="text-blue-500">{listing.roadmap_url}</a></p>
+              <p>Whitepaper: <a href={listing.whitepaper_url} className="text-blue-500">{listing.whitepaper_url}</a></p>
+            </div>
+            {/* Add more sections based on the listing details */}
+          </div>
+          <aside>
+            <div className="sticky top-8">
+              <div className="mb-6 bg-gray-800 p-4 rounded">
+                <h2 className="text-2xl font-bold mb-4">Contact</h2>
+                <p>Twitter: <a href={`https://twitter.com/${listing.twitter}`} className="text-blue-500">{listing.twitter}</a></p>
+                <p>Discord: {listing.discord}</p>
+                {/* Add more contact details */}
+              </div>
+              <div className="bg-gray-800 p-4 rounded">
+                <h2 className="text-2xl font-bold mb-4">Contribute</h2>
+                <p>If you have found any issues or would like to contribute to the project, please reach out or submit a pull request.</p>
+                {/* Add contribution section */}
+              </div>
+            </div>
+          </aside>
         </main>
       </div>
     </div>
