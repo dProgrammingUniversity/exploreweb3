@@ -44,7 +44,7 @@ const ListingDetailPage = () => {
 
   // Display error state
   if (!listing) {
-    return <div>Listing not found</div>;
+    return <div>Listing not found <br/>OR<br/> You might need to login to view the listings</div>;
   }
 
   // Display the listing details

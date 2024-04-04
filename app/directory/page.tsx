@@ -24,7 +24,7 @@ const DirectoryPage = () => {
     'DAO', 'Infrastructure', 'Identity', 'Privacy', 'Storage', 
     'Oracle', 'Education', 'Content', 'Metaverse', 'Other'
   ];
-  const statuses = ['Live', 'Maintenance', 'Upcoming', 'Rugged']; //... add all your statuses
+  const statuses = ['Live', 'Maintenance', 'Upcoming', 'Deprecated', 'Rugged']; //... add all your statuses
   const pricings = ['Free', 'Freemium', 'Premium']; //... add all your pricing plans
 
 
