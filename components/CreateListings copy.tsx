@@ -42,7 +42,6 @@ export default function CreateListings() {
   const [image, setImage] = useState(null); // New state for the image
   const fileInputRef = useRef(null); // Added ref for the file input
   const supabase = createClient();
-  const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file
 
 
   // Handle input changes 
@@ -52,27 +51,32 @@ export default function CreateListings() {
   };
 
   // Handle image upload to Cloudinary
-  // Updated to handle both event and direct file argument and setting file to state
-  const handleFileSelect = (eventOrFile) => {
-    let file;
-    if (eventOrFile instanceof File) {
-      // Direct File object from drag-and-drop
-      file = eventOrFile;
-    } else {
-      // Event from click upload
-      file = eventOrFile.target.files[0];
+  // Updated to handle both event and direct file argument
+  const handleImageUpload = async (fileOrEvent) => {
+    let file = fileOrEvent;
+    if (fileOrEvent.target) { // Check if it's an event
+      file = fileOrEvent.target.files[0];
     }
-    if (file) {
-      setSelectedFile(file);
-      setImage(URL.createObjectURL(file)); // For local preview
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', process.env.NEXT_PUBLIC_UPLOAD_PRESET!); // Your Cloudinary upload preset
+
+      try {
+        setLoading(true);
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+          formData
+        );
+        setImage(response.data.secure_url); // Set image URL in state
+        setLoading(false);
+      } catch (error) {
+        console.error('Error uploading image:', error.response?.data || error); // Log the detailed error response from Cloudinary
+        setLoading(false);
+        setMessage('Error uploading image: ' + (error.response?.data.message || error.message)); // Include the Cloudinary error message
+      }
     }
-  };
-  
-  // Remove the selected image and reset the state
-  const removeSelectedImage = () => {
-    setSelectedFile(null);
-    setImage(null);
-  };
   
 
  // File upload drag and drop
@@ -84,7 +88,7 @@ export default function CreateListings() {
    e.preventDefault();
    const files = e.dataTransfer.files;
    if (files.length) {
-     handleFileSelect(files[0]); // Now passing the File object
+     handleImageUpload(files[0]); // Now passing the File object
    }
  };
 
@@ -93,34 +97,13 @@ export default function CreateListings() {
 
 
   // Handle form submission
-  // Updated handleSubmit to handle image upload on form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
     setMessage('Submitting...');
 
-    let imageUrl = '';
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append('file', selectedFile);
-      formData.append('upload_preset', process.env.NEXT_PUBLIC_UPLOAD_PRESET!);
-
-      try {
-        const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
-          formData
-        );
-        imageUrl = response.data.secure_url; // Get image URL from Cloudinary
-      } catch (error) {
-        console.error('Error uploading image:', error);
-        setLoading(false);
-        setMessage('Failed to upload image.');
-        return;
-      }
-    }
-
-    // Now include the image URL in the form submission
-    const submissionData = { ...formData, logo_url: imageUrl };
+    // Include the image URL in the form submission
+    const submissionData = { ...formData, logo_url: image };
     const { error } = await supabase.from('listings').insert([submissionData]);
 
     setLoading(false);
@@ -129,7 +112,6 @@ export default function CreateListings() {
       setMessage(`Failed to add listing: ${error.message}`);
     } else {
       setFormData(initialFormData);
-      setSelectedFile(null);
       setImage(null); // Reset image state
       setMessage('Listing added successfully!');
     }
@@ -174,20 +156,13 @@ export default function CreateListings() {
               id="logo" 
               type="file" 
               className="hidden"
-              onChange={handleFileSelect}
+              onChange={handleImageUpload}
               disabled={loading}
               accept="image/jpeg, image/png"
             />
           </div>
-          {/* Preview the uploaded image with a button to remove the selected image before submitting */}
-          {image && (
-    <>
-      <img src={image} alt="Uploaded logo" className="mt-4" />
-      <button type="button" onClick={removeSelectedImage} className="btn bg-red-500 hover:bg-red-700 text-white rounded p-2 w-full mt-2">
-        Remove Image
-      </button>
-    </>
-  )}
+          {/* Preview the uploaded image */}
+          {image && <img src={image} alt="Uploaded logo" className="mt-4" />}
         </div>
         <div className="col-span-full">
           <button type="submit" className="btn bg-blue-500 hover:bg-blue-700 text-white rounded p-2 w-full" disabled={loading}>
