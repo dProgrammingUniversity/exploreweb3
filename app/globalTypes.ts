@@ -18,6 +18,7 @@ type ListingType = {
     twitter: string;
     discord: string;
     telegram: string;
+    solarplex: string;
     pros: string;
     cons: string;
     team: string;

@@ -9,6 +9,7 @@ const DirectoryPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
+  const [filterPricing, setFilterPricing] = useState('All');
   const [isListView, setIsListView] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +25,7 @@ const DirectoryPage = () => {
     'Oracle', 'Education', 'Content', 'Metaverse', 'Other'
   ];
   const statuses = ['Live', 'Maintenance', 'Upcoming', 'Rugged']; //... add all your statuses
+  const pricings = ['Free', 'Freemium', 'Premium']; //... add all your pricing plans
 
 
   // Function to fetch listing data
@@ -47,9 +49,10 @@ const DirectoryPage = () => {
   // Filtered listings based on search, category, and status
 const filteredListings = listings.filter((listing) => {
   const searchMatch = listing.name.toLowerCase().includes(searchTerm.toLowerCase());
-  const categoryMatch = filterCategory === 'All' || listing.category === filterCategory;
-  const statusMatch = filterStatus === 'All' || listing.status === filterStatus;
-  return searchMatch && categoryMatch && statusMatch;
+  const categoryMatch = filterCategory === 'All' || listing.category === filterCategory; // Check for categories match
+  const statusMatch = filterStatus === 'All' || listing.status === filterStatus; // Check for status match
+  const pricingMatch = filterPricing === 'All' || listing.pricing === filterPricing; // Check for pricing match
+  return searchMatch && categoryMatch && statusMatch && pricingMatch;
 });
 
 // Function to handle category button click
@@ -83,8 +86,9 @@ if (loading) {
           placeholder="Search for Solana dApps, Airdrop, Recovery, Security tools etc..."
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        {/* All Categories Filter */}
         <select
-          className="p-2 border rounded bg-gray-500"
+          className="p-2 border rounded bg-gray-700"
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
         >
@@ -93,8 +97,20 @@ if (loading) {
             <option key={idx} value={category}>{category}</option>
           ))}
         </select>
+        {/* All Pricing Filter */}
         <select
           className="p-2 border rounded bg-purple-800"
+          value={filterPricing}
+          onChange={(e) => setFilterPricing(e.target.value)}
+        >
+          <option value="All">All Pricing</option>
+          {pricings.map((pricing, idx) => (
+            <option key={idx} value={pricing}>{pricing}</option>
+          ))}
+        </select>
+        {/* All Statuses Filter */}
+        <select
+          className="p-2 border rounded bg-gray-700"
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
         >
@@ -103,6 +119,7 @@ if (loading) {
             <option key={idx} value={status}>{status}</option>
           ))}
         </select>
+        {/* grid/List View */}
         <button
           onClick={() => setIsListView(!isListView)}
           className={`p-2 border rounded ${isListView ? 'bg-gray-700 text-white' : 'bg-purple-800 text-white'}`}
