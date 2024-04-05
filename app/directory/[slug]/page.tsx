@@ -20,11 +20,17 @@ const ListingDetailPage = () => {
       .select('*')
       .eq('slug', slug)
       .single();
-
+  
     if (error) {
       console.error('Error fetching listing:', error);
+      setLoading(false);
     } else {
-      setListing(data);
+      // Check if the fetched listing has 'approved' moderation status
+      if (data && data.moderation_status === 'approved') {
+        setListing(data);
+      } else {
+        setListing(null); // Don't set listing if not approved
+      }
     }
     setLoading(false);
   };

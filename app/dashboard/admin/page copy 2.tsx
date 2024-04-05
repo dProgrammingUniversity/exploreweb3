@@ -8,33 +8,19 @@ import "../../dashboard/dashboard.css";
 export default function AdminPage() {
   const [pendingListings, setPendingListings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const supabase = createClient();
 
   useEffect(() => {
-    const checkAdmin = async () => {
-      const { data: user, error } = await supabase.auth.getUser();
-      
-      if (error || !user) {
-        // If there is an error or no user, redirect to login
-        window.location.href = "/login";
-        return;
-      }
-      
-      // Replace 'role' with the actual key where the user's role is stored
-      // For example, if it's stored in app_metadata or user_metadata
-      if (user.role !== 'admin') {
-        // If user is not admin, redirect to login or another page
-        window.location.href = "/login";
-        return;
-      }
-      
-      setIsAdmin(true);  // Set admin state to true if the user is an admin
-      fetchPendingListings();
-    };
-
     const fetchPendingListings = async () => {
+      const { data: user } = await supabase.auth.getUser();
+
+      if (!user) {
+        // Handle user not logged in or not admin
+        window.location.href = "/login";
+        return;
+      }
+
       const { data, error } = await supabase
         .from('listings')
         .select('*')
@@ -48,16 +34,11 @@ export default function AdminPage() {
       setLoading(false);
     };
 
-    checkAdmin();
+    fetchPendingListings();
   }, [supabase]);
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (!isAdmin) {
-    // Show a loading or blank screen if not admin
-    return <div>Checking permissions...</div>;
   }
 
   return (

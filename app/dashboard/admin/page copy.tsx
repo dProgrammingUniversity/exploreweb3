@@ -1,8 +1,8 @@
-// ExploreSol/app/dashboard/page.tsx
+// ExploreSol/app/dashboard/admin/page.tsx 
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import "../dashboard/dashboard.css"; 
+import "../../dashboard/dashboard.css"; 
 
 export default async function DashboardPage() {
   const supabase = createClient();

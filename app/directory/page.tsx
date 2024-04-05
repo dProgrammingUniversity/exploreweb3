@@ -31,7 +31,12 @@ const DirectoryPage = () => {
   // Function to fetch listing data
   const fetchListingData = async () => {
     setLoading(true);
-    const { data, error } = await supabaseClient.from('listings').select('*');
+    // Query only for listings with moderation_status set to 'approved'
+    const { data, error } = await supabaseClient
+    .from('listings')
+    .select('*')
+    .eq('moderation_status', 'approved'); // filter for approved listings only
+    // Check for errors
     if (error) {
       console.error('Error fetching listings:', error);
       setLoading(false);
