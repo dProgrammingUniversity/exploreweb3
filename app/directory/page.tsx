@@ -156,7 +156,7 @@ if (loading) {
       {/* Display listings with conditional rendering based on view type */}
       <div className={isListView ? 'flex flex-col' : 'grid md:grid-cols-3 gap-4'}>
         {currentListings.map((listing) => (
-          <Link key={listing.slug} href={`/directory/${listing.slug}`} 
+          <Link key={listing.slug} href={`/directory/${listing.slug}`} target='_blank'
             passHref
             className={`border p-4 rounded-lg shadow mb-4 cursor-pointer transition duration-500 ease-in-out ${
               isListView ? 'hover:scale-105' : 'hover:scale-110'

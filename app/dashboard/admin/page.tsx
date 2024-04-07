@@ -6,7 +6,7 @@ import Link from "next/link";
 import "../../dashboard/dashboard.css";
 
 export default function AdminPage() {
-  const [pendingListings, setPendingListings] = useState([]);
+  const [pendingListings, setPendingListings] = useState<ListingType[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -22,10 +22,15 @@ export default function AdminPage() {
         return;
       }
       
-      // Replace 'role' with the actual key where the user's role is stored
-      // For example, if it's stored in app_metadata or user_metadata
-      if (user.role !== 'admin') {
-        // If user is not admin, redirect to login or another page
+      // Check if the user is an admin
+      const { data: roles, error: roleError } = await supabase
+        .from('user_role_manager')
+        .select('*')
+        .eq('user_role_level', 'admin') // Check if the user has an admin role
+        .single();  
+
+      if (roleError || !roles || roles.user_role_level !== 'admin') {
+        // If there's an error, no role info, or the user is not an admin, redirect to login
         window.location.href = "/login";
         return;
       }
@@ -79,7 +84,7 @@ export default function AdminPage() {
         <div className="grid md:grid-cols-3 gap-4">
           {pendingListings.length > 0 ? (
             pendingListings.map((listing) => (
-              <Link key={listing.id} href={`/admin/listings/${listing.id}`} passHref>
+              <Link key={listing.slug} href={`/dashboard/admin/${listing.slug}`} target='_blank' passHref>
                 <div className="card bg-gray-800 rounded-lg p-4 shadow hover:shadow-lg transition duration-300 cursor-pointer">
                   <img src={listing.logo_url} alt={listing.name} className="w-full h-48 object-cover rounded-t-lg" />
                   <div className="p-4">
@@ -87,7 +92,7 @@ export default function AdminPage() {
                     <p className="text-gray-400">{listing.short_description}</p>
                     {/* Additional info and actions */}
                     <div className="mt-4">
-                      <Link href={`/admin/edit/${listing.id}`} className="text-blue-500 hover:underline">Edit</Link>
+                      Edit
                     </div>
                   </div>
                 </div>

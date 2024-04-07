@@ -6,6 +6,7 @@ to fix listings type errors
 */
 type ListingType = {
     id: number;
+    author_id: string;
     name: string;
     logo_url: string;
     category: string;
