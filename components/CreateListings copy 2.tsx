@@ -8,11 +8,7 @@ export default function CreateListings() {
   const initialFormData = {
     name: '',
     // logo_url: '', // Skip this field as it will be uploaded separately
-    // category_1: '', // Skip category fields as it will be added separately
-    // category_2: '',
-    // category_3: '',
-    // category_4: '',
-    // category_5: '',
+    // category: '', // Skip this field as it will be added separately
     status: '',
     keyword: '',
     year_founded: '',
@@ -45,13 +41,8 @@ export default function CreateListings() {
   const [message, setMessage] = useState('');
   const [image, setImage] = useState(null); // New state for the image
   const fileInputRef = useRef(null); // Added ref for the file input
-  const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file
-  const [selectedCategory1, setSelectedCategory1] = useState(null);
-  const [selectedCategory2, setSelectedCategory2] = useState(null);
-  const [selectedCategory3, setSelectedCategory3] = useState(null);
-  const [selectedCategory4, setSelectedCategory4] = useState(null);
-  const [selectedCategory5, setSelectedCategory5] = useState(null);
   const supabase = createClient();
+  const [selectedFile, setSelectedFile] = useState(null); // State to hold the selected file
 
 
 
@@ -60,7 +51,7 @@ export default function CreateListings() {
 const [categories, setCategories] = useState([]);
 
 // Add state to hold selected category IDs from the multi-select
-// const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
+const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
 
 // Fetch categories from the database
 useEffect(() => {
@@ -80,12 +71,11 @@ useEffect(() => {
 }, []);
 
 // This handler will be called when the categories are selected or deselected
-// Add separate handlers for each category dropdown
-const handleCategoryChange = (e) => {
-  const { name, value } = e.target;
-  setFormData({ ...formData, [name]: value });
+const handleCategorySelect = (event) => {
+  // Here we are converting the selected options NodeList to an array of values
+  const categoryIdsArray = Array.from(event.target.selectedOptions, option => parseInt(option.value));
+  setSelectedCategoryIds(categoryIdsArray);
 };
-
 
 
 
@@ -140,8 +130,7 @@ const handleCategoryChange = (e) => {
   // Handle form submission
   // Updated handleSubmit to handle image upload on form submit
   const handleSubmit = async (event) => {
-    console.log('Form submitted!');
-
+    console.log('Form submitted');
     event.preventDefault();
     setLoading(true);
     setMessage('Submitting...');
@@ -171,40 +160,32 @@ const handleCategoryChange = (e) => {
     // Modify the submission data to include selected category IDs
     const submissionData = {
       ...formData,
-      logo_url: imageUrl, // Include the image URL in the submission data
-      category_1: selectedCategory1 ? parseInt(selectedCategory1) : null, // Convert to integer ID or null
-      category_2: selectedCategory2 ? parseInt(selectedCategory2) : null,
-      category_3: selectedCategory3 ? parseInt(selectedCategory3) : null,
-      category_4: selectedCategory4 ? parseInt(selectedCategory4) : null,
-      category_5: selectedCategory5 ? parseInt(selectedCategory5) : null,
+      logo_url: imageUrl,
+      category_ids: selectedCategoryIds, // This now includes the array of selected category IDs
     };
 
-    try {
-      // We'll use a transaction for this insert to ensure all or nothing behavior
-      const { data, error } = await supabase
-        .from('listings')
-        .insert([submissionData]);
+  try {
+    // We'll use a transaction for this insert to ensure all or nothing behavior
+    const { data, error } = await supabase
+      .from('listings')
+      .insert([submissionData]);
 
-      if (error) {
-        throw error;
-      }
-
-      setMessage('Listing added successfully!');
-      setLoading(false);
-      // Resetting form fields after successful submission
-      setFormData(initialFormData);
-      setImage(null); // Reset image state
-      setSelectedCategory1(null); // Reset selected category 1
-      setSelectedCategory2(null); // Reset selected category 2
-      setSelectedCategory3(null); // Reset selected category 3
-      setSelectedCategory4(null); // Reset selected category 4
-      setSelectedCategory5(null); // Reset selected category 5
-    } catch (error) {
-      console.error('Failed to add listing:', error);
-      setMessage(`Failed to add listing: ${error.message}`);
-    } finally {
-      setLoading(false);
+    if (error) {
+      throw error;
     }
+
+    setMessage('Listing added successfully!');
+    // Resetting form and selected categories
+    setFormData(initialFormData);
+    setSelectedCategoryIds([]);
+  } catch (error) {
+    console.error('Failed to add listing:', error);
+    setMessage(`Failed to add listing: ${error.message}`);
+  } finally {
+    setLoading(false);
+    setSelectedFile(null);
+    setImage(null);
+  }
     
   };
 
@@ -233,89 +214,21 @@ const handleCategoryChange = (e) => {
           );
         })}
 
-        {/* Category_1 dropdown list  */}
+        {/* Categories multi-select input field  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 1</label>
-          <select
-            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
-            value={selectedCategory1 || ""}
-            onChange={(e) => setSelectedCategory1(e.target.value)}
-          >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Category_2 dropdown list  */}
-        <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 2</label>
-          <select
-            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
-            value={selectedCategory2 || ""}
-            onChange={(e) => setSelectedCategory2(e.target.value)}
-          >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Category_3 dropdown list  */}
-        <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 3</label>
-          <select
-            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
-            value={selectedCategory3 || ""}
-            onChange={(e) => setSelectedCategory3(e.target.value)}
-          >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Category_4 dropdown list  */}
-        <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 4</label>
-          <select
-            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
-            value={selectedCategory4 || ""}
-            onChange={(e) => setSelectedCategory4(e.target.value)}
-          >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Category_5 dropdown list  */}
-        <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 5</label>
-          <select
-            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
-            value={selectedCategory5 || ""}
-            onChange={(e) => setSelectedCategory5(e.target.value)}
-          >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+            <label className="mb-2 capitalize text-white">Categories</label>
+            <select 
+            className="flex flex-col  justify-center w-full bg-gray-800 text-white rounded-lg border-2"
+              multiple={true} 
+              value={selectedCategoryIds} 
+              onChange={handleCategorySelect}
+            >
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+            </select>
         </div>
 
         {/* Image upload */}
