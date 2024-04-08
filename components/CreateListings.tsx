@@ -241,7 +241,7 @@ const handleCategoryChange = (e) => {
             value={selectedCategory1 || ""}
             onChange={(e) => setSelectedCategory1(e.target.value)}
           >
-            <option value="">Select Category</option>
+            <option value="">Select Category 1</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -258,7 +258,7 @@ const handleCategoryChange = (e) => {
             value={selectedCategory2 || ""}
             onChange={(e) => setSelectedCategory2(e.target.value)}
           >
-            <option value="">Select Category</option>
+            <option value="">Select Category 2</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -275,7 +275,7 @@ const handleCategoryChange = (e) => {
             value={selectedCategory3 || ""}
             onChange={(e) => setSelectedCategory3(e.target.value)}
           >
-            <option value="">Select Category</option>
+            <option value="">Select Category 3</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -292,7 +292,7 @@ const handleCategoryChange = (e) => {
             value={selectedCategory4 || ""}
             onChange={(e) => setSelectedCategory4(e.target.value)}
           >
-            <option value="">Select Category</option>
+            <option value="">Select Category 4</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -309,7 +309,7 @@ const handleCategoryChange = (e) => {
             value={selectedCategory5 || ""}
             onChange={(e) => setSelectedCategory5(e.target.value)}
           >
-            <option value="">Select Category</option>
+            <option value="">Select Category 5</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
