@@ -10,9 +10,10 @@ const ListingDetailPage = () => {
   const [listing, setListing] = useState<ListingType | null>(null); // used pre-define type ListingType in globalTypes.ts
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
-  const supabaseClient = createClient();
   // Define the default image URL
   const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+  
+  const supabaseClient = createClient();
 
 
   // Function to fetch listing data
@@ -30,15 +31,40 @@ const ListingDetailPage = () => {
     } else {
       // Check if the fetched listing has 'approved' moderation status
       if (data && data.moderation_status === 'approved') {
-        setListing(data);
+        const categoryNames = await Promise.all([
+          fetchCategoryName(data.category_1), // Fetch category name by ID
+          // Repeat for category_2 through category_5 if necessary
+        ]);
+        const updatedListing = {
+          ...data,
+          category_1_name: categoryNames[0], // Set the fetched category name
+          // Set additional category names if necessary
+        };
+        setListing(updatedListing);
       } else {
-        setListing(null); // Don't set listing if not approved
+        setListing(null);
       }
     }
     setLoading(false);
   };
 
-  // Effect to fetch data on mount and when pathname changes
+  // Helper function to fetch a single category name by ID
+  const fetchCategoryName = async (categoryId) => {
+    const { data, error } = await supabaseClient
+      .from('categories')
+      .select('name')
+      .eq('id', categoryId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching category name:', error);
+      return 'N/A'; // or any default value you want to use
+    }
+
+    return data.name;
+  };
+
+  // useEffect to fetch data on mount and when pathname changes
   useEffect(() => {
     const slug = pathname.split('/').pop();
     if (slug) {
@@ -63,7 +89,7 @@ const ListingDetailPage = () => {
         
         <header className="text-center mb-8 bg-purple-900">
           <h1 className="text-6xl font-bold mb-2">{listing.name}</h1>
-          <p className="text-l font-semibold text-gray-400">{listing.category} | Founded: {listing.year_founded} | {listing.status}</p>
+          <p className="text-l font-semibold text-gray-400">{listing.category_1_name} | Founded: {listing.year_founded} | {listing.status}</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -76,7 +102,7 @@ const ListingDetailPage = () => {
             
             <div className="mt-4">
               {/* Pricing/category */}
-              <p className="text-gray-400">{listing.pricing} - {listing.category}</p>
+              <p className="text-gray-400">{listing.pricing} - {listing.category_1_name}</p>
               {/* short description */}
               <h2 className="text-xl font-bold text-purple-500">{listing.name} Summary</h2>
               <p className="text-gray-300 mt-2">{listing.short_description}</p>
