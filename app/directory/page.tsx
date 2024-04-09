@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const DirectoryPage = () => {
   const [listings, setListings] = useState<ListingType[]>([]); // used pre-define type Listing Types in globalTypes.ts
+  const [categories, setCategories] = useState([]); // State to hold categories from database
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
@@ -17,33 +18,24 @@ const DirectoryPage = () => {
 
   const supabaseClient = createClient();
 
-  // Categories and statuses for filtering (assuming these are predefined)
-  const categories = [
-    'Finance', 'Game', 'Analytics', 'Wallet', 'Exchange', 
-    'Multichain', 'Development Tool', 'NFT', 'Marketplace', 'Social', 
-    'DAO', 'Infrastructure', 'Identity', 'Privacy', 'Storage', 
-    'Oracle', 'Education', 'Content', 'Metaverse', 'Other'
-  ];
   const statuses = ['Live', 'Maintenance', 'Upcoming', 'Deprecated', 'Rugged']; //... add all your statuses
   const pricings = ['Free', 'Freemium', 'Premium']; //... add all your pricing plans
 
-// Function to calculate the count of listings by category
-const countByCategory = (category) => {
-  return listings.filter(listing => listing.category === category).length;
-};
 
-// Function to calculate the count of listings by status
-const countByStatus = (status) => {
-  return listings.filter(listing => listing.status === status).length;
-};
+// Function to fetch category data from the 'categories' table
+const fetchCategories = async () => {
+  setLoading(true);
+  const { data, error } = await supabaseClient
+    .from('categories')
+    .select('id, name');
 
-// Function to calculate the count of listings by pricing
-const countByPricing = (pricing) => {
-  return listings.filter(listing => listing.pricing === pricing).length;
+  if (error) {
+    console.error('Error fetching categories:', error);
+  } else {
+    setCategories(data.map(category => category.name));
+  }
+  setLoading(false);
 };
-
-// Total count of listings
-const totalCount = listings.length;
 
   // Function to fetch listing data
   const fetchListingData = async () => {
@@ -66,6 +58,7 @@ const totalCount = listings.length;
   // Effect to fetch data on mount
   useEffect(() => {
     fetchListingData();
+    fetchCategories();
   }, []);
 
   // Filtered listings based on search, category, and status
@@ -149,29 +142,6 @@ if (loading) {
           {isListView ? 'GridView' : 'ListView'}
         </button>
       </div>
-
-      {/* Category buttons */}
-      <div className="flex flex-wrap gap-2 mb-4">
-      <button
-        onClick={() => handleCategoryClick('All')}
-        className={`p-2 border rounded ${filterCategory === 'All' ? 'bg-purple-700 text-white' : 'bg-black-400'}`}
-      >
-        All Categories ({totalCount})
-      </button>
-      {categories.map((category, idx) => {
-        // Calculate count for each category
-        const categoryCount = countByCategory(category);
-        return (
-          <button
-            key={idx}
-            onClick={() => handleCategoryClick(category)}
-            className={`p-2 border rounded ${filterCategory === category ? 'bg-purple-700 text-white' : 'bg-gray-500'}`}
-          >
-            {`${category} (${categoryCount})`}
-          </button>
-        );
-      })}
-    </div>
 
       {/* Display listings Card*/}
       {/* Display listings with conditional rendering based on view type */}
