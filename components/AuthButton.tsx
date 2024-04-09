@@ -1,3 +1,4 @@
+// ExploreSol/components/AuthButton.tsx
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -17,9 +18,12 @@ export default async function AuthButton() {
     return redirect("/login");
   };
 
+  // Split the email string to remove the domain part
+  const userName = user?.email?.split('@')[0] ?? '';
+  
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      S, {userName}!
       <form action={signOut}>
         <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
           Logout

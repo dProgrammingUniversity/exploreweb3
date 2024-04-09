@@ -34,8 +34,9 @@ export default async function NavigationBar() {
               {/* <DeployButton /> */}
               <Link href="/directory" className="btn">Directory</Link>
               <Link href="/dashboard" className="btn">Dashboard</Link>
-              <Link href="/protected" className="btn">Protected</Link>
-              <Link href="/notes" className="btn">Notes</Link>
+              <Link href="/about" className="btn">About</Link>
+              <Link href="/roadmap" className="btn">Roadmap</Link>
+              <Link href="/s" className="btn">S</Link>
               <AuthButton />
             </div>
           </div>

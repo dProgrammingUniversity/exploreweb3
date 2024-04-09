@@ -22,12 +22,6 @@ export default async function DashboardPage() {
         <Link href="/dashboard/create-listings" className="sidebar-link">
             Create Listings
         </Link>
-        <Link href="/dashboard/messages" className="sidebar-link">
-            Messages
-        </Link>
-        <Link href="/dashboard/bookings" className="sidebar-link">
-            Bookings
-        </Link>
         {/* Add other sidebar links here */}
       </div>
 
