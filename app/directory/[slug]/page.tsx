@@ -11,6 +11,9 @@ const ListingDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const supabaseClient = createClient();
+  // Define the default image URL
+  const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+
 
   // Function to fetch listing data
   const fetchListingData = async (slug: string) => {
@@ -69,7 +72,7 @@ const ListingDetailPage = () => {
           <div className="md:col-span-2">
             
             {/* Image */}
-            <img src={listing.logo_url} alt={listing.name} className="w-full h-auto rounded-lg shadow-lg" />
+            <img src={listing.logo_url || defaultImageUrl} alt={listing.name} className="w-full h-auto rounded-lg shadow-lg" />
             
             <div className="mt-4">
               {/* Pricing/category */}
