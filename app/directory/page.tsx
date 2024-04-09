@@ -15,6 +15,9 @@ const DirectoryPage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  // Define the default image URL
+  const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+
 
   const supabaseClient = createClient();
 
@@ -197,7 +200,7 @@ if (loading) {
                 <div>
                   {/* card images */}
                   <img
-                    src={listing.logo_url}
+                    src={listing.logo_url || defaultImageUrl} // Use default image URL if listing logo_url is not available
                     alt={listing.name}
                     className="w-full h-24 object-cover object-center mb-4" // Adjust size for thumbnails
                     style={{ maxHeight: "120px" }}
