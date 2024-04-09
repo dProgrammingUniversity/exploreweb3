@@ -9,7 +9,11 @@ type ListingType = {
     author_id: string;
     name: string;
     logo_url: string;
-    category: string;
+    category_1_name?: string; 
+    category_2_name?: string; 
+    category_3_name?: string;
+    category_4_name?: string;
+    category_5_name?: string;
     status: string;
     keyword: string;
     year_founded: number;

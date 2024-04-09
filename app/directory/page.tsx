@@ -37,20 +37,47 @@ const fetchCategories = async () => {
   setLoading(false);
 };
 
+// Helper function to fetch a single category name by ID
+const fetchCategoryName = async (categoryId) => {
+  const { data, error } = await supabaseClient
+    .from('categories')
+    .select('name')
+    .eq('id', categoryId)
+    .single();
+
+  if (error) {
+    console.error('Error fetching category name:', error);
+    return 'N/A'; // or any default value you want to use
+  }
+
+  return data.name;
+};
+
+
   // Function to fetch listing data
   const fetchListingData = async () => {
     setLoading(true);
+    
     // Query only for listings with moderation_status set to 'approved'
     const { data, error } = await supabaseClient
     .from('listings')
     .select('*')
     .eq('moderation_status', 'approved'); // filter for approved listings only
+    
     // Check for errors
     if (error) {
       console.error('Error fetching listings:', error);
       setLoading(false);
     } else {
-      setListings(data);
+      // Map over the listings and enrich them with category names
+      const listingsWithCategoryNames = await Promise.all(
+        data.map(async (listing) => {
+          const categoryName = await fetchCategoryName(listing.category_1);
+          return { ...listing, category_1_name: categoryName };
+        })
+      );
+
+      setListings(listingsWithCategoryNames);
       setLoading(false);
     }
   };
@@ -71,10 +98,10 @@ const filteredListings = listings.filter((listing) => {
 });
 
 // Function to handle category button click
-const handleCategoryClick = (category: string) => {
-  setFilterCategory(category);
-  setCurrentPage(1); // Reset pagination to page 1 when a new category is selected
-};
+// const handleCategoryClick = (category: string) => {
+//   setFilterCategory(category);
+//   setCurrentPage(1); // Reset pagination to page 1 when a new category is selected
+// };
 
 // Paginated listings based on filtered results
 const indexOfLastItem = currentPage * itemsPerPage;
@@ -177,7 +204,7 @@ if (loading) {
                   />
                   {/* card content */}
                   <h2 className="text-xl font-bold text-purple-700">{listing.name}</h2>
-                  <h5 className="text-l font-semibold text-purple-300">{listing.category}</h5>
+                  <h5 className="text-l font-semibold text-purple-300">{listing.category_1_name}</h5>
                   <p className="text-sm text-gray-400">{listing.year_founded} || {listing.keyword}</p>
                   <p className="text-sm text-green-500">{listing.status}</p>
                   {/* ...other listing details... */}
