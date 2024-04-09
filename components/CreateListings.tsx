@@ -13,7 +13,7 @@ export default function CreateListings() {
     // category_3: '',
     // category_4: '',
     // category_5: '',
-    status: '',
+    // status: '', // Skip this field as it will be added separately
     keyword: '',
     year_founded: '',
     short_description: '',
@@ -51,7 +51,10 @@ export default function CreateListings() {
   const [selectedCategory3, setSelectedCategory3] = useState(null);
   const [selectedCategory4, setSelectedCategory4] = useState(null);
   const [selectedCategory5, setSelectedCategory5] = useState(null);
-  const supabase = createClient();
+  const [statuses, setStatuses] = useState([]); // Add state to store statuses fetched from the database
+
+  // Initialize supabaseClient client
+  const supabaseClient = createClient();
 
 
 
@@ -59,13 +62,12 @@ export default function CreateListings() {
   // Add state to hold categories fetched from the database
 const [categories, setCategories] = useState([]);
 
-// Add state to hold selected category IDs from the multi-select
-// const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
 
 // Fetch categories from the database
 useEffect(() => {
+  // Fetch categories from the database
   async function fetchCategories() {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('categories')
       .select('id, name');
     
@@ -75,8 +77,22 @@ useEffect(() => {
       setCategories(data);
     }
   }
+
+  // Fetch statuses from the database
+  async function fetchStatuses() {
+    const { data, error } = await supabaseClient
+      .rpc('enum_status_values');
+
+    if (error) {
+      console.error("Error fetching statuses:", error);
+    } else {
+      setStatuses(data);
+    }
+  }
+
   
   fetchCategories();
+  fetchStatuses();
 }, []);
 
 // This handler will be called when the categories are selected or deselected
@@ -181,7 +197,7 @@ const handleCategoryChange = (e) => {
 
     try {
       // We'll use a transaction for this insert to ensure all or nothing behavior
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('listings')
         .insert([submissionData]);
 
@@ -214,6 +230,7 @@ const handleCategoryChange = (e) => {
 
       <form onSubmit={handleSubmit} className="w-full max-w-4xl bg-gray-700 p-5 rounded shadow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
+        {/* All input fields for the form */}
         {Object.keys(initialFormData).map((key) => {
           if (key === 'moderation_status' || key === 'logo_url') return null; // Skip these fields
           return (
@@ -232,6 +249,26 @@ const handleCategoryChange = (e) => {
             </div>
           );
         })}
+
+        {/* Status dropdown list */}
+        {/* Status dropdown list */}
+        <div className="col-span-full">
+          <label htmlFor="status" className="mb-2 capitalize text-white">Status</label>
+          <select
+            id="status"
+            name="status"
+            value={formData.status || ""}
+            onChange={handleInputChange}
+            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
+          >
+            <option value="">Select Status</option>
+            {statuses.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Category_1 dropdown list  */}
         <div className="col-span-full">

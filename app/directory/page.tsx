@@ -17,11 +17,12 @@ const DirectoryPage = () => {
   const itemsPerPage = 10;
   // Define the default image URL
   const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+  const [statuses, setStatuses] = useState([]); // State to hold statuses from database
 
-
+  // Initialize Supabase client
   const supabaseClient = createClient();
 
-  const statuses = ['Live', 'Maintenance', 'Upcoming', 'Deprecated', 'Rugged']; //... add all your statuses
+  // Define the pricing plans
   const pricings = ['Free', 'Freemium', 'Premium']; //... add all your pricing plans
 
 
@@ -57,9 +58,25 @@ const fetchCategoryName = async (categoryId) => {
 };
 
 
+// Function to fetch all categories with their IDs
+const fetchAllCategoryNames = async () => {
+  const { data, error } = await supabaseClient
+    .from('categories')
+    .select('id, name');
+  if (error) {
+    console.error('Error fetching categories:', error);
+    return {};
+  }
+  // Convert array of categories to an object where the key is the category ID and the value is the category name
+  return data.reduce((acc, category) => ({ ...acc, [category.id]: category.name }), {});
+};
+
+
   // Function to fetch listing data
   const fetchListingData = async () => {
     setLoading(true);
+
+    const categoryNamesById = await fetchAllCategoryNames(); // Fetch all category names at once
     
     // Query only for listings with moderation_status set to 'approved'
     const { data, error } = await supabaseClient
@@ -71,40 +88,66 @@ const fetchCategoryName = async (categoryId) => {
     if (error) {
       console.error('Error fetching listings:', error);
       setLoading(false);
-    } else {
-      // Map over the listings and enrich them with category names
-      const listingsWithCategoryNames = await Promise.all(
-        data.map(async (listing) => {
-          const categoryName = await fetchCategoryName(listing.category_1);
-          return { ...listing, category_1_name: categoryName };
-        })
-      );
+      return;
+    }
 
-      setListings(listingsWithCategoryNames);
-      setLoading(false);
+    // Map over the listings and assign category names using the previously fetched category names by ID
+  const listingsWithCategoryNames = data.map(listing => ({
+    ...listing,
+    category_1_name: categoryNamesById[listing.category_1],
+    category_2_name: categoryNamesById[listing.category_2],
+    category_3_name: categoryNamesById[listing.category_3],
+    category_4_name: categoryNamesById[listing.category_4],
+    category_5_name: categoryNamesById[listing.category_5],
+  }));
+
+  setListings(listingsWithCategoryNames);
+  setLoading(false);
+
+  };
+
+
+  // Function to Fetch statuses from the database
+  const fetchStatuses = async () => {
+    const { data, error } = await supabaseClient
+      .rpc('enum_status_values');
+
+    if (error) {
+      console.error("Error fetching statuses:", error);
+    } else {
+      setStatuses(data);
     }
   };
+
 
   // Effect to fetch data on mount
   useEffect(() => {
     fetchListingData();
     fetchCategories();
+    fetchStatuses();
   }, []);
 
   // Filtered listings based on search, category, and status
 const filteredListings = listings.filter((listing) => {
   const searchMatch = listing.name.toLowerCase().includes(searchTerm.toLowerCase());
-  const categoryMatch = filterCategory === 'All' || listing.category === filterCategory; // Check for categories match
-  const statusMatch = filterStatus === 'All' || listing.status === filterStatus; // Check for status match
-  const pricingMatch = filterPricing === 'All' || listing.pricing === filterPricing; // Check for pricing match
+
+  // Check for category match in any of the five category fields
+  const categoryMatch = filterCategory === 'All' ||
+    listing.category_1_name === filterCategory ||
+    listing.category_2_name === filterCategory ||
+    listing.category_3_name === filterCategory ||
+    listing.category_4_name === filterCategory ||
+    listing.category_5_name === filterCategory; // Adjust these as per your actual data structure
+  
+  // check status match
+  const statusMatch = filterStatus === 'All' || listing.status === filterStatus; 
+  const pricingMatch = filterPricing === 'All' || listing.pricing === filterPricing; 
+  
+  // Return true if all conditions are met
   return searchMatch && categoryMatch && statusMatch && pricingMatch;
+  
 });
 
-// Function to handle category button click
-// const handleCategoryClick = (category: string) => {
-//   setFilterCategory(category);
-//   setCurrentPage(1); // Reset pagination to page 1 when a new category is selected
-// };
 
 // Paginated listings based on filtered results
 const indexOfLastItem = currentPage * itemsPerPage;
@@ -164,7 +207,7 @@ if (loading) {
             <option key={idx} value={status}>{status}</option>
           ))}
         </select>
-        {/* grid/List View */}
+        {/* Grid/List View */}
         <button
           onClick={() => setIsListView(!isListView)}
           className={`p-2 border rounded ${isListView ? 'bg-gray-700 text-white' : 'bg-purple-800 text-white'}`}
@@ -187,7 +230,7 @@ if (loading) {
               {isListView ? (
                 <div className="flex items-center">
                   <img
-                    src={listing.logo_url}
+                    src={listing.logo_url || defaultImageUrl}
                     alt={listing.name}
                     className="w-20 h-20 object-cover object-center mr-4"
                   />
