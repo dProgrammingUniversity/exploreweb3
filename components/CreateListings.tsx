@@ -15,26 +15,26 @@ export default function CreateListings() {
     // category_5: '',
     // status: '', // Skip this field as it will be added separately
     keyword: '',
-    year_founded: '',
-    short_description: '',
-    full_description: '',
+    // year_founded: '', // Skip this field as it will be validated separately
+    // short_description: '', // Skip this field as it will be added separately
+    // full_description: '', // Skip this field as it will be added separately
     website: '',
     twitter: '',
     discord: '',
     telegram: '',
     solarplex: '',
-    pros: '',
-    cons: '',
-    team: '',
+    // pros: '', // Skip this field as it will be added separately
+    // cons: '', // Skip this field as it will be added separately
+    // team: '', // Skip this field as it will be added separately
     governance: '',
-    blockchain: '',
-    use_case: '',
-    pricing: '',
+    // blockchain: '', // Skip this field as it will be added separately
+    // use_case: '', // Skip this field as it will be added separately
+    // pricing: '', // Skip this field as it will be added separately
     roadmap_url: '',
     whitepaper_url: '',
     nft_collection: '',
     nft_collection_url: '',
-    tokenomic: '',
+    // tokenomic: '', // Skip this field as it will be added separately
     token_name: '',
     demo_url: '',
     moderation_status: 'pending', // Assuming 'pending' is your default value
@@ -52,6 +52,11 @@ export default function CreateListings() {
   const [selectedCategory4, setSelectedCategory4] = useState(null);
   const [selectedCategory5, setSelectedCategory5] = useState(null);
   const [statuses, setStatuses] = useState([]); // Add state to store statuses fetched from the database
+  const [pricingOptions, setPricingOptions] = useState([]); // New state for pricing options
+  const [blockchainOptions, setBlockchainOptions] = useState([]); // New state for blockchain options
+  const [tokenomicOptions, setTokenomicOptions] = useState([]); // New state for tokenomic options
+
+
 
   // Initialize supabaseClient client
   const supabaseClient = createClient();
@@ -90,9 +95,48 @@ useEffect(() => {
     }
   }
 
+  // Fetch pricing options from the database
+  async function fetchPricingOptions() {
+    const { data, error } = await supabaseClient
+    .rpc('enum_pricing_values');
+
+    if (error) {
+      console.error("Error fetching pricing options:", error);
+    } else {
+      setPricingOptions(data);
+    }
+  }
+
+  // Fetch blockchain options from the database
+  async function fetchBlockchainOptions() {
+    const { data, error } = await supabaseClient
+    .rpc('enum_blockchain_values');
+
+    if (error) {
+      console.error("Error fetching blockchain options:", error);
+    } else {
+      setBlockchainOptions(data);
+    }
+  }
+
+  // Fetch tokenomic options from the database
+  async function fetchTokenomicOptions() {
+    const { data, error } = await supabaseClient
+    .rpc('enum_tokenomic_values');
+
+    if (error) {
+      console.error("Error fetching tokenomic options:", error);
+    } else {
+      setTokenomicOptions(data);
+    }
+  }
+
   
   fetchCategories();
   fetchStatuses();
+  fetchPricingOptions();
+  fetchBlockchainOptions();
+  fetchTokenomicOptions();
 }, []);
 
 // This handler will be called when the categories are selected or deselected
@@ -109,6 +153,17 @@ const handleCategoryChange = (e) => {
   // Handle input changes 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // If it's the year_founded input, ensure it's a valid year before setting it
+    if(name === 'year_founded'){
+      // Assuming you want to allow years from 1900 to the current year
+      const currentYear = new Date().getFullYear();
+      if(value.length === 4 && (value < 1900 || value > currentYear)){
+        return; // Invalid year, do not set it
+      }
+    }
+
+    // Update the form data with the new value
     setFormData({ ...formData, [name]: value });
   };
 
@@ -250,16 +305,89 @@ const handleCategoryChange = (e) => {
           );
         })}
 
+        {/* Input for year_founded */}
+        <div key="year_founded" className="flex flex-col">
+          <label htmlFor="year_founded" className="mb-2 capitalize text-white">Year Founded</label>
+          <input
+            type="number"
+            id="year_founded"
+            name="year_founded"
+            value={formData.year_founded}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="YYYY"
+            min="1900" // Adjust the min year as per your requirements
+            max={new Date().getFullYear()} // This will make the current year as the max year
+          />
+        </div>
+
+        {/* Dropdown for Pricing */}
+        <div className="flex flex-col">
+          <label htmlFor="pricing" className="mb-2 capitalize text-white">Pricing</label>
+          <select
+            id="pricing"
+            name="pricing"
+            value={formData.pricing || ""}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+          >
+            <option value="">Select Pricing</option>
+            {pricingOptions.map((pricing) => (
+              <option key={pricing} value={pricing}>
+                {pricing}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Dropdown for Blockchain */}
+        <div className="flex flex-col">
+          <label htmlFor="blockchain" className="mb-2 capitalize text-white">Blockchain</label>
+          <select
+            id="blockchain"
+            name="blockchain"
+            value={formData.blockchain || ""}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+          >
+            <option value="">Select Blockchain</option>
+            {blockchainOptions.map((blockchain) => (
+              <option key={blockchain} value={blockchain}>
+                {blockchain}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Dropdown for Tokenomic */}
+        <div className="flex flex-col">
+          <label htmlFor="tokenomic" className="mb-2 capitalize text-white">Tokenomic</label>
+          <select
+            id="tokenomic"
+            name="tokenomic"
+            value={formData.tokenomic || ""}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+          >
+            <option value="">Select Tokenomic</option>
+            {tokenomicOptions.map((tokenomic) => (
+              <option key={tokenomic} value={tokenomic}>
+                {tokenomic}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Status dropdown list */}
-        {/* Status dropdown list */}
-        <div className="col-span-full">
+        <div className="flex flex-col">
           <label htmlFor="status" className="mb-2 capitalize text-white">Status</label>
           <select
             id="status"
             name="status"
             value={formData.status || ""}
             onChange={handleInputChange}
-            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
+            className="border-2 border-gray-300 p-2 rounded bg-black"
           >
             <option value="">Select Status</option>
             {statuses.map((status) => (
@@ -354,6 +482,56 @@ const handleCategoryChange = (e) => {
             ))}
           </select>
         </div>
+
+        {/* Textarea for short_description */}
+        <div key="short_description" className="col-span-full">
+          <label htmlFor="short_description" className="mb-2 capitalize text-white">Short Description</label>
+            
+            <textarea
+              id="short_description"
+              name="short_description"
+              value={formData.short_description}
+              onChange={handleInputChange}
+              disabled={loading}
+              rows="5" // Initial number of rows
+              maxLength="1000" // Adjust the max length as per your requirement for 300 words
+              style={{ minHeight: '50px', resize: 'vertical' }} // User can resize vertically
+              className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
+            />
+        </div>
+
+        {/* Textarea for full_description */}
+        <div key="full_description" className="col-span-full">
+          <label htmlFor="full_description" className="mb-2 capitalize text-white">Full Description</label>
+          <textarea
+            id="full_description"
+            name="full_description"
+            value={formData.full_description}
+            onChange={handleInputChange}
+            disabled={loading}
+            rows="20" // Initial number of rows
+            maxLength="2000" // Adjust the max length as per your requirement for 300 words
+            style={{ minHeight: '80px', resize: 'vertical' }} // User can resize vertically
+            className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
+          />
+        </div>
+
+        {/* Pros, Cons, Use Case, and Team - similar to Short Description */}
+        {['pros', 'cons', 'use_case', 'team'].map((field) => (
+          <div key={field} className="flex flex-col col-span-full">
+            <label htmlFor={field} className="mb-2 capitalize text-white">{field.replace(/_/g, ' ')}</label>
+            <textarea
+              id={field}
+              name={field}
+              value={formData[field] || ""}
+              onChange={handleInputChange}
+              rows="3" // Initial rows
+              maxLength="1000" // Adjust as needed
+              className="border-2 border-gray-300 p-2 rounded bg-black resize-vertical"
+              placeholder={`Enter ${field.replace(/_/g, ' ')}`}
+            />
+          </div>
+        ))}
 
         {/* Image upload */}
         <div className="col-span-full">

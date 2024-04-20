@@ -49,7 +49,7 @@ const ListingDetailPage = () => {
   };
 
   // Helper function to fetch a single category name by ID
-  const fetchCategoryName = async (categoryId) => {
+  const fetchCategoryName = async (categoryId: any) => {
     const { data, error } = await supabaseClient
       .from('categories')
       .select('name')
