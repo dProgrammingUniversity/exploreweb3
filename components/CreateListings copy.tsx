@@ -3,48 +3,41 @@
 import { useState, useRef, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import axios from 'axios'; // Import axios for making HTTP requests
-import { isEnumMember } from 'typescript';
 
 export default function CreateListings() {
   const initialFormData = {
-    id: 0,
-    author_id: '',
-    author: '',
     name: '',
-    logo_url: '',
-    category_1_name: undefined, // Use 'undefined' for optional properties
-    category_2_name: undefined, // Use 'undefined' for optional properties
-    category_3_name: undefined, // Use 'undefined' for optional properties
-    category_4_name: undefined, // Use 'undefined' for optional properties
-    category_5_name: undefined, // Use 'undefined' for optional properties
-    status: '',
+    // logo_url: '', // Skip this field as it will be uploaded separately
+    // category_1: '', // Skip category fields as it will be added separately
+    // category_2: '',
+    // category_3: '',
+    // category_4: '',
+    // category_5: '',
+    // status: '', // Skip this field as it will be added separately
     keyword: '',
-    year_founded: 2024,
-    short_description: '',
-    full_description: '',
+    // year_founded: '', // Skip this field as it will be validated separately
+    // short_description: '', // Skip this field as it will be added separately
+    // full_description: '', // Skip this field as it will be added separately
     website: '',
     twitter: '',
     discord: '',
     telegram: '',
     solarplex: '',
-    pros: '',
-    cons: '',
-    team: '',
-    governance: '',
-    blockchain: '',
-    use_case: '',
-    pricing: '',
+    // pros: '', // Skip this field as it will be added separately
+    // cons: '', // Skip this field as it will be added separately
+    // team: '', // Skip this field as it will be added separately
+    // governance: '', // Skip this field as it will be added separately
+    // blockchain: '', // Skip this field as it will be added separately
+    // use_case: '', // Skip this field as it will be added separately
+    // pricing: '', // Skip this field as it will be added separately
     roadmap_url: '',
     whitepaper_url: '',
-    nft_collection: '',
+    // nft_collection: '', // Skip this field as it will be added separately
     nft_collection_url: '',
-    tokenomic: '',
+    // tokenomic: '', // Skip this field as it will be added separately
     token_name: '',
     demo_url: '',
-    moderation_status: '',
-    created_at: '',
-    updated_at: '',
-    slug: '',
+    moderation_status: 'pending', // Assuming 'pending' is your default value
   };
   
   const [formData, setFormData] = useState<ListingType>(initialFormData);
@@ -74,7 +67,7 @@ export default function CreateListings() {
 
 
   // Add state to hold categories fetched from the database
-const [categories, setCategories] = useState<ListingType[]>([]);
+const [categories, setCategories] = useState([]);
 
 
 // Fetch categories from the database
@@ -311,159 +304,29 @@ useEffect(() => {
 
       <form onSubmit={handleSubmit} className="w-full max-w-4xl bg-gray-700 p-5 rounded shadow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
-        {/* Input for name */}
-        <div className="flex flex-col">
-          <label htmlFor="name" className="mb-2 capitalize text-white">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter name"
-          />
-        </div>
-
-        {/* Input for keyword */}
-        <div className="flex flex-col">
-          <label htmlFor="keyword" className="mb-2 capitalize text-white">Keyword:</label>
-          <input
-            type="text"
-            id="keyword"
-            name="keyword"
-            value={formData.keyword}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter keyword"
-          />
-        </div>
-
-        {/* Input for website */}
-        <div className="flex flex-col">
-          <label htmlFor="website" className="mb-2 capitalize text-white">Website:</label>
-          <input
-            type="text"
-            id="website"
-            name="website"
-            value={formData.website}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter website"
-          />
-        </div>
-
-        {/* Input for twitter */}
-        <div className="flex flex-col">
-          <label htmlFor="twitter" className="mb-2 capitalize text-white">Twitter:</label>
-          <input
-            type="text"
-            id="twitter"
-            name="twitter"
-            value={formData.twitter}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter twitter"
-          />
-        </div>
-
-        {/* Input for discord */}
-        <div className="flex flex-col">
-          <label htmlFor="discord" className="mb-2 capitalize text-white">Discord:</label>
-          <input
-            type="discord"
-            id="discord"
-            name="discord"
-            value={formData.discord}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter discord"
-          />
-        </div>
-
-        {/* Input for telegram */}
-        <div className="flex flex-col">
-          <label htmlFor="telegram" className="mb-2 capitalize text-white">Telegram:</label>
-          <input
-            type="telegram"
-            id="telegram"
-            name="telegram"
-            value={formData.telegram}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter telegram"
-          />
-        </div>
-
-        {/* Input for solarplex */}
-        <div className="flex flex-col">
-          <label htmlFor="solarplex" className="mb-2 capitalize text-white">Solarplex:</label>
-          <input
-            type="solarplex"
-            id="solarplex"
-            name="solarplex"
-            value={formData.solarplex}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter solarplex"
-          />
-        </div>
-
-        {/* Input for roadmap_url */}
-        <div className="flex flex-col">
-          <label htmlFor="roadmap_url" className="mb-2 capitalize text-white">Roadmap URL:</label>
-          <input
-            type="roadmap_url"
-            id="roadmap_url"
-            name="roadmap_url"
-            value={formData.roadmap_url}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter roadmap_url"
-          />
-        </div>
-
-        {/* Input for whitepaper_url */}
-        <div className="flex flex-col">
-          <label htmlFor="whitepaper_url" className="mb-2 capitalize text-white">Whitepaper URL:</label>
-          <input
-            type="whitepaper_url"
-            id="whitepaper_url"
-            name="whitepaper_url"
-            value={formData.whitepaper_url}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter whitepaper_url"
-          />
-        </div>
-
-        {/* Input for demo_url */}
-        <div className="flex flex-col">
-          <label htmlFor="demo_url" className="mb-2 capitalize text-white">Demo URL:</label>
-          <input
-            type="demo_url"
-            id="demo_url"
-            name="demo_url"
-            value={formData.demo_url}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter demo_url"
-          />
-        </div>
+        {/* All input fields for the form */}
+        {Object.keys(initialFormData).map((key) => {
+          if (key === 'moderation_status' || key === 'logo_url') return null; // Skip these fields
+          return (
+            <div key={key} className="flex flex-col">
+              <label htmlFor={key} className="mb-2 capitalize text-white">{key.replace(/_/g, ' ')}</label>
+              <input
+                type="text"
+                id={key}
+                name={key}
+                value={formData[key]}
+                onChange={handleInputChange}
+                className="border-2 border-gray-300 p-2 rounded bg-black"
+                disabled={loading}
+                placeholder={`Enter ${key}`}
+              />
+            </div>
+          );
+        })}
 
         {/* Input for year_founded */}
         <div key="year_founded" className="flex flex-col">
-          <label htmlFor="year_founded" className="mb-2 capitalize text-white">Year Founded:</label>
+          <label htmlFor="year_founded" className="mb-2 capitalize text-white">Year Founded</label>
           <input
             type="number"
             id="year_founded"
@@ -480,7 +343,7 @@ useEffect(() => {
 
         {/* Dropdown for Pricing */}
         <div className="flex flex-col">
-          <label htmlFor="pricing" className="mb-2 capitalize text-white">Pricing:</label>
+          <label htmlFor="pricing" className="mb-2 capitalize text-white">Pricing</label>
           <select
             id="pricing"
             name="pricing"
@@ -499,7 +362,7 @@ useEffect(() => {
 
         {/* Dropdown for Blockchain */}
         <div className="flex flex-col">
-          <label htmlFor="blockchain" className="mb-2 capitalize text-white">Blockchain:</label>
+          <label htmlFor="blockchain" className="mb-2 capitalize text-white">Blockchain</label>
           <select
             id="blockchain"
             name="blockchain"
@@ -535,21 +398,6 @@ useEffect(() => {
           </select>
         </div>
 
-        {/* Input for token_name */}
-        <div className="flex flex-col">
-          <label htmlFor="token_name" className="mb-2 capitalize text-white">Token Name:</label>
-          <input
-            type="token_name"
-            id="token_name"
-            name="token_name"
-            value={formData.token_name}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter token_name"
-          />
-        </div>
-
         {/* Dropdown for NFT Collection */}
         <div className="flex flex-col">
           <label htmlFor="nft_collection" className="mb-2 capitalize text-white">Have NFT Collection?</label>
@@ -569,24 +417,9 @@ useEffect(() => {
           </select>
         </div>
 
-        {/* Input for nft_collection_url */}
-        <div className="flex flex-col">
-          <label htmlFor="nft_collection_url" className="mb-2 capitalize text-white">NFT Collection URL:</label>
-          <input
-            type="nft_collection_url"
-            id="nft_collection_url"
-            name="nft_collection_url"
-            value={formData.nft_collection_url}
-            onChange={handleInputChange}
-            className="border-2 border-gray-300 p-2 rounded bg-black"
-            disabled={loading}
-            placeholder="Enter nft_collection_url"
-          />
-        </div>
-
         {/* Dropdown for Governance */}
         <div className="flex flex-col">
-          <label htmlFor="governance" className="mb-2 capitalize text-white">Governance:</label>
+          <label htmlFor="governance" className="mb-2 capitalize text-white">Governance</label>
           <select
             id="governance"
             name="governance"
@@ -605,7 +438,7 @@ useEffect(() => {
 
         {/* Status dropdown list */}
         <div className="flex flex-col">
-          <label htmlFor="status" className="mb-2 capitalize text-white">Status:</label>
+          <label htmlFor="status" className="mb-2 capitalize text-white">Status</label>
           <select
             id="status"
             name="status"
@@ -624,7 +457,7 @@ useEffect(() => {
 
         {/* Category_1 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 1:</label>
+          <label className="mb-2 capitalize text-white">Category 1</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory1 || ""}
@@ -641,7 +474,7 @@ useEffect(() => {
 
         {/* Category_2 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 2 (optional):</label>
+          <label className="mb-2 capitalize text-white">Category 2</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory2 || ""}
@@ -658,7 +491,7 @@ useEffect(() => {
 
         {/* Category_3 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 3 (optional):</label>
+          <label className="mb-2 capitalize text-white">Category 3</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory3 || ""}
@@ -675,7 +508,7 @@ useEffect(() => {
 
         {/* Category_4 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 4 (Optional):</label>
+          <label className="mb-2 capitalize text-white">Category 4</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory4 || ""}
@@ -692,7 +525,7 @@ useEffect(() => {
 
         {/* Category_5 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white">Category 5 (optional):</label>
+          <label className="mb-2 capitalize text-white">Category 5</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory5 || ""}
@@ -709,7 +542,7 @@ useEffect(() => {
 
         {/* Textarea for short_description */}
         <div key="short_description" className="col-span-full">
-          <label htmlFor="short_description" className="mb-2 capitalize text-white">Short Description:</label>
+          <label htmlFor="short_description" className="mb-2 capitalize text-white">Short Description</label>
             
             <textarea
               id="short_description"
@@ -726,7 +559,7 @@ useEffect(() => {
 
         {/* Textarea for full_description */}
         <div key="full_description" className="col-span-full">
-          <label htmlFor="full_description" className="mb-2 capitalize text-white">Full Description:</label>
+          <label htmlFor="full_description" className="mb-2 capitalize text-white">Full Description</label>
           <textarea
             id="full_description"
             name="full_description"
@@ -759,7 +592,7 @@ useEffect(() => {
 
         {/* Image upload */}
         <div className="col-span-full">
-          <label htmlFor="logo" className="mb-2 capitalize text-white">Logo:</label>
+          <label htmlFor="logo" className="mb-2 capitalize text-white">Logo</label>
           <div className="flex flex-col items-center justify-center w-full h-32 bg-gray-800 text-white rounded-lg border-2 border-dashed cursor-pointer hover:bg-gray-700" 
             onClick={onFileInputClick} // Opens file selection dialog
             onDragOver={dragOver}
