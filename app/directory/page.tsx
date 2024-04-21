@@ -5,7 +5,7 @@ import { createClient } from '@/utils/supabase/client';
 import Link from 'next/link';
 
 const DirectoryPage = () => {
-  const [listings, setListings] = useState<ListingType[]>([]); // used pre-define type Listing Types in globalTypes.ts
+  const [listings, setListings] = useState<DisplayListingTypes[]>([]); // used pre-define type Listing Types in globalTypes.ts
   const [categories, setCategories] = useState([]); // State to hold categories from database
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');

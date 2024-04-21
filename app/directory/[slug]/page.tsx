@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { AppendSiteUrlToExternalLink } from '../../../utils/AppendSiteUrlToExternalLink';
 
 const ListingDetailPage = () => {
-  const [listing, setListing] = useState<ListingType | null>(null); // used pre-define type ListingType in globalTypes.ts
+  const [listing, setListing] = useState<DisplayListingTypes | null>(null); // used pre-define type ListingType in globalTypes.ts
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   // Define the default image URL
