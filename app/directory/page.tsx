@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const DirectoryPage = () => {
   const [listings, setListings] = useState<DisplayListingTypes[]>([]); // used pre-define type Listing Types in globalTypes.ts
-  const [categories, setCategories] = useState([]); // State to hold categories from database
+  const [categories, setCategories] = useState<string[]>([]); // State to hold categories from database
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
@@ -76,7 +76,7 @@ const fetchAllCategoryNames = async () => {
   const fetchListingData = async () => {
     setLoading(true);
 
-    const categoryNamesById = await fetchAllCategoryNames(); // Fetch all category names at once
+    const categoryNamesById: CategoryNamesById = await fetchAllCategoryNames(); // Fetch all category names at once
     
     // Query only for listings with moderation_status set to 'approved'
     const { data, error } = await supabaseClient
@@ -94,11 +94,11 @@ const fetchAllCategoryNames = async () => {
     // Map over the listings and assign category names using the previously fetched category names by ID
   const listingsWithCategoryNames = data.map(listing => ({
     ...listing,
-    category_1_name: categoryNamesById[listing.category_1],
-    category_2_name: categoryNamesById[listing.category_2],
-    category_3_name: categoryNamesById[listing.category_3],
-    category_4_name: categoryNamesById[listing.category_4],
-    category_5_name: categoryNamesById[listing.category_5],
+    category_1_name: categoryNamesById[listing.category_1] || 'Unknown Category',
+    category_2_name: categoryNamesById[listing.category_2] || 'Unknown Category',
+    category_3_name: categoryNamesById[listing.category_3] || 'Unknown Category',
+    category_4_name: categoryNamesById[listing.category_4] || 'Unknown Category',
+    category_5_name: categoryNamesById[listing.category_5] || 'Unknown Category',
   }));
 
   setListings(listingsWithCategoryNames);
