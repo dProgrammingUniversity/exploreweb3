@@ -13,7 +13,8 @@ export const TopListingsSection = () => {
         .from('listings')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6);
+        .limit(6)
+        .eq('moderation_status', 'approved'); // filter for approved listings only
 
       if (error) {
         console.error('Error fetching top listings:', error);
