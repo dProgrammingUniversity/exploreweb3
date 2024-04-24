@@ -9,7 +9,7 @@ export default function CreateNotes() {
   const [message, setMessage] = useState('')
   const supabase = createClient()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault()
     setLoading(true)
     setMessage('Submitting...')

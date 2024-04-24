@@ -11,6 +11,12 @@ type DisplayListingTypes = {
   author: string;
   name: string;
   logo_url: string;
+  category: string;
+  category_1: string;
+  category_2: string;
+  category_3: string;
+  category_4: string;
+  category_5: string;
   category_1_name?: string;
   category_2_name?: string;
   category_3_name?: string;

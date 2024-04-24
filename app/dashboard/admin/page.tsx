@@ -6,7 +6,7 @@ import Link from "next/link";
 import "../../dashboard/dashboard.css";
 
 export default function AdminPage() {
-  const [pendingListings, setPendingListings] = useState<ListingType[]>([]);
+  const [pendingListings, setPendingListings] = useState<DisplayListingTypes[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 

@@ -1,34 +1,28 @@
 // ExploreSol/app/page.tsx 
-import DeployButton from "../components/DeployButton";
-import AuthButton from "../components/AuthButton";
-import { createClient } from "@/utils/supabase/server";
-import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
-import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
-import Header from "@/components/Header";
+"use client"
+import React from 'react';
+import { TopListingsSection } from '@/components/ListingsTop'; // Adjust the import path as necessary
 
-export default async function Index() {
-  const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
-    try {
-      createClient();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
-
-  const isSupabaseConnected = canInitSupabaseClient();
-
+export default function HomePage() {
   return (
-    <div className="flex-1 w-full flex flex-col gap-20 items-center">
-      <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
-        <Header />
-        <main className="flex-1 flex flex-col gap-6">
-          <h2 className="font-bold text-4xl mb-4">Next steps</h2>
-          {isSupabaseConnected ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-        </main>
-      </div>
+    <div className="container mx-auto px-4">
+      <section className="my-8">
+        <h2 className="text-2xl font-bold">Top Listings</h2>
+        {/* Component to display top listings */}
+        <TopListingsSection />
+      </section>
+      <section className="my-8">
+        <h2 className="text-2xl font-bold">New Listings</h2>
+        {/* Component to display new listings */}
+      </section>
+      <section className="my-8">
+        <h2 className="text-2xl font-bold">Upcoming</h2>
+        {/* Component to display upcoming listings */}
+      </section>
+      <section className="my-8">
+        <h2 className="text-2xl font-bold">Live Listings</h2>
+        {/* Component to display live listings */}
+      </section>
     </div>
   );
 }
