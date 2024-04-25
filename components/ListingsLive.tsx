@@ -1,38 +1,38 @@
-// exploresol/components/ListingsTop.tsx
+// exploresol/components/ListingsLive.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client'; 
 import ListingsCard from '@/components/ListingsCard'; 
 
-export const ListingsTop = () => {
-  const [topListings, setTopListings] = useState<DisplayListingTypes[]>([]);
+export const ListingsLive = () => {
+  const [liveListings, setLiveListings] = useState<DisplayListingTypes[]>([]);
   const supabaseClient = createClient();
 
   useEffect(() => {
-    const fetchTopListings = async () => {
+    const fetchLiveListings = async () => {
       const { data, error } = await supabaseClient
         .from('listings')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6)
-        .eq('moderation_status', 'approved'); // filter for approved listings only
+        .filter("status", "eq", "Live")
+        .filter("moderation_status", "eq", "approved");
 
       if (error) {
-        console.error('Error fetching top listings:', error);
+        console.error('Error fetching live listings:', error);
       } else {
-        setTopListings(data);
+        setLiveListings(data);
       }
     };
 
-    fetchTopListings();
+    fetchLiveListings();
   }, []);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {topListings.map((listing) => (
+      {liveListings.map((listing) => (
         <ListingsCard key={listing.id} listing={listing} />
       ))}
     </div>
   );
 };
 
-export default ListingsTop;
+export default ListingsLive;
