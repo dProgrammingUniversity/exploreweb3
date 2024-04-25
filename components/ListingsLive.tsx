@@ -14,7 +14,7 @@ export const ListingsLive = () => {
         .select('*')
         .order('created_at', { ascending: false })
         .filter("status", "eq", "Live")
-        .filter("moderation_status", "eq", "approved");
+        .eq('moderation_status', 'approved'); // filter for approved listings only
 
       if (error) {
         console.error('Error fetching live listings:', error);

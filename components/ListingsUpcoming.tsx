@@ -15,7 +15,8 @@ export const ListingsUpcoming = () => {
         .from("listings")
         .select("*")
         .filter("status", "eq", "Upcoming")
-        .filter("moderation_status", "eq", "approved");
+        .eq('moderation_status', 'approved'); // filter for approved listings only
+        
       if (error) {
         console.error("Error fetching upcoming listings:", error);
       } else {

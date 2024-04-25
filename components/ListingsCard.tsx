@@ -58,7 +58,7 @@ const ListingsCard: React.FC<Props> = ({ listing, isListView = false }) => {
           {categoryNames.join(', ')}
         </h5>
         <p className="text-sm text-gray-400">
-        {listing.year_founded} || {listing.status} || {listing.pricing}
+        {listing.year_founded} || {listing.moderation_status} || {listing.pricing}
         </p>
         <p className="text-sm text-green-500">{listing.status}</p>
         {/* ...other listing details... */}
