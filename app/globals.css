@@ -53,3 +53,23 @@
 .btn-active {
   @apply bg-blue-500 text-white;
 }
+
+/* 
+Scroll to top button style
+*/
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.scroll-to-top svg {
+  fill: #4a4a4a; /* Change the color as needed */
+  transition: fill 0.25s ease-in-out;
+}
+
+.scroll-to-top svg:hover {
+  fill: #000; /* Change hover color as needed */
+}

@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import NavigationBar from "@/components/NavigationBar";
 import Footer from "@/components/Footer";
+import ScrollToTop from '@/components/ScrollToTop';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -25,6 +26,7 @@ export default function RootLayout({
         <main className="min-h-screen flex flex-col items-center">
           <NavigationBar />          
           {children}
+          <ScrollToTop />
           <Footer />
         </main>
       </body>
