@@ -15,10 +15,10 @@ const DirectoryPage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  // Define the default image URL
-  const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+  // const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg"; //define default image URL
   const [statuses, setStatuses] = useState([]); // State to hold statuses from database
-
+  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>({}) // State to hold category names by ID
+  
   // Initialize Supabase client
   const supabaseClient = createClient();
 
@@ -76,12 +76,31 @@ const fetchCategories = async () => {
     }
   };
 
+  // Function to fetch all categories with their IDs 
+const fetchAllCategoryNames = async () => {
+  const { data, error } = await supabaseClient
+    .from('categories')
+    .select('id, name');
+  if (error) {
+    console.error('Error fetching categories:', error);
+    return {};
+  }
+  return data.reduce((acc, category) => ({ ...acc, [category.id]: category.name }), {});
+};
+
+
+const initCategoryNamesById = async () => {
+  const fetchedCategoryNamesById = await fetchAllCategoryNames();
+  // Use categoryNamesById to enrich listings or for filtering
+  setCategoryNamesById(fetchedCategoryNamesById);
+};
 
   // Effect to fetch data on mount
   useEffect(() => {
     fetchListingData();
     fetchCategories();
     fetchStatuses();
+    initCategoryNamesById();
   }, []);
 
   // Filtered listings based on search, category, and status
@@ -90,11 +109,11 @@ const filteredListings = listings.filter((listing) => {
 
   // Check for category match in any of the five category fields
   const categoryMatch = filterCategory === 'All' ||
-    listing.category_1_name === filterCategory ||
-    listing.category_2_name === filterCategory ||
-    listing.category_3_name === filterCategory ||
-    listing.category_4_name === filterCategory ||
-    listing.category_5_name === filterCategory; // Adjust these as per your actual data structure
+    categoryNamesById[listing.category_1] === filterCategory ||
+    categoryNamesById[listing.category_2] === filterCategory ||
+    categoryNamesById[listing.category_3] === filterCategory ||
+    categoryNamesById[listing.category_4] === filterCategory ||
+    categoryNamesById[listing.category_5] === filterCategory;
   
   // check status match
   const statusMatch = filterStatus === 'All' || listing.status === filterStatus; 
