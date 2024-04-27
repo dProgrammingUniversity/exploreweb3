@@ -46,18 +46,18 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
           console.error("Error fetching categories:", categoriesError);
         } else {
           // Map category IDs to names
-          const categoryNamesById = categoriesData.reduce(
+          const categoryNamesWithId = categoriesData.reduce(
             (acc, category) => ({ ...acc, [category.id]: category.name }),
             {}
           );
           // Update the listing object with category names
           const updatedListing = {
             ...data,
-            category_1_name: categoryNamesById[data.category_1],
-            category_2_name: categoryNamesById[data.category_2],
-            category_3_name: categoryNamesById[data.category_3],
-            category_4_name: categoryNamesById[data.category_4],
-            category_5_name: categoryNamesById[data.category_5],
+            category_1_name: categoryNamesWithId[data.category_1 as keyof CategoryNamesWithId],
+            category_2_name: categoryNamesWithId[data.category_2 as keyof CategoryNamesWithId],
+            category_3_name: categoryNamesWithId[data.category_3 as keyof CategoryNamesWithId],
+            category_4_name: categoryNamesWithId[data.category_4 as keyof CategoryNamesWithId],
+            category_5_name: categoryNamesWithId[data.category_5 as keyof CategoryNamesWithId],
           };
           setListing(updatedListing);
         }
@@ -84,18 +84,19 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   return (
     <div className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-8">
-      <header className="text-center mb-8 bg-purple-900">
-  <h1 className="text-6xl font-bold mb-2">{listing.name}</h1>
-  <p className="text-l font-semibold text-gray-400">
-  <span className="text-blue-400">Status:</span> {listing.status} || {" "}
-    <span className="text-green-400">Founded:</span> {listing.year_founded}
-    <br />
-    <span className="text-red-400">Category:</span>
-    {" "}{listing.category_1_name}, {" "}{listing.category_2_name},
-    {" "}{listing.category_3_name}, {" "}{listing.category_4_name},
-    {" "}{listing.category_5_name}
-  </p>
-</header>
+        <header className="text-center mb-8 bg-purple-900">
+          <h1 className="text-6xl font-bold mb-2">{listing.name}</h1>
+          <p className="text-l font-semibold text-gray-400">
+            <span className="text-blue-400">Status:</span> {listing.status} ||{" "}
+            <span className="text-green-400">Founded:</span>{" "}
+            {listing.year_founded}
+            <br />
+            <span className="text-red-400">Category:</span>{" "}
+            {listing.category_1_name}, {listing.category_2_name},{" "}
+            {listing.category_3_name}, {listing.category_4_name},{" "}
+            {listing.category_5_name}
+          </p>
+        </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Column - Image & Details */}

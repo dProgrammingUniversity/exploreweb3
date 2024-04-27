@@ -132,3 +132,12 @@ to fix listings type errors
 type ListingsFullDetailsPageProps = {
   slug: string;
 };
+
+/*
+TYPE DEFINITION 6: for Categories name by IDs types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+interface CategoryNamesWithId {
+  //empty
+}
