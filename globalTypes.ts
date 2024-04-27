@@ -115,11 +115,20 @@ type CategoryListingTypes = {
 }
 
 /*
-TYPE DEFINITION 4: for Categories name by IDs types in 
-ExploreSol/app/directory/page.tsx
+TYPE DEFINITION 4: for Categories name by IDs types 
 Define a type for listing data and it can be used anywhere in the app 
 to fix listings type errors
 */
 interface CategoryNamesById {
   [key: string]: string;
 }
+
+
+/*
+TYPE DEFINITION 5: for ListingsFullDetailsPageProps types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+type ListingsFullDetailsPageProps = {
+  slug: string;
+};

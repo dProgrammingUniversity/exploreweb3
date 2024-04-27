@@ -3,6 +3,7 @@
 import React from 'react';
 import DirectoryPage from '@/components/DirectoryPage'; 
 import EmailSubscriptionForm from '@/components/EmailSubscriptionForm';
+import AnimatedTitle from '@/components/AnimatedTitle';
 
 export default function Page() {
   return (
@@ -12,7 +13,7 @@ export default function Page() {
 
 
       {/* Directory Page component */}
-      
+      <AnimatedTitle />
       <DirectoryPage />
       
       {/* Directory Page */}
