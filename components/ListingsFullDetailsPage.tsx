@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AppendSiteUrlToExternalLink } from "../utils/AppendSiteUrlToExternalLink";
 import EmailSubscriptionForm from "./EmailSubscriptionForm";
 import { renderMultilineText } from '@/utils/FormatText';
+import ListingsRelatedSuggestion from "./ListingsRelatedSuggestion";
 
 const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   slug,
@@ -90,7 +91,9 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   // Listing details presentation
   return (
     <div className="bg-gray-900 text-white">
+
       <div className="container mx-auto px-4 py-8">
+
         <header className="text-center mb-8 bg-purple-900">
           <h1 className="text-6xl font-bold mb-2">{listing.name}</h1>
           <p className="text-l font-semibold text-gray-400">
@@ -121,9 +124,9 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
               {/* Pricing/category */}
               <p className="text-l font-semibold text-gray-400">
-            <span className="text-green-400">Pricing:</span> {listing.pricing} ||{" "}
-            <span className="text-blue-400">Main Category:</span> {listing.category_1_name}
-          </p>
+                <span className="text-green-400">Pricing:</span> {listing.pricing} ||{" "}
+                <span className="text-blue-400">Main Category:</span> {listing.category_1_name}
+              </p>
               
               {/* short description */}
               <h2 className="text-xl font-bold text-purple-500">
@@ -201,6 +204,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
           {/* Right Column - Additional Info */}
           <div className="space-y-4">
+
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
               <h2 className="text-xl font-bold text-purple-500">Blockchain:</h2>
               <p>{listing.blockchain}</p>
@@ -359,11 +363,23 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
                   <span className="text-gray-500">{listing.name} Whitepaper link not available</span>
                 )}
               </p>
-            </div> 
+            </div>
 
           </div>
+
         </div>
+
+        {/* Related Listings Section */}
+        <div className="mt-8">
+              <h2 className="text-2xl font-bold mb-1">Related Listings:</h2>
+              <h2 className="text-l mb-1 text-gray-400">Checkout {listing.name} alternatives below:</h2>
+              {listing && listing.category_1_name && (
+                <ListingsRelatedSuggestion mainCategory={listing.category_1_name} />
+              )}
+            </div>
+
       </div>
+      
     </div>
   );
 };
