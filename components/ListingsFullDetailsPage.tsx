@@ -106,8 +106,10 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
           {/* Left Column - Image & Details */}
           <div className="md:col-span-2">
+
             {/* Image */}
             <img
               src={listing.logo_url || defaultImageUrl}
@@ -116,10 +118,12 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
             />
 
             <div className="mt-4">
+
               {/* Pricing/category */}
-              <p className="text-gray-400">
-                {listing.pricing} - {listing.category_1_name}
-              </p>
+              <p className="text-l font-semibold text-gray-400">
+            <span className="text-green-400">Pricing:</span> {listing.pricing} ||{" "}
+            <span className="text-blue-400">Main Category:</span> {listing.category_1_name}
+          </p>
               
               {/* short description */}
               <h2 className="text-xl font-bold text-purple-500">
@@ -165,22 +169,26 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
                   {listing.name} Demo:
                 </h2>
                 <p>
+                {listing.demo_url ? (
                   <Link
                     href={AppendSiteUrlToExternalLink(listing.demo_url)}
                     target="_blank"
                     className="text-blue-400 hover:text-blue-300"
                   >
-                    Demo Video/Guide:
+                    Watch {listing.name} Demo Video
                   </Link>
-                </p>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Demo Video link not available</span>
+                )}
+              </p>
               </div>
               
               {/* Project Team */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Team:
+                  {listing.name} Team Details:
                 </h2>
-                <p>{listing.team}</p>
+                <p>{renderMultilineText(listing.team)}</p>
               </div>
               
               {/* Email Subscription Form */}
@@ -210,23 +218,27 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
               <h2 className="text-xl font-bold text-purple-500">{listing.name} Tokenomic:</h2>
-              <p>Has Token: {listing.tokenomic}</p>
-              <p>Token Ticker: {listing.token_name}</p>
+              <p>Does {listing.name} have Token: {listing.tokenomic}</p>
+              <p>{listing.name} Token Ticker: {listing.token_name}</p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
               <h2 className="text-xl font-bold text-purple-500">
               {listing.name} NFT Collection:
               </h2>
-              <p>{listing.name} has NFT: {listing.nft_collection}</p>
+              <p>Does {listing.name} have NFT Collection: {listing.nft_collection}</p>
               <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.nft_collection_url)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  {listing.name} NFT Collection URL
-                </Link>
+                {listing.nft_collection_url ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.nft_collection_url)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    {listing.name} NFT Collection Website
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} NFT Collection link not available</span>
+                )}
               </p>
             </div>
 
@@ -235,83 +247,120 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               {listing.name} Website:
               </h2>
               <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.website)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Website
-                </Link>
+                {listing.website ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.website)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Website
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Website link not available</span>
+                )}
               </p>
             </div>
 
+            {/* Social Media Links */}
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
               <h2 className="text-xl font-bold text-purple-500">
                 {listing.name} Social Media:
               </h2>
-              <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.twitter)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Twitter
-                </Link>
-              </p>
-              <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.discord)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Discord
-                </Link>
-              </p>
-              <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.telegram)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Telegram
-                </Link>
-              </p>
-              <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.solarplex)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Solarplex
-                </Link>
-              </p>
-            </div>
 
+              <p>
+                {listing.twitter ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.twitter)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Twitter
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Twitter link not available</span>
+                )}
+              </p>
+
+              <p>
+                {listing.discord ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.discord)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Discord
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Discord link not available</span>
+                )}
+              </p>
+
+              <p>
+                {listing.telegram ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.telegram)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Telegram
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Telegram link not available</span>
+                )}
+              </p>
+
+              <p>
+                {listing.solarplex ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.solarplex)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Solarplex
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Solarplex link not available</span>
+                )}
+              </p>
+              
+            </div> 
+
+            {/* Roadmap Link */}
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
               <h2 className="text-xl font-bold text-purple-500"> {listing.name} Roadmap:</h2>
               <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.roadmap_url)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Roadmap
-                </Link>
+                {listing.roadmap_url ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.roadmap_url)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Roadmap
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Roadmap link not available</span>
+                )}
               </p>
             </div>
 
+            {/* Whitepaper Link */}            
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
               <h2 className="text-xl font-bold text-purple-500">{listing.name} Whitepaper:</h2>
               <p>
-                <Link
-                  href={AppendSiteUrlToExternalLink(listing.whitepaper_url)}
-                  target="_blank"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Whitepaper
-                </Link>
+                {listing.whitepaper_url ? (
+                  <Link
+                    href={AppendSiteUrlToExternalLink(listing.whitepaper_url)}
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Whitepaper
+                  </Link>
+                ) : (
+                  <span className="text-gray-500">{listing.name} Whitepaper link not available</span>
+                )}
               </p>
-            </div>
+            </div> 
+
           </div>
         </div>
       </div>
