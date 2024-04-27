@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { AppendSiteUrlToExternalLink } from "../utils/AppendSiteUrlToExternalLink";
 import EmailSubscriptionForm from "./EmailSubscriptionForm";
+import { renderMultilineText } from '@/utils/FormatText';
 
 const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   slug,
@@ -53,11 +54,16 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
           // Update the listing object with category names
           const updatedListing = {
             ...data,
-            category_1_name: categoryNamesWithId[data.category_1 as keyof CategoryNamesWithId],
-            category_2_name: categoryNamesWithId[data.category_2 as keyof CategoryNamesWithId],
-            category_3_name: categoryNamesWithId[data.category_3 as keyof CategoryNamesWithId],
-            category_4_name: categoryNamesWithId[data.category_4 as keyof CategoryNamesWithId],
-            category_5_name: categoryNamesWithId[data.category_5 as keyof CategoryNamesWithId],
+            category_1_name:
+              categoryNamesWithId[data.category_1 as keyof CategoryNamesWithId],
+            category_2_name:
+              categoryNamesWithId[data.category_2 as keyof CategoryNamesWithId],
+            category_3_name:
+              categoryNamesWithId[data.category_3 as keyof CategoryNamesWithId],
+            category_4_name:
+              categoryNamesWithId[data.category_4 as keyof CategoryNamesWithId],
+            category_5_name:
+              categoryNamesWithId[data.category_5 as keyof CategoryNamesWithId],
           };
           setListing(updatedListing);
         }
@@ -70,7 +76,8 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
     }
   }, [slug]);
 
-  //   if loading
+
+  // if loading
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -113,43 +120,49 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               <p className="text-gray-400">
                 {listing.pricing} - {listing.category_1_name}
               </p>
+              
               {/* short description */}
               <h2 className="text-xl font-bold text-purple-500">
-                {listing.name} Summary
+                {listing.name} Summary:
               </h2>
-              <p className="text-gray-300 mt-2">{listing.short_description}</p>
+              <p className="text-gray-300 mt-2">{renderMultilineText(listing.short_description)}</p>
+              
               {/* long description */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Description
+                  {listing.name} Description:
                 </h2>
-                <p>{listing.full_description}</p>
+                <p>{renderMultilineText(listing.full_description)}</p>
               </div>
+              
               {/* pros description */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Pros
+                  {listing.name} Pros:
                 </h2>
-                <p>{listing.pros}</p>
+                <p>{renderMultilineText(listing.pros)}</p>
               </div>
+              
               {/* cons description */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Cons
+                  {listing.name} Cons:
                 </h2>
-                <p>{listing.cons}</p>
+                <p>{renderMultilineText(listing.cons)}</p>
               </div>
+              
               {/* Use Cases */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Use Case
+                  {listing.name} Use Case:
                 </h2>
-                <p>{listing.use_case}</p>
+                <p>{renderMultilineText(listing.use_case)}</p>
               </div>
+              
               {/* Demo video */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Demo
+                  {listing.name} Demo:
                 </h2>
                 <p>
                   <Link
@@ -157,66 +170,70 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
                     target="_blank"
                     className="text-blue-400 hover:text-blue-300"
                   >
-                    Demo Video/Guide
+                    Demo Video/Guide:
                   </Link>
                 </p>
               </div>
+              
               {/* Project Team */}
               <div className="mt-4 space-y-2">
                 <h2 className="text-xl font-bold text-purple-500">
-                  {listing.name} Team
+                  {listing.name} Team:
                 </h2>
                 <p>{listing.team}</p>
               </div>
+              
               {/* Email Subscription Form */}
+              <div className="mt-4 space-y-2">
               <EmailSubscriptionForm />
+              </div>
+
             </div>
           </div>
 
           {/* Right Column - Additional Info */}
           <div className="space-y-4">
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Blockchain</h2>
+              <h2 className="text-xl font-bold text-purple-500">Blockchain:</h2>
               <p>{listing.blockchain}</p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Governance</h2>
+              <h2 className="text-xl font-bold text-purple-500">{listing.name} Governance:</h2>
               <p>{listing.governance}</p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Keyword</h2>
+              <h2 className="text-xl font-bold text-purple-500">Keyword:</h2>
               <p>{listing.keyword}</p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Use Case</h2>
-              <p>{listing.use_case}</p>
-            </div>
-
-            <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Tokenomic</h2>
+              <h2 className="text-xl font-bold text-purple-500">{listing.name} Tokenomic:</h2>
               <p>Has Token: {listing.tokenomic}</p>
               <p>Token Ticker: {listing.token_name}</p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">NFT Collection</h2>
-              <p>NFT: {listing.nft_collection}</p>
+              <h2 className="text-xl font-bold text-purple-500">
+              {listing.name} NFT Collection:
+              </h2>
+              <p>{listing.name} has NFT: {listing.nft_collection}</p>
               <p>
                 <Link
                   href={AppendSiteUrlToExternalLink(listing.nft_collection_url)}
                   target="_blank"
                   className="text-blue-400 hover:text-blue-300"
                 >
-                  NFT Collection URL
+                  {listing.name} NFT Collection URL
                 </Link>
               </p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Website</h2>
+              <h2 className="text-xl font-bold text-purple-500">
+              {listing.name} Website:
+              </h2>
               <p>
                 <Link
                   href={AppendSiteUrlToExternalLink(listing.website)}
@@ -229,7 +246,9 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Social Media</h2>
+              <h2 className="text-xl font-bold text-purple-500">
+                {listing.name} Social Media:
+              </h2>
               <p>
                 <Link
                   href={AppendSiteUrlToExternalLink(listing.twitter)}
@@ -269,7 +288,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Roadmap</h2>
+              <h2 className="text-xl font-bold text-purple-500"> {listing.name} Roadmap:</h2>
               <p>
                 <Link
                   href={AppendSiteUrlToExternalLink(listing.roadmap_url)}
@@ -282,7 +301,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-2">Whitepaper</h2>
+              <h2 className="text-xl font-bold text-purple-500">{listing.name} Whitepaper:</h2>
               <p>
                 <Link
                   href={AppendSiteUrlToExternalLink(listing.whitepaper_url)}

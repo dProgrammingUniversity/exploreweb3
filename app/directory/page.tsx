@@ -12,10 +12,9 @@ export default function Page() {
       <EmailSubscriptionForm />
 
 
-      {/* Directory Page component */}
+      {/* Animated text component */}
       <AnimatedTitle />
-      <DirectoryPage />
-      
+            
       {/* Directory Page */}
       <DirectoryPage />
     </div>
