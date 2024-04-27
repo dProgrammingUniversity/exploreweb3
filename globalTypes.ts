@@ -141,3 +141,14 @@ to fix listings type errors
 interface CategoryNamesWithId {
   //empty
 }
+
+/*
+TYPE DEFINITION 7: for favorite props types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+// Define an interface for the component props
+interface FavoritePageProps {
+  userId: string | null;
+  listingId: string | null;
+}

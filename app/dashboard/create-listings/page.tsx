@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import "../../dashboard/dashboard.css"; 
-import CreateListings from "@/components/CreateListings";
+import CreateListings from "@/components/dashboard/CreateListings";
 
 export default async function DashboardPage() {
   const supabase = createClient();

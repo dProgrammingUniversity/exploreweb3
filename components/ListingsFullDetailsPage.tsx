@@ -6,18 +6,32 @@ import { AppendSiteUrlToExternalLink } from "../utils/AppendSiteUrlToExternalLin
 import EmailSubscriptionForm from "./EmailSubscriptionForm";
 import { renderMultilineText } from '@/utils/FormatText';
 import ListingsRelatedSuggestion from "./ListingsRelatedSuggestion";
+import FavoritesButton from "./FavoritesButton";
 
 const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   slug,
 }) => {
   const [listing, setListing] = useState<DisplayListingTypes | null>(null);
   const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState<string | null>(null); // State to store the userId
   const supabaseClient = createClient();
   // Define the default image URL
   const defaultImageUrl =
     "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
 
+
   useEffect(() => {
+
+    // Fetch user data to get id
+    const fetchUserData = async () => {
+      const { data: { user } } = await supabaseClient.auth.getUser();
+      if (user) {
+        setUserId(user.id); // Set userId state
+      }
+    };
+
+
+    // Fetch listings details
     const fetchListingData = async () => {
       setLoading(true);
       const { data, error } = await supabaseClient
@@ -74,6 +88,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
     if (slug) {
       fetchListingData();
+    fetchUserData();
     }
   }, [slug]);
 
@@ -121,6 +136,12 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
             />
 
             <div className="mt-4">
+
+            {/* Favourite button */}
+            {console.log("userid:" + userId, "listing ID:" + listing.id)}
+            {userId && listing && (
+              <FavoritesButton userId={userId} listingId={listing.id} />
+            )}
 
               {/* Pricing/category */}
               <p className="text-l font-semibold text-gray-400">
