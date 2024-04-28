@@ -6,6 +6,7 @@ import { HeartIcon } from '@heroicons/react/24/outline'; // Import the icons
 
 const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [favoritesCount, setFavoritesCount] = useState(0); // State to hold the favorites count
   const supabase = createClient();
 
   // Check favorite status for user and listing
@@ -26,6 +27,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
     }
   };
 
+  // Toggle favorite button function
   const toggleFavorite = async () => {
     //check if user loggedin or not
     if (!userId) {
@@ -63,8 +65,26 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   };
 
 
+  // Function to fetch the count of favorites for the listing
+  const fetchFavoritesCount = async () => {
+    try {
+      const { data, error } = await supabase
+        .rpc('favorites_listings_count', { input_listing_id: listingId });
+
+      if (error) {
+        throw error;
+      }
+      setFavoritesCount(data);
+    } catch (error) {
+      console.error('Error fetching favorites count:', error);
+    }
+  };
+
+
+  //trigger functions when component mounts or updates
   useEffect(() => {
     checkFavorite();
+    fetchFavoritesCount();
   }, [userId, listingId]);
 
   
@@ -79,12 +99,12 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
       {isFavorite ? (
         <>
           <HeartIcon className="w-5 h-5 mr-2" />
-          Remove Favorite
+          Remove Favorite ({favoritesCount})
         </>
       ) : (
         <>
           <HeartIcon className="w-5 h-5 mr-2" />
-          Add to Favorites
+          Add to Favorites ({favoritesCount})
         </>
       )}
     </button>
