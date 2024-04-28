@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/client';
 import ListingsCard from '@/components/ListingsCard';
 
 const FavoritePage = ({ userId }: FavoritePageProps) => {
-  const [favoriteListings, setFavoriteListings] = useState([]);
+  const [favoriteListings, setFavoriteListings] = useState<DisplayListingTypes[]>([]);
   const supabaseClient = createClient();
 
   useEffect(() => {

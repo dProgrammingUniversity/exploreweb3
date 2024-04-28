@@ -150,5 +150,5 @@ to fix listings type errors
 // Define an interface for the component props
 interface FavoritePageProps {
   userId: string | null;
-  listingId: string | null;
+  listingId: number | null;
 }

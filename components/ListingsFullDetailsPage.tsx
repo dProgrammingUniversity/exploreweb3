@@ -137,8 +137,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
             <div className="mt-4">
 
-            {/* Favourite button */}
-            {console.log("userid:" + userId, "listing ID:" + listing.id)}
+            {/* Favorites Button */}
             {userId && listing && (
               <FavoritesButton userId={userId} listingId={listing.id} />
             )}

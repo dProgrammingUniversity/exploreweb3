@@ -19,7 +19,7 @@ const FavoriteListingsPage = () => {
     fetchUserId();
   }, []);
 
-  return <FavoritePage userId={userId} />;
+  return <FavoritePage userId={userId} listingId={null} />;
 };
 
 export default FavoriteListingsPage;
