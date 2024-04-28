@@ -1,25 +1,32 @@
 // Exploresol/app/dashboard/favorite-listings/page.tsx
-"use client"
-import React, { useEffect, useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import "../../dashboard/dashboard.css"; 
 import FavoritePage from '@/components/dashboard/FavoritePage';
+import DashboardMenu from "@/components/dashboard/DashboardMenu";
 
-const FavoriteListingsPage = () => {
-  const [userId, setUserId] = useState<string | null>(null);
-  const supabaseClient = createClient();
 
-  useEffect(() => {
-    const fetchUserId = async () => {
-      const { data: { user } } = await supabaseClient.auth.getUser();
-      if (user) {
-        setUserId(user.id);
-      }
-    };
+export default async function FavoriteListingsPage() {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-    fetchUserId();
-  }, []);
+  if (!user) {
+    return redirect("/login");
+  }
 
-  return <FavoritePage userId={userId} listingId={null} />;
-};
+  return (
 
-export default FavoriteListingsPage;
+    <div className="dashboard-layout">
+      
+      {/* Sidebar */}
+      <DashboardMenu />
+
+      {/* Content */}
+      <div className="content">
+        <h1 className="content-heading">FAVORITES LISTINGS DASHBOARD PAGE</h1>
+        <FavoritePage/>
+      </div>
+
+    </div>
+  );
+}
