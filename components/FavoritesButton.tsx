@@ -1,15 +1,28 @@
 // Exploresol/components/FavoritesButton.tsx
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import { HeartIcon } from '@heroicons/react/24/outline'; // Import the icons
+
 
 const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const supabase = createClient();
 
+  // Check favorite status for user and listing
   const checkFavorite = async () => {
-    const { data, error } = await supabase.rpc('favorites_fetch', { user_id: userId });
-    if (data) {
-      setIsFavorite(data.some((favorite: { listing_id: string | null; }) => favorite.listing_id === listingId));
+    if (!userId) return;
+    try {
+      const { data, error } = await supabase
+        .from('favorites')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('listing_id', listingId);
+  
+      if (error) throw error;
+  
+      setIsFavorite(data.length > 0);
+    } catch (error) {
+      console.error('Error checking favorite status:', error);
     }
   };
 
@@ -22,21 +35,60 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
     }
 
     if (isFavorite) {
-      await supabase.rpc('favorites_delete', { user_id: userId, listing_id: listingId });
+      // RPC call to delete favorites
+      const { data, error } = await supabase.rpc('favorites_delete', { 
+        input_user_id: userId, 
+        input_listing_id: listingId 
+      });
+      if (error) {
+        console.error('Error deleting favorite:', error);
+      } else {
+        console.log('Favorite deleted successfully');
+        setIsFavorite(!isFavorite);
+      }
     } else {
-      await supabase.rpc('favorites_add', { user_id: userId, listing_id: listingId });
+      // RPC call to add favorites
+      const { data, error } = await supabase.rpc('favorites_add', { 
+        user_id: userId, 
+        listing_id: listingId 
+      });
+      if (error) {
+        console.error('Error adding favorite:', error);
+      } else {
+        console.log('Favorite added successfully');
+        setIsFavorite(!isFavorite);
+      }
     }
-    setIsFavorite(!isFavorite);
+        
   };
+
 
   useEffect(() => {
     checkFavorite();
   }, [userId, listingId]);
 
+  
   return (
-    <button onClick={toggleFavorite}>
-      {isFavorite ? 'Remove Favorite' : 'Add to Favorites'}
+
+    <button
+      onClick={toggleFavorite}
+      className={`px-4 py-2 rounded text-white font-semibold flex items-center ${
+        isFavorite ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
+      }`}
+    >
+      {isFavorite ? (
+        <>
+          <HeartIcon className="w-5 h-5 mr-2" />
+          Remove Favorite
+        </>
+      ) : (
+        <>
+          <HeartIcon className="w-5 h-5 mr-2" />
+          Add to Favorites
+        </>
+      )}
     </button>
+
   );
 };
 

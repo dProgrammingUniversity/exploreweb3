@@ -36,6 +36,7 @@
   overflow-y: auto; /* Enables scrolling within the content area */
   padding: 2.5rem; /* Padding around content */
   font-size: 1rem; /* Adjust font size to be smaller */
+  min-width: 0; /* Prevents flex items from overflowing their container */
 }
 
 .content-heading {
@@ -48,4 +49,10 @@
   gap: 1rem; /* Space between content link buttons */
 }
 
-/* Styles for content links... */
+/* Styles for listings card grid display */
+.listings-card-grid-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%; /* Ensure grid takes full width of the container */
+} 

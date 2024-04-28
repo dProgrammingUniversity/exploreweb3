@@ -137,10 +137,9 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
             <div className="mt-4">
 
-            {/* Favorites Button */}
-            {userId && listing && (
+              {/* Favorites Button */}
               <FavoritesButton userId={userId} listingId={listing.id} />
-            )}
+
 
               {/* Pricing/category */}
               <p className="text-l font-semibold text-gray-400">
