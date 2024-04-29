@@ -9,6 +9,7 @@ import { ListingsLive } from "@/components/ListingsLive";
 import EmailSubscriptionForm from "@/components/EmailSubscriptionForm";
 import AnimatedTitle from "@/components/AnimatedTitle";
 
+
 export default function HomePage() {
 
   return (
@@ -19,7 +20,7 @@ export default function HomePage() {
       {/* Directory Page component */}
       <AnimatedTitle />
       <DirectoryPage />
-
+      
       {/* Top Listings Section */}
       <section className="my-8">
         <h2 className="text-2xl font-bold">Top Listings</h2>

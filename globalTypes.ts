@@ -1,4 +1,4 @@
-// ExploreSol/app/globalTypes.ts
+// ExploreSol/globalTypes.ts
 
 /*
 TYPE DEFINITION 1: for exploresol/app/directory/[slug]/page.tsx
@@ -142,6 +142,7 @@ interface CategoryNamesWithId {
   //empty
 }
 
+
 /*
 TYPE DEFINITION 7: for favorite props types 
 Define a type for listing data and it can be used anywhere in the app 
@@ -151,4 +152,27 @@ to fix listings type errors
 interface FavoritePageProps {
   userId: string | null;
   listingId: number | null;
+}
+
+
+
+/*
+TYPE DEFINITION 8: for ratings reviews types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+type RatingsReviewsType = {
+  id: number;
+  rating: number;
+  review: string;
+};
+
+/*
+TYPE DEFINITION 8.1: for ratings reviews form props types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+interface RatingReviewsProps {
+  listingId: number | null;
+  userId: string | null;
 }

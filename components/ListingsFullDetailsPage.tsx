@@ -7,6 +7,8 @@ import EmailSubscriptionForm from "./EmailSubscriptionForm";
 import { renderMultilineText } from '@/utils/FormatText';
 import ListingsRelatedSuggestion from "./ListingsRelatedSuggestion";
 import FavoritesButton from "./FavoritesButton";
+import RatingReviewsForm from "./ratings-reviews/RatingReviewsForm";
+import RatingReviewsList from "./ratings-reviews/RatingReviewsList";
 
 const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   slug,
@@ -148,14 +150,14 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               </p>
               
               {/* short description */}
-              <h2 className="text-xl font-bold text-purple-500">
+              <h2 className="text-2xl font-bold text-purple-500">
                 {listing.name} Summary:
               </h2>
               <p className="text-gray-300 mt-2">{renderMultilineText(listing.short_description)}</p>
               
               {/* long description */}
               <div className="mt-4 space-y-2">
-                <h2 className="text-xl font-bold text-purple-500">
+                <h2 className="text-2xl font-bold text-purple-500">
                   {listing.name} Description:
                 </h2>
                 <p>{renderMultilineText(listing.full_description)}</p>
@@ -163,7 +165,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               
               {/* pros description */}
               <div className="mt-4 space-y-2">
-                <h2 className="text-xl font-bold text-purple-500">
+                <h2 className="text-2xl font-bold text-purple-500">
                   {listing.name} Pros:
                 </h2>
                 <p>{renderMultilineText(listing.pros)}</p>
@@ -171,7 +173,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               
               {/* cons description */}
               <div className="mt-4 space-y-2">
-                <h2 className="text-xl font-bold text-purple-500">
+                <h2 className="text-2xl font-bold text-purple-500">
                   {listing.name} Cons:
                 </h2>
                 <p>{renderMultilineText(listing.cons)}</p>
@@ -179,7 +181,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               
               {/* Use Cases */}
               <div className="mt-4 space-y-2">
-                <h2 className="text-xl font-bold text-purple-500">
+                <h2 className="text-2xl font-bold text-purple-500">
                   {listing.name} Use Case:
                 </h2>
                 <p>{renderMultilineText(listing.use_case)}</p>
@@ -187,7 +189,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               
               {/* Demo video */}
               <div className="mt-4 space-y-2">
-                <h2 className="text-xl font-bold text-purple-500">
+                <h2 className="text-2xl font-bold text-purple-500">
                   {listing.name} Demo:
                 </h2>
                 <p>
@@ -207,7 +209,7 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
               
               {/* Project Team */}
               <div className="mt-4 space-y-2">
-                <h2 className="text-xl font-bold text-purple-500">
+                <h2 className="text-2xl font-bold text-purple-500">
                   {listing.name} Team Details:
                 </h2>
                 <p>{renderMultilineText(listing.team)}</p>
@@ -390,12 +392,31 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
 
         {/* Related Listings Section */}
         <div className="mt-8">
-              <h2 className="text-2xl font-bold mb-1">Related Listings:</h2>
+              <h2 className="text-2xl font-bold mb-1 text-purple-500">{listing.name} Alternatives & Related Listings:</h2>
               <h2 className="text-l mb-1 text-gray-400">Checkout {listing.name} alternatives below:</h2>
               {listing && listing.category_1_name && (
                 <ListingsRelatedSuggestion mainCategory={listing.category_1_name} />
               )}
-            </div>
+        </div>
+
+        {/* Ratings and Reviews Section */}
+        <div className="mt-8">
+
+          {/* Include the RatingReviewsForm component */}
+          <label className="mb-2 capitalize text-2xl font-bold text-purple-500">Rate & Review {listing.name}:</label>      
+          <RatingReviewsForm listingId={listing?.id} userId={userId} />
+          
+          <br />
+
+          {/* Include the RatingReviewsList component */}
+          <label className="mb-2 capitalize text-2xl font-bold text-purple-500">{listing.name} Users Ratings & Reviews:</label>      
+          <br />
+          <span className="text-sm text-gray-400 mb-1">
+            Discover other users experience with {listing.name}:  
+          </span>
+          <RatingReviewsList listingId={listing?.id} userId={null} />
+
+        </div>
 
       </div>
       

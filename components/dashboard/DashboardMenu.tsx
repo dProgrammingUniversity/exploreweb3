@@ -8,6 +8,9 @@ const DashboardMenu = () => {
       <Link href="/dashboard" className="sidebar-link">
         Dashboard
       </Link>
+      <Link href="/dashboard/profile" className="sidebar-link">
+        Profile
+      </Link>
       <Link href="/dashboard/create-listings" className="sidebar-link">
         Create Listings
       </Link><Link href="/dashboard/favorite-listings" className="sidebar-link">
