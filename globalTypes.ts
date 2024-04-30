@@ -165,6 +165,8 @@ type RatingsReviewsType = {
   id: number;
   rating: number;
   review: string;
+  username: string;
+  created_at: string;
 };
 
 /*

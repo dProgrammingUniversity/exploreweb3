@@ -44,6 +44,12 @@ const RatingReviewsList = ({ listingId }: RatingReviewsProps) => {
             <br />
             {review.review}
           </p>
+          <p>
+            <label className="mr-2 text-l font-bold text-purple-500">
+              By:
+            </label> 
+            {review.username}
+          </p>
         </div>
       ))}
     </div>

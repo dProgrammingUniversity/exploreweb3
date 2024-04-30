@@ -56,7 +56,7 @@ const RatingReviewsForm = ({ listingId, userId  }: RatingReviewsProps) => {
           Kindly share sincere and none-bias review that will be helpful for other users to make an informed decision 
           about this listing - Thanks! 
           <br />
-          Warning: You can't edit, update or delete later.
+          Warning: 1 rating/review allowed per user per listing. You can't edit, update or delete rating/review later.
         </span>
         <label htmlFor="rating" className="block text-xl font-bold text-gray-300">
           Rating:
