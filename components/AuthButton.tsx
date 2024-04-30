@@ -11,8 +11,16 @@ export default async function AuthButton() {
   } = await supabase.auth.getUser();
 
   // check if user to ensure user not null
+  // Then if user null, show signin button
   if (!user) {
-    return redirect("/login");
+    return (
+      <Link
+        href="/login"
+        className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+      >
+        Login
+      </Link>
+    );
   }
 
   // Fetch username using the server-side Supabase client
