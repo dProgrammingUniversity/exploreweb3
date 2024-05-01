@@ -13,8 +13,12 @@ const DashboardMenu = () => {
       </Link>
       <Link href="/dashboard/create-listings" className="sidebar-link">
         Create Listings
-      </Link><Link href="/dashboard/favorite-listings" className="sidebar-link">
+      </Link>
+      <Link href="/dashboard/favorite-listings" className="sidebar-link">
         Favorites
+      </Link>
+      <Link href="/dashboard/set-new-password" className="sidebar-link">
+        Password Manager
       </Link>
       {/* Add other sidebar links here */}
     </div>

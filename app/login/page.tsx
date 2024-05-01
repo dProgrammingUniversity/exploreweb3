@@ -95,6 +95,8 @@ export default function Login({
           placeholder="••••••••"
           required
         />
+
+        {/* Signin button */}
         <SubmitButton
           formAction={signIn}
           className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
@@ -102,6 +104,8 @@ export default function Login({
         >
           Sign In
         </SubmitButton>
+
+        {/* Signup button */}
         <SubmitButton
           formAction={signUp}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
@@ -109,6 +113,16 @@ export default function Login({
         >
           Sign Up
         </SubmitButton>
+
+        {/* Password reset button */}
+        <Link
+          href="/reset-password"
+          className="text-blue-500 hover:text-blue-700"
+        >
+          Forgot password?
+        </Link>
+        
+        {/* Feedback message display */}
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}
