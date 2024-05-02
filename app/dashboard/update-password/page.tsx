@@ -1,10 +1,9 @@
-// ExploreSol/app/dashboard/set-new-password/page.tsx
-import "../../dashboard/dashboard.css"; 
-import SetNewPassword from '@/components/supabase-auth/SetNewPassword';
+// ExploreSol/app/dashboard/update-password/page.tsx
+import "../../dashboard/dashboard.css";
+import SetNewPassword from "@/components/supabase-auth/UpdatePassword";
 import DashboardMenu from "@/components/dashboard/DashboardMenu";
 
 export default async function SetNewPasswordPage() {
-
   return (
     <div className="dashboard-layout">
       {/* Sidebar */}
@@ -18,5 +17,3 @@ export default async function SetNewPasswordPage() {
     </div>
   );
 }
-
-

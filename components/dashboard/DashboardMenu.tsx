@@ -17,7 +17,7 @@ const DashboardMenu = () => {
       <Link href="/dashboard/favorite-listings" className="sidebar-link">
         Favorites
       </Link>
-      <Link href="/dashboard/set-new-password" className="sidebar-link">
+      <Link href="/dashboard/update-password" className="sidebar-link">
         Password Manager
       </Link>
       {/* Add other sidebar links here */}
