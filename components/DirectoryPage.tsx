@@ -1,6 +1,7 @@
 // ExploreSol/app/directory/page.tsx
 "use client";
 import React, { useState, useEffect } from 'react';
+import "../app/globals.css";
 import { createClient } from '@/utils/supabase/client';
 import ListingsCard from './ListingsCard';
 
@@ -140,7 +141,8 @@ if (loading) {
 
 
   return (
-    <div className="container mx-auto px-4">
+    // <div className="container mx-auto px-4">
+    <div className="container">
 
       {/* Search and filter controls */}
       <div className="flex flex-col md:flex-row justify-between mb-4">

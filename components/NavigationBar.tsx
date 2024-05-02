@@ -1,36 +1,40 @@
 // ExploreSol/components/NavigationBar.tsx
+"use client"
+import React, { useState } from 'react';
 import AuthButton from "@/components/AuthButton";
 import Link from 'next/link';
+import "../app/globals.css";
 
-export default async function NavigationBar() {
-
-
+export default function NavigationBar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  
   return (
-    <div className="flex-1 w-full flex flex-col items-center">
+    <div className="container">
       <div className="w-full">
         <div className="py-6 font-bold bg-purple-950 text-center">
-          Latest: Jupiter exchange is launching a new features - Stay in loop to  
-          <Link href="https://Jup.ag" target="_blank" rel="noopener noreferrer"> CLAIM HERE NOW!</Link>
+          Latest: There May Be A Earn Opportunity For You On SuperteamEarn -  
+          <Link href="https://superteam.fun" target="_blank" rel="noopener noreferrer"> Discover Now!</Link>
         </div>
 
-        <nav className="w-full flex justify-center border-b border-b-foreground/10">
-          <div className="w-full max-w-4xl flex justify-between items-center p-3">
-            <div className="flex-1 flex justify-start space-x-4">
-              <Link href="/" className="btn">Home</Link>
-              
-            </div>
-            <div className="flex-1 flex justify-end">
-              {/* <DeployButton /> */}
-              <Link href="/directory" className="btn">Directory</Link>
-              <Link href="/dashboard" className="btn">Dashboard</Link>
-              <Link href="/about" className="btn">About</Link>
-              <Link href="/roadmap" className="btn">Roadmap</Link>
-              <Link href="/s" className="btn">S</Link>
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex justify-between items-center w-full md:w-auto p-3">
+            <input type="checkbox" className="peer hidden" id="menu-toggle" checked={menuOpen} onChange={() => setMenuOpen(!menuOpen)} />
+            <label htmlFor="menu-toggle" className="block cursor-pointer md:hidden px-3 py-1 text-gray-700">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </label>
+            <div className="peer-checked:flex flex-col absolute top-full left-0 bg-gray-400 w-full z-50 hidden md:flex md:static md:bg-transparent md:flex-row md:space-x-4">
+              <Link href="/" className="btn" onClick={() => setMenuOpen(false)}>Home</Link>
+              <Link href="/directory" className="btn" onClick={() => setMenuOpen(false)}>Directory</Link>
+              <Link href="/dashboard" className="btn" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+              <Link href="/about" className="btn" onClick={() => setMenuOpen(false)}>About</Link>
+              <Link href="/roadmap" className="btn" onClick={() => setMenuOpen(false)}>Roadmap</Link>
+              <Link href="/s" className="btn" onClick={() => setMenuOpen(false)}>S</Link>
               <AuthButton />
             </div>
           </div>
-        </nav>
+        </div>
       </div>
     </div>
   );
 }
+

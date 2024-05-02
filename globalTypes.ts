@@ -178,3 +178,16 @@ interface RatingReviewsProps {
   listingId: number | null;
   userId: string | null;
 }
+
+
+
+/*
+TYPE DEFINITION 9: for User types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+type User = {
+  id: string;
+  email?: string;
+  username?: string;
+};

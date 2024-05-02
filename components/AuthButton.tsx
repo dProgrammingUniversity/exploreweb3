@@ -1,67 +1,59 @@
 // ExploreSol/components/AuthButton.tsx
-import { createClient } from "@/utils/supabase/server";
+"use client"
+import React, { useEffect, useState } from 'react';
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
-export default async function AuthButton() {
-  const supabase = createClient();
+const AuthButton = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [username, setUsername] = useState('');
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  useEffect(() => {
+    const supabase = createClient();
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+        fetchUsername(user.id);
+      }
+    };
 
-  // check if user to ensure user not null
-  // Then if user null, show signin button
+    const fetchUsername = async (userId: string) => {
+      const { data: usernames, error } = await supabase.rpc("usernames_fetch", {
+        _user_id: userId,
+      });
+      if (!error && usernames && usernames.length > 0) {
+        setUsername(usernames[0].username);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const signOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    window.location.href = "/login";
+  };
+
   if (!user) {
     return (
-      <Link
-        href="/login"
-        className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-      >
+      <Link href="/login" className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
         Login
       </Link>
     );
   }
 
-  // Fetch username using the server-side Supabase client
-  let username = "";
-  const { data: usernames, error } = await supabase.rpc("usernames_fetch", {
-    _user_id: user.id,
-  });
-
-  if (!error && usernames && usernames.length > 0) {
-    username = usernames[0].username; // Assuming the RPC returns an array of usernames
-  }
-
-  // Use username if available, otherwise fallback to email
   const displayName = username || user.email;
 
-  const signOut = async () => {
-    "use server";
-
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    return redirect("/login");
-  };
-
-  // Split the email string to remove the domain part
-  // const userName = user?.email?.split('@')[0] ?? '';
-
-  return user ? (
+  return (
     <div className="flex items-center gap-4">
-      S, {displayName}!
-      <form action={signOut}>
-        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-          Logout
-        </button>
-      </form>
+      {displayName}
+      <button onClick={signOut} className="py-2 px-4 rounded-md">
+        Sign Out
+      </button>
     </div>
-  ) : (
-    <Link
-      href="/login"
-      className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-    >
-      Login
-    </Link>
   );
-}
+};
+
+export default AuthButton;

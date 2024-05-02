@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground min-h-screen">
         {/* <main className="min-h-screen flex flex-col items-center"> */}
-        <main className="container">
+        <main className="min-h-screen flex flex-col items-center container">
           <NavigationBar />          
           {children}
           <ScrollToTop />

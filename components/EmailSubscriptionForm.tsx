@@ -1,10 +1,11 @@
 // ExploreSol/components/EmailSubscriptionForm.tsx
+import "../app/globals.css";
 import React from 'react';
 import Iframe from "react-iframe"; // import Iframe from react-iframe to render subscribe form
 
 const EmailSubscriptionForm = () => {
   return (
-    <div className="bg-black py-8">
+    <div className="bg-black py-8 container">
       <div className="text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
           Explore <span className="text-purple-400">Solana Ecosystem</span>
@@ -24,10 +25,9 @@ const EmailSubscriptionForm = () => {
         </p>
         <Iframe
           url="https://exploresol.substack.com/embed"
-          width="480px"
+          width="250px"
           height="320px"
           id="myId"
-          className="myClassname"
           display="initial"
           position="relative"
           styles={{ border: "1px solid #EEE", background: "white" }}

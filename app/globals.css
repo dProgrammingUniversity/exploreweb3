@@ -1,4 +1,6 @@
 /* ExploreSol/app/globals.css */
+
+/* Tailwind CSS Import */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,34 +21,58 @@
       --foreground: 200 20% 96%;
     }
   }
-}
 
-@layer base {
   * {
-    @apply border-foreground/20;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   body {
-    @apply min-h-screen flex flex-col items-center;
+    min-width: 100vw;
+    overflow-x: hidden;
+    font-family: sans-serif;
   }
 
-  main {
-    @apply max-w-4xl w-full px-4; /* This will ensure the content is within 1024px and centered */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
-}
 
-.animate-in {
-  animation: animateIn 0.3s ease 0.15s both;
-}
+  
+  
 
-@keyframes animateIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  /* Ensure that your container or navbar has a relative position to act as an anchor 
+  for the absolute positioned dropdown 
+  */
+  .container,
+  .navbar {
+    position: relative;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* 
+  Responsive adjustments for smaller screens
+  Mobile view specific styles 
+  */
+  @media (max-width: 768px) {
+    .grid-cols-3 {
+      grid-template-columns: repeat(
+        1,
+        1fr
+      ); /* Stack columns on small screens */
+    }
+
+    .peer-checked + .dropdown {
+      display: block;
+      position: absolute;
+      top: 100%; /* Makes it appear right below the navbar */
+      left: 0;
+      right: 0;
+      background-color: white; /* or any color that fits your design */
+    }
+
   }
 }
 
@@ -56,11 +82,15 @@
 }
 
 /* For the active button, you might want to change the background or text color. */
+/* You can add a class conditionally in your React component based on the current route, or handle it however your logic dictates. */
+
 .btn-active {
   @apply bg-blue-500 text-white;
 }
 
-/* Scroll to top button style */
+/* 
+Scroll to top button style
+*/
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -70,50 +100,10 @@
 }
 
 .scroll-to-top svg {
-  fill: #4a4a4a; /* Change the color as needed */
+  fill: #4a4a4a;
   transition: fill 0.25s ease-in-out;
 }
 
 .scroll-to-top svg:hover {
-  fill: #000; /* Change hover color as needed */
-}
-
-/* Start here codes to enforce display across multiple devices and components */
-@layer base {
-  html, body {
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-  }
-
-  .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 20px; /* Adjust padding as needed for different devices */
-
-    @apply flex flex-col items-center;
-  }
-
-  @media (min-width: 640px) { /* Tailwind's sm breakpoint */
-    .container {
-      max-width: 640px;
-    }
-  }
-
-  @media (min-width: 768px) { /* Tailwind's md breakpoint */
-    .container {
-      max-width: 768px;
-    }
-  }
-
-  @media (min-width: 1024px) { /* Tailwind's lg breakpoint */
-    .container {
-      max-width: 1024px;
-    }
-  }
-
-  @media (min-width: 1280px) { /* Tailwind's xl breakpoint */
-    .container {
-      max-width: 1200px; /* Set this to the max width you'd like your app content to expand to */
-    }
-  }
+  fill: #000;
 }
