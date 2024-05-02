@@ -25,14 +25,6 @@
   * {
     @apply border-foreground/20;
   }
-
-  body {
-    @apply min-h-screen flex flex-col items-center;
-  }
-
-  main {
-    @apply max-w-4xl w-full px-4; /* This will ensure the content is within 1024px and centered */
-  }
 }
 
 .animate-in {
@@ -50,17 +42,21 @@
   }
 }
 
-/* NavigationBar Component Style */
+ /* NavigationBar Component Style */
 .btn {
   @apply px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-100;
 }
 
 /* For the active button, you might want to change the background or text color. */
+/* You can add a class conditionally in your React component based on the current route, or handle it however your logic dictates. */
+
 .btn-active {
   @apply bg-blue-500 text-white;
 }
 
-/* Scroll to top button style */
+/* 
+Scroll to top button style
+*/
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -78,42 +74,3 @@
   fill: #000; /* Change hover color as needed */
 }
 
-/* Start here codes to enforce display across multiple devices and components */
-@layer base {
-  html, body {
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-  }
-
-  .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 20px; /* Adjust padding as needed for different devices */
-
-    @apply flex flex-col items-center;
-  }
-
-  @media (min-width: 640px) { /* Tailwind's sm breakpoint */
-    .container {
-      max-width: 640px;
-    }
-  }
-
-  @media (min-width: 768px) { /* Tailwind's md breakpoint */
-    .container {
-      max-width: 768px;
-    }
-  }
-
-  @media (min-width: 1024px) { /* Tailwind's lg breakpoint */
-    .container {
-      max-width: 1024px;
-    }
-  }
-
-  @media (min-width: 1280px) { /* Tailwind's xl breakpoint */
-    .container {
-      max-width: 1200px; /* Set this to the max width you'd like your app content to expand to */
-    }
-  }
-}
