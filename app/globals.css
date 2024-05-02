@@ -107,3 +107,13 @@ Scroll to top button style
 .scroll-to-top svg:hover {
   fill: #000;
 }
+
+/* 
+Display long wallet address in multiple line on mobile
+*/
+.wallet-address {
+  display: block; /* Ensures the address is in block format for better control */
+  word-wrap: break-word; /* Breaks the address to prevent overflow */
+  font-family: monospace; /* Maintains a consistent typographic width */
+  overflow-wrap: break-word; /* Allows unbreakable words to be broken */
+}

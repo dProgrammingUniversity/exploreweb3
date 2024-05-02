@@ -2,6 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
+import "../../app/globals.css";
 
 const UsernamesForm = () => {
   const [username, setUsername] = useState("");
@@ -86,7 +87,7 @@ const UsernamesForm = () => {
             Your Username: <span className="text-green-500">{fetchedUsername}</span>
           </p>
           <p className="text-xl font-bold text-gray-300">
-            Your Wallet(Solana): <span className="text-green-500">{fetchedWallet}</span>
+            Your Wallet(Solana): <span className="text-green-500 wallet-address">{fetchedWallet}</span>
           </p>
         </div>
       ) : (
