@@ -41,15 +41,22 @@
     padding: 0 20px;
   }
 
-  
-  
-
   /* Ensure that your container or navbar has a relative position to act as an anchor 
   for the absolute positioned dropdown 
   */
   .container,
   .navbar {
     position: relative;
+  }
+
+  /* Ensure ordered lists use decimal numbering */
+  ol {
+    list-style-type: decimal !important; /* Force decimal numbers */
+    padding-left: 2rem; /* Ensure padding allows numbers to show */
+  }
+
+  ol li {
+    padding: 0.5rem 0; /* Add some vertical padding for readability */
   }
 
   /* 
@@ -72,7 +79,6 @@
       right: 0;
       background-color: white; /* or any color that fits your design */
     }
-
   }
 }
 
