@@ -1,5 +1,5 @@
 // ExploreSol/components/Footer.tsx
-
+import { FaTwitter } from 'react-icons/fa';
 
 export default async function Footer() {
 
@@ -13,7 +13,7 @@ export default async function Footer() {
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <div className="text-center mt-4  mx-auto">
           <p>
-            Developed by{" "}
+            Copyright (c) 2024 -Till Date || Developed by{" "}
             <a
               href="https://dProgrammingUniversity.com/?utm_source=ExploreSol.xyz&utm_medium=ExploreSol.xyz&utm_term=ExploreSol.xyz"
               target="_blank"
@@ -23,6 +23,16 @@ export default async function Footer() {
               dProgrammingUniversity
             </a>
           </p>
+
+          {/* Social Media Section */}
+          {/* Social Media Icons Section */}
+          <div className="flex justify-center space-x-4">
+            <a href="https://twitter.com/ExploreSolXyz" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <FaTwitter className="text-blue-500 hover:text-blue-600 h-6 w-6" />
+            </a>
+          </div>
+
+          {/* Disclosure Section */}
           <p className="text-sm text-gray-600">
             🚀 <strong>DISCLOSURE:</strong>
             <br />
