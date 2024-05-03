@@ -191,3 +191,16 @@ type User = {
   email?: string;
   username?: string;
 };
+
+
+/*
+TYPE DEFINITION 10: for analytics events parameters types 
+Define a type for listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+interface AnalyticsEventParams {
+  action: string;
+  category: string;
+  label: string;
+  value: number;
+}
