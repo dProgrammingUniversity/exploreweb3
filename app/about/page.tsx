@@ -1,6 +1,7 @@
 // ExploreSol/app/about/page.tsx
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AboutPage() {
   const [isOpen, setIsOpen] = useState(Array(6).fill(false));
@@ -12,7 +13,7 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-2xl font-bold text-center my-6 text-purple-500">
-        WHAT IS EXPLORESOL PLATFORM ABOUT?
+        WHAT IS EXPLORESOL PLATFORM ABOUT
       </h1>
 
       {/* Introduction Section */}
@@ -212,19 +213,26 @@ export default function AboutPage() {
           <label className="text-l font-bold my-6 text-purple-500">
             Side Note:
           </label>
-          <br />
+        </p>
+        <p>
           The dPUT earned is the official utility token of dProgramming
           University (dPU) ecosystem and ExploreSol is one of the project in the
-          ecosystem that qualify to reward users with dPUT. Want to learn more
-          and how to exchange your earned dPUT for SOL? Then check out the:{" "}
-          <br />
-          <a
-            href="https://dProgrammingUniversity.com/dPUT"
-            target="_blank"
+          ecosystem that qualify to reward users with dPUT.
+        </p>
+        <p>Do you want to know about what is dPUT?</p>
+        <p>
+          How much of dPUT you can earn and a lot more about earning on
+          ExploreSol platform?
+        </p>
+        <p>How to exchange your earned dPUT for SOL?</p>
+        <p>Then check out the: </p>
+        <p>
+          <Link
+            href="/earn"
             className="text-l font-bold my-6 text-purple-400"
           >
-            dPUT Whitepaper
-          </a>
+            ExploreSol Earn Opportunity Paths
+          </Link>
         </p>
       </div>
     </div>

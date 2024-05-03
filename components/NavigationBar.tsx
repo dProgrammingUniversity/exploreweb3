@@ -27,6 +27,7 @@ export default function NavigationBar() {
               <Link href="/directory" className="btn" onClick={() => setMenuOpen(false)}>Directory</Link>
               <Link href="/dashboard" className="btn" onClick={() => setMenuOpen(false)}>Dashboard</Link>
               <Link href="/about" className="btn" onClick={() => setMenuOpen(false)}>About</Link>
+              <Link href="/earn" className="btn" onClick={() => setMenuOpen(false)}>Earn</Link>
               <Link href="/roadmap" className="btn" onClick={() => setMenuOpen(false)}>Roadmap</Link>
               <Link href="/s" className="btn" onClick={() => setMenuOpen(false)}>S</Link>
               <AuthButton />
