@@ -7,16 +7,16 @@ import ScrollToTop from '@/components/ScrollToTop';
 import { GA_TRACKING_ID } from '../utils/analytics/analytics';
 import Analytics from '@/components/analytics/Analytics'; 
 
+// Default metadata if want to overide individual page metadata <Head> content
+// const defaultUrl = process.env.VERCEL_URL
+//   ? `https://${process.env.VERCEL_URL}`
+//   : "http://localhost:3000";
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
-export const metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "ExploreSol",
-  description: "Explore Solana Ecosystem & Discover Opportunities",
-};
+// export const metadata = {
+//   metadataBase: new URL(defaultUrl),
+//   title: "ExploreSol",
+//   description: "Explore Solana Ecosystem & Discover Opportunities",
+// };
 
 export default function RootLayout({
   children,

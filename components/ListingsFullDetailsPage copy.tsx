@@ -9,33 +9,39 @@ import ListingsRelatedSuggestion from "./ListingsRelatedSuggestion";
 import FavoritesButton from "./FavoritesButton";
 import RatingReviewsForm from "./ratings-reviews/RatingReviewsForm";
 import RatingReviewsList from "./ratings-reviews/RatingReviewsList";
-import { useMemo } from "react";
 
-const ListingsFullDetailsPage: React.FC<{
-  slug: string;
-  onListingDataLoaded: (data: DisplayListingTypes) => void;
-}> = ({ slug, onListingDataLoaded }) => {
+const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
+  slug,
+  onListingDataLoaded  // This prop is the callback function from the parent page to be called when the listing data is loaded
+}) => {
   const [listing, setListing] = useState<DisplayListingTypes | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null); // State to store the userId
-  // const supabaseClient = createClient();
-  const supabaseClient = useMemo(() => createClient(), []);
-
+  const supabaseClient = createClient();
+  
+  
   /*
   Define images for this page
   */
   //Listings default image URL
   const defaultImageUrl =
     "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
-  // Page featured image
-  const featuredImage =
-    "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+  
 
-  // UseEffect 1: Fetch listing data
   useEffect(() => {
-    // Fetch listings details  and update state
+    // Fetch user data to get id
+    const fetchUserData = async () => {
+      const {
+        data: { user },
+      } = await supabaseClient.auth.getUser();
+      if (user) {
+        setUserId(user.id); // Set userId state
+      }
+    };
+
+    // Fetch listings details
     const fetchListingData = async () => {
-      // setLoading(true);
+      setLoading(true);
       const { data, error } = await supabaseClient
         .from("listings")
         .select("*")
@@ -83,7 +89,6 @@ const ListingsFullDetailsPage: React.FC<{
               categoryNamesWithId[data.category_5 as keyof CategoryNamesWithId],
           };
           setListing(updatedListing);
-          onListingDataLoaded(updatedListing); // Update the parent component state via the callback
         }
         setLoading(false);
       }
@@ -91,35 +96,16 @@ const ListingsFullDetailsPage: React.FC<{
 
     if (slug) {
       fetchListingData();
+      fetchUserData();
     }
   }, [slug]);
 
-  // UseEffect 2: Fetch user data
-  useEffect(() => {
-    // Fetch user data to get id
-    const fetchUserData = async () => {
-      const {
-        data: { user },
-        error,
-      } = await supabaseClient.auth.getUser();
-      if (user) {
-        setUserId(user.id); // Set userId state
-      } else {
-        console.error("Error fetching user data (user id):", error);
-      }
-    };
-
-    if (slug) {
-      fetchUserData();
-    }
-  }, [supabaseClient]);
-
-  // Conditional reding check 1: if loading
+  // if loading
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Conditional reding check 2: if no listing found with the slug
+  // if no listing found with the slug
   if (!listing) {
     return <div>Listing not found</div>;
   }
