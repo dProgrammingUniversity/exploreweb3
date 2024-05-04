@@ -1,4 +1,4 @@
-// ExploreSol/app/notes/page.tsx
+// ExploreSol/app/s/page.tsx
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
