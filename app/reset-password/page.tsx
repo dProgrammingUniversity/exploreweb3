@@ -1,4 +1,5 @@
 // ExploreSol/app/reset-password/page.tsx
+"use client"
 import React, { useEffect } from "react";
 import ResetPassword from "@/components/supabase-auth/ResetPassword";
 

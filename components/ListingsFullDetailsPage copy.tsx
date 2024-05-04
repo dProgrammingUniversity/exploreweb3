@@ -12,7 +12,7 @@ import RatingReviewsList from "./ratings-reviews/RatingReviewsList";
 
 const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   slug,
-  onListingDataLoaded  // This prop is the callback function from the parent page to be called when the listing data is loaded
+  // onListingDataLoaded  // This prop is the callback function from the parent page to be called when the listing data is loaded
 }) => {
   const [listing, setListing] = useState<DisplayListingTypes | null>(null);
   const [loading, setLoading] = useState(true);
