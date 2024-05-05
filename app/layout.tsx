@@ -10,7 +10,7 @@ import Analytics from "@/components/analytics/Analytics";
 import { Metadata } from 'next';
 
 // Declare page metadata variables
-const title = "Explore Solana Ecosystem & Discover Opportunities";
+const title = "ExploreSol | Explore Solana Ecosystem & Discover Opportunities";
 const description = "Earn while Exploring the best and most interesting Solana Projects.";
 const ogImage = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
 
@@ -34,7 +34,14 @@ export const metadata: Metadata = {
     description: description,
     url: defaultBaseUrl,
     siteName: 'ExploreSol',
-    images: ogImage,
+    images: [
+      {
+        url: ogImage, // Must be an absolute URL
+        width: 800,
+        height: 600,
+        alt: 'ExploreSol Platform Image',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -47,7 +54,12 @@ export const metadata: Metadata = {
     // siteId: '1467726470533754880', details at https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup
     // creator: '@nextjs',
     // creatorId: '1467726470533754880',
-    images: ogImage, // Must be an absolute URL
+    images: [
+      {
+        url: ogImage, // Must be an absolute URL
+        alt: 'ExploreSol Platform Image',
+      },
+    ],
   },
 
 };  
