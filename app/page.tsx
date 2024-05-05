@@ -32,21 +32,21 @@ export default function HomePage() {
 
         {/* New Listings Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-bold text-purple-700">New Solana Projects:</h2>
+          <h2 className="text-2xl font-bold text-purple-500">New Solana Projects:</h2>
           {/* Component to display new listings */}
           <ListingsNew />
         </section>
 
         {/* Upcoming Listings Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-bold text-purple-700">Upcoming Solana Projects:</h2>
+          <h2 className="text-2xl font-bold text-purple-500">Upcoming Solana Projects:</h2>
           {/* Component to display upcoming listings */}
           <ListingsUpcoming />
         </section>
 
         {/* Live Listings Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-bold text-purple-700">Live Solana Projects:</h2>
+          <h2 className="text-2xl font-bold text-purple-500">Live Solana Projects:</h2>
           {/* Component to display live listings */}
           <ListingsLive />
         </section>
