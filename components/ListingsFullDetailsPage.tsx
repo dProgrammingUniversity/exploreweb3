@@ -40,9 +40,8 @@ const ListingsFullDetailsPage: React.FC<{
         .from("listings")
         .select("*")
         .eq("slug", slug)
-        .eq('moderation_status', 'approved') // filter for approved listings only
+        .eq("moderation_status", "approved") // filter for approved listings only
         .single();
-    
 
       if (error) {
         console.error("Error fetching listing:", error);
@@ -135,12 +134,13 @@ const ListingsFullDetailsPage: React.FC<{
             <header className="text-center mb-8 bg-purple-900">
               <h1 className="text-6xl font-bold mb-2">{listing.name}</h1>
               <p className="text-l font-semibold text-gray-400">
-                <span className="text-blue-400">Project Status:</span> {listing.status}{" "}
-                || <span className="text-green-400">Founded:</span>
-                {" "}{listing.year_founded}
+                <span className="text-blue-400">Project Status:</span>{" "}
+                {listing.status} ||{" "}
+                <span className="text-green-400">Founded:</span>{" "}
+                {listing.year_founded}
                 <br />
-                <span className="text-blue-400">Moderation Status:</span>
-                {" "}{listing.moderation_status}
+                <span className="text-blue-400">Moderation Status:</span>{" "}
+                {listing.moderation_status}
                 <br />
                 <span className="text-red-400">Category:</span>{" "}
                 {listing.category_1_name}, {listing.category_2_name},{" "}
@@ -444,6 +444,28 @@ const ListingsFullDetailsPage: React.FC<{
                     ) : (
                       <span className="text-gray-500">
                         {listing.name} Whitepaper link not available
+                      </span>
+                    )}
+                  </p>
+                </div>
+
+                {/* GitHub Link */}
+                <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+                  <h2 className="text-xl font-bold text-purple-500">
+                    {listing.name} GitHub:
+                  </h2>
+                  <p>
+                    {listing.github_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(listing.github_url)}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        GitHub
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} GitHub link not available
                       </span>
                     )}
                   </p>

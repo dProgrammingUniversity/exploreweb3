@@ -32,6 +32,7 @@ export default function CreateListings() {
     pricing: '', 
     roadmap_url: '',
     whitepaper_url: '',
+    github_url: '',
     nft_collection: '', 
     nft_collection_url: '',
     tokenomic: '', 
@@ -454,6 +455,22 @@ const onFileInputClick = () => {
             className="border-2 border-gray-300 p-2 rounded bg-black"
             disabled={loading}
             placeholder="Enter whitepaper_url"
+          />
+        </div>
+
+        {/* Input for github_url */}
+        <div className="flex flex-col">
+          <label htmlFor="github_url" className="mb-2 capitalize text-white text-xl">GitHub URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://github.com/project/repo</span>
+          <input
+            type="github_url"
+            id="github_url"
+            name="github_url"
+            value={formData.github_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter github_url"
           />
         </div>
 

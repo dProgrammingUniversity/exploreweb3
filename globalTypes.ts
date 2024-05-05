@@ -41,6 +41,7 @@ type DisplayListingTypes = {
   pricing: string;
   roadmap_url: string;
   whitepaper_url: string;
+  github_url: string;
   nft_collection: string;
   nft_collection_url: string;
   tokenomic: string;
@@ -91,6 +92,7 @@ type CreateListingTypes = {
   pricing: string;
   roadmap_url: string;
   whitepaper_url: string;
+  github_url: string;
   nft_collection: string;
   nft_collection_url: string;
   tokenomic: string;

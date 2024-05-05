@@ -18,15 +18,13 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null); // State to store the userId
   const supabaseClient = createClient();
-  
-  
+
   /*
   Define images for this page
   */
   //Listings default image URL
   const defaultImageUrl =
     "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
-  
 
   useEffect(() => {
     // Fetch user data to get id
@@ -425,6 +423,28 @@ const ListingsFullDetailsPage: React.FC<ListingsFullDetailsPageProps> = ({
                     ) : (
                       <span className="text-gray-500">
                         {listing.name} Whitepaper link not available
+                      </span>
+                    )}
+                  </p>
+                </div>
+
+                {/* GitHub Link */}
+                <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+                  <h2 className="text-xl font-bold text-purple-500">
+                    {listing.name} GitHub:
+                  </h2>
+                  <p>
+                    {listing.github_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(listing.github_url)}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        GitHub
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} GitHub link not available
                       </span>
                     )}
                   </p>
