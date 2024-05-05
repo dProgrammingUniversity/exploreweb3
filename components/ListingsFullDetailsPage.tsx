@@ -40,7 +40,9 @@ const ListingsFullDetailsPage: React.FC<{
         .from("listings")
         .select("*")
         .eq("slug", slug)
+        .eq('moderation_status', 'approved') // filter for approved listings only
         .single();
+    
 
       if (error) {
         console.error("Error fetching listing:", error);
@@ -133,9 +135,12 @@ const ListingsFullDetailsPage: React.FC<{
             <header className="text-center mb-8 bg-purple-900">
               <h1 className="text-6xl font-bold mb-2">{listing.name}</h1>
               <p className="text-l font-semibold text-gray-400">
-                <span className="text-blue-400">Status:</span> {listing.status}{" "}
-                || <span className="text-green-400">Founded:</span>{" "}
-                {listing.year_founded}
+                <span className="text-blue-400">Project Status:</span> {listing.status}{" "}
+                || <span className="text-green-400">Founded:</span>
+                {" "}{listing.year_founded}
+                <br />
+                <span className="text-blue-400">Moderation Status:</span>
+                {" "}{listing.moderation_status}
                 <br />
                 <span className="text-red-400">Category:</span>{" "}
                 {listing.category_1_name}, {listing.category_2_name},{" "}
