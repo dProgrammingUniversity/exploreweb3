@@ -22,6 +22,8 @@ const defaultBaseUrl = process.env.VERCEL_URL
 
 // Export meta 
 // docs: https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#step-3-migrating-nexthead
+// Twitter doc: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup
+//URL: all URL Must be an absolute URL
 export const metadata: Metadata = {
   // Default Metadata
   metadataBase: new URL(defaultBaseUrl),
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'ExploreSol',
     images: [
       {
-        url: ogImage, // Must be an absolute URL
+        url: ogImage, 
         width: 800,
         height: 600,
         alt: 'ExploreSol Platform Image',
@@ -51,9 +53,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: title,
     description: description,
-    // siteId: '1467726470533754880', details at https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup
-    // creator: '@nextjs',
-    // creatorId: '1467726470533754880',
+    siteId: '1502741097805660160', 
+    creator: '@ExploreSolXyz',
+    creatorId: '1502741097805660160',
     images: [
       {
         url: ogImage, // Must be an absolute URL
