@@ -20,6 +20,8 @@ const defaultBaseUrl = process.env.VERCEL_URL
   : "http://localhost:3000";
 
 
+// Export meta 
+// docs: https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#step-3-migrating-nexthead
 export const metadata: Metadata = {
   // Default Metadata
   metadataBase: new URL(defaultBaseUrl),
