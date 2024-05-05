@@ -24,29 +24,29 @@ export default function HomePage() {
         <DirectoryPage />
 
         {/* Top Listings Section */}
-        <section className="my-8">
+        {/* <section className="my-8">
           <h2 className="text-2xl font-bold">Top Listings</h2>
-          {/* Component to display top listings */}
+          Component to display top listings
           <ListingsTop />
-        </section>
+        </section> */}
 
         {/* New Listings Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-bold">New Listings</h2>
+          <h2 className="text-2xl font-bold text-purple-700">New Solana Projects:</h2>
           {/* Component to display new listings */}
           <ListingsNew />
         </section>
 
         {/* Upcoming Listings Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-bold">Upcoming</h2>
+          <h2 className="text-2xl font-bold text-purple-700">Upcoming Solana Projects:</h2>
           {/* Component to display upcoming listings */}
           <ListingsUpcoming />
         </section>
 
         {/* Live Listings Section */}
         <section className="my-8">
-          <h2 className="text-2xl font-bold">Live Listings</h2>
+          <h2 className="text-2xl font-bold text-purple-700">Live Solana Projects:</h2>
           {/* Component to display live listings */}
           <ListingsLive />
         </section>

@@ -10,7 +10,7 @@ import Analytics from "@/components/analytics/Analytics";
 import { Metadata } from 'next';
 
 // Declare page metadata variables
-const title = "ExploreSol | Explore Solana Ecosystem & Discover Opportunities";
+const title = "Explore Solana Ecosystem & Discover Opportunities";
 const description = "Earn while Exploring the best and most interesting Solana Projects.";
 const ogImage = "https://exploresol.xyz/images/ExploreSol-Banner-01.jpg"; // Must be an absolute URL
 
