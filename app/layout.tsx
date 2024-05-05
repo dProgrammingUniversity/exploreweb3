@@ -12,7 +12,7 @@ import { Metadata } from 'next';
 // Declare page metadata variables
 const title = "ExploreSol | Explore Solana Ecosystem & Discover Opportunities";
 const description = "Earn while Exploring the best and most interesting Solana Projects.";
-const ogImage = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+const ogImage = "https://exploresol.xyz/images/ExploreSol-Banner-01.jpg"; // Must be an absolute URL
 
 // Base URL for Vercel deployment
 const defaultBaseUrl = process.env.VERCEL_URL
