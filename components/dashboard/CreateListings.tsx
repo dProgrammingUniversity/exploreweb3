@@ -328,7 +328,7 @@ const onFileInputClick = () => {
         
         {/* Input for name */}
         <div className="flex flex-col">
-          <label htmlFor="name" className="mb-2 capitalize text-white text-xl">Name:</label>
+          <label htmlFor="name" className="mb-2 capitalize text-purple-500 text-xl">Name:</label>
           <span className="text-sm text-gray-400 mb-1">max of 50 characters</span>
           <input
             type="text"
@@ -344,7 +344,7 @@ const onFileInputClick = () => {
 
         {/* Input for keyword */}
         <div className="flex flex-col">
-          <label htmlFor="keyword" className="mb-2 capitalize text-white text-xl">Keyword:</label>
+          <label htmlFor="keyword" className="mb-2 capitalize text-purple-500 text-xl">Keyword:</label>
           <span className="text-sm text-gray-400 mb-1">format sol, wallet, swap</span>
           <input
             type="text"
@@ -360,7 +360,7 @@ const onFileInputClick = () => {
 
         {/* Input for website */}
         <div className="flex flex-col">
-          <label htmlFor="website" className="mb-2 capitalize text-white text-xl">Website:</label>
+          <label htmlFor="website" className="mb-2 capitalize text-purple-500 text-xl">Website:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz</span>
           <input
             type="text"
@@ -376,7 +376,7 @@ const onFileInputClick = () => {
 
         {/* Input for twitter */}
         <div className="flex flex-col">
-          <label htmlFor="twitter" className="mb-2 capitalize text-white text-xl">Twitter:</label>
+          <label htmlFor="twitter" className="mb-2 capitalize text-purple-500 text-xl">Twitter:</label>
           <span className="text-sm text-gray-400 mb-1">format https://x.com/ExploreSolXyz</span>
           <input
             type="text"
@@ -392,7 +392,7 @@ const onFileInputClick = () => {
 
         {/* Input for discord */}
         <div className="flex flex-col">
-          <label htmlFor="discord" className="mb-2 capitalize text-white text-xl">Discord:</label>
+          <label htmlFor="discord" className="mb-2 capitalize text-purple-500 text-xl">Discord:</label>
           <span className="text-sm text-gray-400 mb-1">format https://discord.gg/YwySjzW</span>
           <input
             type="discord"
@@ -408,7 +408,7 @@ const onFileInputClick = () => {
 
         {/* Input for telegram */}
         <div className="flex flex-col">
-          <label htmlFor="telegram" className="mb-2 capitalize text-white text-xl">Telegram:</label>
+          <label htmlFor="telegram" className="mb-2 capitalize text-purple-500 text-xl">Telegram:</label>
           <span className="text-sm text-gray-400 mb-1">format https://t.me/solana</span>
           <input
             type="telegram"
@@ -424,7 +424,7 @@ const onFileInputClick = () => {
 
         {/* Input for solarplex */}
         <div className="flex flex-col">
-          <label htmlFor="solarplex" className="mb-2 capitalize text-white text-xl">Solarplex:</label>
+          <label htmlFor="solarplex" className="mb-2 capitalize text-purple-500 text-xl">Solarplex:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz</span>
           <input
             type="solarplex"
@@ -440,7 +440,7 @@ const onFileInputClick = () => {
 
         {/* Input for roadmap_url */}
         <div className="flex flex-col">
-          <label htmlFor="roadmap_url" className="mb-2 capitalize text-white text-xl">Roadmap URL:</label>
+          <label htmlFor="roadmap_url" className="mb-2 capitalize text-purple-500 text-xl">Roadmap URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/roadmap</span>
           <input
             type="roadmap_url"
@@ -456,7 +456,7 @@ const onFileInputClick = () => {
 
         {/* Input for whitepaper_url */}
         <div className="flex flex-col">
-          <label htmlFor="whitepaper_url" className="mb-2 capitalize text-white text-xl">Whitepaper URL:</label>
+          <label htmlFor="whitepaper_url" className="mb-2 capitalize text-purple-500 text-xl">Whitepaper URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/whitepaper</span>
           <input
             type="whitepaper_url"
@@ -472,7 +472,7 @@ const onFileInputClick = () => {
 
         {/* Input for github_url */}
         <div className="flex flex-col">
-          <label htmlFor="github_url" className="mb-2 capitalize text-white text-xl">GitHub URL:</label>
+          <label htmlFor="github_url" className="mb-2 capitalize text-purple-500 text-xl">GitHub URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://github.com/project/repo</span>
           <input
             type="github_url"
@@ -488,7 +488,7 @@ const onFileInputClick = () => {
 
         {/* Input for demo_url */}
         <div className="flex flex-col">
-          <label htmlFor="demo_url" className="mb-2 capitalize text-white text-xl">Video Demo URL:</label>
+          <label htmlFor="demo_url" className="mb-2 capitalize text-purple-500 text-xl">Video Demo URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://youtube.com/video</span>
           <input
             type="demo_url"
@@ -504,7 +504,7 @@ const onFileInputClick = () => {
 
         {/* Input for documentation_url */}
         <div className="flex flex-col">
-          <label htmlFor="documentation_url" className="mb-2 capitalize text-white text-xl">Documentation URL:</label>
+          <label htmlFor="documentation_url" className="mb-2 capitalize text-purple-500 text-xl">Documentation URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/docs</span>
           <input
             type="documentation_url"
@@ -520,7 +520,7 @@ const onFileInputClick = () => {
 
         {/* Input for year_founded */}
         <div key="year_founded" className="flex flex-col">
-          <label htmlFor="year_founded" className="mb-2 capitalize text-white text-xl">Year Founded:</label>
+          <label htmlFor="year_founded" className="mb-2 capitalize text-purple-500 text-xl">Year Founded:</label>
           <span className="text-sm text-gray-400 mb-1">when project launched</span>
           <input
             type="number"
@@ -538,7 +538,7 @@ const onFileInputClick = () => {
 
         {/* Input for support_website_url */}
         <div className="flex flex-col">
-          <label htmlFor="support_website_url" className="mb-2 capitalize text-white text-xl">Support (Website) URL:</label>
+          <label htmlFor="support_website_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Website) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/support</span>
           <input
             type="support_website_url"
@@ -554,7 +554,7 @@ const onFileInputClick = () => {
 
         {/* Input for support_livechat_url */}
         <div className="flex flex-col">
-          <label htmlFor="support_livechat_url" className="mb-2 capitalize text-white text-xl">Support (Livechat) URL:</label>
+          <label htmlFor="support_livechat_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Livechat) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/livechat</span>
           <input
             type="support_livechat_url"
@@ -570,7 +570,7 @@ const onFileInputClick = () => {
 
         {/* Input for support_email */}
         <div className="flex flex-col">
-          <label htmlFor="support_email" className="mb-2 capitalize text-white text-xl">Support (Email):</label>
+          <label htmlFor="support_email" className="mb-2 capitalize text-purple-500 text-xl">Support (Email):</label>
           <span className="text-sm text-gray-400 mb-1">format support@exploresol.xyz</span>
           <input
             type="support_email"
@@ -586,7 +586,7 @@ const onFileInputClick = () => {
 
         {/* Input for support_discord_url */}
         <div className="flex flex-col">
-          <label htmlFor="support_discord_url" className="mb-2 capitalize text-white text-xl">Support (Discord) URL:</label>
+          <label htmlFor="support_discord_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Discord) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://discord.gg/YwySjzW</span>
           <input
             type="support_discord_url"
@@ -602,7 +602,7 @@ const onFileInputClick = () => {
 
         {/* Input for support_twitter_url */}
         <div className="flex flex-col">
-          <label htmlFor="support_twitter_url" className="mb-2 capitalize text-white text-xl">Support (Twitter) URL:</label>
+          <label htmlFor="support_twitter_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Twitter) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://x.com/ExploreSolXyz</span>
           <input
             type="support_twitter_url"
@@ -618,7 +618,7 @@ const onFileInputClick = () => {
 
         {/* Input for support_telegram_url */}
         <div className="flex flex-col">
-          <label htmlFor="support_telegram_url" className="mb-2 capitalize text-white text-xl">Support (Telegram) URL:</label>
+          <label htmlFor="support_telegram_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Telegram) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://t.me/solana</span>
           <input
             type="support_telegram_url"
@@ -634,7 +634,7 @@ const onFileInputClick = () => {
 
         {/* Dropdown for Pricing */}
         <div className="flex flex-col">
-          <label htmlFor="pricing" className="mb-2 capitalize text-white text-xl">Pricing:</label>
+          <label htmlFor="pricing" className="mb-2 capitalize text-purple-500 text-xl">Pricing:</label>
           <span className="text-sm text-gray-400 mb-1">Freemium = Free+Premium options</span>
           <select
             id="pricing"
@@ -654,7 +654,7 @@ const onFileInputClick = () => {
 
         {/* Input for download_google_play_url */}
         <div className="flex flex-col">
-          <label htmlFor="download_google_play_url" className="mb-2 capitalize text-white text-xl">Download (Android Google Play) URL:</label>
+          <label htmlFor="download_google_play_url" className="mb-2 capitalize text-purple-500 text-xl">Download (Android Google Play) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://play.google.com/store/apps/details?id=app.backpack.mobile</span>
           <input
             type="download_google_play_url"
@@ -670,7 +670,7 @@ const onFileInputClick = () => {
 
         {/* Input for download_apple_app_store_url */}
         <div className="flex flex-col">
-          <label htmlFor="download_apple_app_store_url" className="mb-2 capitalize text-white text-xl">Download (Apple App Store) URL:</label>
+          <label htmlFor="download_apple_app_store_url" className="mb-2 capitalize text-purple-500 text-xl">Download (Apple App Store) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://apps.apple.com/us/app/backpack-crypto-wallet/id6445964121</span>
           <input
             type="download_apple_app_store_url"
@@ -686,7 +686,7 @@ const onFileInputClick = () => {
 
         {/* Input for download_chrome_extension_url */}
         <div className="flex flex-col">
-          <label htmlFor="download_chrome_extension_url" className="mb-2 capitalize text-white text-xl">Download (Chrome Extension) URL:</label>
+          <label htmlFor="download_chrome_extension_url" className="mb-2 capitalize text-purple-500 text-xl">Download (Chrome Extension) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://chrome.google.com/webstore/detail/solflare-wallet/bhhhlbepdkbapadjdnnojkbgioiodbic</span>
           <input
             type="download_chrome_extension_url"
@@ -702,7 +702,7 @@ const onFileInputClick = () => {
 
         {/* Input for download_solana_dapp_store_url */}
         <div className="flex flex-col">
-          <label htmlFor="download_solana_dapp_store_url" className="mb-2 capitalize text-white text-xl">Download (Solana dApp Store) URL:</label>
+          <label htmlFor="download_solana_dapp_store_url" className="mb-2 capitalize text-purple-500 text-xl">Download (Solana dApp Store) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://dappstore.solanamobile.com/appurl</span>
           <input
             type="download_solana_dapp_store_url"
@@ -718,7 +718,7 @@ const onFileInputClick = () => {
 
         {/* Input for download_website_url */}
         <div className="flex flex-col">
-          <label htmlFor="download_website_url" className="mb-2 capitalize text-white text-xl">Download (Website) URL:</label>
+          <label htmlFor="download_website_url" className="mb-2 capitalize text-purple-500 text-xl">Download (Website) URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://backpack.app/downloads</span>
           <input
             type="download_website_url"
@@ -734,7 +734,7 @@ const onFileInputClick = () => {
 
         {/* Dropdown for Blockchain */}
         <div className="flex flex-col">
-          <label htmlFor="blockchain" className="mb-2 capitalize text-white text-xl">Blockchain:</label>
+          <label htmlFor="blockchain" className="mb-2 capitalize text-purple-500 text-xl">Blockchain:</label>
           <span className="text-sm text-gray-400 mb-1">strictly Solana or multichain</span>
           <select
             id="blockchain"
@@ -754,7 +754,7 @@ const onFileInputClick = () => {
 
         {/* Dropdown for Tokenomic */}
         <div className="flex flex-col">
-          <label htmlFor="tokenomic" className="mb-2 capitalize text-white text-xl">Tokenomic:</label>
+          <label htmlFor="tokenomic" className="mb-2 capitalize text-purple-500 text-xl">Tokenomic:</label>
           <span className="text-sm text-gray-400 mb-1">does the project have token</span>
           <select
             id="tokenomic"
@@ -774,7 +774,7 @@ const onFileInputClick = () => {
 
         {/* Input for token_name */}
         <div className="flex flex-col">
-          <label htmlFor="token_name" className="mb-2 capitalize text-white text-xl">Token Name:</label>
+          <label htmlFor="token_name" className="mb-2 capitalize text-purple-500 text-xl">Token Name:</label>
           <span className="text-sm text-gray-400 mb-1">ticker only like - Sol</span>
           <input
             type="token_name"
@@ -790,7 +790,7 @@ const onFileInputClick = () => {
 
         {/* Dropdown for NFT Collection */}
         <div className="flex flex-col">
-          <label htmlFor="nft_collection" className="mb-2 capitalize text-white text-xl">NFT Collection:</label>
+          <label htmlFor="nft_collection" className="mb-2 capitalize text-purple-500 text-xl">NFT Collection:</label>
           <span className="text-sm text-gray-400 mb-1">does the project have NFT collection</span>
           <select
             id="nft_collection"
@@ -810,7 +810,7 @@ const onFileInputClick = () => {
 
         {/* Input for nft_collection_url */}
         <div className="flex flex-col">
-          <label htmlFor="nft_collection_url" className="mb-2 capitalize text-white text-xl">NFT Collection URL:</label>
+          <label htmlFor="nft_collection_url" className="mb-2 capitalize text-purple-500 text-xl">NFT Collection URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://tensor.trade/trade/nftname</span>
           <input
             type="nft_collection_url"
@@ -826,7 +826,7 @@ const onFileInputClick = () => {
 
         {/* Dropdown for Governance */}
         <div className="flex flex-col">
-          <label htmlFor="governance" className="mb-2 capitalize text-white text-xl">Governance:</label>
+          <label htmlFor="governance" className="mb-2 capitalize text-purple-500 text-xl">Governance:</label>
           <span className="text-sm text-gray-400 mb-1">is it governed by a DAO or not</span>
           <select
             id="governance"
@@ -846,7 +846,7 @@ const onFileInputClick = () => {
 
         {/* Status dropdown list */}
         <div className="flex flex-col">
-          <label htmlFor="status" className="mb-2 capitalize text-white text-xl">Status:</label>
+          <label htmlFor="status" className="mb-2 capitalize text-purple-500 text-xl">Status:</label>
           <span className="text-sm text-gray-400 mb-1">current status of the project</span>
           <select
             id="status"
@@ -866,7 +866,7 @@ const onFileInputClick = () => {
 
         {/* Category_1 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white text-xl">Category 1:</label>
+          <label className="mb-2 capitalize text-purple-500 text-xl">Category 1:</label>
           <br/>
           <span className="text-sm text-gray-400 mb-1">main category must select 1 from the list and other categories 2-5 are optional</span>
           <select
@@ -885,7 +885,7 @@ const onFileInputClick = () => {
 
         {/* Category_2 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white text-xl">Category 2 (optional):</label>
+          <label className="mb-2 capitalize text-purple-500 text-xl">Category 2 (optional):</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory2 || ""}
@@ -902,7 +902,7 @@ const onFileInputClick = () => {
 
         {/* Category_3 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white text-xl">Category 3 (optional):</label>
+          <label className="mb-2 capitalize text-purple-500 text-xl">Category 3 (optional):</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory3 || ""}
@@ -919,7 +919,7 @@ const onFileInputClick = () => {
 
         {/* Category_4 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white text-xl">Category 4 (Optional):</label>
+          <label className="mb-2 capitalize text-purple-500 text-xl">Category 4 (Optional):</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory4 || ""}
@@ -936,7 +936,7 @@ const onFileInputClick = () => {
 
         {/* Category_5 dropdown list  */}
         <div className="col-span-full">
-          <label className="mb-2 capitalize text-white text-xl">Category 5 (optional):</label>
+          <label className="mb-2 capitalize text-purple-500 text-xl">Category 5 (optional):</label>
           <select
             className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
             value={selectedCategory5 || ""}
@@ -953,7 +953,7 @@ const onFileInputClick = () => {
 
         {/* Textarea for short_description */}
         <div key="short_description" className="col-span-full">
-          <label htmlFor="short_description" className="mb-2 capitalize text-white text-xl">Short Description:</label>
+          <label htmlFor="short_description" className="mb-2 capitalize text-purple-500 text-xl">Short Description:</label>
           <br/>
           <span className="text-sm text-gray-400 mb-1">minimum of 50 characters</span>
             <textarea
@@ -971,7 +971,7 @@ const onFileInputClick = () => {
 
         {/* Textarea for full_description */}
         <div key="full_description" className="col-span-full">
-          <label htmlFor="full_description" className="mb-2 capitalize text-white text-xl">Full Description:</label>
+          <label htmlFor="full_description" className="mb-2 capitalize text-purple-500 text-xl">Full Description:</label>
           <br/>
           <span className="text-sm text-gray-400 mb-1">minimum of 150 characters</span>
           <textarea
@@ -990,7 +990,7 @@ const onFileInputClick = () => {
         {/* Textarea for Pros, Cons and Use Case*/}
         {['pros', 'cons', 'use_case'].map((field) => (
           <div key={field} className="flex flex-col col-span-full">
-            <label htmlFor={field} className="mb-2 capitalize text-white text-xl">{field.replace(/_/g, ' ')}</label>
+            <label htmlFor={field} className="mb-2 capitalize text-purple-500 text-xl">{field.replace(/_/g, ' ')}</label>
           <span className="text-sm text-gray-400 mb-1">minimum of 50 characters and max of 300 characters</span>
             <textarea
               id={field}
@@ -1008,7 +1008,7 @@ const onFileInputClick = () => {
         {/* Textarea for Team - similar to Short Description */}
         {['team'].map((field) => (
           <div key={field} className="flex flex-col col-span-full">
-            <label htmlFor={field} className="mb-2 capitalize text-white text-xl">{field.replace(/_/g, ' ')}</label>
+            <label htmlFor={field} className="mb-2 capitalize text-purple-500 text-xl">{field.replace(/_/g, ' ')}</label>
           <span className="text-sm text-gray-400 mb-1">solo founder or team name and social media</span>
             <textarea
               id={field}
@@ -1025,7 +1025,7 @@ const onFileInputClick = () => {
 
         {/* Image upload */}
         <div className="col-span-full">
-          <label htmlFor="logo" className="mb-2 capitalize text-white text-xl">Logo:</label>
+          <label htmlFor="logo" className="mb-2 capitalize text-purple-500 text-xl">Logo:</label>
           <div className="flex flex-col items-center justify-center w-full h-32 bg-gray-800 text-white rounded-lg border-2 border-dashed cursor-pointer hover:bg-gray-700" 
             onClick={onFileInputClick} // Opens file selection dialog
             onDragOver={dragOver}
