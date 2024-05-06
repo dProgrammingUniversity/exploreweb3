@@ -470,9 +470,258 @@ const ListingsFullDetailsPage: React.FC<{
                     )}
                   </p>
                 </div>
+
+                {/* Documentation Link */}
+                <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+                  <h2 className="text-xl font-bold text-purple-500">
+                    {listing.name} Documentation:
+                  </h2>
+                  <p>
+                    {listing.documentation_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.documentation_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Documentation
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Documentation link not available
+                      </span>
+                    )}
+                  </p>
+                </div>
+
+                {/* Support Links */}
+                <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+                  <h2 className="text-xl font-bold text-purple-500">
+                    Contact {listing.name} Support:
+                  </h2>
+
+                  <p>
+                    {listing.support_website_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.support_website_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Support Website
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Support Website link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.support_livechat_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.support_livechat_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Support Live Chat
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Support Live Chat link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.support_email ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.support_email
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Support Email
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Support Email link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.support_discord_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.support_discord_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Support Discord
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Support Discord link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.support_twitter_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.support_twitter_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Support X (Twitter)
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Support X (Twitter) link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.support_telegram_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.support_telegram_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Support Telegram
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Support Telegram link not available
+                      </span>
+                    )}
+                  </p>
+                </div>
+
+                {/* Download Links 1 (dApps)*/}
+                <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+                  <h2 className="text-xl font-bold text-purple-500">
+                    Download {listing.name} dApp:
+                  </h2>                  
+
+                  <p>
+                    {listing.download_solana_dapp_store_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.download_solana_dapp_store_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Solana dApp Store
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Solana dApp Store link not available
+                      </span>
+                    )}
+                  </p>
+
+                </div>
+
+                {/* Download Links 2 (Apps) */}
+                <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+                  <h2 className="text-xl font-bold text-purple-500">
+                    Download {listing.name} App:
+                  </h2>
+
+                  <p>
+                    {listing.download_google_play_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.download_google_play_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Android (Google Play Store)
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Android (Google Play Store) link not
+                        available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.download_apple_app_store_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.download_apple_app_store_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Apple iOS (App Store)
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Apple iOS (App Store) link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.download_chrome_extension_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.download_chrome_extension_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Chrome Extension
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Chrome Extension link not available
+                      </span>
+                    )}
+                  </p>
+
+                  <p>
+                    {listing.download_website_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.download_website_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Download Website
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} Download Website link not available
+                      </span>
+                    )}
+                  </p>
+                </div>
+
+
               </div>
             </div>
 
+
+            {/* FOOTER SECTION */}
             {/* Related Listings Section */}
             <div className="mt-8">
               <h2 className="text-2xl font-bold mb-1 text-purple-500">
