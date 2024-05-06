@@ -150,13 +150,14 @@ const ListingsFullDetailsPage: React.FC<{
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
               {/* Left Column - Image & Details */}
               <div className="md:col-span-2">
                 {/* Image */}
                 <img
                   src={listing.logo_url || defaultImageUrl}
                   alt={listing.name}
-                  className="w-full h-auto rounded-lg shadow-lg"
+                  className="rounded-lg shadow-lg mx-auto"
                 />
 
                 <div className="mt-4">
