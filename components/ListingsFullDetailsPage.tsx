@@ -539,15 +539,12 @@ const ListingsFullDetailsPage: React.FC<{
 
                   <p>
                     {listing.support_email ? (
-                      <Link
-                        href={AppendSiteUrlToExternalLink(
-                          listing.support_email
-                        )}
-                        target="_blank"
-                        className="text-blue-400 hover:text-blue-300"
-                      >
-                        Support Email
-                      </Link>
+                      <a
+                      href={`mailto:${listing.support_email}`}
+                      className="text-blue-400 hover:text-blue-300"
+                    >
+                      Support Email
+                    </a>
                     ) : (
                       <span className="text-gray-500">
                         {listing.name} Support Email link not available
