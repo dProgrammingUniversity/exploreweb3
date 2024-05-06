@@ -40,8 +40,7 @@ type DisplayListingTypes = {
   use_case: string;
   pricing: string;
   roadmap_url: string;
-  whitepaper_url: string;
-  github_url: string;
+  whitepaper_url: string;  
   nft_collection: string;
   nft_collection_url: string;
   tokenomic: string;
@@ -51,6 +50,19 @@ type DisplayListingTypes = {
   created_at: string;
   updated_at: string;
   slug: string;
+  github_url: string;
+  documentation_url: string;
+  support_website_url: string;
+  support_livechat_url: string;
+  support_email: string;
+  support_discord_url: string;
+  support_twitter_url: string;
+  support_telegram_url: string;
+  download_google_play_url: string;
+  download_apple_app_store_url: string;
+  download_solana_dapp_store_url: string;
+  download_chrome_extension_url: string;
+  download_website_url: string;
 }
 
 
@@ -92,7 +104,6 @@ type CreateListingTypes = {
   pricing: string;
   roadmap_url: string;
   whitepaper_url: string;
-  github_url: string;
   nft_collection: string;
   nft_collection_url: string;
   tokenomic: string;
@@ -102,6 +113,19 @@ type CreateListingTypes = {
   // created_at: string;
   // updated_at: string;
   // slug: string;
+  github_url: string;
+  documentation_url: string;
+  support_website_url: string;
+  support_livechat_url: string;
+  support_email: string;
+  support_discord_url: string;
+  support_twitter_url: string;
+  support_telegram_url: string;
+  download_google_play_url: string;
+  download_apple_app_store_url: string;
+  download_solana_dapp_store_url: string;
+  download_chrome_extension_url: string;
+  download_website_url: string;
 }
 
 

@@ -31,14 +31,26 @@ export default function CreateListings() {
     use_case: '', 
     pricing: '', 
     roadmap_url: '',
-    whitepaper_url: '',
-    github_url: '',
+    whitepaper_url: '',    
     nft_collection: '', 
     nft_collection_url: '',
     tokenomic: '', 
     token_name: '',
     demo_url: '',
     moderation_status: 'pending', // Assuming 'pending' is your default value
+    github_url: '',
+    documentation_url: '',
+    support_website_url: '',
+    support_livechat_url: '',
+    support_email: '',
+    support_discord_url: '',
+    support_twitter_url: '',
+    support_telegram_url: '',
+    download_google_play_url: '',
+    download_apple_app_store_url: '',
+    download_solana_dapp_store_url: '',
+    download_chrome_extension_url: '',
+    download_website_url: '',
   };
   
   const [formData, setFormData] = useState<CreateListingTypes>(initialFormData);
@@ -476,7 +488,7 @@ const onFileInputClick = () => {
 
         {/* Input for demo_url */}
         <div className="flex flex-col">
-          <label htmlFor="demo_url" className="mb-2 capitalize text-white text-xl">Demo URL:</label>
+          <label htmlFor="demo_url" className="mb-2 capitalize text-white text-xl">Video Demo URL:</label>
           <span className="text-sm text-gray-400 mb-1">format https://youtube.com/video</span>
           <input
             type="demo_url"
@@ -487,6 +499,22 @@ const onFileInputClick = () => {
             className="border-2 border-gray-300 p-2 rounded bg-black"
             disabled={loading}
             placeholder="Enter demo_url"
+          />
+        </div>
+
+        {/* Input for documentation_url */}
+        <div className="flex flex-col">
+          <label htmlFor="documentation_url" className="mb-2 capitalize text-white text-xl">Documentation URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/docs</span>
+          <input
+            type="documentation_url"
+            id="documentation_url"
+            name="documentation_url"
+            value={formData.documentation_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter documentation_url"
           />
         </div>
 
@@ -508,6 +536,102 @@ const onFileInputClick = () => {
           />
         </div>
 
+        {/* Input for support_website_url */}
+        <div className="flex flex-col">
+          <label htmlFor="support_website_url" className="mb-2 capitalize text-white text-xl">Support (Website) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/support</span>
+          <input
+            type="support_website_url"
+            id="support_website_url"
+            name="support_website_url"
+            value={formData.support_website_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter support_website_url"
+          />
+        </div>
+
+        {/* Input for support_livechat_url */}
+        <div className="flex flex-col">
+          <label htmlFor="support_livechat_url" className="mb-2 capitalize text-white text-xl">Support (Livechat) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/livechat</span>
+          <input
+            type="support_livechat_url"
+            id="support_livechat_url"
+            name="support_livechat_url"
+            value={formData.support_livechat_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter support_livechat_url"
+          />
+        </div>
+
+        {/* Input for support_email */}
+        <div className="flex flex-col">
+          <label htmlFor="support_email" className="mb-2 capitalize text-white text-xl">Support (Email):</label>
+          <span className="text-sm text-gray-400 mb-1">format support@exploresol.xyz</span>
+          <input
+            type="support_email"
+            id="support_email"
+            name="support_email"
+            value={formData.support_email}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter support_email"
+          />
+        </div>
+
+        {/* Input for support_discord_url */}
+        <div className="flex flex-col">
+          <label htmlFor="support_discord_url" className="mb-2 capitalize text-white text-xl">Support (Discord) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://discord.gg/YwySjzW</span>
+          <input
+            type="support_discord_url"
+            id="support_discord_url"
+            name="support_discord_url"
+            value={formData.support_discord_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter support_discord_url"
+          />
+        </div>
+
+        {/* Input for support_twitter_url */}
+        <div className="flex flex-col">
+          <label htmlFor="support_twitter_url" className="mb-2 capitalize text-white text-xl">Support (Twitter) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://x.com/ExploreSolXyz</span>
+          <input
+            type="support_twitter_url"
+            id="support_twitter_url"
+            name="support_twitter_url"
+            value={formData.support_twitter_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter support_twitter_url"
+          />
+        </div>
+
+        {/* Input for support_telegram_url */}
+        <div className="flex flex-col">
+          <label htmlFor="support_telegram_url" className="mb-2 capitalize text-white text-xl">Support (Telegram) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://t.me/solana</span>
+          <input
+            type="support_telegram_url"
+            id="support_telegram_url"
+            name="support_telegram_url"
+            value={formData.support_telegram_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter support_telegram_url"
+          />
+        </div>
+
         {/* Dropdown for Pricing */}
         <div className="flex flex-col">
           <label htmlFor="pricing" className="mb-2 capitalize text-white text-xl">Pricing:</label>
@@ -526,6 +650,86 @@ const onFileInputClick = () => {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Input for download_google_play_url */}
+        <div className="flex flex-col">
+          <label htmlFor="download_google_play_url" className="mb-2 capitalize text-white text-xl">Download (Android Google Play) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://play.google.com/store/apps/details?id=app.backpack.mobile</span>
+          <input
+            type="download_google_play_url"
+            id="download_google_play_url"
+            name="download_google_play_url"
+            value={formData.download_google_play_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter download_google_play_url"
+          />
+        </div>
+
+        {/* Input for download_apple_app_store_url */}
+        <div className="flex flex-col">
+          <label htmlFor="download_apple_app_store_url" className="mb-2 capitalize text-white text-xl">Download (Apple App Store) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://apps.apple.com/us/app/backpack-crypto-wallet/id6445964121</span>
+          <input
+            type="download_apple_app_store_url"
+            id="download_apple_app_store_url"
+            name="download_apple_app_store_url"
+            value={formData.download_apple_app_store_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter download_apple_app_store_url"
+          />
+        </div>
+
+        {/* Input for download_chrome_extension_url */}
+        <div className="flex flex-col">
+          <label htmlFor="download_chrome_extension_url" className="mb-2 capitalize text-white text-xl">Download (Chrome Extension) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://chrome.google.com/webstore/detail/solflare-wallet/bhhhlbepdkbapadjdnnojkbgioiodbic</span>
+          <input
+            type="download_chrome_extension_url"
+            id="download_chrome_extension_url"
+            name="download_chrome_extension_url"
+            value={formData.download_chrome_extension_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter download_chrome_extension_url"
+          />
+        </div>
+
+        {/* Input for download_solana_dapp_store_url */}
+        <div className="flex flex-col">
+          <label htmlFor="download_solana_dapp_store_url" className="mb-2 capitalize text-white text-xl">Download (Solana dApp Store) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://dappstore.solanamobile.com/appurl</span>
+          <input
+            type="download_solana_dapp_store_url"
+            id="download_solana_dapp_store_url"
+            name="download_solana_dapp_store_url"
+            value={formData.download_solana_dapp_store_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter download_solana_dapp_store_url"
+          />
+        </div>
+
+        {/* Input for download_website_url */}
+        <div className="flex flex-col">
+          <label htmlFor="download_website_url" className="mb-2 capitalize text-white text-xl">Download (Website) URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://backpack.app/downloads</span>
+          <input
+            type="download_website_url"
+            id="download_website_url"
+            name="download_website_url"
+            value={formData.download_website_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter download_website_url"
+          />
         </div>
 
         {/* Dropdown for Blockchain */}
