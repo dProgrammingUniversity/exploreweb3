@@ -51,6 +51,8 @@ export default function CreateListings() {
     download_solana_dapp_store_url: '',
     download_chrome_extension_url: '',
     download_website_url: '',
+    faq_url: '',
+    source_code_access: '',
   };
   
   const [formData, setFormData] = useState<CreateListingTypes>(initialFormData);
@@ -70,6 +72,7 @@ export default function CreateListings() {
   const [tokenomicOptions, setTokenomicOptions] = useState([]); // New state for tokenomic options
   const [nftcollectionOptions, setNftCollectionOptions] = useState([]); // New state for NFT Collection options
   const [governanceOptions, setGovernanceOptions] = useState([]); // New state for Governance options
+  const [sourceCodeAccessOptions, setSourceCodeAccessOptions] = useState([]); // New state for Project Source Code Accessibility options
 
 
 
@@ -170,6 +173,18 @@ useEffect(() => {
     }
   }
 
+  // Fetch Source Code Access options from the database
+  async function fetchSourceCodeAccessOptions() {
+    const { data, error } = await supabaseClient
+    .rpc('enum_source_code_access_values');
+
+    if (error) {
+      console.error("Error fetching Source Code Access options:", error);
+    } else {
+      setSourceCodeAccessOptions(data);
+    }
+  }
+
   
   fetchCategories();
   fetchStatuses();
@@ -178,6 +193,7 @@ useEffect(() => {
   fetchTokenomicOptions();
   fetchNftCollectionOptions();
   fetchGovernanceOptions();
+  fetchSourceCodeAccessOptions();
 }, []);
 
 
@@ -468,7 +484,27 @@ const onFileInputClick = () => {
             disabled={loading}
             placeholder="Enter whitepaper_url"
           />
-        </div>
+        </div>   
+
+        {/* Dropdown for Source Code Access */}
+        <div className="flex flex-col">
+          <label htmlFor="source_code_access" className="mb-2 capitalize text-purple-500 text-xl">Source Code Accessibility:</label>
+          <span className="text-sm text-gray-400 mb-1">is the project code open source or not</span>
+          <select
+            id="source_code_access"
+            name="source_code_access"
+            value={formData.source_code_access || ""}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+          >
+            <option value="">Select Governance</option>
+            {sourceCodeAccessOptions.map((source_code_access) => (
+              <option key={source_code_access} value={source_code_access}>
+                {source_code_access}
+              </option>
+            ))}
+          </select>
+        </div>     
 
         {/* Input for github_url */}
         <div className="flex flex-col">
@@ -515,6 +551,22 @@ const onFileInputClick = () => {
             className="border-2 border-gray-300 p-2 rounded bg-black"
             disabled={loading}
             placeholder="Enter documentation_url"
+          />
+        </div>
+
+        {/* Input for faq_url */}
+        <div className="flex flex-col">
+          <label htmlFor="faq_url" className="mb-2 capitalize text-purple-500 text-xl">FAQs URL:</label>
+          <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/faqs</span>
+          <input
+            type="faq_url"
+            id="faq_url"
+            name="faq_url"
+            value={formData.faq_url}
+            onChange={handleInputChange}
+            className="border-2 border-gray-300 p-2 rounded bg-black"
+            disabled={loading}
+            placeholder="Enter faq_url"
           />
         </div>
 

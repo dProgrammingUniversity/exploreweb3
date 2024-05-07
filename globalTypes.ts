@@ -63,6 +63,8 @@ type DisplayListingTypes = {
   download_solana_dapp_store_url: string;
   download_chrome_extension_url: string;
   download_website_url: string;
+  faq_url: string;
+  source_code_access: string;
 }
 
 
@@ -126,6 +128,8 @@ type CreateListingTypes = {
   download_solana_dapp_store_url: string;
   download_chrome_extension_url: string;
   download_website_url: string;
+  faq_url: string;
+  source_code_access: string;
 }
 
 
