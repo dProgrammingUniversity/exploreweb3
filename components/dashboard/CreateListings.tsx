@@ -497,7 +497,7 @@ const onFileInputClick = () => {
             onChange={handleInputChange}
             className="border-2 border-gray-300 p-2 rounded bg-black"
           >
-            <option value="">Select Governance</option>
+            <option value="">Select Code Access</option>
             {sourceCodeAccessOptions.map((source_code_access) => (
               <option key={source_code_access} value={source_code_access}>
                 {source_code_access}
