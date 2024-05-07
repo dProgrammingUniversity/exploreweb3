@@ -30,19 +30,19 @@ export default function HomePage() {
           <ListingsTop />
         </section> */}
 
-        {/* New Listings Section */}
-        <section className="my-8">
-          <h2 className="text-2xl font-bold text-purple-300">Newly Added Solana Projects:</h2>
-          {/* Component to display new listings */}
-          <ListingsNew />
-        </section>
-
         {/* Upcoming Listings Section */}
         <section className="my-8">
           <h2 className="text-2xl font-bold text-purple-300">Upcoming Solana Projects:</h2>
           {/* Component to display upcoming listings */}
           <ListingsUpcoming />
         </section>
+
+        {/* New Listings Section */}
+        <section className="my-8">
+          <h2 className="text-2xl font-bold text-purple-300">Newly Added Solana Projects:</h2>
+          {/* Component to display new listings */}
+          <ListingsNew />
+        </section>        
 
         {/* Live Listings Section */}
         <section className="my-8">
