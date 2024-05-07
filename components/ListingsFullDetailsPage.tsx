@@ -277,10 +277,16 @@ const ListingsFullDetailsPage: React.FC<{
                     {listing.name} Tokenomic:
                   </h2>
                   <p>
-                    Does {listing.name} have Token: {listing.tokenomic}
+                    <span className="text-green-600">
+                      Does {listing.name} have Token:
+                    </span>
+                     {""} {listing.tokenomic}
                   </p>
                   <p>
-                    {listing.name} Token Ticker: {listing.token_name}
+                    <span className="text-green-600">
+                      {listing.name} Token Ticker:
+                    </span>
+                     {""} {listing.token_name}
                   </p>
                 </div>
 
@@ -289,8 +295,10 @@ const ListingsFullDetailsPage: React.FC<{
                     {listing.name} NFT Collection:
                   </h2>
                   <p>
-                    Does {listing.name} have NFT Collection:{" "}
-                    {listing.nft_collection}
+                    <span className="text-green-600">
+                      Does {listing.name} have NFT Collection:
+                    </span>
+                     {""} {listing.nft_collection}
                   </p>
                   <p>
                     {listing.nft_collection_url ? (
@@ -456,6 +464,12 @@ const ListingsFullDetailsPage: React.FC<{
                     {listing.name} GitHub:
                   </h2>
                   <p>
+                    <span className="text-green-600">
+                      {listing.name} Source Code Accessibility:
+                    </span>
+                     {""} {listing.source_code_access}
+                  </p>
+                  <p>
                     {listing.github_url ? (
                       <Link
                         href={AppendSiteUrlToExternalLink(listing.github_url)}
@@ -491,6 +505,23 @@ const ListingsFullDetailsPage: React.FC<{
                     ) : (
                       <span className="text-gray-500">
                         {listing.name} Documentation link not available
+                      </span>
+                    )}
+                  </p>
+                  <p>
+                    {listing.faq_url ? (
+                      <Link
+                        href={AppendSiteUrlToExternalLink(
+                          listing.faq_url
+                        )}
+                        target="_blank"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        {listing.name} FAQs
+                      </Link>
+                    ) : (
+                      <span className="text-gray-500">
+                        {listing.name} FAQs link not available
                       </span>
                     )}
                   </p>
