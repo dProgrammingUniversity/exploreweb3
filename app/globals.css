@@ -113,3 +113,34 @@ Display long wallet address in multiple line on mobile
   font-family: monospace; /* Maintains a consistent typographic width */
   overflow-wrap: break-word; /* Allows unbreakable words to be broken */
 }
+
+
+/* Donate address input box style */
+/* Adjusting input box to be more responsive */
+.input-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line as needed */
+  gap: 10px; /* Provides spacing between items */
+}
+
+.input-address {
+  flex: 1 1 auto; /* Allows the input to grow and shrink as needed */
+  background: var(--background);
+  color: var(--foreground);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: break-word; /* Ensures that words can be broken at the end of the line */
+  overflow-wrap: break-word; /* Allows unbreakable words to be broken */
+  max-width: calc(100% - 50px); /* Adjust width, accounting for button width */
+  font-family: monospace; /* Monospace font for better readability of the address */
+}
+
+@media (max-width: 600px) {
+  .input-address {
+    max-width: 100%; /* Full width on smaller screens, ensuring button is below the input */
+  }
+}
+
+

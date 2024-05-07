@@ -87,7 +87,7 @@ const UsernamesForm = () => {
             Your Username: <span className="text-green-500">{fetchedUsername}</span>
           </p>
           <p className="text-xl font-bold text-gray-300">
-            Your Wallet(Solana): <span className="text-green-500 wallet-address">{fetchedWallet}</span>
+            Your Wallet(Solana): <span className="text-green-500 input-address">{fetchedWallet}</span>
           </p>
         </div>
       ) : (

@@ -25,8 +25,9 @@ export default function NavigationBar() {
             <div className="peer-checked:flex flex-col absolute top-full left-0 bg-gray-400 w-full z-50 hidden md:flex md:static md:bg-transparent md:flex-row md:space-x-4">
               <Link href="/" className="btn" onClick={() => setMenuOpen(false)}>Home</Link>
               <Link href="/directory" className="btn" onClick={() => setMenuOpen(false)}>Directory</Link>
-              <Link href="/dashboard" className="btn" onClick={() => setMenuOpen(false)}>Dashboard</Link>
               <Link href="/about" className="btn" onClick={() => setMenuOpen(false)}>About</Link>
+              <Link href="/dashboard" className="btn" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+              <Link href="/donate" className="btn" onClick={() => setMenuOpen(false)}>Donate</Link>
               <Link href="/earn" className="btn" onClick={() => setMenuOpen(false)}>Earn</Link>
               <Link href="/roadmap" className="btn" onClick={() => setMenuOpen(false)}>Roadmap</Link>
               <Link href="/s" className="btn" onClick={() => setMenuOpen(false)}>S</Link>

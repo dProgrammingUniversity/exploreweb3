@@ -242,6 +242,21 @@ const ListingsFullDetailsPage: React.FC<{
                     <p>{renderMultilineText(listing.team)}</p>
                   </div>
 
+                  {/* Donate */}
+                  <div className="mt-4 space-y-2 text-center">
+                    <h2 className="text-xl font-bold text-purple-500">
+                      Kindly support to keep this ExploreSol project going to continue to add more Solana projects like {listing.name}:
+                    </h2>
+                    <p>
+                      <Link 
+                        href={"/donate"}
+                        className="text-xl font-bold text-green-500"
+                      >
+                        Kindly Donate Here - Thanks!
+                      </Link>
+                    </p>
+                  </div>
+
                   {/* Email Subscription Form */}
                   <div className="mt-4 space-y-2">
                     <EmailSubscriptionForm />
