@@ -60,6 +60,13 @@ export default function NavigationBar() {
                 Home
               </Link>
               <Link
+                href="https://exploresol.substack.com/"
+                className="btn"
+                onClick={() => setMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link
                 href="/directory"
                 className="btn"
                 onClick={() => setMenuOpen(false)}
