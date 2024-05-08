@@ -1,6 +1,6 @@
 // Exploresol/components/dashboard/UsernamesForm.tsx
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import "../../app/globals.css";
 
@@ -12,48 +12,12 @@ const UsernamesForm = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
+  // const [walletAddress] = useState(fetchedWallet); //Add fetched wallet to state
 
   const supabaseClient = createClient();
 
-  const [walletAddress] = useState(fetchedWallet);
 
-  // Wallet copy function
-  const copyToClipboard = async () => {
-    if (navigator.clipboard && window.isSecureContext) {
-      // Try to use the Clipboard API
-      try {
-        await navigator.clipboard.writeText(walletAddress);
-        alert("Wallet address copied to clipboard!");
-      } catch (err) {
-        console.error("Copy failed:", err);
-        fallbackCopyTextToClipboard(walletAddress);
-      }
-    } else {
-      // Fallback if Clipboard API is not available
-      fallbackCopyTextToClipboard(walletAddress);
-    }
-  };
-
-  const fallbackCopyTextToClipboard = (text: string) => {
-    // Create a text area element dynamically
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    try {
-      const successful = document.execCommand("copy");
-      const msg = successful ? "successful" : "unsuccessful";
-      console.log("Fallback: Copying text command was " + msg);
-      alert("Wallet address copied to clipboard!");
-    } catch (err) {
-      console.error("Fallback: Oops, unable to copy", err);
-      alert("Failed to copy wallet address. Please try manually.");
-    }
-
-    document.body.removeChild(textArea);
-  };
+  
 
   useEffect(() => {
     // Fetch the user details and set the user ID
@@ -115,6 +79,47 @@ const UsernamesForm = () => {
     }
   };
 
+
+  // Wallet copy function starts
+  const copyToClipboard = async () => {
+    if (navigator.clipboard && window.isSecureContext) {
+      // Try to use the Clipboard API
+      try {
+        await navigator.clipboard.writeText(fetchedWallet);
+        alert("Wallet address copied to clipboard!");
+      } catch (err) {
+        console.error("Copy failed:", err);
+        fallbackCopyTextToClipboard(fetchedWallet);
+      }
+    } else {
+      // Fallback if Clipboard API is not available
+      fallbackCopyTextToClipboard(fetchedWallet);
+    }
+  };
+
+  const fallbackCopyTextToClipboard = (text: string) => {
+    // Create a text area element dynamically
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      const successful = document.execCommand("copy");
+      const msg = successful ? "successful" : "unsuccessful";
+      console.log("Fallback: Copying text command was " + msg);
+      alert("Wallet address copied to clipboard!");
+    } catch (err) {
+      console.error("Fallback: Oops, unable to copy", err);
+      alert("Failed to copy wallet address. Please try manually.");
+    }
+
+    document.body.removeChild(textArea);
+  };
+  // Wallet copy function ends
+
+  
   // Determine the message class based on error or success
   const messageClass = isError ? "text-red-500" : "text-green-500";
 
@@ -122,17 +127,16 @@ const UsernamesForm = () => {
     <div>
       {fetchedUsername ? (
         // Display the fetched username
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 text-center">
           <p className="text-xl font-bold text-gray-300">
             Your Username:{" "}
             <span className="text-green-500">{fetchedUsername}</span>
           </p>
-          {/* <p className="text-xl font-bold text-gray-300">
-            Your Wallet(Solana): <span className="text-green-500 input-address">{fetchedWallet}</span>
-          </p> */}
 
-          <p className="text-md mb-4 text-center">Your Wallet(Solana):</p>
-          <p className="input-address text-green-500" style={{ userSelect: 'text' }}>{fetchedWallet}</p>
+          <p className="text-md mb-4">Your Wallet(Solana):</p>
+          <p className="input-address text-green-500" style={{ userSelect: 'text' }}>
+            {fetchedWallet}
+          </p>
           <button onClick={copyToClipboard} className="btn mt-2">
             Copy Wallet Address
           </button>

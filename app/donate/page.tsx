@@ -48,7 +48,7 @@ const DonatePage = () => {
         Kindly Donate to Keep ExploreSol Project Going
       </h1>
       <p className="text-md mb-4">
-        You can support by donating SOL and SOL tokens to the following wallet address:
+        You can support by donating SOL and SOL tokens to the following wallet address - THANKS!:
       </p>
       <p className="input-address" style={{ userSelect: 'text' }}>
         {walletAddress}

@@ -144,3 +144,12 @@ Display long wallet address in multiple line on mobile
 }
 
 
+/* 
+.email-link class to ensure that the link doesn't stretch too wide
+ and stays centered
+*/
+.email-link {
+  width: auto; /* Ensures the width is only as wide as its content */
+  max-width: 300px; /* Optionally limits maximum width to keep it manageable */
+  padding: 10px 20px; /* Adjust padding as needed */
+}

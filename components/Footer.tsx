@@ -35,7 +35,7 @@ export default async function Footer() {
               <FaTwitter className="text-blue-500 hover:text-blue-600 h-6 w-6" />
             </Link>
             <Link
-              href={AppendSiteUrlToExternalLink("https://discord.gg/jmnXR7Jvqs")}
+              href={AppendSiteUrlToExternalLink("https://dProgrammingUniversity.com/Discord")}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Discord"

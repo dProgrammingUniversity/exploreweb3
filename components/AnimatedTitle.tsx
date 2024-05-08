@@ -25,7 +25,7 @@ const AnimatedTitle = () => {
       <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
         {/* Main title section */}
         <div className="flex justify-center items-center gap-1">
-          <span>Search 1/1,000+ Solana Projects</span>
+          <span>Search 10/1,000+ Solana Projects</span>
           <span>-</span>
           <span
             className="text-purple-400 inline-block text-center"
