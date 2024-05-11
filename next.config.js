@@ -3,11 +3,16 @@ const nextConfig = {
     async redirects() {
       return [
         {
-          // Redirect all paths to the new domain
           source: '/:path*',
+          has: [
+            {
+              type: 'host',
+              value: 'exploresol.xyz',
+            },
+          ],
           destination: 'https://exploresolana.com/:path*',
           permanent: true,
-        }
+        },
       ];
     },
   };
