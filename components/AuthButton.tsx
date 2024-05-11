@@ -1,41 +1,59 @@
 // ExploreSol/components/AuthButton.tsx
-import { createClient } from "@/utils/supabase/server";
+"use client"
+import React, { useEffect, useState } from 'react';
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
-export default async function AuthButton() {
-  const supabase = createClient();
+const AuthButton = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [username, setUsername] = useState('');
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  useEffect(() => {
+    const supabase = createClient();
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+        fetchUsername(user.id);
+      }
+    };
+
+    const fetchUsername = async (userId: string) => {
+      const { data: usernames, error } = await supabase.rpc("usernames_fetch", {
+        _user_id: userId,
+      });
+      if (!error && usernames && usernames.length > 0) {
+        setUsername(usernames[0].username);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const signOut = async () => {
-    "use server";
-
     const supabase = createClient();
     await supabase.auth.signOut();
-    return redirect("/login");
+    window.location.href = "/login";
   };
 
-  // Split the email string to remove the domain part
-  const userName = user?.email?.split('@')[0] ?? '';
-  
-  return user ? (
+  if (!user) {
+    return (
+      <Link href="/login" className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+        Login
+      </Link>
+    );
+  }
+
+  const displayName = username || user.email;
+
+  return (
     <div className="flex items-center gap-4">
-      S, {userName}!
-      <form action={signOut}>
-        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-          Logout
-        </button>
-      </form>
+      {displayName}
+      <button onClick={signOut} className="py-2 px-4 rounded-md">
+        Sign Out
+      </button>
     </div>
-  ) : (
-    <Link
-      href="/login"
-      className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-    >
-      Login
-    </Link>
   );
-}
+};
+
+export default AuthButton;

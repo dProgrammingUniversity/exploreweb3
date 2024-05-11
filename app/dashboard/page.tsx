@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import "../dashboard/dashboard.css"; 
+import DashboardMenu from "@/components/dashboard/DashboardMenu";
 
 export default async function DashboardPage() {
   const supabase = createClient();
@@ -15,15 +16,7 @@ export default async function DashboardPage() {
   return (
     <div className="dashboard-layout">
       {/* Sidebar */}
-      <div className="sidebar">
-        <Link href="/dashboard" className="sidebar-link">
-            Dashboard
-        </Link>
-        <Link href="/dashboard/create-listings" className="sidebar-link">
-            Create Listings
-        </Link>
-        {/* Add other sidebar links here */}
-      </div>
+      <DashboardMenu />
 
       {/* Content */}
       <div className="content">

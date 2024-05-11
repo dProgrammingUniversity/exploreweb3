@@ -1,9 +1,9 @@
 // ExploreSol/app/dashboard/create-listings/page.tsx
 import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import "../../dashboard/dashboard.css"; 
-import CreateListings from "@/components/CreateListings";
+import CreateListings from "@/components/dashboard/CreateListings";
+import DashboardMenu from "@/components/dashboard/DashboardMenu";
 
 export default async function DashboardPage() {
   const supabase = createClient();
@@ -16,21 +16,12 @@ export default async function DashboardPage() {
   return (
     <div className="dashboard-layout">
       {/* Sidebar */}
-      <div className="sidebar">
-        <Link href="/dashboard" className="sidebar-link">
-            Dashboard
-        </Link>
-        <Link href="/dashboard/create-listings" className="sidebar-link">
-            Create Listings
-        </Link>
-        {/* Add other sidebar links here */}
-      </div>
+      <DashboardMenu />
 
       {/* Content */}
       <div className="content">
         <h1 className="content-heading">CREATE LISTINGS DASHBOARD PAGE</h1>
         <CreateListings />
-        {/* Add more content here */}
       </div>
     </div>
   );

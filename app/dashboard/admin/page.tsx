@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import "../../dashboard/dashboard.css";
+import DashboardMenu from '@/components/dashboard/DashboardMenu';
 
 export default function AdminPage() {
-  const [pendingListings, setPendingListings] = useState<ListingType[]>([]);
+  const [pendingListings, setPendingListings] = useState<DisplayListingTypes[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -67,16 +68,9 @@ export default function AdminPage() {
 
   return (
     <div className="dashboard-layout">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <Link href="/dashboard" className="sidebar-link">
-            Dashboard
-        </Link>
-        <Link href="/dashboard/create-listings" className="sidebar-link">
-            Create Listings
-        </Link>
-        {/* Add other sidebar links here */}
-      </div>
+     
+     {/* Sidebar */}
+     <DashboardMenu />
 
       {/* Content */}
       <div className="content">

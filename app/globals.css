@@ -1,48 +1,81 @@
 /* ExploreSol/app/globals.css */
+
+/* Tailwind CSS Import */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 200 20% 98%;
-    --btn-background: 200 10% 91%;
-    --btn-background-hover: 200 10% 89%;
-    --foreground: 200 50% 3%;
+    --background: 200 50% 3%; /* Dark background for all themes */
+    --btn-background: 200 10% 9%; /* Darker button background for all themes */
+    --btn-background-hover: 200 10% 12%; /* Even darker for hover states */
+    --foreground: 200 20% 96%; /* Light text for all themes */
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 200 50% 3%;
-      --btn-background: 200 10% 9%;
-      --btn-background-hover: 200 10% 12%;
-      --foreground: 200 20% 96%;
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-width: 100vw;
+    overflow-x: hidden;
+    font-family: sans-serif;
+    background-color: var(--background); /* Use the background variable */
+    color: var(--foreground); /* Use the foreground variable for text color */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Ensure that your container or navbar has a relative position to act as an anchor 
+  for the absolute positioned dropdown 
+  */
+  .container,
+  .navbar {
+    position: relative;
+  }
+
+  /* Ensure ordered lists use decimal numbering */
+  ol {
+    list-style-type: decimal !important; /* Force decimal numbers */
+    padding-left: 2rem; /* Ensure padding allows numbers to show */
+  }
+
+  ol li {
+    padding: 0.5rem 0; /* Add some vertical padding for readability */
+  }
+
+  /* 
+  Responsive adjustments for smaller screens
+  Mobile view specific styles 
+  */
+  @media (max-width: 768px) {
+    .grid-cols-3 {
+      grid-template-columns: repeat(
+        1,
+        1fr
+      ); /* Stack columns on small screens */
+    }
+
+    .peer-checked + .dropdown {
+      display: block;
+      position: absolute;
+      top: 100%; /* Makes it appear right below the navbar */
+      left: 0;
+      right: 0;
+      background-color: white; /* or any color that fits your design */
     }
   }
 }
 
-@layer base {
-  * {
-    @apply border-foreground/20;
-  }
-}
-
-.animate-in {
-  animation: animateIn 0.3s ease 0.15s both;
-}
-
-@keyframes animateIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
- /* NavigationBar Component Style */
+/* NavigationBar Component Style */
 .btn {
   @apply px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-100;
 }
@@ -52,4 +85,71 @@
 
 .btn-active {
   @apply bg-blue-500 text-white;
+}
+
+/* 
+Scroll to top button style
+*/
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 1000;
+  fill: #4a4a4a;
+  transition: fill 0.25s ease-in-out;
+}
+
+.scroll-to-top svg:hover {
+  fill: #000;
+}
+
+/* 
+Display long wallet address in multiple line on mobile
+*/
+.wallet-address {
+  display: block; /* Ensures the address is in block format for better control */
+  word-wrap: break-word; /* Breaks the address to prevent overflow */
+  font-family: monospace; /* Maintains a consistent typographic width */
+  overflow-wrap: break-word; /* Allows unbreakable words to be broken */
+}
+
+
+/* Donate address input box style */
+/* Adjusting input box to be more responsive */
+.input-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line as needed */
+  gap: 10px; /* Provides spacing between items */
+}
+
+.input-address {
+  flex: 1 1 auto; /* Allows the input to grow and shrink as needed */
+  background: var(--background);
+  color: var(--foreground);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: break-word; /* Ensures that words can be broken at the end of the line */
+  overflow-wrap: break-word; /* Allows unbreakable words to be broken */
+  max-width: calc(100% - 50px); /* Adjust width, accounting for button width */
+  font-family: monospace; /* Monospace font for better readability of the address */
+}
+
+@media (max-width: 600px) {
+  .input-address {
+    max-width: 100%; /* Full width on smaller screens, ensuring button is below the input */
+  }
+}
+
+
+/* 
+.email-link class to ensure that the link doesn't stretch too wide
+ and stays centered
+*/
+.email-link {
+  width: auto; /* Ensures the width is only as wide as its content */
+  max-width: 300px; /* Optionally limits maximum width to keep it manageable */
+  padding: 10px 20px; /* Adjust padding as needed */
 }

@@ -1,34 +1,56 @@
-// ExploreSol/app/page.tsx 
-import DeployButton from "../components/DeployButton";
-import AuthButton from "../components/AuthButton";
-import { createClient } from "@/utils/supabase/server";
-import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
-import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
-import Header from "@/components/Header";
+// ExploreSol/app/page.tsx
+"use client";
+import React, { useEffect, useState } from "react";
+import { ListingsTop } from "@/components/ListingsTop";
+import DirectoryPage from "@/components/DirectoryPage";
+import { ListingsNew } from "@/components/ListingsNew";
+import { ListingsUpcoming } from "@/components/ListingsUpcoming";
+import { ListingsLive } from "@/components/ListingsLive";
+import EmailSubscriptionForm from "@/components/EmailSubscriptionForm";
+import AnimatedTitle from "@/components/AnimatedTitle";
 
-export default async function Index() {
-  const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
-    try {
-      createClient();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
+export default function HomePage() {
 
-  const isSupabaseConnected = canInitSupabaseClient();
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-20 items-center">
-      <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
-        <Header />
-        <main className="flex-1 flex flex-col gap-6">
-          <h2 className="font-bold text-4xl mb-4">Next steps</h2>
-          {isSupabaseConnected ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-        </main>
+    <>
+    
+      <div className="container mx-auto px-4">
+        {/* Top text section with highlighted text */}
+        <EmailSubscriptionForm />
+
+        {/* Directory Page component */}
+        <AnimatedTitle />
+        <DirectoryPage />
+
+        {/* Top Listings Section */}
+        {/* <section className="my-8">
+          <h2 className="text-2xl font-bold">Top Listings</h2>
+          Component to display top listings
+          <ListingsTop />
+        </section> */}
+
+        {/* Upcoming Listings Section */}
+        <section className="my-8">
+          <h2 className="text-2xl font-bold text-purple-300">Upcoming Solana Projects:</h2>
+          {/* Component to display upcoming listings */}
+          <ListingsUpcoming />
+        </section>
+
+        {/* New Listings Section */}
+        <section className="my-8">
+          <h2 className="text-2xl font-bold text-purple-300">Newly Added Solana Projects:</h2>
+          {/* Component to display new listings */}
+          <ListingsNew />
+        </section>        
+
+        {/* Live Listings Section */}
+        <section className="my-8">
+          <h2 className="text-2xl font-bold text-purple-300">Live Solana Projects:</h2>
+          {/* Component to display live listings */}
+          <ListingsLive />
+        </section>
       </div>
-    </div>
+    </>
   );
 }
