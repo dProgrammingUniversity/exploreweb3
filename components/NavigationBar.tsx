@@ -60,7 +60,7 @@ export default function NavigationBar() {
                 Home
               </Link>
               <Link
-                href="https://exploresol.substack.com/"
+                href="https://exploresolana.substack.com/"
                 className="btn"
                 onClick={() => setMenuOpen(false)}
               >
