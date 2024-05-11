@@ -24,7 +24,7 @@ const EmailSubscriptionForm = () => {
           </em>
         </p>
         <Iframe
-          url="https://exploresol.substack.com/embed"
+          url="https://exploresolana.substack.com/embed"
           width="250px"
           height="320px"
           id="myId"
