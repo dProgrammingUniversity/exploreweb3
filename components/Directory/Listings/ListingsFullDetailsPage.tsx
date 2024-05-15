@@ -12,6 +12,7 @@ import RatingReviewsList from "../RatingsReviews/RatingReviewsList";
 import { useMemo } from "react";
 import Image from "next/image";
 
+
 const ListingsFullDetailsPage: React.FC<{
   slug: string;
   onListingDataLoaded: (data: DisplayListingTypes) => void;
@@ -19,7 +20,7 @@ const ListingsFullDetailsPage: React.FC<{
   const [listing, setListing] = useState<DisplayListingTypes | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null); // State to store the userId
-  // const supabaseClient = createClient();
+  // const supabaseClient = createClient(); //use memo code below if have issue with multiple calls to createClient()
   const supabaseClient = useMemo(() => createClient(), []); //ensure createClient() is called once not multiple times
 
   /*
