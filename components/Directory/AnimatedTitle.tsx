@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const AnimatedTitle = () => {
   const [currentWord, setCurrentWord] = useState("dApps");
-  const words = ["dApps", "Tools", "Contents", "Features"];
+  const words = ["dApps", "Tools", "Contents", "Features", "Protocols", "Communities"];
   const largestWordLength = Math.max(...words.map((word) => word.length));
   const widthOfLargestWord = `${largestWordLength}ch`;
 
@@ -22,11 +22,11 @@ const AnimatedTitle = () => {
 
   return (
     <div className="text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-green-500 mb-2">
+      <h1 className="text-2xl md:text-4xl font-bold text-green-500 mb-2">
         {/* Main title section */}
         <div className="flex justify-center items-center gap-1">
           <span>Search 25/1,000+ Solana Projects</span>
-          <span>-</span>
+          <span>{"=>"}</span>
           <span
             className="text-purple-400 inline-block text-center"
             style={{ minWidth: widthOfLargestWord, padding: "0 0.5rem" }}
