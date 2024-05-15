@@ -1,10 +1,14 @@
-// exploresol/components/ListingsNew.tsx
+// /components/Directory/Listings/ListingsNew.tsx
+
 import React, { useEffect, useState } from 'react';
-import { createClient } from '@/utils/supabase/client'; 
-import ListingsCard from './ListingsCard'; 
+import { createClient } from '@/utils/supabase/client';
+import ListingsCard from './ListingsCard';
+import Pagination from '@/components/Pagination';
 
 export const ListingsNew = () => {
   const [newListings, setNewListings] = useState<DisplayListingTypes[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;  // Updated from 6 to 9
   const supabaseClient = createClient();
 
   useEffect(() => {
@@ -13,9 +17,7 @@ export const ListingsNew = () => {
         .from('listings')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6) // Adjust the criteria as needed
-        .eq('moderation_status', 'approved'); // filter for approved listings only
-
+        .eq('moderation_status', 'approved');
 
       if (error) {
         console.error('Error fetching new listings:', error);
@@ -25,13 +27,28 @@ export const ListingsNew = () => {
     };
 
     fetchNewListings();
-  }, []);
+  }, [currentPage]);
+
+  // Calculate the number of pages
+  const totalPages = Math.ceil(newListings.length / itemsPerPage);
+
+  // Get current listings to display
+  const indexOfLastListing = currentPage * itemsPerPage;
+  const indexOfFirstListing = indexOfLastListing - itemsPerPage;
+  const currentListings = newListings.slice(indexOfFirstListing, indexOfLastListing);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {newListings.map((listing) => (
-        <ListingsCard key={listing.id} listing={listing} />
-      ))}
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {currentListings.map((listing) => (
+          <ListingsCard key={listing.id} listing={listing} />
+        ))}
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };
