@@ -11,7 +11,7 @@ export function AppendSiteUrlToExternalLink(url: string | string[]) {
 
   // Check if URL already has query parameters
   const hasQueryParams = url.includes("?");
-  const siteLinkQuery = hasQueryParams ? "&ref=exploresol" : "?ref=exploresol";
+  const siteLinkQuery = hasQueryParams ? "&ref=exploresolana" : "?ref=exploresolana";
 
   return `${url}${siteLinkQuery}`;
 }
