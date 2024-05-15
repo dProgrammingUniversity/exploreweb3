@@ -22,10 +22,10 @@ const AnimatedTitle = () => {
 
   return (
     <div className="text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+      <h1 className="text-3xl md:text-4xl font-bold text-green-500 mb-2">
         {/* Main title section */}
         <div className="flex justify-center items-center gap-1">
-          <span>Search 10/1,000+ Solana Projects</span>
+          <span>Search 25/1,000+ Solana Projects</span>
           <span>-</span>
           <span
             className="text-purple-400 inline-block text-center"
@@ -34,22 +34,23 @@ const AnimatedTitle = () => {
             {currentWord}
           </span>
         </div>
-
-        {/* Earn title section */}
-        <div>
-          <label className="text-l font-bold my-6 text-purple-500">
-            Earn Using & Supporting Solana Projects You Love/Hate
-          </label>
-          <span
-            className="text-white-400  text-center"
-          >
-            {" "} {"=>"} {" "}
-            <Link href="/earn">
-            Learn More!
-            </Link>
-          </span>
-        </div>
       </h1>
+
+      {/* Earn title section */}
+      <div>
+        <label className="text-l font-bold my-6 text-purple-500">
+          Earn Using & Exploring Solana Projects
+        </label>
+        <span
+          className="text-white-400  text-center"
+        >
+          {" "} {"=>"} {" "}
+          <Link href="/earn">
+          Learn More!
+          </Link>
+        </span>
+      </div>
+
     </div>
   );
 };
