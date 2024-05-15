@@ -14,7 +14,7 @@ const DirectoryPage = () => {
   const [isListView, setIsListView] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
   // const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg"; //define default image URL
   const [statuses, setStatuses] = useState([]); // State to hold statuses from database
   const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>(

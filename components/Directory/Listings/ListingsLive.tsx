@@ -1,7 +1,7 @@
 // exploresol/components/ListingsLive.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client'; 
-import ListingsCard from '@/components/ListingsCard'; 
+import ListingsCard from './ListingsCard';
 
 export const ListingsLive = () => {
   const [liveListings, setLiveListings] = useState<DisplayListingTypes[]>([]);
@@ -12,8 +12,9 @@ export const ListingsLive = () => {
       const { data, error } = await supabaseClient
         .from('listings')
         .select('*')
-        .order('created_at', { ascending: false })
+        .order('created_at', { ascending: true })
         .filter("status", "eq", "Live")
+        .limit(6)
         .eq('moderation_status', 'approved'); // filter for approved listings only
 
       if (error) {

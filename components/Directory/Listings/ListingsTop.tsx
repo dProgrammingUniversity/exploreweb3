@@ -1,7 +1,7 @@
 // exploresol/components/ListingsTop.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client'; 
-import ListingsCard from '@/components/ListingsCard'; 
+import ListingsCard from './ListingsCard'; 
 
 export const ListingsTop = () => {
   const [topListings, setTopListings] = useState<DisplayListingTypes[]>([]);
