@@ -149,12 +149,15 @@ const DirectoryPage = () => {
     <>
       {/* Search and filter controls */}
       <div className="mb-4 flex flex-col justify-between md:flex-row">
-        <input
-          type="text"
-          className="mb-4 w-full rounded border bg-purple-800 p-2 md:mb-0"
-          placeholder="Search for Solana dApps, Airdrop, Recovery, Security tools etc..."
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        
+        {/* Grid/List View */}
+        <button
+          onClick={() => setIsListView(!isListView)}
+          className={`rounded border p-2 ${isListView ? "bg-gray-700 text-white" : "bg-purple-800 text-white"}`}
+        >
+          {isListView ? "GridView" : "ListView"}
+        </button>
+
         {/* All Categories Filter */}
         <select
           className="rounded border bg-gray-700 p-2"
@@ -168,6 +171,7 @@ const DirectoryPage = () => {
             </option>
           ))}
         </select>
+
         {/* All Pricing Filter */}
         <select
           className="rounded border bg-purple-800 p-2"
@@ -181,6 +185,7 @@ const DirectoryPage = () => {
             </option>
           ))}
         </select>
+
         {/* All Statuses Filter */}
         <select
           className="rounded border bg-gray-700 p-2"
@@ -194,13 +199,15 @@ const DirectoryPage = () => {
             </option>
           ))}
         </select>
-        {/* Grid/List View */}
-        <button
-          onClick={() => setIsListView(!isListView)}
-          className={`rounded border p-2 ${isListView ? "bg-gray-700 text-white" : "bg-purple-800 text-white"}`}
-        >
-          {isListView ? "GridView" : "ListView"}
-        </button>
+        
+        {/* Search bar */}
+        <input
+          type="text"
+          className="mb-4 w-full rounded border bg-purple-800 p-2 md:mb-0"
+          placeholder="Search for Solana dApps, Airdrop, Recovery, Security tools etc..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        
       </div>
 
       {/* Display listings Card*/}
