@@ -1,3 +1,4 @@
+// /components/Header/menuData.tsx
 import { Menu } from "@/types/menu";
 
 const menuData: Menu[] = [
@@ -9,50 +10,74 @@ const menuData: Menu[] = [
   },
   {
     id: 2,
-    title: "Features",
-    newTab: false,
-    path: "/#features",
+    title: "Blog",
+    newTab: true,
+    path: "https://exploresolana.substack.com/",
   },
   {
     id: 2.1,
-    title: "Blog",
+    title: "Directory",
     newTab: false,
-    path: "/blog",
+    path: "/directory",
+  },
+  {
+    id: 2.2,
+    title: "About",
+    newTab: false,
+    path: "/about",
   },
   {
     id: 2.3,
-    title: "Docs",
+    title: "Contact",
     newTab: false,
-    path: "/docs",
+    path: "/contact",
+  },
+  {
+    id: 2.4,
+    title: "Earn",
+    newTab: false,
+    path: "/earn",
+  },
+  {
+    id: 2.5,
+    title: "Roadmap",
+    newTab: false,
+    path: "/roadmap",
+  },
+  {
+    id: 2.6,
+    title: "S",
+    newTab: false,
+    path: "/s",
   },
   {
     id: 3,
-    title: "Pages",
+    title: "Dashboard",
     newTab: false,
     submenu: [
       {
         id: 31,
-        title: "Blog Grid",
+        title: "Dashboard Home",
         newTab: false,
-        path: "/blog",
+        path: "/dashboard",
       },
       {
         id: 34,
-        title: "Sign In",
+        title: "Profile",
         newTab: false,
-        path: "/auth/signin",
+        path: "/dashboard/profile",
       },
       {
         id: 35,
-        title: "Sign Up",
+        title: "Create Listings",
         newTab: false,
-        path: "/auth/signup",
+        path: "/dashboard/create-listings",
       },
       {
         id: 35,
-        title: "Docs",
+        title: "Favorites",
         newTab: false,
-        path: "/docs",
+        path: "/dashboard/favorite-listings",
       },
       {
         id: 35.1,
@@ -69,12 +94,7 @@ const menuData: Menu[] = [
     ],
   },
 
-  {
-    id: 4,
-    title: "Support",
-    newTab: false,
-    path: "/support",
-  },
+  
 ];
 
 export default menuData;

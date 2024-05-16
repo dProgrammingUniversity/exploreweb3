@@ -1,4 +1,5 @@
-import Signin from "@/components/Auth/Signin";
+// /app/(site)/auth/reset-password/page.tsx
+import ResetPassword from "@/components/Directory/SupabaseAuth/ResetPassword";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,12 +8,12 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const SigninPage = () => {
+const ResetPasswordPage = () => {
   return (
     <>
-      <Signin />
+    <ResetPassword />
     </>
   );
 };
 
-export default SigninPage;
+export default ResetPasswordPage;

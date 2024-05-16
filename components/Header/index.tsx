@@ -1,11 +1,12 @@
+// /components/Header/index.tsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
+import AuthButton from "./AuthButton";
 
 const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -153,22 +154,17 @@ const Header = () => {
 
           <div className="mt-7 flex items-center gap-6 xl:mt-0">
             <ThemeToggler />
-          </div>
 
-           <div className="mt-7 flex items-center gap-6 xl:mt-0">
             <Link
-              href="https://github.com/NextJSTemplates/solid-nextjs"
+              href="/donate"
               className="text-regular font-medium text-waterloo hover:text-primary"
             >
-              GitHub🌟
+              Donate🌟
             </Link>
+          </div>
 
-            <Link
-              href="https://nextjstemplates.com/templates/solid"
-              className="flex items-center justify-center rounded-full bg-primary px-7.5 py-2.5 text-regular text-white duration-300 ease-in-out hover:bg-primaryho"
-            >
-              Login 🔥
-            </Link>
+           <div className="mt-7 flex items-center gap-6 xl:mt-0"> 
+            <AuthButton />
           </div>
 
         </div>
@@ -176,7 +172,5 @@ const Header = () => {
     </header>
   );
 };
-
-// w-full delay-300
 
 export default Header;
