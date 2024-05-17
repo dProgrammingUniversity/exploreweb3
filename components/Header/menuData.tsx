@@ -81,15 +81,9 @@ const menuData: Menu[] = [
       },
       {
         id: 35.1,
-        title: "Support",
+        title: "Password Manager",
         newTab: false,
-        path: "/support",
-      },
-      {
-        id: 36,
-        title: "404",
-        newTab: false,
-        path: "/error",
+        path: "/auth/update-password",
       },
     ],
   },
