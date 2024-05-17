@@ -16,7 +16,7 @@ import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 
 export const metadata: Metadata = {
-  title: "Home | Explore Solana",
+  title: "Home - Explore Solana",
   description: "Earn Using and Exploring Solana Projects",
   // other metadata
 };

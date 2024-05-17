@@ -40,14 +40,14 @@ const AuthButton = () => {
       {loggedIn ? (
         <button
           onClick={handleLogout}
-          className="flex items-center justify-center rounded-full bg-red-600 px-7.5 py-2.5 text-regular text-white duration-300 ease-in-out hover:bg-red-700"
+          className="flex items-center justify-center rounded-full bg-red-600 w-25 h-12 text-regular text-white duration-300 ease-in-out hover:bg-red-700"
         >
           Logout 🔥
         </button>
       ) : (
         <Link
           href="/auth/login"
-          className="flex items-center justify-center rounded-full bg-primary px-7.5 py-2.5 text-regular text-white duration-300 ease-in-out hover:bg-primaryho"
+          className="flex items-center justify-center rounded-full bg-primary w-25 h-12 text-regular text-white duration-300 ease-in-out hover:bg-primaryho"
         >
           Login 🔥
         </Link>

@@ -8,12 +8,12 @@ const menuData: Menu[] = [
     newTab: false,
     path: "/",
   },
-  {
-    id: 2,
-    title: "Blog",
-    newTab: true,
-    path: "https://exploresolana.substack.com/",
-  },
+  // {
+  //   id: 2,
+  //   title: "Blog",
+  //   newTab: true,
+  //   path: "https://exploresolana.substack.com/",
+  // },
   {
     id: 2.1,
     title: "Directory",
@@ -26,24 +26,24 @@ const menuData: Menu[] = [
     newTab: false,
     path: "/about",
   },
-  {
-    id: 2.3,
-    title: "Contact",
-    newTab: false,
-    path: "/contact",
-  },
+  // {
+  //   id: 2.3,
+  //   title: "Contact",
+  //   newTab: false,
+  //   path: "/contact",
+  // },
   {
     id: 2.4,
     title: "Earn",
     newTab: false,
     path: "/earn",
   },
-  {
-    id: 2.5,
-    title: "Roadmap",
-    newTab: false,
-    path: "/roadmap",
-  },
+  // {
+  //   id: 2.5,
+  //   title: "Roadmap",
+  //   newTab: false,
+  //   path: "/roadmap",
+  // },
   {
     id: 2.6,
     title: "S",
