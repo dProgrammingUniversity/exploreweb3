@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const EarnPage = () => {
+const SPage = () => {
   return (
     <>
     <section className="flex-grow pb-12.5 pt-32.5 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
@@ -61,4 +61,4 @@ const EarnPage = () => {
   );
 };
 
-export default EarnPage;
+export default SPage;
