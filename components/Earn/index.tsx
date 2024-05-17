@@ -14,7 +14,7 @@ const Earn = () => {
   return (
     <>
       <h1 className="text-2xl font-bold text-center my-6 text-purple-500">
-        HOW TO EARN ON EXPLORESOL PLATFORM
+        HOW TO EARN ON ExploreSolana PLATFORM
       </h1>
 
       {/* Introduction Section */}
@@ -26,7 +26,7 @@ const Earn = () => {
         this platform first to understand this earning opportunities better.
       </p>
       <p className="text-md mb-4 text-justify">
-        <Link href="/about">Click here to learn more about ExploreSol</Link>
+        <Link href="/about">Click here to learn more about ExploreSolana</Link>
       </p>
       <h3 className="text-xl font-bold my-6 text-purple-500">🔔 Hint:</h3>
       <p className="text-md mb-4 text-justify">
@@ -37,11 +37,11 @@ const Earn = () => {
 
       {/* Earn Path/Amount Section */}
       <h2 className="text-2xl font-bold my-6 text-purple-500">
-        B. EARN PATHS OFFERED BY EXPLORESOL:
+        B. EARN PATHS OFFERED BY ExploreSolana:
       </h2>
       <p className="text-md mb-4 text-justify">
         See the existing earning paths and amount of dPUT reward each can earn
-        you on ExploreSol platform below:
+        you on ExploreSolana platform below:
       </p>
       <div>
         {problemsAndSolutions.map((item, index) => (
@@ -103,7 +103,7 @@ const Earn = () => {
       {/* Earning rewards payment Section */}
       <div className="my-6">
         <h2 className="text-2xl font-bold my-6 text-purple-500">
-          D. EXPLORESOL dPUT PAYMENT CYCLE:
+          D. ExploreSolana dPUT PAYMENT CYCLE:
         </h2>
         <p className="text-md mb-4 text-justify">
           The dPUT earned reward payment is done on weekly bases every Monday.
@@ -114,7 +114,7 @@ const Earn = () => {
         <p className="text-md mb-4 text-justify">Minimum Payment Threshold?</p>
         <p className="text-md mb-4 text-justify">
           No minimum threshold, you get your dPUT sent to your wallet on
-          ExploreSol.xyz based on the amount you have earn through the week.
+          ExploreSolana.xyz based on the amount you have earn through the week.
         </p>
         <p className="text-md mb-4 text-justify">
           For example if you get 5 Solana projects listings approved within 1
@@ -130,11 +130,11 @@ const Earn = () => {
       {/* Earning Opportunities Section */}
       <div className="my-6">
         <h2 className="text-2xl font-bold my-6 text-purple-500">
-          E. WHAT IS EXPLORESOL dPUT REWARD TOKEN:
+          E. WHAT IS ExploreSolana dPUT REWARD TOKEN:
         </h2>
         <p className="text-md mb-4 text-justify">
           The dPUT earned is the official utility token of dProgramming
-          University (dPU) ecosystem and ExploreSol is one of the project in the
+          University (dPU) ecosystem and ExploreSolana is one of the project in the
           dPU ecosystem that qualify to reward users with dPUT.
         </p>
         <p className="text-md mb-4 text-justify">
@@ -172,7 +172,7 @@ const problemsAndSolutions = [
   {
     title: "Earn Path 3: Referral Program",
     description:
-      "Earn dPUT (utility token) reward for referring others to subscribe to the ExploreSol 'S' Newsletter..",
+      "Earn dPUT (utility token) reward for referring others to subscribe to the ExploreSolana 'S' Newsletter..",
     reward: "$0.10(USDT)SOL worth of dPUT (see section C below for details)",
   },
   {
