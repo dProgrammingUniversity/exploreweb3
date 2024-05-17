@@ -1,3 +1,5 @@
+// /components/Directory/Dashboard/CreateListings/index.tsx
+
 "use client";
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { createClient } from '@/utils/supabase/client';
@@ -359,9 +361,9 @@ const CreateListings = () => {
       <div className="flex-1 w-full flex flex-col items-center px-4 py-6">
         <div className="w-full max-w-4xl bg-gray-700 p-5 rounded shadow">
           <div className="col-span-full mb-4">
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex flex-wrap justify-between items-center mb-2">
               {stepTitles.map((title, index) => (
-                <div key={index} className={`p-2 rounded ${currentStep === index ? 'bg-green-500 text-white' : 'bg-gray-500 text-gray-300'}`}>
+                <div key={index} className={`p-2 rounded ${currentStep === index ? 'bg-green-500 text-white' : 'bg-gray-500 text-gray-300'} mb-2`}>
                   {index + 1}. {title}
                 </div>
               ))}
