@@ -1,3 +1,4 @@
+// /components/Directory/About/index.tsx
 "use client";
 
 import { motion } from "framer-motion";
