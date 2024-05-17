@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaTwitter, FaDiscord, FaEnvelope } from "react-icons/fa";
-import { AppendSiteUrlToExternalLink } from '../../utils/AppendSiteUrlToExternalLink';
+import { AppendSiteUrlToExternalLink } from '@/utils/AppendSiteUrlToExternalLink';
 
 const ContactPage = () => {
   const email = "hello@exploresol.xyz";  // Setup your contact email here

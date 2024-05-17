@@ -4,6 +4,13 @@ import { redirect } from "next/navigation";
 import CreateListings from "@/components/Directory/Dashboard/CreateListings";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create Listings - Explore Solana",
+  description: "Add your Solana project to Explore Solana platform",
+  // other metadata
+};
 
 export default async function DashboardPage() {
   const supabase = createClient();
@@ -12,7 +19,7 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    return redirect("/auth/login");
   }
 
   return (

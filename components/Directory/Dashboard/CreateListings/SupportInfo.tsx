@@ -1,3 +1,5 @@
+// /components/Directory/Dashboard/CreateListings/SupportInfo.tsx
+
 import React from 'react';
 
 const SupportInfo = ({ formData, handleInputChange, loading }) => (

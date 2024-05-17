@@ -1,6 +1,8 @@
+// /components/Directory/Dashboard/CreateListings/SocialMediaInfo.tsx
+
 import React from 'react';
 
-const SocialMediaLinks = ({ formData, handleInputChange, loading }) => (
+const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
   <>
     <div className="flex flex-col">
       <label htmlFor="twitter" className="mb-2 capitalize text-purple-500 text-xl">Twitter:</label>
@@ -64,4 +66,4 @@ const SocialMediaLinks = ({ formData, handleInputChange, loading }) => (
   </>
 );
 
-export default SocialMediaLinks;
+export default SocialMediaInfo;

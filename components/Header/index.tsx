@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 import AuthButton from "./AuthButton";
+import SubmitProjectButton from "./SubmitProjectButton";
 
 const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -152,21 +153,24 @@ const Header = () => {
             </ul>
           </nav>
 
-          <div className="mt-7 flex items-center gap-6 xl:mt-0">
+          <div className="mt-7 flex items-center gap-3 xl:mt-0">
+            {/* Toggle theme */}
             <ThemeToggler />
 
+            {/* Donate link */}
             <Link
               href="/donate"
               className="text-regular font-medium text-waterloo hover:text-primary"
             >
               Donate🌟
             </Link>
-          </div>
 
-           <div className="mt-7 flex items-center gap-6 xl:mt-0"> 
+            {/* Submit Project Button */}
+            <SubmitProjectButton />
+
+            {/* AuthButton */}
             <AuthButton />
           </div>
-
         </div>
       </div>
     </header>

@@ -1,6 +1,7 @@
+// /components/Directory/Dashboard/CreateListings/BasicInfo.tsx
 import React from 'react';
 
-const BasicInfo = ({ formData, handleInputChange, loading }) => (
+const BasicInfo = ({ formData, handleInputChange, statuses, loading }) => (
   <>
     <div className="flex flex-col">
       <label htmlFor="name" className="mb-2 capitalize text-purple-500 text-xl">Name:</label>
@@ -63,7 +64,27 @@ const BasicInfo = ({ formData, handleInputChange, loading }) => (
         max={new Date().getFullYear()}
       />
     </div>
+
+    <div className="flex flex-col">
+      <label htmlFor="status" className="mb-2 capitalize text-purple-500 text-xl">Status:</label>
+      <span className="text-sm text-gray-400 mb-1">current status of the project</span>
+      <select
+        id="status"
+        name="status"
+        value={formData.status || ""}
+        onChange={handleInputChange}
+        className="border-2 border-gray-300 p-2 rounded bg-black"
+      >
+        <option value="">Select Status</option>
+        {statuses.map((status) => (
+          <option key={status} value={status}>
+            {status}
+          </option>
+        ))}
+      </select>
+    </div>
   </>
 );
 
 export default BasicInfo;
+

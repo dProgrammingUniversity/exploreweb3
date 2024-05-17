@@ -1,13 +1,19 @@
-// /components/Directory/Dashboard/CreateListings/index.tsx
 "use client";
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import axios from 'axios'; // Import axios for making HTTP requests
+import axios from 'axios';
 import BasicInfo from './BasicInfo';
-import SocialMediaLinks from './SocialMediaLinks';
+import ProjectInfo from './ProjectInfo';
+import SocialMediaInfo from './SocialMediaInfo';
 import SupportInfo from './SupportInfo';
-import ProjectDetails from './ProjectDetails';
-import UploadSection from './UploadSection';
+import DownloadInfo from './DownloadInfo';
+import UploadInfo from './UploadInfo';
+
+// Define types for categories and other fetched options
+interface Category {
+  id: number;
+  name: string;
+}
 
 const CreateListings = () => {
   const initialFormData = {
@@ -60,7 +66,7 @@ const CreateListings = () => {
     source_code_access: '',
   };
 
-  const [formData, setFormData] = useState<CreateListingTypes>(initialFormData);
+  const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [image, setImage] = useState<string | null>(null);
@@ -78,17 +84,13 @@ const CreateListings = () => {
   const [nftcollectionOptions, setNftCollectionOptions] = useState([]);
   const [governanceOptions, setGovernanceOptions] = useState([]);
   const [sourceCodeAccessOptions, setSourceCodeAccessOptions] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const supabaseClient = createClient();
 
-  const [categories, setCategories] = useState<CategoryListingTypes[]>([]);
-
   useEffect(() => {
     async function fetchCategories() {
-      const { data, error } = await supabaseClient
-        .from('categories')
-        .select('id, name');
-
+      const { data, error } = await supabaseClient.from('categories').select('id, name');
       if (error) {
         console.error("Error fetching categories:", error);
       } else {
@@ -97,9 +99,7 @@ const CreateListings = () => {
     }
 
     async function fetchStatuses() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_status_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_status_values');
       if (error) {
         console.error("Error fetching statuses:", error);
       } else {
@@ -108,9 +108,7 @@ const CreateListings = () => {
     }
 
     async function fetchPricingOptions() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_pricing_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_pricing_values');
       if (error) {
         console.error("Error fetching pricing options:", error);
       } else {
@@ -119,9 +117,7 @@ const CreateListings = () => {
     }
 
     async function fetchBlockchainOptions() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_blockchain_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_blockchain_values');
       if (error) {
         console.error("Error fetching blockchain options:", error);
       } else {
@@ -130,9 +126,7 @@ const CreateListings = () => {
     }
 
     async function fetchTokenomicOptions() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_tokenomic_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_tokenomic_values');
       if (error) {
         console.error("Error fetching tokenomic options:", error);
       } else {
@@ -141,9 +135,7 @@ const CreateListings = () => {
     }
 
     async function fetchNftCollectionOptions() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_nft_collection_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_nft_collection_values');
       if (error) {
         console.error("Error fetching NFT Collection options:", error);
       } else {
@@ -152,9 +144,7 @@ const CreateListings = () => {
     }
 
     async function fetchGovernanceOptions() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_governance_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_governance_values');
       if (error) {
         console.error("Error fetching Governance options:", error);
       } else {
@@ -163,9 +153,7 @@ const CreateListings = () => {
     }
 
     async function fetchSourceCodeAccessOptions() {
-      const { data, error } = await supabaseClient
-        .rpc('enum_source_code_access_values');
-
+      const { data, error } = await supabaseClient.rpc('enum_source_code_access_values');
       if (error) {
         console.error("Error fetching Source Code Access options:", error);
       } else {
@@ -185,14 +173,12 @@ const CreateListings = () => {
 
   const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
-
     if (name === 'year_founded') {
       const currentYear = new Date().getFullYear();
       if (value.length === 4 && (value < 1900 || value > currentYear)) {
         return;
       }
     }
-
     setFormData({ ...formData, [name]: value });
   };
 
@@ -233,7 +219,6 @@ const CreateListings = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     console.log('Form submitted!');
-
     event.preventDefault();
     setLoading(true);
     setMessage('Submitting...');
@@ -269,14 +254,10 @@ const CreateListings = () => {
     };
 
     try {
-      const { data, error } = await supabaseClient
-        .from('listings')
-        .insert([submissionData]);
-
+      const { data, error } = await supabaseClient.from('listings').insert([submissionData]);
       if (error) {
         throw error;
       }
-
       setMessage('Listing added successfully!');
       setLoading(false);
       setFormData(initialFormData);
@@ -301,9 +282,32 @@ const CreateListings = () => {
     <BasicInfo
       formData={formData}
       handleInputChange={handleInputChange}
+      statuses={statuses}
       loading={loading}
     />,
-    <SocialMediaLinks
+    <ProjectInfo
+      formData={formData}
+      handleInputChange={handleInputChange}
+      categories={categories}
+      selectedCategory1={selectedCategory1}
+      setSelectedCategory1={setSelectedCategory1}
+      selectedCategory2={selectedCategory2}
+      setSelectedCategory2={setSelectedCategory2}
+      selectedCategory3={selectedCategory3}
+      setSelectedCategory3={setSelectedCategory3}
+      selectedCategory4={setSelectedCategory4}
+      setSelectedCategory4={setSelectedCategory4}
+      selectedCategory5={selectedCategory5}
+      setSelectedCategory5={setSelectedCategory5}
+      loading={loading}
+      blockchainOptions={blockchainOptions}
+      tokenomicOptions={tokenomicOptions}
+      nftcollectionOptions={nftcollectionOptions}
+      governanceOptions={governanceOptions}
+      sourceCodeAccessOptions={sourceCodeAccessOptions}
+      pricingOptions={pricingOptions}
+    />,
+    <SocialMediaInfo
       formData={formData}
       handleInputChange={handleInputChange}
       loading={loading}
@@ -313,24 +317,12 @@ const CreateListings = () => {
       handleInputChange={handleInputChange}
       loading={loading}
     />,
-    <ProjectDetails
+    <DownloadInfo
       formData={formData}
       handleInputChange={handleInputChange}
-      categories={categories}
-      statuses={statuses}
-      selectedCategory1={selectedCategory1}
-      setSelectedCategory1={setSelectedCategory1}
-      selectedCategory2={selectedCategory2}
-      setSelectedCategory2={setSelectedCategory2}
-      selectedCategory3={selectedCategory3}
-      setSelectedCategory3={setSelectedCategory3}
-      selectedCategory4={setSelectedCategory4}
-      setSelectedCategory4={setSelectedCategory4}
-      selectedCategory5={setSelectedCategory5}
-      setSelectedCategory5={setSelectedCategory5}
       loading={loading}
     />,
-    <UploadSection
+    <UploadInfo
       image={image}
       handleFileSelect={handleFileSelect}
       removeSelectedImage={removeSelectedImage}
@@ -344,20 +336,51 @@ const CreateListings = () => {
     />
   ];
 
+  const stepTitles = [
+    'Basic Info',
+    'Project Info',
+    'Social Media Info',
+    'Support Info',
+    'Download Info',
+    'Upload Image'
+  ];
+
+  const stepSummaries = [
+    'Enter the basic information about your project.',
+    'Provide detailed information about your project.',
+    'Share social media account links for your project.',
+    'Enter support-related details for your project.',
+    'Provide download links for your project.',
+    'Upload the project logo or screenshot (must be 600(Width)x400(Height)px).'
+  ];
+
   return (
     <>
       <div className="flex-1 w-full flex flex-col items-center px-4 py-6">
-        <form onSubmit={handleSubmit} className="w-full max-w-4xl bg-gray-700 p-5 rounded shadow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {steps[currentStep]}
+        <div className="w-full max-w-4xl bg-gray-700 p-5 rounded shadow">
+          <div className="col-span-full mb-4">
+            <div className="flex justify-between items-center mb-2">
+              {stepTitles.map((title, index) => (
+                <div key={index} className={`p-2 rounded ${currentStep === index ? 'bg-green-500 text-white' : 'bg-gray-500 text-gray-300'}`}>
+                  {index + 1}. {title}
+                </div>
+              ))}
+            </div>
+            <p className="text-white text-center">{stepSummaries[currentStep]}</p>
+          </div>
+          <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {steps[currentStep]}
+          </form>
           <div className="col-span-full flex justify-between mt-4">
-            <button
-              type="button"
-              className="btn bg-blue-500 hover:bg-blue-700 text-white rounded p-2"
-              disabled={currentStep === 0}
-              onClick={() => setCurrentStep(currentStep - 1)}
-            >
-              Previous
-            </button>
+            {currentStep > 0 && (
+              <button
+                type="button"
+                className="btn bg-blue-500 hover:bg-blue-700 text-white rounded p-2"
+                onClick={() => setCurrentStep(currentStep - 1)}
+              >
+                Previous
+              </button>
+            )}
             {currentStep < steps.length - 1 ? (
               <button
                 type="button"
@@ -368,8 +391,9 @@ const CreateListings = () => {
               </button>
             ) : (
               <button
-                type="submit"
-                className="btn bg-blue-500 hover:bg-blue-700 text-white rounded p-2"
+                type="button"
+                className="btn bg-green-500 hover:bg-green-700 text-white rounded p-2 mx-auto mt-6"
+                onClick={handleSubmit}
                 disabled={loading}
               >
                 Submit
@@ -377,7 +401,7 @@ const CreateListings = () => {
             )}
           </div>
           {message && <div className="col-span-full"><p className="text-sm mt-2 text-white">{message}</p></div>}
-        </form>
+        </div>
       </div>
     </>
   );

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import Link from 'next/link';
-import { AppendSiteUrlToExternalLink } from '../../../../utils/AppendSiteUrlToExternalLink';
+import { AppendSiteUrlToExternalLink } from '@/utils/AppendSiteUrlToExternalLink';
 
 const ListingDetailPage = () => {
   const [listing, setListing] = useState<DisplayListingTypes | null>(null); // used pre-define type ListingType in globalTypes.ts

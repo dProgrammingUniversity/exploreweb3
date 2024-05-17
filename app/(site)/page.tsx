@@ -16,8 +16,8 @@ import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 
 export const metadata: Metadata = {
-  title: "Next.js Starter Template for SaaS Startups - Solid SaaS Boilerplate",
-  description: "This is Home for Solid Pro",
+  title: "Home | Explore Solana",
+  description: "Earn Using and Exploring Solana Projects",
   // other metadata
 };
 
