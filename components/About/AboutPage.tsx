@@ -13,12 +13,12 @@ const AboutPage = () => {
 
   return (
     <>
-      <h1 className="my-6 text-center text-2xl font-bold text-purple-500">
+      <h1 className="text-2xl font-bold text-center my-6 text-purple-500">
         WHAT IS EXPLORESOL PLATFORM ABOUT
       </h1>
 
       {/* Introduction Section */}
-      <h2 className="my-6 text-2xl font-bold text-purple-500">
+      <h2 className="text-2xl font-bold my-6 text-purple-500">
         A. INTRODUCTION:
       </h2>
       <p className="text-md mb-4 text-justify">
@@ -46,12 +46,12 @@ const AboutPage = () => {
         new users after been onboarded to the Solana ecosystem.
       </p>
 
-      <h3 className="my-6 text-xl font-bold text-purple-500">Main Slogan:</h3>
+      <h3 className="text-xl font-bold my-6 text-purple-500">Main Slogan:</h3>
       <p className="text-md mb-4 text-justify">
         "Explore Solana ecosystem and discover opportunities."
       </p>
 
-      <h3 className="my-6 text-xl font-bold text-purple-500">🔔 Hint:</h3>
+      <h3 className="text-xl font-bold my-6 text-purple-500">🔔 Hint:</h3>
       <p className="text-md mb-4 text-justify">
         The term "Solana project(s)" throughout this content refers to dApps,
         tools, content, protocols, features, communities, DAOs, and much more in
@@ -59,7 +59,7 @@ const AboutPage = () => {
       </p>
 
       {/* Problems and Solutions Section */}
-      <h2 className="my-6 text-2xl font-bold text-purple-500">
+      <h2 className="text-2xl font-bold my-6 text-purple-500">
         B. PROBLEMS AND SOLUTIONS OFFERED BY EXPLORESOL:
       </h2>
       <p className="text-md mb-4 text-justify">
@@ -69,28 +69,30 @@ const AboutPage = () => {
         {problemsAndSolutions.map((item, index) => (
           <div key={index}>
             <button
-              className="w-full rounded bg-gray-800 px-4 py-2 text-left font-medium text-white hover:bg-gray-700"
+              className="w-full text-left py-2 px-4 bg-gray-900 text-white font-medium rounded hover:bg-gray-700"
               onClick={() => toggleSection(index)}
             >
-              <h3 className="text-xl font-bold text-purple-500">
-                {item.title} -
+              <h3 className="text-xl font-bold my-6 text-purple-500">
+                {item.title} - <br />
               </h3>
-              <p className="text-md">
+              <p className="text-md mb-4 text-justify">
                 Click Here To Expand or Hide This Problem/Solution
               </p>
             </button>
             <div
-              className={`border-b-2 border-l-2 border-r-2 border-red-500 p-4 ${isOpen[index] ? "block" : "hidden"}`}
+              className={`p-4 border-l-2 border-b-2 border-r-2 border-red-500
+              ${isOpen[index] ? "block" : "hidden"}`}
             >
               <p>{item.description}</p>
             </div>
             <div
-              className={`border-b-2 border-l-2 border-r-2 border-green-500 p-4 ${isOpen[index] ? "block" : "hidden"}`}
+              className={`p-4 border-l-2 border-b-2 border-r-2 border-green-500
+                ${isOpen[index] ? "block" : "hidden"}`}
             >
-              <h3 className="text-xl font-bold text-purple-500">
+              <h3 className="text-xl font-bold my-6 text-purple-500">
                 ExploreSol Solution:
               </h3>
-              <p className="text-md">{item.solution}</p>
+              <p className="text-md mb-4 text-justify">{item.solution}</p>
             </div>
           </div>
         ))}
@@ -98,24 +100,24 @@ const AboutPage = () => {
 
       {/* Key Features Section */}
       <div className="my-6">
-        <h2 className="my-6 text-2xl font-bold text-purple-500">
+        <h2 className="text-2xl font-bold my-6 text-purple-500">
           C. KEY FEATURES OF EXPLORESOL:
         </h2>
         <ol>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-300">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-300">
               Comprehensive Directory:
             </label>
             <span> Access over 1,000 Solana projects...</span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-400">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-400">
               Favorites System:
             </label>
             <span> Bookmark projects for easy future access.</span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-300">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-300">
               Project Launch Tracking:
             </label>
             <span>
@@ -123,8 +125,8 @@ const AboutPage = () => {
               Stay updated with upcoming project and feature launches.
             </span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-400">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-400">
               Community-Driven Updates:
             </label>
             <span>
@@ -132,14 +134,14 @@ const AboutPage = () => {
               Engage with the latest developments and community insights.
             </span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-300">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-300">
               Reviews and Ratings:
             </label>
             <span> Share and read experiences to make informed choices.</span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-400">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-400">
               Earn Opportunities:
             </label>
             <span>
@@ -147,8 +149,8 @@ const AboutPage = () => {
               Contribute to the platform and earn rewards in dPUT tokens.
             </span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-300">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-300">
               Trending Projects:
             </label>
             <span>
@@ -157,12 +159,13 @@ const AboutPage = () => {
               feedback.
             </span>
           </li>
+          {/* More features */}
         </ol>
       </div>
 
       {/* Earning Opportunities Section */}
       <div className="my-6">
-        <h2 className="my-6 text-2xl font-bold text-purple-500">
+        <h2 className="text-2xl font-bold my-6 text-purple-500">
           D. EARNING OPPORTUNITIES ON EXPLORESOL:
         </h2>
         <p>
@@ -170,14 +173,14 @@ const AboutPage = () => {
           but also about rewarding its community:
         </p>
         <ol>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-300">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-300">
               Submit Listings:
             </label>
             <span> Earn dPUT tokens for approved project submissions.</span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-400">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-400">
               Participate in Social Campaigns:
             </label>
             <span>
@@ -185,8 +188,8 @@ const AboutPage = () => {
               Engage with project-specific campaigns for additional rewards.
             </span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-300">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-300">
               Referral Program:
             </label>
             <span>
@@ -195,8 +198,8 @@ const AboutPage = () => {
               Newsletter.
             </span>
           </li>
-          <li className="my-4">
-            <label className="text-l font-bold text-purple-400">
+          <li>
+            <label className="text-l font-bold my-6 text-purple-400">
               Stay Tuned for More:
             </label>
             <span>
@@ -205,9 +208,12 @@ const AboutPage = () => {
               remains vibrant and rewarded.
             </span>
           </li>
+          {/* More features */}
         </ol>
         <p>
-          <label className="text-l font-bold text-purple-500">Side Note:</label>
+          <label className="text-l font-bold my-6 text-purple-500">
+            Side Note:
+          </label>
         </p>
         <p>
           The dPUT earned is the official utility token of dProgramming
@@ -222,7 +228,10 @@ const AboutPage = () => {
         <p>How to exchange your earned dPUT for SOL?</p>
         <p>Then check out the: </p>
         <p>
-          <Link href="/earn" className="text-l font-bold text-purple-400">
+          <Link
+            href="/earn"
+            className="text-l font-bold my-6 text-purple-400"
+          >
             ExploreSol Earn Opportunity Paths
           </Link>
         </p>
