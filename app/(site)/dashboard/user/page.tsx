@@ -2,8 +2,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import "../../dashboard/dashboard.css"; 
-import DashboardMenu from "@/components/dashboard/DashboardMenu";
 
 export default async function moderatorDashboardPage() {
   const supabase = createClient();
@@ -19,9 +17,6 @@ export default async function moderatorDashboardPage() {
   return (
 
     <div className="dashboard-layout">
-      
-      {/* Sidebar */}
-      <DashboardMenu />
 
       {/* Content */}
       <div className="content">
@@ -32,7 +27,7 @@ export default async function moderatorDashboardPage() {
               <main className="flex-1 flex flex-col gap-6">                
                 <div className="w-full max-w-4xl flex justify-between items-center p-3">
                   <div className="flex-1 flex justify-center">
-                    <div className="btn">Welcome To Your MODERATOR Page</div>
+                    <div className="btn">Welcome To Your USER Page</div>
                     <Link href="/dashboard" className="btn"> &lt;&lt; Back To Main Dashboard </Link>    
                   </div>
                 </div>
