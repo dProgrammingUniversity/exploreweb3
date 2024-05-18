@@ -1,3 +1,4 @@
+// /app/(site)/layout.tsx
 "use client";
 
 import Footer from "@/components/Footer";
@@ -10,6 +11,8 @@ import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 import ToasterContext from "../context/ToastContext";
+import { GA_TRACKING_ID } from "@/utils/analytics/analytics";
+import Analytics from "@/components/Directory/Analytics/Analytics";
 
 export default function RootLayout({
   children,
@@ -18,7 +21,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Google Analytics */}
+        {GA_TRACKING_ID && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+            ></script>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+              }}
+            />
+          </>
+        )}
+      </head>
       <body className={`dark:bg-black ${inter.className}`}>
+        <Analytics />
         <ThemeProvider
           enableSystem={false}
           attribute="class"

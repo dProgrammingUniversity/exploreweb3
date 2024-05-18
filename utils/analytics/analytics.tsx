@@ -1,5 +1,4 @@
-// Exploresol/utils/analytics/analytics.ts
-// "use client"
+// /utils/analytics/analytics.ts
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 // Function to send a page view to Google Analytics

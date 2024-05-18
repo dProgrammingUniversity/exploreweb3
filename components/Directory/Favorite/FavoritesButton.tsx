@@ -1,4 +1,4 @@
-// Exploresol/components/FavoritesButton.tsx
+// /components/Favorites/FavoritesButton.tsx
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { HeartIcon } from '@heroicons/react/24/outline'; // Import the icons

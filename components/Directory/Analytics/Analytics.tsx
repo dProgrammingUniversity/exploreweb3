@@ -1,9 +1,7 @@
-// Exploresol/components/analytics/Analytics.tsx
-"use client"
+// /components/Directory/Analytics/Analytics.tsx
 "use client";
 import { useEffect } from 'react';
-import { pageview } from '../../utils/analytics/analytics';
-// import { GA_TRACKING_ID } from '../../utils/analytics/analytics';
+import { pageview } from '@/utils/analytics/analytics';
 
 
 const Analytics = () => {

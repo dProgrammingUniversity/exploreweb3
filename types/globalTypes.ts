@@ -1,4 +1,4 @@
-// ExploreSol/globalTypes.ts
+// /globalTypes.ts
 
 /*
 TYPE DEFINITION 1: for exploresol/app/directory/[slug]/page.tsx
