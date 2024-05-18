@@ -1,4 +1,4 @@
-// Exploresol/app/dashboard/favorite-listings/page.tsx
+// Exploresol/app/dashboard/favorites/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import FavoritePage from "@/components/Directory/Dashboard/FavoritePage";

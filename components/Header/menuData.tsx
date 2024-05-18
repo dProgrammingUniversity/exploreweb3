@@ -77,7 +77,7 @@ const menuData: Menu[] = [
         id: 35,
         title: "Favorites",
         newTab: false,
-        path: "/dashboard/favorite-listings",
+        path: "/dashboard/favorites",
       },
       {
         id: 35.1,

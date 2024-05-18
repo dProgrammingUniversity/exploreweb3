@@ -1,6 +1,8 @@
+// /components/Footer/index.tsx
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import EmailSubscriptionForm from "../Directory/Newsletter/EmailSubscriptionForm";
 
 const Footer = () => {
   return (
@@ -10,6 +12,9 @@ const Footer = () => {
           {/* <!-- Footer Top --> */}
           <div className="py-20 lg:py-25">
             <div className="flex flex-wrap gap-8 lg:justify-between lg:gap-0">
+              {/* email subscription */}
+              <EmailSubscriptionForm />
+              {/* explore solana section */}
               <motion.div
                 variants={{
                   hidden: {
@@ -28,7 +33,15 @@ const Footer = () => {
                 viewport={{ once: true }}
                 className="animate_top w-1/2 lg:w-1/4"
               >
-                <a href="index.html" className="relative">
+                <p>
+                  <a
+                    href="/support"
+                    className="text-itemtitle font-medium text-black dark:text-white"
+                  >
+                    ExploreSolana (Beta)
+                  </a>
+                </p>
+                {/* <a href="index.html" className="relative">
                   <Image
                     width={110}
                     height={80}
@@ -43,21 +56,18 @@ const Footer = () => {
                     alt="Logo"
                     className="hidden dark:block"
                   />
-                </a>
+                </a> */}
 
                 <p className="mb-10 mt-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Explore Solana projects and discover opportunities to earn
+                  rewards, favorite projects (re-access later) and help other
+                  users and Solana projects teams with your feedbacks via
+                  rating/review!
                 </p>
 
-                <p className="mb-1.5 text-sectiontitle uppercase tracking-[5px]">
+                {/* <p className="mb-1.5 text-sectiontitle uppercase tracking-[5px]">
                   contact
-                </p>
-                <a
-                  href="#"
-                  className="text-itemtitle font-medium text-black dark:text-white"
-                >
-                  hello@solid.com
-                </a>
+                </p> */}
               </motion.div>
 
               <div className="flex w-full flex-col gap-8 md:flex-row md:justify-between md:gap-0 lg:w-2/3 xl:w-7/12">
@@ -86,7 +96,7 @@ const Footer = () => {
                   <ul>
                     <li>
                       <a
-                        href="#"
+                        href="/"
                         className="mb-3 inline-block hover:text-primary"
                       >
                         Home
@@ -94,26 +104,35 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/about"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Product
+                        About
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/earn"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Careers
+                        Earn
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="https://exploresolana.substack.com/"
+                        target="_blank"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Pricing
+                        Blog
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/roadmap"
+                        className="mb-3 inline-block hover:text-primary"
+                      >
+                        Roadmap
                       </a>
                     </li>
                   </ul>
@@ -138,40 +157,40 @@ const Footer = () => {
                   className="animate_top"
                 >
                   <h4 className="mb-9 text-itemtitle2 font-medium text-black dark:text-white">
-                    Support
+                    Dashboard
                   </h4>
 
                   <ul>
                     <li>
                       <a
-                        href="#"
+                        href="/dashboard/create-listings"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Company
+                        Add Your Project
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/dashboard/favorites"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Press media
+                        Favorites
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/s"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Our Blog
+                        S
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/directory"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Contact Us
+                        Directory
                       </a>
                     </li>
                   </ul>
@@ -196,47 +215,13 @@ const Footer = () => {
                   className="animate_top"
                 >
                   <h4 className="mb-9 text-itemtitle2 font-medium text-black dark:text-white">
-                    Newsletter
+                    Contact
                   </h4>
-                  <p className="mb-4 w-[90%]">
-                    Subscribe to receive future updates
+                  <p className="mb-4 ">
+                    <a href="/support" className="">
+                      {"=>"}Click To Reachout
+                    </a>
                   </p>
-
-                  <form action="#">
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="Email address"
-                        className="w-full rounded-full border border-stroke px-6 py-3 shadow-solid-11 focus:border-primary focus:outline-none dark:border-strokedark dark:bg-black dark:shadow-none dark:focus:border-primary"
-                      />
-
-                      <button
-                        aria-label="signup to newsletter"
-                        className="absolute right-0 p-4"
-                      >
-                        <svg
-                          className="fill-[#757693] hover:fill-primary dark:fill-white"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clipPath="url(#clip0_48_1487)">
-                            <path
-                              d="M3.1175 1.17318L18.5025 9.63484C18.5678 9.67081 18.6223 9.72365 18.6602 9.78786C18.6982 9.85206 18.7182 9.92527 18.7182 9.99984C18.7182 10.0744 18.6982 10.1476 18.6602 10.2118C18.6223 10.276 18.5678 10.3289 18.5025 10.3648L3.1175 18.8265C3.05406 18.8614 2.98262 18.8792 2.91023 18.8781C2.83783 18.8769 2.76698 18.857 2.70465 18.8201C2.64232 18.7833 2.59066 18.7308 2.55478 18.6679C2.51889 18.6051 2.50001 18.5339 2.5 18.4615V1.53818C2.50001 1.46577 2.51889 1.39462 2.55478 1.33174C2.59066 1.26885 2.64232 1.2164 2.70465 1.17956C2.76698 1.14272 2.83783 1.12275 2.91023 1.12163C2.98262 1.12051 3.05406 1.13828 3.1175 1.17318ZM4.16667 10.8332V16.3473L15.7083 9.99984L4.16667 3.65234V9.16651H8.33333V10.8332H4.16667Z"
-                              fill=""
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_48_1487">
-                              <rect width="20" height="20" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                      </button>
-                    </div>
-                  </form>
                 </motion.div>
               </div>
             </div>
@@ -264,11 +249,11 @@ const Footer = () => {
               className="animate_top"
             >
               <ul className="flex items-center gap-8">
-                <li>
+                {/* <li>
                   <a href="#" className="hover:text-primary">
                     English
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a href="#" className="hover:text-primary">
                     Privacy Policy
@@ -301,7 +286,8 @@ const Footer = () => {
               className="animate_top"
             >
               <p>
-                &copy; {new Date().getFullYear()} Solid. All rights reserved
+                &copy; 2024 - {new Date().getFullYear()} Explore Solana. All
+                rights reserved
               </p>
             </motion.div>
 
@@ -324,32 +310,13 @@ const Footer = () => {
               className="animate_top"
             >
               <ul className="flex items-center gap-5">
+                {/* Twitter icon */}
                 <li>
-                  <a href="#" aria-label="social icon">
-                    <svg
-                      className="fill-[#D1D8E0] transition-all duration-300 hover:fill-primary"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g clipPath="url(#clip0_48_1499)">
-                        <path
-                          d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z"
-                          fill=""
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_48_1499">
-                          <rect width="24" height="24" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" aria-label="social icon">
+                  <a
+                    href="https://Twitter.com/ExploreSolana"
+                    aria-label="social icon"
+                    target="_blank"
+                  >
                     <svg
                       className="fill-[#D1D8E0] transition-all duration-300 hover:fill-primary"
                       width="24"
@@ -372,6 +339,54 @@ const Footer = () => {
                     </svg>
                   </a>
                 </li>
+                {/* Discord icon */}
+                <li>
+                  <a
+                    href="https://dProgramminguniversity.com/Discord"
+                    aria-label="social icon"
+                    target="_blank"
+                  >
+                    <svg
+                      className="fill-[#D1D8E0] transition-all duration-300 hover:fill-primary"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515c-.211.364-.444.834-.608 1.205a18.282 18.282 0 00-5.644 0c-.182-.355-.425-.84-.617-1.205a19.791 19.791 0 00-4.885 1.515c-3.124 4.665-3.981 9.208-3.558 13.693a19.845 19.845 0 005.993 3.034c.487-.668.921-1.375 1.296-2.116a12.808 12.808 0 01-2.066-1.008c.173-.129.34-.264.504-.401 3.907 1.875 8.182 1.875 12.062 0 .172.137.34.272.504.401-.655.417-1.346.764-2.066 1.008.375.741.809 1.448 1.296 2.116a19.845 19.845 0 005.993-3.034c.48-4.961-.75-9.488-3.558-13.693zM9.46 15.356c-1.182 0-2.15-1.085-2.15-2.419s.961-2.418 2.15-2.418c1.197 0 2.165 1.08 2.15 2.418 0 1.334-.963 2.419-2.15 2.419zm5.08 0c-1.182 0-2.15-1.085-2.15-2.419s.961-2.418 2.15-2.418c1.197 0 2.165 1.08 2.15 2.418 0 1.334-.963 2.419-2.15 2.419z"
+                        fill=""
+                      />
+                    </svg>
+                  </a>
+                </li>
+                {/* Facebook icon */}
+                {/* <li>
+                  <a href="#" aria-label="social icon">
+                    <svg
+                      className="fill-[#D1D8E0] transition-all duration-300 hover:fill-primary"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clipPath="url(#clip0_48_1499)">
+                        <path
+                          d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z"
+                          fill=""
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_48_1499">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </a>
+                </li> */}
+
                 <li>
                   <a href="#" aria-label="social icon">
                     <svg
