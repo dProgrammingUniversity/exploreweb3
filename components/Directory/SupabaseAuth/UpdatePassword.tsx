@@ -22,7 +22,7 @@ const UpdatePassword = () => {
     } else {
       setMessage("Password updated successfully");
       setMessageType("success");
-      window.location.href = "/login"; // Redirect after successful password update
+      window.location.href = "/auth/login"; // Redirect after successful password update
     }
   };
 

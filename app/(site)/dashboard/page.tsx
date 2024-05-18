@@ -11,7 +11,7 @@ const DashboardPage = async () => {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    return redirect("/auth/login");
   }
 
   return (

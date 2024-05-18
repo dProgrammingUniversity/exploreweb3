@@ -7,7 +7,12 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import SubmitButton from "./SubmitButton";
 
-const Login = ({ searchParams }: { searchParams: { message: string } }) => {
+const Login = async ({ searchParams }: { searchParams: { message: string } }) => {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   // Signin function
   const signIn = async (formData: FormData) => {
     "use server";
@@ -100,70 +105,76 @@ const Login = ({ searchParams }: { searchParams: { message: string } }) => {
             </Link>
 
             <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-              Login to Your Account
+              {user ? "You are already logged in" : "Login to Your Account"}
             </h2>
             <div className="mb-5">
-              <p>If you already have an account, click "Sign In" to Login.</p>
-              <p>If not, click "Sign Up" to register a new account:</p>
+              {!user && (
+                <>
+                  <p>If you already have an account, click "Sign In" to Login.</p>
+                  <p>If not, click "Sign Up" to register a new account:</p>
+                </>
+              )}
             </div>
 
-            <form
-              className="animate-in flex w-full flex-1 flex-col justify-center gap-4 sm:max-w-md"
-              // action={signIn}
-            >
-              <label className="text-md" htmlFor="email">
-                Email
-              </label>
-              <input
-                className="mb-6 rounded-md border bg-inherit px-4 py-2"
-                name="email"
-                placeholder="you@example.com"
-                required
-              />
-              <label className="text-md" htmlFor="password">
-                Password
-              </label>
-              <input
-                className="mb-6 rounded-md border bg-inherit px-4 py-2"
-                type="password"
-                name="password"
-                placeholder="••••••••"
-                required
-              />
-
-              {/* Signin button */}
-              <SubmitButton
-                formAction={signIn}
-                className="text-foreground mb-2 rounded-md bg-green-700 px-4 py-2"
-                pendingText="Signing In..."
+            {!user && (
+              <form
+                className="animate-in flex w-full flex-1 flex-col justify-center gap-4 sm:max-w-md"
+                // action={signIn}
               >
-                Sign In/LogIn
-              </SubmitButton>
+                <label className="text-md" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="mb-6 rounded-md border bg-inherit px-4 py-2"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+                <label className="text-md" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="mb-6 rounded-md border bg-inherit px-4 py-2"
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  required
+                />
 
-              {/* Signup button */}
-              <SubmitButton
-                formAction={signUp}
-                className="border-foreground/20 text-foreground mb-2 rounded-md border px-4 py-2"
-                pendingText="Signing Up..."
-              >
-                Sign Up/Register
-              </SubmitButton>
+                {/* Signin button */}
+                <SubmitButton
+                  formAction={signIn}
+                  className="text-foreground mb-2 rounded-md bg-green-700 px-4 py-2"
+                  pendingText="Signing In..."
+                >
+                  Sign In/LogIn
+                </SubmitButton>
 
-              {/* Password reset button */}
-              <Link
-                href="/auth/reset-password"
-                className="text-blue-500 hover:text-blue-700"
-              >
-                Forgot password?
-              </Link>
+                {/* Signup button */}
+                <SubmitButton
+                  formAction={signUp}
+                  className="border-foreground/20 text-foreground mb-2 rounded-md border px-4 py-2"
+                  pendingText="Signing Up..."
+                >
+                  Sign Up/Register
+                </SubmitButton>
 
-              {/* Feedback message display */}
-              {searchParams?.message && (
-                <p className="bg-foreground/10 text-foreground mt-4 p-4 text-center">
-                  {searchParams.message}
-                </p>
-              )}
-            </form>
+                {/* Password reset button */}
+                <Link
+                  href="/auth/reset-password"
+                  className="text-blue-500 hover:text-blue-700"
+                >
+                  Forgot password?
+                </Link>
+
+                {/* Feedback message display */}
+                {searchParams?.message && (
+                  <p className="bg-foreground/10 text-foreground mt-4 p-4 text-center">
+                    {searchParams.message}
+                  </p>
+                )}
+              </form>
+            )}
           </div>
         </div>
       </section>

@@ -32,7 +32,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
     //check if user loggedin or not
     if (!userId) {
       // Redirect non-authenticated users to login
-      window.location.href = "/login";
+      window.location.href = "/auth/login";
       return;
     }
 
