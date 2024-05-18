@@ -1,10 +1,11 @@
-// ExploreSol/app/dashboard/admin/page.tsx
+// /app/(site)/directory/dashboard/admin/page.tsx
 "use client";
 import { useState, useEffect } from 'react';
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
+import Image from 'next/image';
 
-export default function AdminPage() {
+const AdminDashboardPage = async () => {
   const [pendingListings, setPendingListings] = useState<DisplayListingTypes[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -17,7 +18,7 @@ export default function AdminPage() {
       
       if (error || !user) {
         // If there is an error or no user, redirect to login
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
         return;
       }
       
@@ -30,7 +31,7 @@ export default function AdminPage() {
 
       if (roleError || !roles || roles.user_role_level !== 'admin') {
         // If there's an error, no role info, or the user is not an admin, redirect to login
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
         return;
       }
       
@@ -95,3 +96,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+export default AdminDashboardPage;
