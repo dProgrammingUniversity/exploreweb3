@@ -1,7 +1,8 @@
-// ExploreSol/components/supabase-auth/UpdatePassword.tsx
+// /components/Directory/SupabaseAuth/UpdatePassword.tsx
 "use client";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { redirect } from "next/navigation";
 
 const UpdatePassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -11,6 +12,15 @@ const UpdatePassword = () => {
   // Function to process update password request
   const handleUpdatePassword = async () => {
     const supabaseClient = createClient();
+    const {
+      data: { user },
+    } = await supabaseClient.auth.getUser();
+    // check if user
+    if (!user) {
+      return redirect("/auth/login");
+    }
+
+    // check if error
     const { error } = await supabaseClient.auth.updateUser({
       password: newPassword,
     });
@@ -30,48 +40,49 @@ const UpdatePassword = () => {
   const messageColor = messageType === "success" ? "green" : "red";
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "10px",
-      }}
-    >
-
-      {/* new password input */}
-      <input
-        type="password"
-        placeholder="New Password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
+    <>
+      <div
         style={{
-          padding: "10px",
-          width: "300px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-          background: "gray",
-        }}
-      />
-
-      {/* Update password button */}
-      <button
-        onClick={handleUpdatePassword}
-        style={{
-          padding: "10px 20px",
-          borderRadius: "5px",
-          border: "none",
-          backgroundColor: "#007BFF",
-          color: "white",
-          cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
         }}
       >
-        Update Password
-      </button>
+        {/* new password input */}
+        <input
+          type="password"
+          placeholder="New Password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "300px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+            background: "gray",
+          }}
+        />
 
-      {/* Feedback message for users */}
-      {message && <p style={{ color: messageColor }}>{message}</p>}
-    </div>
+        {/* Update password button */}
+        <button
+          onClick={handleUpdatePassword}
+          style={{
+            padding: "10px 20px",
+            borderRadius: "5px",
+            border: "none",
+            backgroundColor: "#007BFF",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Update Password
+        </button>
+
+        {/* Feedback message for users */}
+        {message && <p style={{ color: messageColor }}>{message}</p>}
+      </div>
+    </>
   );
 };
 

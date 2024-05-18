@@ -69,7 +69,6 @@ export default async function FavoriteListingsPage() {
               FAVORITES LISTINGS - DASHBOARD PAGE
             </h2>
 
-            <h1 className="content-heading"></h1>
             <FavoritePage />
           </div>
         </div>

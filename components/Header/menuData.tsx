@@ -83,7 +83,7 @@ const menuData: Menu[] = [
         id: 35.1,
         title: "Password Manager",
         newTab: false,
-        path: "/auth/update-password",
+        path: "/dashboard/update-password",
       },
     ],
   },
