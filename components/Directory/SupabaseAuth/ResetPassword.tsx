@@ -1,4 +1,4 @@
-// ExploreSol/components/supabase-auth/ResetPassword.tsx
+// /components/Directory/SupabaseAuth/ResetPassword.tsx
 "use client";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -27,22 +27,51 @@ const ResetPassword = () => {
   const messageColor = messageType === "success" ? "green" : "red";
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
+
+     {/* input for reset password */}
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        style={{ padding: '10px', width: '300px', borderRadius: '5px', border: '1px solid #ccc', background: 'gray' }}
+        style={{
+          padding: "10px",
+          width: "300px",
+          borderRadius: "5px",
+          border: "1px solid #ccc",
+          background: "gray",
+        }}
       />
+
+      {/* Button reset password */}
       <button
         onClick={handleReset}
-        style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#007BFF', color: 'white', cursor: 'pointer' }}
+        style={{
+          padding: "10px 20px",
+          borderRadius: "5px",
+          border: "none",
+          backgroundColor: "#007BFF",
+          color: "white",
+          cursor: "pointer",
+        }}
       >
         Reset Password
       </button>
-      {message && <p style={{ color: messageColor }}>{message}</p>}
+
+      {/* Feedback message for users */}
+        {message && <p style={{ color: messageColor }}>{message}</p>}
     </div>
+
+    </>
   );
 };
 
