@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-export default async function DashboardPage() {
+const CreateListingsPage = async () => {
   const supabase = createClient();
   const {
     data: { user },
@@ -84,3 +84,5 @@ export default async function DashboardPage() {
     </>
   );
 }
+
+export default CreateListingsPage;
