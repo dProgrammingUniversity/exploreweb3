@@ -68,8 +68,8 @@ const ProfilePage = async () => {
             <h1 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
               PROFILE - DASHBOARD PAGE
             </h1>
-        <UsernamesForm />
           </div>
+        <UsernamesForm />
         </div>
       </section>
     </>

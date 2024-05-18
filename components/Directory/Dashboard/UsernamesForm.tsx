@@ -118,92 +118,96 @@ const UsernamesForm = () => {
 
   return (
     <>
-      <div>
-        {fetchedUsername ? (
-          // Display the fetched username
-          <div className="container mx-auto px-4 text-center">
-            <p className="text-xl font-bold text-gray-300">
-              Your Username:{" "}
-              <span className="text-green-500">{fetchedUsername}</span>
-            </p>
-
-            <p className="text-md mb-4">Your Wallet(Solana):</p>
-            <p
-              className="input-address text-green-500"
-              style={{ userSelect: "text" }}
+      {fetchedUsername ? (
+        // Display the fetched username
+        <>
+          {/* Username */}
+          <p className="mb-5 text-xl font-bold text-gray-300">
+            Your Username:{" "}
+            <span className="text-green-500">{fetchedUsername}</span>
+          </p>
+          {/* Wallet */}
+          <p className="mb-5 text-xl font-bold text-gray-300">
+            Your Wallet(Solana):
+          </p>
+          <p
+            className="mb-2 break-words rounded-md border bg-gray-800 p-2 text-lg text-green-500"
+            style={{ userSelect: "text" }}
+          >
+            {fetchedWallet}
+          </p>
+          <button
+            onClick={copyToClipboard}
+            className="mt-2 rounded-md bg-blue-500 px-4 py-2 font-semibold text-white shadow-md transition duration-300 ease-in-out hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          >
+            Copy Wallet Address
+          </button>
+        </>
+      ) : (
+        // Display the form to set a username
+        <form onSubmit={handleSubmit}>
+          <div className="mt-2">
+            <label className="mb-2 text-2xl font-bold capitalize text-purple-500">
+              Set Your Username & Solana Wallet:
+            </label>
+            <br />
+            <span className="mb-1 text-sm text-gray-400">
+              WARNING: Your unique username and Solana wallet can only be set
+              once and can't be edited, updated, or deleted later!
+            </span>
+          </div>
+          <div className="mt-2">
+            <label
+              htmlFor="usernamesform"
+              className="block text-xl font-bold text-gray-300"
             >
-              {fetchedWallet}
-            </p>
-            <button onClick={copyToClipboard} className="btn mt-2">
-              Copy Wallet Address
+              Create Username:
+            </label>
+            <span className="mb-1 text-sm text-gray-400">
+              Username must be 3-15 characters long, contain only letters,
+              numbers, and underscores, and no leading or trailing spaces.
+            </span>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
+              required
+              className="mt-1 block rounded-md border-gray-300 bg-gray-500 shadow-sm"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="wallet"
+              className="mt-4 block text-xl font-bold text-gray-300"
+            >
+              Enter Your Solana Wallet Address:
+            </label>
+            <input
+              id="wallet"
+              type="text"
+              value={wallet}
+              onChange={(e) => setWallet(e.target.value)}
+              placeholder="Enter your Solana Wallet Address"
+              required
+              className="mt-1 block w-full rounded-md border-gray-300 bg-gray-500 shadow-sm"
+              style={{ fontFamily: "monospace" }} // Ensures the wallet address is easily readable
+            />
+          </div>
+          <div className="mt-2">
+            <button
+              type="submit"
+              className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
+            >
+              Set Username
             </button>
           </div>
-        ) : (
-          // Display the form to set a username
-          <form onSubmit={handleSubmit}>
-            <div className="mt-2">
-              <label className="mb-2 text-2xl font-bold capitalize text-purple-500">
-                Set Your Username & Solana Wallet:
-              </label>
-              <br />
-              <span className="mb-1 text-sm text-gray-400">
-                WARNING: Your unique username and Solana wallet can only be set
-                once and can't be edited, updated, or deleted later!
-              </span>
-            </div>
-            <div className="mt-2">
-              <label
-                htmlFor="usernamesform"
-                className="block text-xl font-bold text-gray-300"
-              >
-                Create Username:
-              </label>
-              <span className="mb-1 text-sm text-gray-400">
-                Username must be 3-15 characters long, contain only letters,
-                numbers, and underscores, and no leading or trailing spaces.
-              </span>
-              <input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username"
-                required
-                className="mt-1 block rounded-md border-gray-300 bg-gray-500 shadow-sm"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="wallet"
-                className="mt-4 block text-xl font-bold text-gray-300"
-              >
-                Enter Your Solana Wallet Address:
-              </label>
-              <input
-                id="wallet"
-                type="text"
-                value={wallet}
-                onChange={(e) => setWallet(e.target.value)}
-                placeholder="Enter your Solana Wallet Address"
-                required
-                className="mt-1 block w-full rounded-md border-gray-300 bg-gray-500 shadow-sm"
-                style={{ fontFamily: "monospace" }} // Ensures the wallet address is easily readable
-              />
-            </div>
-            <div className="mt-2">
-              <button
-                type="submit"
-                className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
-              >
-                Set Username
-              </button>
-            </div>
-            {message && (
-              <p className={`mt-2 text-sm ${messageClass}`}>{message}</p>
-            )}
-          </form>
-        )}
-      </div>
+          {message && (
+            <p className={`mt-2 text-sm ${messageClass}`}>{message}</p>
+          )}
+        </form>
+      )}
     </>
   );
 };

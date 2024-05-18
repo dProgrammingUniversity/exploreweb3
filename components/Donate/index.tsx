@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 const Donate = () => {
   const [walletAddress] = useState('63t6dZ78VFW1yX7uFJV678qFbZweDpUDenjLYEsq2J7q');
 
+  // Wallet copy function starts
   const copyToClipboard = async () => {
     if (navigator.clipboard && window.isSecureContext) {
       try {
@@ -38,6 +39,7 @@ const Donate = () => {
 
     document.body.removeChild(textArea);
   };
+  // Wallet copy function ends
 
   return (
     <>
