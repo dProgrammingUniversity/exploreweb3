@@ -35,7 +35,7 @@ const DashboardPage = async () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center mb-10">
             <Link
               href="/"
               className="text-foreground bg-btn-background hover:bg-btn-background-hover group absolute left-8 top-8 flex items-center rounded-md px-4 py-2 text-sm no-underline"
@@ -56,32 +56,33 @@ const DashboardPage = async () => {
               </svg>{" "}
               Back
             </Link>
+          </div>
 
-            <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-              HOME - DASHBOARD PAGE
-            </h2>
-            <div className="mb-5">
-              <Link
-                href="/dashboard/user"
-                className="content-link content-link-blue"
-              >
-                Am A USER
-              </Link>
-              <br />
-              <Link
-                href="/dashboard/moderator"
-                className="content-link content-link-green"
-              >
-                Am A MODERATOR
-              </Link>
-              <br />
-              <Link
-                href="/dashboard/admin"
-                className="content-link content-link-red"
-              >
-                Am An ADMIN
-              </Link>
-            </div>
+          <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
+            HOME - DASHBOARD PAGE
+          </h2>
+
+          <div className="mb-5 text-center">
+            <Link
+              href="/dashboard/user"
+              className="content-link content-link-blue"
+            >
+              Am A USER
+            </Link>
+            <br />
+            <Link
+              href="/dashboard/moderator"
+              className="content-link content-link-green"
+            >
+              Am A MODERATOR
+            </Link>
+            <br />
+            <Link
+              href="/dashboard/admin"
+              className="content-link content-link-red"
+            >
+              Am An ADMIN
+            </Link>
           </div>
         </div>
       </section>

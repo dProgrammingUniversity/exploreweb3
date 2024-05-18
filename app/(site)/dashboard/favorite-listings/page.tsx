@@ -43,7 +43,7 @@ export default async function FavoriteListingsPage() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center">
+          <div className="mb-10 flex flex-col items-center justify-center">
             <Link
               href="/"
               className="text-foreground bg-btn-background hover:bg-btn-background-hover group absolute left-8 top-8 flex items-center rounded-md px-4 py-2 text-sm no-underline"
@@ -64,13 +64,13 @@ export default async function FavoriteListingsPage() {
               </svg>{" "}
               Back
             </Link>
-
-            <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-              FAVORITES LISTINGS - DASHBOARD PAGE
-            </h2>
-
-            <FavoritePage />
           </div>
+
+          <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
+            FAVORITES LISTINGS - DASHBOARD PAGE
+          </h2>
+
+          <FavoritePage />
         </div>
       </section>
     </>
