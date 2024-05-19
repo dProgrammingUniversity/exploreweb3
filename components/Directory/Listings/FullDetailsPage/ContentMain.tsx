@@ -71,6 +71,8 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
           <h2>{listing.name} Summary:</h2>
           <p>{renderMultilineText(listing.short_description)}</p>
 
+          {/* Disclosure and Disclaimer here */}
+
           <h2>{listing.name} Description:</h2>
           <p>{renderMultilineText(listing.full_description)}</p>
 
