@@ -1,6 +1,7 @@
-// Exploresol/components/AnimatedTitle.tsx
+// /components/Directory/AnimatedTitle.tsx
 "use client";
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 const AnimatedTitle = () => {
@@ -13,8 +14,6 @@ const AnimatedTitle = () => {
     "Protocols",
     "Communities",
   ];
-  const largestWordLength = Math.max(...words.map((word) => word.length));
-  const widthOfLargestWord = `${largestWordLength}ch`;
 
   useEffect(() => {
     const wordIndex = setInterval(() => {
@@ -29,34 +28,43 @@ const AnimatedTitle = () => {
   }, []);
 
   return (
-    <>
-      <div className="text-center">
-        <h1 className="mb-2 text-2xl font-bold text-green-500 md:text-4xl">
-          {/* Main title section */}
-          <div className="flex items-center justify-center gap-1">
-            <span>Search 25/1,000+ Solana Projects</span>
-            <span>{"=>"}</span>
-            <span
-              className="inline-block text-center text-purple-400"
-              style={{ minWidth: widthOfLargestWord, padding: "0 0.5rem" }}
-            >
-              {currentWord}
-            </span>
-          </div>
-        </h1>
-
-        {/* Earn title section */}
-        <div>
-          <label className="text-l my-6 font-bold text-purple-500">
-            Earn Using & Exploring Solana Projects
-          </label>
-          <span className="text-white-400  text-center">
-            {" "}
-            {"=>"} <Link href="/earn">Learn More!</Link>
-          </span>
+    <div className="text-center">
+      <motion.h1
+        className="mb-2 text-2xl font-bold text-green-500 md:text-4xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="flex items-center justify-center gap-1">
+          <span>Search 25/1,000+ Solana Projects</span>
+          <span>{"=>"}</span>
+          <motion.span
+            className="inline-block text-center text-purple-400"
+            style={{ padding: "0 0.5rem" }}
+            key={currentWord}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            {currentWord}
+          </motion.span>
         </div>
-      </div>
-    </>
+      </motion.h1>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        <label className="text-l my-6 font-bold text-purple-500">
+          Earn Using & Exploring Solana Projects
+        </label>
+        <span className="text-white-400 text-center">
+          {" "}
+          {"=>"} <Link href="/earn">Learn More!</Link>
+        </span>
+      </motion.div>
+    </div>
   );
 };
 
