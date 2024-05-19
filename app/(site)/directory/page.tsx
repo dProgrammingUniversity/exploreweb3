@@ -1,5 +1,4 @@
 // /directory/page.tsx
-import React, { useEffect } from "react";
 import DirectoryPage from "@/components/Directory/DirectoryPage";
 import EmailSubscriptionForm from "@/components/Directory/Newsletter/EmailSubscriptionForm";
 import AnimatedTitle from "@/components/Directory/AnimatedTitle";
