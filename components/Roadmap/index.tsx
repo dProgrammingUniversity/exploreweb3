@@ -15,11 +15,11 @@ const Roadmap = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="relative flex w-full items-center justify-start"
+          className="relative flex w-full items-center justify-start md:justify-center lg:justify-start"
         >
-          <div className="w-1/2 rounded-lg bg-gray-800 p-6 pl-0 shadow-lg">
+          <div className="w-full md:w-2/3 lg:w-1/2 rounded-lg bg-gray-800 p-6 shadow-lg">
             <h2 className="mb-5 text-2xl font-bold text-purple-400">
-              Stage 1 (Alpha): <br/> Pre-Launch Explore Solana Alpha Version
+              Stage 1 (Alpha): <br /> Pre-Launch Explore Solana Alpha Version
             </h2>
             <ol className="list-decimal space-y-2 pl-6">
               <li className="mb-7 text-lg text-gray-300">
@@ -36,7 +36,7 @@ const Roadmap = () => {
                   To showcase Solana projects on Social media on 8th May 2024.
                 </p>
                 <p className="mb-3">
-                  The first S Ep1 tweet thread was: 
+                  The first S Ep1 tweet thread was:
                   <br />
                   <Link
                     href="https://x.com/ExploreSolana/status/1788256576182087861"
@@ -45,9 +45,9 @@ const Roadmap = () => {
                   >
                     S Ep1: #ExploreSolana Projects & Discover Opportunities!
                   </Link>
-                  . 
+                  .
                 </p>
-                <p>  
+                <p>
                   This also means users engaging with the ExploreSolana x
                   tweet thread can also earn rewards as stated in the S Episodes threads.
                 </p>
@@ -56,7 +56,7 @@ const Roadmap = () => {
               <li className="mb-5 text-lg text-gray-300">
                 <strong>Launched daily Solana 'S' Newsletter:</strong>
                 <p className="mb-3">
-                  The ExploreSolana 'S' Newsletter was launched On 8th May 2024. 
+                  The ExploreSolana 'S' Newsletter was launched On 8th May 2024.
                 </p>
                 <p>
                   The first S Ep1 newsletter was:
@@ -81,24 +81,23 @@ const Roadmap = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="relative flex w-full items-center justify-end"
+          className="relative flex w-full items-center justify-end md:justify-center lg:justify-end"
         >
-          <div className="w-1/2 rounded-lg bg-gray-800 p-6 pr-0 shadow-lg">
+          <div className="w-full md:w-2/3 lg:w-1/2 rounded-lg bg-gray-800 p-6 shadow-lg">
             <h2 className="mb-4 text-2xl font-bold text-purple-400">
-              Stage 2 (Beta): <br/> Launch Explore Solana Beta Version
+              Stage 2 (Beta): <br /> Launch Explore Solana Beta Version
             </h2>
             <ol className="list-decimal space-y-2 pl-6">
               <li className="text-lg text-gray-300">
                 <strong>Beta launched 18th May 2024:</strong>
                 <p className="mb-3">
-                  The Explore Solana Beta version was launched With new design, improved UX/UI, and responsive mobile design in line with users feedback fom Alpha launch.
+                  The Explore Solana Beta version was launched with new design, improved UX/UI, and responsive mobile design in line with users feedback from Alpha launch.
                 </p>
-                <p className="mb-3">  
-                  About 15 Solana projects listed. 
+                <p className="mb-3">
+                  About 15 Solana projects listed.
                 </p>
-                <p>  
-                  We continued to expect users feedbacks
-                  on UX/UI and improve to prepare for the full launch.
+                <p>
+                  We continued to expect users feedback on UX/UI and improve to prepare for the full launch.
                 </p>
               </li>
             </ol>
@@ -111,11 +110,11 @@ const Roadmap = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="relative flex w-full items-center justify-start"
+          className="relative flex w-full items-center justify-start md:justify-center lg:justify-start"
         >
-          <div className="w-1/2 rounded-lg bg-gray-800 p-6 pl-0 shadow-lg">
+          <div className="w-full md:w-2/3 lg:w-1/2 rounded-lg bg-gray-800 p-6 shadow-lg">
             <h2 className="mb-4 text-2xl font-bold text-purple-400">
-              Stage 3 (Full): <br/> Launch Explore Solana
+              Stage 3 (Full): <br /> Launch Explore Solana
             </h2>
             <ol className="list-decimal space-y-2 pl-6">
               <li className="text-lg text-gray-300 mb-5">
