@@ -1,4 +1,4 @@
-// /ListingsFullDetailsPage.tsx
+// /components/Directory/Listings/ListingsFullDetailsPage.tsx
 import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";

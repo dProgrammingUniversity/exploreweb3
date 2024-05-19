@@ -1,4 +1,4 @@
-// exploresol/components/ListingsUpcoming.tsx
+// /components/Directory/Listings/ListingsUpcoming.tsx
 import React, { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import ListingsCard from "./ListingsCard";

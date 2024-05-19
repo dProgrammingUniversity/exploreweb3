@@ -1,5 +1,4 @@
 // /components/Directory/Listings/ListingsLive.tsx
-
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client'; 
 import ListingsCard from './ListingsCard';

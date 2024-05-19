@@ -1,4 +1,4 @@
-// Exploresol/components/ListingsRelatedSuggestion.tsx
+// /components/Directory/Listings/ListingsRelatedSuggestion.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import ListingsCard from './ListingsCard';

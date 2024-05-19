@@ -1,4 +1,4 @@
-// /components/Directory/ListingCard.tsx
+// /components/Directory/Listings/ListingCard.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import Link from "next/link";
