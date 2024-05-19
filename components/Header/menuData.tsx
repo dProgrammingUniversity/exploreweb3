@@ -32,12 +32,12 @@ const menuData: Menu[] = [
   //   newTab: false,
   //   path: "/contact",
   // },
-  {
-    id: 2.4,
-    title: "Earn",
-    newTab: false,
-    path: "/earn",
-  },
+  // {
+  //   id: 2.4,
+  //   title: "Earn",
+  //   newTab: false,
+  //   path: "/earn",
+  // },
   // {
   //   id: 2.5,
   //   title: "Roadmap",
@@ -49,6 +49,38 @@ const menuData: Menu[] = [
     title: "S",
     newTab: false,
     path: "/s",
+  },
+  {
+    id: 2,
+    title: "Others",
+    newTab: false,
+    submenu: [
+      
+      {
+        id: 34,
+        title: "Earn",
+        newTab: false,
+        path: "/earn",
+      },
+      {
+        id: 35,
+        title: "Roadmap",
+        newTab: false,
+        path: "/roadmap",
+      },
+      {
+        id: 35,
+        title: "Support",
+        newTab: false,
+        path: "/support",
+      },
+      {
+        id: 35.1,
+        title: "Blog",
+        newTab: false,
+        path: "https://exploresolana.substack.com/",
+      },
+    ],
   },
   {
     id: 3,
@@ -87,8 +119,6 @@ const menuData: Menu[] = [
       },
     ],
   },
-
-  
 ];
 
 export default menuData;
