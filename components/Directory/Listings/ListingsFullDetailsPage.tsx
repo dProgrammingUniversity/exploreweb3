@@ -1,7 +1,9 @@
 // /components/Directory/Listings/ListingsFullDetailsPage.tsx
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState, useEffect, useMemo } from "react";
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AppendSiteUrlToExternalLink } from "@/utils/AppendSiteUrlToExternalLink";
 import EmailSubscriptionForm from "../Newsletter/EmailSubscriptionForm";
 import { renderMultilineText } from "@/utils/FormatText";
@@ -9,47 +11,36 @@ import ListingsRelatedSuggestion from "./ListingsRelatedSuggestion";
 import FavoritesButton from "../Favorite/FavoritesButton";
 import RatingReviewsForm from "../RatingsReviews/RatingReviewsForm";
 import RatingReviewsList from "../RatingsReviews/RatingReviewsList";
-import { useMemo } from "react";
 import Image from "next/image";
 
-
 const ListingsFullDetailsPage: React.FC<{
-  slug: string;
-  onListingDataLoaded: (data: DisplayListingTypes) => void;
-}> = ({ slug, onListingDataLoaded }) => {
+  onListingDataLoaded?: (data: DisplayListingTypes) => void;
+}> = ({ onListingDataLoaded }) => {
+  const pathname = usePathname();
+  const slug = pathname.split("/").pop() || "";
   const [listing, setListing] = useState<DisplayListingTypes | null>(null);
   const [loading, setLoading] = useState(true);
-  const [userId, setUserId] = useState<string | null>(null); // State to store the userId
-  // const supabaseClient = createClient(); //use memo code below if have issue with multiple calls to createClient()
-  const supabaseClient = useMemo(() => createClient(), []); //ensure createClient() is called once not multiple times
+  const [userId, setUserId] = useState<string | null>(null);
+  const supabaseClient = useMemo(() => createClient(), []);
 
-  /*
-  Define images for this page
-  */
-  //Listings default image URL
   const defaultImageUrl =
     "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
-  // Page featured image
   const featuredImage =
     "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
 
-  // UseEffect 1: Fetch listing data
   useEffect(() => {
-    // Fetch listings details  and update state
     const fetchListingData = async () => {
-      // setLoading(true);
       const { data, error } = await supabaseClient
         .from("listings")
         .select("*")
         .eq("slug", slug)
-        .eq("moderation_status", "approved") // filter for approved listings only
+        .eq("moderation_status", "approved")
         .single();
 
       if (error) {
         console.error("Error fetching listing:", error);
         setLoading(false);
       } else {
-        // Fetch category names for the listing
         const categoryIds = [
           data.category_1,
           data.category_2,
@@ -66,12 +57,10 @@ const ListingsFullDetailsPage: React.FC<{
         if (categoriesError) {
           console.error("Error fetching categories:", categoriesError);
         } else {
-          // Map category IDs to names
           const categoryNamesWithId = categoriesData.reduce(
             (acc, category) => ({ ...acc, [category.id]: category.name }),
-            {},
+            {}
           );
-          // Update the listing object with category names
           const updatedListing = {
             ...data,
             category_1_name:
@@ -86,7 +75,7 @@ const ListingsFullDetailsPage: React.FC<{
               categoryNamesWithId[data.category_5 as keyof CategoryNamesWithId],
           };
           setListing(updatedListing);
-          onListingDataLoaded(updatedListing); // Update the parent component state via the callback
+          onListingDataLoaded && onListingDataLoaded(updatedListing);
         }
         setLoading(false);
       }
@@ -97,16 +86,14 @@ const ListingsFullDetailsPage: React.FC<{
     }
   }, [slug]);
 
-  // UseEffect 2: Fetch user data
   useEffect(() => {
-    // Fetch user data to get id
     const fetchUserData = async () => {
       const {
         data: { user },
         error,
       } = await supabaseClient.auth.getUser();
       if (user) {
-        setUserId(user.id); // Set userId state
+        setUserId(user.id);
       } else {
         console.error("Error fetching user data (user id):", error);
       }
@@ -117,22 +104,17 @@ const ListingsFullDetailsPage: React.FC<{
     }
   }, [supabaseClient]);
 
-  // Conditional reding check 1: if loading
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Conditional reding check 2: if no listing found with the slug
   if (!listing) {
     return <div>Listing not found</div>;
   }
 
-  // Listing details presentation
   return (
     <>
-      {/* Left Column - Additional Info - Sidebar */}
       <div className="md:w-1/2 lg:w-[32%]">
-        {/* Sidebar Content */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             Blockchain:
@@ -218,7 +200,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Social Media Links */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             {listing.name} Social Media:
@@ -289,7 +270,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Roadmap Link */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             {" "}
@@ -312,7 +292,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Whitepaper Link */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             {listing.name} Whitepaper:
@@ -334,7 +313,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* GitHub Link */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             {listing.name} GitHub:
@@ -362,7 +340,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Documentation Link */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             {listing.name} Documentation:
@@ -399,7 +376,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Support Links */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             Contact {listing.name} Support:
@@ -501,7 +477,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Download Links 1 (dApps)*/}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             Download {listing.name} dApp:
@@ -511,7 +486,7 @@ const ListingsFullDetailsPage: React.FC<{
             {listing.download_solana_dapp_store_url ? (
               <Link
                 href={AppendSiteUrlToExternalLink(
-                  listing.download_solana_dapp_store_url,
+                  listing.download_solana_dapp_store_url
                 )}
                 target="_blank"
                 className="text-blue-400 hover:text-blue-300"
@@ -526,7 +501,6 @@ const ListingsFullDetailsPage: React.FC<{
           </p>
         </div>
 
-        {/* Download Links 2 (Apps) */}
         <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
           <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
             Download {listing.name} App:
@@ -536,7 +510,7 @@ const ListingsFullDetailsPage: React.FC<{
             {listing.download_google_play_url ? (
               <Link
                 href={AppendSiteUrlToExternalLink(
-                  listing.download_google_play_url,
+                  listing.download_google_play_url
                 )}
                 target="_blank"
                 className="text-blue-400 hover:text-blue-300"
@@ -554,7 +528,7 @@ const ListingsFullDetailsPage: React.FC<{
             {listing.download_apple_app_store_url ? (
               <Link
                 href={AppendSiteUrlToExternalLink(
-                  listing.download_apple_app_store_url,
+                  listing.download_apple_app_store_url
                 )}
                 target="_blank"
                 className="text-blue-400 hover:text-blue-300"
@@ -572,7 +546,7 @@ const ListingsFullDetailsPage: React.FC<{
             {listing.download_chrome_extension_url ? (
               <Link
                 href={AppendSiteUrlToExternalLink(
-                  listing.download_chrome_extension_url,
+                  listing.download_chrome_extension_url
                 )}
                 target="_blank"
                 className="text-blue-400 hover:text-blue-300"
@@ -604,7 +578,6 @@ const ListingsFullDetailsPage: React.FC<{
         </div>
       </div>
 
-      {/* Right Column - Image & Details - Main */}
       <div className="lg:w-2/3">
         <div className="animate_top rounded-md border border-stroke bg-white p-7.5 shadow-solid-13 dark:border-strokedark dark:bg-blacksection md:p-10">
           <h1 className="mb-5 mt-11 text-center text-5xl font-semibold text-black dark:text-white 2xl:text-sectiontitle2">
@@ -636,7 +609,6 @@ const ListingsFullDetailsPage: React.FC<{
                 src={listing.logo_url || defaultImageUrl}
                 alt={listing.name}
                 className="rounded-md object-cover object-center"
-                // layout="intrinsic"
                 width={600}
                 height={400}
               />
@@ -644,12 +616,8 @@ const ListingsFullDetailsPage: React.FC<{
           </div>
 
           <div className="blog-details">
-            {/* Main Content */}
-
-            {/* Favorites Button */}
             <FavoritesButton userId={userId} listingId={listing.id} />
 
-            {/* Pricing/category */}
             <ul className="mb-9">
               <li>
                 <span className="text-black dark:text-white">Pricing: </span>{" "}
@@ -663,27 +631,21 @@ const ListingsFullDetailsPage: React.FC<{
               </li>
             </ul>
 
-            {/* short description */}
             <h2>{listing.name} Summary:</h2>
             <p>{renderMultilineText(listing.short_description)}</p>
 
-            {/* long description */}
             <h2>{listing.name} Description:</h2>
             <p>{renderMultilineText(listing.full_description)}</p>
 
-            {/* pros description */}
             <h2>{listing.name} Pros:</h2>
             <p>{renderMultilineText(listing.pros)}</p>
 
-            {/* cons description */}
             <h2>{listing.name} Cons:</h2>
             <p>{renderMultilineText(listing.cons)}</p>
 
-            {/* Use Cases */}
             <h2>{listing.name} Use Case:</h2>
             <p>{renderMultilineText(listing.use_case)}</p>
 
-            {/* Demo video */}
             <h2>{listing.name} Demo:</h2>
             <p>
               {listing.demo_url ? (
@@ -701,11 +663,9 @@ const ListingsFullDetailsPage: React.FC<{
               )}
             </p>
 
-            {/* Project Team */}
             <h2>{listing.name} Team Details:</h2>
             <p>{renderMultilineText(listing.team)}</p>
 
-            {/* Donate */}
             <div className="text-center">
               <h3>
                 Kindly support to keep this ExploreSolana project going to
@@ -721,10 +681,8 @@ const ListingsFullDetailsPage: React.FC<{
               </p>
             </div>
 
-            {/* Email Subscription Form */}
             <EmailSubscriptionForm />
 
-            {/* Related Listings Section */}
             <div className="mt-8">
               <h2>{listing.name} Alternatives & Related Listings:</h2>
               <p>Checkout {listing.name} alternatives below:</p>
@@ -733,20 +691,15 @@ const ListingsFullDetailsPage: React.FC<{
                   mainCategory={listing.category_1_name}
                 />
               )}
-            </div>  
+            </div>
 
-            {/* Ratings and Reviews Section */}
             <div className="mt-8">
-              {/* Include the RatingReviewsForm component */}
               <h2>Rate & Review {listing.name}:</h2>
               <RatingReviewsForm listingId={listing?.id} userId={userId} />
-            </div>            
-            <div className="mt-8"> 
-              {/* Include the RatingReviewsList component */}
+            </div>
+            <div className="mt-8">
               <h2>{listing.name} Users Ratings & Reviews:</h2>
-              <span>
-                Discover other users experience with {listing.name}:
-              </span>
+              <span>Discover other users experience with {listing.name}:</span>
               <RatingReviewsList listingId={listing?.id} userId={null} />
             </div>
           </div>
