@@ -1,4 +1,4 @@
-// /components/Auth/Login/index.tsx
+// /components/Auth/Login/indexOld.tsx
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,11 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import SubmitButton from "../SubmitButton";
 
-const Login = async ({
-  searchParams,
-}: {
-  searchParams: { message: string };
-}) => {
+const Login = async ({ searchParams }: { searchParams: { message: string } }) => {
   const supabase = createClient();
   const {
     data: { user },
@@ -21,29 +17,48 @@ const Login = async ({
   const signIn = async (formData: FormData) => {
     "use server";
 
-    const identifier = formData.get("identifier") as string;
+    const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    // Attempt login with email or username
-    const { data, error } = await supabase.rpc(
-      "authenticate_user_with_username_email_password",
-      {
-        user_identifier: identifier,
-        user_password: password,
-      }
-    );
-
-    
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
-      console.error("Error logging in:", error.message);
       return redirect(
         `/auth/login?message=Username or Password Error: ${error.message}`
       );
     }
 
     return redirect("/directory");
+  };
+
+  // Signup function
+  const signUp = async (formData: FormData) => {
+    "use server";
+
+    const origin = headers().get("origin");
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const supabase = createClient();
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${origin}/callback`,
+      },
+    });
+
+    if (error) {
+      return redirect(`/auth/login?message=Error: ${error.message}`);
+    }
+
+    return redirect(
+      "/auth/login?message=Signup/Registration Successful! Kindly sign in."
+    );
   };
 
   return (
@@ -95,56 +110,54 @@ const Login = async ({
             <div className="mb-5">
               {!user && (
                 <>
-                  <p>
-                    If you already have an account, click "Sign In" to Login.
-                  </p>
+                  <p>If you already have an account, click "Sign In" to Login.</p>
                   <p>If not, click "Sign Up" to register a new account:</p>
                 </>
               )}
             </div>
 
             {!user && (
-              <>
-                <form
-                  className="animate-in flex w-full flex-1 flex-col justify-center gap-4 sm:max-w-md"
-                  action={signIn}
+              <form
+                className="animate-in flex w-full flex-1 flex-col justify-center gap-4 sm:max-w-md"
+                // action={signIn}
+              >
+                <label className="text-md" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="mb-6 rounded-md border bg-inherit px-4 py-2"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+                <label className="text-md" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="mb-6 rounded-md border bg-inherit px-4 py-2"
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  required
+                />
+
+                {/* Signin button */}
+                <SubmitButton
+                  formAction={signIn}
+                  className="text-foreground mb-2 rounded-md bg-green-700 px-4 py-2"
+                  pendingText="Signing In..."
                 >
-                  <label className="text-md" htmlFor="identifier">
-                    Username or Email
-                  </label>
-                  <input
-                    className="mb-6 rounded-md border bg-inherit px-4 py-2"
-                    name="identifier"
-                    placeholder="username or you@example.com"
-                    required
-                  />
-                  <label className="text-md" htmlFor="password">
-                    Password
-                  </label>
-                  <input
-                    className="mb-6 rounded-md border bg-inherit px-4 py-2"
-                    type="password"
-                    name="password"
-                    placeholder="••••••••"
-                    required
-                  />
+                  Sign In/LogIn
+                </SubmitButton>
 
-                  {/* Signin button */}
-                  <SubmitButton
-                    formAction={signIn}
-                    className="text-foreground mb-2 rounded-md bg-green-700 px-4 py-2"
-                    pendingText="Signing In..."
-                  >
-                    Sign In/LogIn
-                  </SubmitButton>
-
-                  {/* Feedback message display */}
-                  {searchParams?.message && (
-                    <p className="bg-foreground/10 text-foreground mt-4 p-4 text-center">
-                      {searchParams.message}
-                    </p>
-                  )}
-                </form>
+                {/* Signup button */}
+                <SubmitButton
+                  formAction={signUp}
+                  className="border-foreground/20 text-foreground mb-2 rounded-md border px-4 py-2"
+                  pendingText="Signing Up..."
+                >
+                  Sign Up/Register
+                </SubmitButton>
 
                 {/* Password reset button */}
                 <Link
@@ -154,17 +167,13 @@ const Login = async ({
                   Forgot password?
                 </Link>
 
-                {/* Signup/Register account */}
-                <p>
-                  Not have an account yet?{" "}
-                  <Link
-                    href="/auth/signup"
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    Sign Up
-                  </Link>
-                </p>
-              </>
+                {/* Feedback message display */}
+                {searchParams?.message && (
+                  <p className="bg-foreground/10 text-foreground mt-4 p-4 text-center">
+                    {searchParams.message}
+                  </p>
+                )}
+              </form>
             )}
           </div>
         </div>
