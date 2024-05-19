@@ -1,7 +1,7 @@
 // /directory/[slug]/page.tsx
 "use client";
 import React, { useState } from "react";
-import ListingsFullDetailsPage from "@/components/Directory/Listings/ListingsFullDetailsPage";
+import ListingsFullDetailsPage from "@/components/Directory/Listings/FullDetailsPage";
 
 const ListingDetailPage = () => {
   const [listingData, setListingData] = useState<DisplayListingTypes | null>(
