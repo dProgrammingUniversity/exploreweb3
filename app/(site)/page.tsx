@@ -1,3 +1,4 @@
+// /app/(site)/page.tsx
 import { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Brands from "@/components/Brands";
