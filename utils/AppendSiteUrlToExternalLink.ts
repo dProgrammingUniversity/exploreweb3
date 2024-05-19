@@ -1,4 +1,4 @@
-// ExploreSol/utils/AppendSiteUrlToExternalLink.ts
+// /components/utils/AppendSiteUrlToExternalLink.ts
 
 /**
  * Appends the site url query parameter to the given URL.

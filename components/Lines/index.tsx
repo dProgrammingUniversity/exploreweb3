@@ -1,3 +1,4 @@
+// /components/Lines/index.tsx
 import React from "react";
 
 const Lines = () => {

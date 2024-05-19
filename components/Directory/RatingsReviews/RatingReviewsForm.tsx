@@ -1,4 +1,4 @@
-// Exploresol/components/RatingReviewsForm.tsx
+// /components/Directory/RatingsReviews/RatingReviewsForm.tsx
 import { SetStateAction, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { StarIcon } from '@heroicons/react/24/solid';

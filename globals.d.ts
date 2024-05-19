@@ -1,4 +1,4 @@
-// globals.d.ts
+// /globals.d.ts
 export {};
 
 declare global {

@@ -1,5 +1,4 @@
 // /components/Pagination/index.tsx
-
 import React, { useState } from 'react';
 
 type PaginationProps = {

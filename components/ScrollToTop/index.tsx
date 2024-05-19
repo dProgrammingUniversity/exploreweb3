@@ -1,3 +1,4 @@
+// /components/ScrollToTop/index.tsx
 import { useEffect, useState } from "react";
 
 export default function ScrollToTop() {

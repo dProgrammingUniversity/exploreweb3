@@ -1,4 +1,4 @@
-// Exploresol/components/RatingReviewsList.tsx
+// /components/Directory/RatingsReviews/RatingReviewsList.tsx
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { StarIcon } from '@heroicons/react/24/solid';
