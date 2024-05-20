@@ -1,6 +1,6 @@
-// /app/(site)/auth/login/page.tsx
+// /app/(site)/auth/signup/page.tsx
 import Login from "@/components/Auth/Login";
-import Signup from "@/components/Auth/Signup";
+import SignUp from "@/components/Auth/Signup";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const LoginPage = ({ searchParams }: { searchParams: { message: string } }) => {
+const SignUpPage = ({ searchParams }: { searchParams: { message: string } }) => {
   return (
     <>
-    <Signup searchParams={searchParams} />
+    <SignUp searchParams={searchParams} />
     </>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

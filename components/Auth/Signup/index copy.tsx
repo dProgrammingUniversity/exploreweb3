@@ -7,32 +7,26 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import SubmitButton from "../SubmitButton";
 
-const SignUp = async ({
+const Signup = async ({
   searchParams,
 }: {
   searchParams: { message: string };
 }) => {
-        
+  const supabase = createClient();
 
   // Signup function
-  const signingUp = async (formData: FormData) => {
+  const signUp = async (formData: FormData) => {
     "use server";
-    
-    const origin = headers().get("origin");
+
     const email = formData.get("email") as string;
-    const username = formData.get("username") as string;
     const password = formData.get("password") as string;
+    const username = formData.get("username") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          username: username,
-        },
-        emailRedirectTo: `${origin}/auth/callback`,
-      },
+    const { error } = await supabase.rpc("signup_with_username", {
+      p_username: username,
+      p_email: email,
+      p_password: password,
     });
 
     if (error) {
@@ -41,7 +35,7 @@ const SignUp = async ({
     }
 
     return redirect(
-      "/auth/login?message=Signup/Registration Successful! Kindly Signin.",
+      "/auth/login?message=Signup/Registration Successful! Kindly sign in.",
     );
   };
 
@@ -98,7 +92,7 @@ const SignUp = async ({
 
             <form
               className="animate-in flex w-full flex-1 flex-col justify-center gap-4 sm:max-w-md"
-              action={signingUp}
+              action={signUp}
             >
               <label className="text-md" htmlFor="username">
                 Username
@@ -131,7 +125,7 @@ const SignUp = async ({
 
               {/* Signup button */}
               <SubmitButton
-                formAction={signingUp}
+                formAction={signUp}
                 className="text-foreground mb-2 rounded-md bg-green-700 px-4 py-2"
                 pendingText="Signing Up..."
               >
@@ -151,8 +145,7 @@ const SignUp = async ({
                 Already have an account?{" "}
                 <Link
                   href="/auth/login"
-                  className="text-blue-500 hover:text-blue-700"
-                >
+                  className="text-blue-500 hover:text-blue-700">
                   Sign In
                 </Link>
               </p>
@@ -164,4 +157,4 @@ const SignUp = async ({
   );
 };
 
-export default SignUp;
+export default Signup;

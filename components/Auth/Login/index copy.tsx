@@ -17,20 +17,36 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
   const signIn = async (formData: FormData) => {
     "use server";
 
-    const email = formData.get("identifier") as string;
+    const identifier = formData.get("identifier") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
 
     // Attempt login with email or username
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+    const { data, error } = await supabase.rpc("signin_with_username", {
+      p_identifier: identifier,
+      p_password: password,
     });
+
+    if (data && data.length > 0) {
+      // Use Supabase's signInWithPassword to manage the session
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: data[0].email,
+        password: password,
+      });
+
+      if (signInError) {
+        console.error("Error signing in:", signInError.message);
+        return redirect(`/auth/login?message=Error signing in: ${signInError.message}`);
+      }
+
+      return redirect("/auth/login");
+    }
 
     if (error) {
       console.error("Error logging in:", error.message);
-
-      return redirect(`/auth/login?message=Error signing in: ${error.message}`);
+      return redirect(
+        `/auth/login?message=Username or Password Error: ${error.message}`
+      );
     }
 
     return redirect("/auth/login");
