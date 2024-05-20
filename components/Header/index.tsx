@@ -153,6 +153,7 @@ const Header = () => {
             </ul>
           </nav>
 
+          {/* Toggle menu button */}
           <div className="mt-7 flex items-center gap-5 xl:mt-0">
             {/* Toggle theme */}
             <ThemeToggler />
@@ -166,14 +167,17 @@ const Header = () => {
             </Link>
           </div>
 
+          {/* Submit project menu button */}
           <div className="mt-7 flex items-center gap-3 xl:mt-0">
             {/* Submit Project Button */}
             <SubmitProjectButton />
+          </div>
 
+          {/* AuthButton and greeting menu button */}
+          <div className="mt-7 flex items-center gap-3 xl:mt-0">
             {/* AuthButton */}
             <AuthButton />
           </div>
-          
         </div>
       </div>
     </header>
