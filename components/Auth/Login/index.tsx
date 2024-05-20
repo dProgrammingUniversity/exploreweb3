@@ -21,36 +21,34 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    // Attempt login with username or email
+    // Attempt login with email or username
     const { data, error } = await supabase.rpc("signin_with_username", {
       p_identifier: identifier,
       p_password: password,
     });
+  
+    if (error) {
+      console.error("Error logging in:", error.message);
+
+      return redirect(`/auth/login?message=Error signing in: ${error.message}`);
+    }
 
     if (data && data.length > 0) {
-      // Log in the user using the Supabase auth client
-      const { error: loginError } = await supabase.auth.signInWithPassword({
+      // Use Supabase's signInWithPassword to manage the session
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: data[0].email,
-        password,
+        password: password,
       });
 
-      if (loginError) {
-        console.error("Error logging in:", loginError.message);
-        return redirect(
-          `/auth/login?message=Error logging in: ${loginError.message}`
-        );
-      }
+      // if (signInError) {
+      //   console.error("Error signing in:", signInError.message);
+      //   return redirect(`/auth/login?message=Error signing in: ${signInError.message}`);
+      // }
 
       return redirect("/auth/login");
     }
 
-    if (error) {
-      console.error("Error logging in:", error.message);
-      return redirect(
-        `/auth/login?message=Username or Password Error: ${error.message}`
-      );
-    }
-
+    return redirect("/auth/login");
   };
 
   return (
@@ -102,7 +100,9 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
             <div className="mb-5">
               {!user && (
                 <>
-                  <p>If you already have an account, click "Sign In" to Login.</p>
+                  <p>
+                    If you already have an account, click "Sign In" to Login.
+                  </p>
                   <p>If not, click "Sign Up" to register a new account:</p>
                 </>
               )}
