@@ -88,7 +88,8 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
                   <p>
                     If you already have an account, click "Sign In" to Login.
                   </p>
-                  <p>If not, click "Sign Up" to register a new account:</p>
+                  <p>If not, click "Sign Up" to register a new account.</p>
+                  <p>NOTE: kindly use email not username when logging in for now.</p>
                 </>
               )}
             </div>
