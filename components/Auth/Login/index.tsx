@@ -51,7 +51,6 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
       );
     }
 
-    return redirect("/directory");
   };
 
   return (
