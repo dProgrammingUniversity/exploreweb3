@@ -7,11 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import SubmitButton from "../SubmitButton";
 
-const Login = async ({
-  searchParams,
-}: {
-  searchParams: { message: string };
-}) => {
+const Login = async ({ searchParams }: { searchParams: { message: string } }) => {
   const supabase = createClient();
   const {
     data: { user },
@@ -25,16 +21,28 @@ const Login = async ({
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    // Attempt login with email or username
-    const { data, error } = await supabase.rpc(
-      "authenticate_user_with_username_email_password",
-      {
-        user_identifier: identifier,
-        user_password: password,
-      }
-    );
+    // Attempt login with username or email
+    const { data, error } = await supabase.rpc("signin_with_username", {
+      p_identifier: identifier,
+      p_password: password,
+    });
 
-    
+    if (data && data.length > 0) {
+      // Log in the user using the Supabase auth client
+      const { error: loginError } = await supabase.auth.signInWithPassword({
+        email: data[0].email,
+        password,
+      });
+
+      if (loginError) {
+        console.error("Error logging in:", loginError.message);
+        return redirect(
+          `/auth/login?message=Error logging in: ${loginError.message}`
+        );
+      }
+
+      return redirect("/auth/login");
+    }
 
     if (error) {
       console.error("Error logging in:", error.message);
@@ -95,9 +103,7 @@ const Login = async ({
             <div className="mb-5">
               {!user && (
                 <>
-                  <p>
-                    If you already have an account, click "Sign In" to Login.
-                  </p>
+                  <p>If you already have an account, click "Sign In" to Login.</p>
                   <p>If not, click "Sign Up" to register a new account:</p>
                 </>
               )}

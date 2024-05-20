@@ -33,8 +33,7 @@ const Signup = async ({
       console.error("Error signing up:", error.message);
       return redirect(`/auth/signup?message=Error: ${error.message}`);
     }
-    // if registration successful, redirect to login page
-    // with registration success message
+
     return redirect(
       "/auth/login?message=Signup/Registration Successful! Kindly sign in.",
     );
@@ -144,7 +143,9 @@ const Signup = async ({
             <div className="mt-5">
               <p>
                 Already have an account?{" "}
-                <Link href="/auth/login" className="text-blue-500 hover:text-blue-700">
+                <Link
+                  href="/auth/login"
+                  className="text-blue-500 hover:text-blue-700">
                   Sign In
                 </Link>
               </p>
