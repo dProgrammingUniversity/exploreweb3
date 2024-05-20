@@ -6,10 +6,12 @@ import { createClient } from "@/utils/supabase/client";
 const UsernamesForm = () => {
   const [username, setUsername] = useState("");
   const [wallet, setWallet] = useState("");
+  const [fetchedUsername, setFetchedUsername] = useState(""); // Add state for fetched username
   const [fetchedWallet, setFetchedWallet] = useState(""); // Add state for fetched wallet
   const [userId, setUserId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
+
   const supabaseClient = createClient();
 
   useEffect(() => {
@@ -17,15 +19,13 @@ const UsernamesForm = () => {
     supabaseClient.auth.getUser().then(({ data }) => {
       if (data?.user) {
         setUserId(data.user.id);
-        const metadata = data.user.user_metadata;
-        setUsername(metadata?.username || ""); // Set the username from metadata
-        fetchWallet(data.user.id); // Fetch the wallet
+        fetchUsername(data.user.id); // Call fetchUsername here
       }
     });
   }, [supabaseClient.auth]);
 
-  // Fetch wallet for display
-  const fetchWallet = async (userId: string) => {
+  // Fetch username for display
+  const fetchUsername = async (userId: string) => {
     const { data, error } = await supabaseClient.rpc("usernames_fetch", {
       _user_id: userId,
     });
@@ -34,9 +34,12 @@ const UsernamesForm = () => {
       setMessage(`Error: ${error.message}`);
       setIsError(true);
     } else if (data && data.length > 0) {
+      // Set the fetched username if it exists
+      setFetchedUsername(data[0].username);
       setFetchedWallet(data[0].wallet_solana);
     } else {
-      setMessage("You have not set a wallet yet.");
+      // If username does not exist, set an appropriate message
+      setMessage("You have not set a username or wallet yet.");
       setIsError(true);
     }
   };
@@ -64,7 +67,9 @@ const UsernamesForm = () => {
       setIsError(true);
     } else {
       setMessage(data);
+      setFetchedUsername(username); // Update fetchedUsername to reflect the newly set username
       setFetchedWallet(wallet); // Update fetchedWallet to reflect the newly set wallet
+      setUsername(""); // Clear the input after successful insertion
       setWallet(""); // Clear the wallet input
     }
   };
@@ -113,16 +118,17 @@ const UsernamesForm = () => {
 
   return (
     <>
-      {/* Display the username permanently */}
-      <p className="mb-5 text-xl font-bold text-gray-300">
-        Your Username: <span className="text-green-500">{username}</span>
-      </p>
-      {fetchedWallet ? (
-        // Display the fetched wallet
+      {fetchedUsername ? (
+        // Display the fetched username
         <>
+          {/* Username */}
+          <p className="mb-5 text-xl font-bold text-gray-300">
+            Your Username:{" "}
+            <span className="text-green-500">{fetchedUsername}</span>
+          </p>
           {/* Wallet */}
           <p className="mb-5 text-xl font-bold text-gray-300">
-            Your Wallet (Solana):
+            Your Wallet(Solana):
           </p>
           <p
             className="mb-2 break-words rounded-md border bg-gray-800 p-2 text-lg text-green-500"
@@ -138,16 +144,38 @@ const UsernamesForm = () => {
           </button>
         </>
       ) : (
-        // Display the form to set a wallet
+        // Display the form to set a username
         <form onSubmit={handleSubmit}>
           <div className="mt-2">
             <label className="mb-2 text-2xl font-bold capitalize text-purple-500">
-              Set Your Solana Wallet:
+              Set Your Username & Solana Wallet:
             </label>
             <br />
             <span className="mb-1 text-sm text-gray-400">
-              WARNING: Your Solana wallet can only be set once and cannot be edited, updated, or deleted later!
+              WARNING: Your unique username and Solana wallet can only be set
+              once and can't be edited, updated, or deleted later!
             </span>
+          </div>
+          <div className="mt-2">
+            <label
+              htmlFor="usernamesform"
+              className="block text-xl font-bold text-gray-300"
+            >
+              Create Username:
+            </label>
+            <span className="mb-1 text-sm text-gray-400">
+              Username must be 3-15 characters long, contain only letters,
+              numbers, and underscores, and no leading or trailing spaces.
+            </span>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
+              required
+              className="mt-1 block rounded-md border-gray-300 bg-gray-500 shadow-sm"
+            />
           </div>
           <div>
             <label
@@ -172,7 +200,7 @@ const UsernamesForm = () => {
               type="submit"
               className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
             >
-              Set Wallet
+              Set Username
             </button>
           </div>
           {message && (
