@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 const AuthButton = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
   const supabase = createClient();
   const router = useRouter();
 
@@ -15,8 +16,11 @@ const AuthButton = () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         setUser(user);
+        const metadata = user.user_metadata;
+        setUsername(metadata?.username || null);
       } else {
         setUser(null);
+        setUsername(null);
       }
     };
 
@@ -35,10 +39,11 @@ const AuthButton = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
+    setUsername(null);
     router.push("/auth/login");
   };
 
-  const displayName = user?.username || user?.email;
+  const displayName = username || user?.email;
 
   return (
     <>
