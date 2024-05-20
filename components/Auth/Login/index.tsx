@@ -26,12 +26,6 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
       p_identifier: identifier,
       p_password: password,
     });
-  
-    if (error) {
-      console.error("Error logging in:", error.message);
-
-      return redirect(`/auth/login?message=Error signing in: ${error.message}`);
-    }
 
     if (data && data.length > 0) {
       // Use Supabase's signInWithPassword to manage the session
@@ -40,12 +34,19 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
         password: password,
       });
 
-      // if (signInError) {
-      //   console.error("Error signing in:", signInError.message);
-      //   return redirect(`/auth/login?message=Error signing in: ${signInError.message}`);
-      // }
+      if (signInError) {
+        console.error("Error signing in:", signInError.message);
+        return redirect(`/auth/login?message=Error signing in: ${signInError.message}`);
+      }
 
       return redirect("/auth/login");
+    }
+
+    if (error) {
+      console.error("Error logging in:", error.message);
+      return redirect(
+        `/auth/login?message=Username or Password Error: ${error.message}`
+      );
     }
 
     return redirect("/auth/login");
