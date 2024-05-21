@@ -1,4 +1,4 @@
-// Exploresol/utils/FormatText.ts
+// /components/utils/FormatText.ts
 import React from 'react';
 
 // Utility helper function to convert newline characters to paragraph tags
