@@ -102,8 +102,8 @@ const ListingsFullDetailsPage: React.FC<{
 
   return (
     <div className="flex flex-wrap">
-      <ContentSidebar listing={listing} />
       <ContentMain listing={listing} userId={userId} />
+      <ContentSidebar listing={listing} />
     </div>
   );
 };
