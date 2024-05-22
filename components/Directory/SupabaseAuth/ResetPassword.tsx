@@ -48,7 +48,7 @@ const ResetPassword = () => {
           width: "300px",
           borderRadius: "5px",
           border: "1px solid #ccc",
-          background: "gray",
+          background: "black",
         }}
       />
 
