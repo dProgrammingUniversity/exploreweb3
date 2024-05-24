@@ -146,17 +146,17 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({ listing })
         </p>
 
         <p>
-          {listing.solarplex ? (
+          {listing.youtube ? (
             <Link
-              href={AppendSiteUrlToExternalLink(listing.solarplex)}
+              href={AppendSiteUrlToExternalLink(listing.youtube)}
               target="_blank"
               className="text-blue-400 hover:text-blue-300"
             >
-              Solarplex
+              Youtube
             </Link>
           ) : (
             <span className="text-gray-500">
-              {listing.name} Solarplex link not available
+              {listing.name} Youtube link not available
             </span>
           )}
         </p>

@@ -50,17 +50,17 @@ const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
     </div>
 
     <div className="flex flex-col">
-      <label htmlFor="solarplex" className="mb-2 capitalize text-purple-500 text-xl">Solarplex:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz</span>
+      <label htmlFor="youtube" className="mb-2 capitalize text-purple-500 text-xl">Youtube:</label>
+      <span className="text-sm text-gray-400 mb-1">format https://www.youtube.com/@RealmsSolana</span>
       <input
         type="text"
-        id="solarplex"
-        name="solarplex"
-        value={formData.solarplex}
+        id="youtube"
+        name="youtube"
+        value={formData.youtube}
         onChange={handleInputChange}
         className="border-2 border-gray-300 p-2 rounded bg-black"
         disabled={loading}
-        placeholder="Enter solarplex"
+        placeholder="Enter youtube channel url"
       />
     </div>
   </>

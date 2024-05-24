@@ -37,7 +37,7 @@ const CreateListings = () => {
     twitter: "",
     discord: "",
     telegram: "",
-    solarplex: "",
+    youtube: "",
     pros: "",
     cons: "",
     team: "",
