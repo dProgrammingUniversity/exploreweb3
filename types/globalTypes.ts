@@ -31,7 +31,7 @@ type DisplayListingTypes = {
   twitter: string;
   discord: string;
   telegram: string;
-  solarplex: string;
+  youtube: string;
   pros: string;
   cons: string;
   team: string;
@@ -96,7 +96,7 @@ type CreateListingTypes = {
   twitter: string;
   discord: string;
   telegram: string;
-  solarplex: string;
+  youtube: string;
   pros: string;
   cons: string;
   team: string;

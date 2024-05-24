@@ -158,7 +158,7 @@ const ListingDetailPage = () => {
               <p><Link href={AppendSiteUrlToExternalLink(listing.twitter)} target="_blank" className="text-blue-400 hover:text-blue-300">Twitter</Link></p>
               <p><Link href={AppendSiteUrlToExternalLink(listing.discord)} target="_blank" className="text-blue-400 hover:text-blue-300">Discord</Link></p>
               <p><Link href={AppendSiteUrlToExternalLink(listing.telegram)} target="_blank" className="text-blue-400 hover:text-blue-300">Telegram</Link></p>
-              <p><Link href={AppendSiteUrlToExternalLink(listing.solarplex)} target="_blank" className="text-blue-400 hover:text-blue-300">Solarplex</Link></p>
+              <p><Link href={AppendSiteUrlToExternalLink(listing.youtube)} target="_blank" className="text-blue-400 hover:text-blue-300">Youtube</Link></p>
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
