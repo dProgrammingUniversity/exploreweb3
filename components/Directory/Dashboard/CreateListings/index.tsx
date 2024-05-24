@@ -87,6 +87,7 @@ const CreateListings = () => {
   const [governanceOptions, setGovernanceOptions] = useState([]);
   const [sourceCodeAccessOptions, setSourceCodeAccessOptions] = useState([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [userId, setUserId] = useState<string | null>(null);
 
   const supabaseClient = createClient();
 
@@ -163,15 +164,71 @@ const CreateListings = () => {
       }
     }
 
-    fetchCategories();
-    fetchStatuses();
-    fetchPricingOptions();
-    fetchBlockchainOptions();
-    fetchTokenomicOptions();
-    fetchNftCollectionOptions();
-    fetchGovernanceOptions();
-    fetchSourceCodeAccessOptions();
+    const fetchData = async () => {
+      const { data: { user } } = await supabaseClient.auth.getUser();
+      if (user) {
+        setUserId(user.id);
+        loadDraft(user.id);
+      }
+      fetchCategories();
+      fetchStatuses();
+      fetchPricingOptions();
+      fetchBlockchainOptions();
+      fetchTokenomicOptions();
+      fetchNftCollectionOptions();
+      fetchGovernanceOptions();
+      fetchSourceCodeAccessOptions();
+    };
+
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      saveDraft();
+    }, 60000); // Auto-save every 1 minute
+
+    return () => clearInterval(interval);
+  }, [formData]);
+
+  const loadDraft = async (userId: string) => {
+    const { data, error } = await supabaseClient
+      .rpc('get_draft', { user_uuid: userId });
+
+    if (data) {
+      const draft = data[0].form_data;
+      setFormData(draft);
+      setSelectedCategory1(draft.category_1);
+      setSelectedCategory2(draft.category_2);
+      setSelectedCategory3(draft.category_3);
+      setSelectedCategory4(draft.category_4);
+      setSelectedCategory5(draft.category_5);
+    } else if (error) {
+      console.error("Error loading draft:", error);
+    }
+  };
+
+  const saveDraft = async () => {
+    if (!userId) return;
+
+    const draftData = {
+      ...formData,
+      category_1: selectedCategory1,
+      category_2: selectedCategory2,
+      category_3: selectedCategory3,
+      category_4: selectedCategory4,
+      category_5: selectedCategory5,
+    };
+
+    const { error } = await supabaseClient
+      .rpc('save_draft', { user_uuid: userId, form: draftData });
+
+    if (error) {
+      console.error("Error saving draft:", error);
+    } else {
+      setMessage('Draft saved successfully!');
+    }
+  };
 
   const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
@@ -182,6 +239,28 @@ const CreateListings = () => {
       }
     }
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCategoryChange = (categoryIndex: number, value: string) => {
+    switch (categoryIndex) {
+      case 1:
+        setSelectedCategory1(value);
+        break;
+      case 2:
+        setSelectedCategory2(value);
+        break;
+      case 3:
+        setSelectedCategory3(value);
+        break;
+      case 4:
+        setSelectedCategory4(value);
+        break;
+      case 5:
+        setSelectedCategory5(value);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleFileSelect = (eventOrFile: File | ChangeEvent<HTMLInputElement>) => {
@@ -269,6 +348,12 @@ const CreateListings = () => {
       setSelectedCategory3(null);
       setSelectedCategory4(null);
       setSelectedCategory5(null);
+
+      // Delete the draft only after successful submission
+      const deleteError = await deleteDraft(userId);
+      if (deleteError) {
+        console.error('Failed to delete draft:', deleteError);
+      }
     } catch (error) {
       console.error('Failed to add listing:', error);
       const message = (error as any).message ?? 'An unknown error occurred';
@@ -276,6 +361,17 @@ const CreateListings = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const deleteDraft = async (userId: string | null) => {
+    if (!userId) return;
+
+    const { error } = await supabaseClient
+      .from('listings_drafts')
+      .delete()
+      .eq('user_id', userId);
+
+    return error;
   };
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -297,7 +393,7 @@ const CreateListings = () => {
       setSelectedCategory2={setSelectedCategory2}
       selectedCategory3={selectedCategory3}
       setSelectedCategory3={setSelectedCategory3}
-      selectedCategory4={setSelectedCategory4}
+      selectedCategory4={selectedCategory4}
       setSelectedCategory4={setSelectedCategory4}
       selectedCategory5={selectedCategory5}
       setSelectedCategory5={setSelectedCategory5}
@@ -308,6 +404,7 @@ const CreateListings = () => {
       governanceOptions={governanceOptions}
       sourceCodeAccessOptions={sourceCodeAccessOptions}
       pricingOptions={pricingOptions}
+      handleCategoryChange={handleCategoryChange}
     />,
     <SocialMediaInfo
       formData={formData}
@@ -401,6 +498,15 @@ const CreateListings = () => {
                 Submit
               </button>
             )}
+
+            <button
+              type="button"
+              className="btn bg-yellow-500 hover:bg-yellow-700 text-white rounded p-2"
+              onClick={saveDraft}
+            >
+              Save Draft
+            </button>
+
           </div>
           {message && <div className="col-span-full"><p className="text-sm mt-2 text-white">{message}</p></div>}
         </div>
@@ -410,3 +516,4 @@ const CreateListings = () => {
 };
 
 export default CreateListings;
+

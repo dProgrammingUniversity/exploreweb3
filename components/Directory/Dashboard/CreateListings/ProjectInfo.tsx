@@ -21,7 +21,8 @@ const ProjectInfo = ({
   nftcollectionOptions,
   governanceOptions,
   sourceCodeAccessOptions,
-  pricingOptions
+  pricingOptions,
+  handleCategoryChange
 }) => (
   <>
     
