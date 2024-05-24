@@ -4,6 +4,7 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { createClient } from "@/utils/supabase/client";
 import axios from "axios";
+import { motion } from "framer-motion";
 import BasicInfo from "./BasicInfo";
 import ProjectInfo from "./ProjectInfo";
 import SocialMediaInfo from "./SocialMediaInfo";
@@ -72,7 +73,7 @@ const CreateListings = () => {
   // State variables
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<{ text: string; type: string; } | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -257,8 +258,11 @@ const CreateListings = () => {
 
     if (error) {
       console.error("Error saving draft:", error);
+      setMessage({ text: "Error saving draft.", type: "error" });
     } else {
-      setMessage("Draft saved successfully!");
+      setMessage({ text: "Draft saved successfully!", type: "success" });
+      // Clear the message after 5 seconds
+      setTimeout(() => setMessage(null), 15000);
     }
   };
 
@@ -346,7 +350,7 @@ const CreateListings = () => {
     console.log("Form submitted!");
     event.preventDefault();
     setLoading(true);
-    setMessage("Submitting...");
+    setMessage({ text: "Submitting...", type: "pending" });
 
     let imageUrl = "";
     if (selectedFile) {
@@ -363,7 +367,9 @@ const CreateListings = () => {
       } catch (error) {
         console.error("Error uploading image:", error);
         setLoading(false);
-        setMessage("Failed to upload image.");
+        setMessage({ text: "Failed to upload image.", type: "error" });
+        // Clear the message after 5 seconds
+        setTimeout(() => setMessage(null), 15000);
         return;
       }
     }
@@ -385,7 +391,7 @@ const CreateListings = () => {
       if (error) {
         throw error;
       }
-      setMessage("Listing added successfully!");
+      setMessage({ text: "Listing added successfully!", type: "success" });
       setLoading(false);
       setFormData(initialFormData);
       setImage(null);
@@ -403,9 +409,11 @@ const CreateListings = () => {
     } catch (error) {
       console.error("Failed to add listing:", error);
       const message = (error as any).message ?? "An unknown error occurred";
-      setMessage(`Failed to add listing: ${message}`);
+      setMessage({ text: `Failed to add listing: ${message}`, type: "error" });
     } finally {
       setLoading(false);
+      // Clear the message after 5 seconds
+      setTimeout(() => setMessage(null), 15000);
     }
   };
 
@@ -562,9 +570,25 @@ const CreateListings = () => {
             </button>
           </div>
           {message && (
-            <div className="col-span-full">
-              <p className="mt-2 text-sm text-white">{message}</p>
-            </div>
+            <motion.div
+              className="col-span-full mt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p
+                className={`text-m ${
+                  message.type === "error"
+                    ? "text-red-500"
+                    : message.type === "success"
+                    ? "text-green-500"
+                    : "text-yellow-500"
+                }`}
+              >
+                {message.text}
+              </p>
+            </motion.div>
           )}
         </div>
       </div>
