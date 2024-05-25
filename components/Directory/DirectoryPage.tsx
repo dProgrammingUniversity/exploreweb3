@@ -1,4 +1,5 @@
-// /components/Directory/directory/page.tsx
+// /components/Directory/DirectoryPage.tsx
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -6,7 +7,8 @@ import ListingsCard from "./Listings/ListingsCard";
 
 const DirectoryPage = () => {
   const [listings, setListings] = useState<DisplayListingTypes[]>([]); // used pre-define type Listing Types in globalTypes.ts
-  const [categories, setCategories] = useState<string[]>([]); // State to hold categories from database
+  const [categories, setCategories] = useState<{ name: string, count: number }[]>([]); // State to hold categories with counts from database
+  const [totalListings, setTotalListings] = useState(0); // State to hold total number of listings
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
@@ -15,11 +17,8 @@ const DirectoryPage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-  // const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg"; //define default image URL
   const [statuses, setStatuses] = useState([]); // State to hold statuses from database
-  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>(
-    {},
-  ); // State to hold category names by ID
+  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>({}); // State to hold category names by ID
 
   // Initialize Supabase client
   const supabaseClient = createClient();
@@ -27,18 +26,39 @@ const DirectoryPage = () => {
   // Define the pricing plans
   const pricings = ["Free", "Freemium", "Premium"]; //... add all your pricing plans
 
-  // Function to fetch category data from the 'categories' table
+  // Function to fetch category data with counts from the 'categories_counting' view
   const fetchCategories = async () => {
     setLoading(true);
     const { data, error } = await supabaseClient
-      .from("categories")
-      .select("id, name");
+      .from("categories_counting")
+      .select("category_name, total_listings");
 
     if (error) {
       console.error("Error fetching categories:", error);
     } else {
-      setCategories(data.map((category) => category.name));
+      setCategories(data.map((category) => ({
+        name: category.category_name,
+        count: category.total_listings
+      })));
     }
+    setLoading(false);
+  };
+
+  // Function to fetch the total number of unique approved listings
+  const fetchTotalListings = async () => {
+    setLoading(true);
+    const { count, error } = await supabaseClient
+      .from("listings")
+      .select("*", { count: "exact" })
+      .eq("moderation_status", "approved");
+
+    if (error) {
+      console.error("Error fetching total listings:", error);
+      setLoading(false);
+      return;
+    }
+
+    setTotalListings(count ?? 0); // Ensure count is a number
     setLoading(false);
   };
 
@@ -99,6 +119,7 @@ const DirectoryPage = () => {
   useEffect(() => {
     fetchListingData();
     fetchCategories();
+    fetchTotalListings(); // Fetch total listings separately
     fetchStatuses();
     initCategoryNamesById();
   }, []);
@@ -164,10 +185,10 @@ const DirectoryPage = () => {
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
         >
-          <option value="All">All Categories</option>
+          <option value="All">All Categories ({totalListings})</option>
           {categories.map((category, idx) => (
-            <option key={idx} value={category}>
-              {category}
+            <option key={idx} value={category.name}>
+              {category.name} ({category.count})
             </option>
           ))}
         </select>
