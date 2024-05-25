@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
 const AnimatedTitle = () => {
   const [currentWord, setCurrentWord] = useState("dApps");
+  const [totalListings, setTotalListings] = useState(0); // State to hold total number of listings
   const words = [
     "dApps",
     "Tools",
@@ -15,7 +17,27 @@ const AnimatedTitle = () => {
     "Communities",
   ];
 
+  // Initialize Supabase client
+  const supabaseClient = createClient();
+
+  // Function to fetch the total number of unique approved listings
+  const fetchTotalListings = async () => {
+    const { count, error } = await supabaseClient
+      .from("listings")
+      .select("*", { count: "exact" })
+      .eq("moderation_status", "approved");
+
+    if (error) {
+      console.error("Error fetching total listings:", error);
+      return;
+    }
+
+    setTotalListings(count ?? 0); // Ensure count is a number
+  };
+
   useEffect(() => {
+    fetchTotalListings(); // Fetch total listings on mount
+
     const wordIndex = setInterval(() => {
       setCurrentWord((prevWord) => {
         const currentIndex = words.indexOf(prevWord);
@@ -36,7 +58,7 @@ const AnimatedTitle = () => {
         transition={{ duration: 1 }}
       >
         <div className="flex items-center justify-center gap-1">
-          <span>Search 25/1,000+ Solana Projects</span>
+          <span>Search {totalListings}/1,000+ Solana Projects</span>
           <span>{"=>"}</span>
           <motion.span
             className="inline-block text-center text-purple-400"
