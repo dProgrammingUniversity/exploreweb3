@@ -68,6 +68,7 @@ type DisplayListingTypes = {
   linkedin: string;
   job_url: string,
   bounty_url: string,
+  grant_url: string,
 }
 
 
@@ -136,6 +137,7 @@ type CreateListingTypes = {
   linkedin: string;
   job_url: string,
   bounty_url: string,
+  grant_url: string,
 }
 
 
