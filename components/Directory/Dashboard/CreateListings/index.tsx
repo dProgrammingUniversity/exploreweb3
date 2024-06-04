@@ -71,6 +71,7 @@ const CreateListings = () => {
     linkedin: "",
     job_url: "",
     bounty_url: "",
+    grant_url: "",
   };
 
   // State variables

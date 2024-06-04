@@ -306,8 +306,24 @@ const ProjectInfo = ({
       />
     </div>
 
-    {/* Job/Career url input box */}
+    {/* Grants url input box */}
     <div className="flex flex-col">
+      <label htmlFor="grant_url" className="mb-2 capitalize text-purple-500 text-xl">Grants URL:</label>
+      <span className="text-sm text-gray-400 mb-1">Link to the project grants page if any in format https://example.com/grant</span>
+      <input
+        type="text"
+        id="grant_url"
+        name="grant_url"
+        value={formData.grant_url}
+        onChange={handleInputChange}
+        className="border-2 border-gray-300 p-2 rounded bg-black"
+        disabled={loading}
+        placeholder="Enter grants page URL"
+      />
+    </div>
+
+        {/* Job/Career url input box */}
+        <div className="flex flex-col">
       <label htmlFor="job_url" className="mb-2 capitalize text-purple-500 text-xl">Job/Career URL:</label>
       <span className="text-sm text-gray-400 mb-1">Link to the project career /job posting page if any in format https://example.com/career</span>
       <input
