@@ -8,13 +8,13 @@ const brandData: Brand[] = [
     image: "/images/brand/brand-001a-solana-sol-logo.svg",
     imageLight: "/images/brand/brand-001a-solana-sol-logo.svg",
   },
-  {
-    id: 0.25,
-    name: "Partner",
-    href: "#",
-    image: "/images/brand/brand-002b-superteam-logo.svg",
-    imageLight: "/images/brand/brand-002a-superteam-logo.svg",
-  },
+  // {
+  //   id: 0.25,
+  //   name: "Partner",
+  //   href: "#",
+  //   image: "/images/brand/brand-002b-superteam-logo.svg",
+  //   imageLight: "/images/brand/brand-002a-superteam-logo.svg",
+  // },
   // {
   //   id: 0.25,
   //   name: "Client",
