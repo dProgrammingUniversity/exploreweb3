@@ -4,7 +4,9 @@ import React from "react";
 import Link from "next/link";
 import { AppendSiteUrlToExternalLink } from "@/utils/AppendSiteUrlToExternalLink";
 
-const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({ listing }) => {
+const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
+  listing,
+}) => {
   return (
     <div className="md:w-1/2 lg:w-[32%]">
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
@@ -92,6 +94,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({ listing })
         </p>
       </div>
 
+      {/* Social Media Section */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Social Media:
@@ -157,6 +160,22 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({ listing })
           ) : (
             <span className="text-gray-500">
               {listing.name} Youtube link not available
+            </span>
+          )}
+        </p>
+
+        <p>
+          {listing.linkedin ? (
+            <Link
+              href={AppendSiteUrlToExternalLink(listing.linkedin)}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              LinkedIn
+            </Link>
+          ) : (
+            <span className="text-gray-500">
+              {listing.name} Linkedin link not available
             </span>
           )}
         </p>
@@ -393,6 +412,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({ listing })
         </p>
       </div>
 
+      {/* Download section */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           Download {listing.name} App:
@@ -468,6 +488,80 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({ listing })
           )}
         </p>
       </div>
+
+      {/* Bounty section */}
+      <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
+        <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
+          {listing.name} Bounty:
+        </h4>
+
+        <p>
+          {listing.bounty_url ? (
+            <Link
+              href={AppendSiteUrlToExternalLink(listing.bounty_url)}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              {listing.name} Bug Bounty / General Bounty
+            </Link>
+          ) : (
+            <span className="text-gray-500">
+              {listing.name} Bug Bounty / General Bounty link not available
+            </span>
+          )}
+        </p>
+      </div>
+
+      {/* Grant section */}
+      <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
+        <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
+          {listing.name} Grants:
+        </h4>
+
+        <p>
+          {listing.grant_url ? (
+            <Link
+              href={AppendSiteUrlToExternalLink(listing.grant_url)}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              {listing.name} Grants
+            </Link>
+          ) : (
+            <span className="text-gray-500">
+              {listing.name} Grants link not available
+            </span>
+          )}
+        </p>
+      </div>     
+
+      {/* Jobs / Careers section */}
+      <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
+        <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
+          {listing.name} Jobs / Careers Opportunities:
+        </h4>
+
+        <p>
+          {listing.job_url ? (
+            <>
+              <p>
+              Click below to see if there is still available job openings with {listing.name}:
+              </p>
+            <Link
+              href={AppendSiteUrlToExternalLink(listing.job_url)}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300"
+            >
+            {listing.name} may be hiring
+            </Link>
+            </>
+          ) : (
+            <span className="text-gray-500">
+              {listing.name} Jobs/Careers Opportunities link not available
+            </span>
+          )}
+        </p>
+      </div>        
     </div>
   );
 };
