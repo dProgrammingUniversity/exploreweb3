@@ -4,6 +4,8 @@ import React from 'react';
 
 const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
   <>
+
+  {/* Twitter input box */}
     <div className="flex flex-col">
       <label htmlFor="twitter" className="mb-2 capitalize text-purple-500 text-xl">Twitter:</label>
       <span className="text-sm text-gray-400 mb-1">format https://x.com/ExploreSolXyz</span>
@@ -19,6 +21,7 @@ const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
       />
     </div>
 
+  {/* Dicord input box */}
     <div className="flex flex-col">
       <label htmlFor="discord" className="mb-2 capitalize text-purple-500 text-xl">Discord:</label>
       <span className="text-sm text-gray-400 mb-1">format https://discord.gg/YwySjzW</span>
@@ -34,6 +37,7 @@ const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
       />
     </div>
 
+  {/* Telegram input box */}
     <div className="flex flex-col">
       <label htmlFor="telegram" className="mb-2 capitalize text-purple-500 text-xl">Telegram:</label>
       <span className="text-sm text-gray-400 mb-1">format https://t.me/solana</span>
@@ -49,9 +53,10 @@ const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
       />
     </div>
 
+  {/* Youtube input box */}
     <div className="flex flex-col">
       <label htmlFor="youtube" className="mb-2 capitalize text-purple-500 text-xl">Youtube:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://www.youtube.com/@RealmsSolana</span>
+      <span className="text-sm text-gray-400 mb-1">format https://youtube.com/@RealmsSolana</span>
       <input
         type="text"
         id="youtube"
@@ -61,6 +66,22 @@ const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
         className="border-2 border-gray-300 p-2 rounded bg-black"
         disabled={loading}
         placeholder="Enter youtube channel url"
+      />
+    </div>
+
+      {/* LinkedIn input box */}
+      <div className="flex flex-col">
+      <label htmlFor="linkedin" className="mb-2 capitalize text-purple-500 text-xl">Linkedin:</label>
+      <span className="text-sm text-gray-400 mb-1">format https://linkedin.com/company/name</span>
+      <input
+        type="text"
+        id="linkedin"
+        name="linkedin"
+        value={formData.linkedin}
+        onChange={handleInputChange}
+        className="border-2 border-gray-300 p-2 rounded bg-black"
+        disabled={loading}
+        placeholder="Enter linkedin page url"
       />
     </div>
   </>

@@ -65,6 +65,9 @@ type DisplayListingTypes = {
   download_website_url: string;
   faq_url: string;
   source_code_access: string;
+  linkedin: string;
+  job_url: string,
+  bounty_url: string,
 }
 
 
@@ -130,6 +133,9 @@ type CreateListingTypes = {
   download_website_url: string;
   faq_url: string;
   source_code_access: string;
+  linkedin: string;
+  job_url: string,
+  bounty_url: string,
 }
 
 

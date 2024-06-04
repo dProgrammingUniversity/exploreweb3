@@ -68,6 +68,9 @@ const CreateListings = () => {
     download_website_url: "",
     faq_url: "",
     source_code_access: "",
+    linkedin: "",
+    job_url: "",
+    bounty_url: "",
   };
 
   // State variables
