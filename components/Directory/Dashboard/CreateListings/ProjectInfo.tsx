@@ -290,6 +290,7 @@ const ProjectInfo = ({
       </select>
     </div>
 
+{/* Github url input box */}
     <div className="flex flex-col">
       <label htmlFor="github_url" className="mb-2 capitalize text-purple-500 text-xl">GitHub URL:</label>
       <span className="text-sm text-gray-400 mb-1">format https://github.com/project/repo</span>
@@ -302,6 +303,38 @@ const ProjectInfo = ({
         className="border-2 border-gray-300 p-2 rounded bg-black"
         disabled={loading}
         placeholder="Enter GitHub URL"
+      />
+    </div>
+
+    {/* Job/Career url input box */}
+    <div className="flex flex-col">
+      <label htmlFor="job_url" className="mb-2 capitalize text-purple-500 text-xl">Job/Career URL:</label>
+      <span className="text-sm text-gray-400 mb-1">Link to the project career /job posting page if any in format https://example.com/career</span>
+      <input
+        type="text"
+        id="job_url"
+        name="job_url"
+        value={formData.job_url}
+        onChange={handleInputChange}
+        className="border-2 border-gray-300 p-2 rounded bg-black"
+        disabled={loading}
+        placeholder="Enter jobs/careers page URL"
+      />
+    </div>
+
+    {/* Bounty url input box */}
+    <div className="flex flex-col">
+      <label htmlFor="bounty_url" className="mb-2 capitalize text-purple-500 text-xl">Bounty URL:</label>
+      <span className="text-sm text-gray-400 mb-1">Link to bug bounty or general bounty by the project if available in format https://example.com/bounty</span>
+      <input
+        type="text"
+        id="bounty_url"
+        name="bounty_url"
+        value={formData.github_url}
+        onChange={handleInputChange}
+        className="border-2 border-gray-300 p-2 rounded bg-black"
+        disabled={loading}
+        placeholder="Enter general/bug bounty URL"
       />
     </div>
 
