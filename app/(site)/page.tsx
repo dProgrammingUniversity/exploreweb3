@@ -19,7 +19,7 @@ import DirectoryTab from "@/components/Directory/Tab";
 // Define fixed metadata values
 const title = "Explore Solana Ecosystem Projects - Explore Solana";
 const description = "Earn Using and Exploring Solana Projects";
-const ogImage = "/opengraph-image.png";
+const ogImage = "https://ExploreSolna.com/images/opengraph-image.png";
 const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
 
 // Create metadata object
