@@ -4,10 +4,36 @@ import Image from "next/image";
 import Pitch from "@/components/Pitch";
 import { Metadata } from "next";
 
+// Define fixed metadata values
+const title = "Pitch Deck - Explore Solana";
+const description = "Discover and Support Explore Solana to promote Solana Projects";
+const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
+const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+
+// Create metadata object
 export const metadata: Metadata = {
-  title: "Pitch - Explore Solana",
-  description: "Discover and Support Solana Projects",
-  // other metadata
+  title: title,
+  description: description,
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
 };
 
 const PitchPage = () => {

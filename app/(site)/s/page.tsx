@@ -1,14 +1,40 @@
 // /app/(site)/s/page.tsx
 import EmailSubscriptionForm from "@/components/Directory/Newsletter/EmailSubscriptionForm";
 import S from "@/components/S";
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
+// Define fixed metadata values
+const title = "S words community - Explore Solana";
+const description = "Earn Using and Exploring Solana Projects";
+const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
+const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+
+// Create metadata object
 export const metadata: Metadata = {
-  title: "Earn - Explore Solana",
-  description: "Earn while exploring Solana projects",
-  // other metadata
+  title: title,
+  description: description,
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
 };
 
 const SPage = () => {

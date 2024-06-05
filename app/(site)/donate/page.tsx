@@ -1,13 +1,39 @@
 // /app/(site)/Donate/page.tsx
 import Donate from "@/components/Donate";
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
+// Define fixed metadata values
+const title = "Donate - Explore Solana";
+const description = "Kindly Support Explore Solana Platform to keep promoting Solana ecosystem projects";
+const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
+const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+
+// Create metadata object
 export const metadata: Metadata = {
-  title: "Donate - Explore Solana",
-  description: "Kindly support Explore Solana platform",
-  // other metadata
+  title: title,
+  description: description,
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
 };
 
 const DonatePage = () => {

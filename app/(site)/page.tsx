@@ -1,5 +1,4 @@
 // /app/(site)/page.tsx
-import { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Brands from "@/components/Brands";
 import Feature from "@/components/Features";
@@ -15,6 +14,7 @@ import Blog from "@/components/Blog";
 import Testimonial from "@/components/Testimonial";
 import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
+import { Metadata } from "next";
 
 // Define fixed metadata values
 const title = "Explore Solana Ecosystem Projects - Explore Solana";

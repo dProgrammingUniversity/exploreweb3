@@ -1,13 +1,39 @@
 // /app/(site)/about/page.tsx
-import { Metadata } from "next";
 import AboutPage from "@/components/About/AboutPage";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
+// Define fixed metadata values
+const title = "About - Explore Solana";
+const description = "Earn Using and Exploring Solana Projects";
+const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
+const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+
+// Create metadata object
 export const metadata: Metadata = {
-  title: "About - Explore Solana",
-  description: "Earn while exploring Solana projects",
-  // other metadata
+  title: title,
+  description: description,
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
 };
 
 const AboutDisplayPage = () => {
