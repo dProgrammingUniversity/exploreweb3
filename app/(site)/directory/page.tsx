@@ -5,16 +5,36 @@ import AnimatedTitle from "@/components/Directory/AnimatedTitle";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "1,000+ Solana Projects Directory - Explore Solana";
+const title = "Explore 1,000+ Solana Projects Directory - Explore Solana";
 const description = "Earn Using and Exploring Solana Projects";
-const ogImage =
-  "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
+const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
 
+// Create metadata object
 export const metadata: Metadata = {
   title: title,
   description: description,
-  // other metadata 
-}; 
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
+};
 
 const DirectoryHomePage = () => {
   
