@@ -69,24 +69,24 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
           </ul>
 
           <h2>{listing.name} Summary:</h2>
-          <p>{renderMultilineText(listing.short_description)}</p>
+          {renderMultilineText(listing.short_description)}
 
           {/* Disclosure and Disclaimer here */}
 
           <h2>{listing.name} Description:</h2>
-          <p>{renderMultilineText(listing.full_description)}</p>
+          {renderMultilineText(listing.full_description)}
 
           <h2>{listing.name} Pros:</h2>
-          <p>{renderMultilineText(listing.pros)}</p>
+          {renderMultilineText(listing.pros)}
 
           <h2>{listing.name} Cons:</h2>
-          <p>{renderMultilineText(listing.cons)}</p>
+          {renderMultilineText(listing.cons)}
 
           <h2>{listing.name} Use Case:</h2>
-          <p>{renderMultilineText(listing.use_case)}</p>
+          {renderMultilineText(listing.use_case)}
 
           <h2>{listing.name} Demo:</h2>
-          <p>
+          
             {listing.demo_url ? (
               <Link
                 href={AppendSiteUrlToExternalLink(listing.demo_url)}
@@ -100,31 +100,31 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
                 {listing.name} Demo Video link not available
               </span>
             )}
-          </p>
+          
 
           <h2>{listing.name} Team Details:</h2>
-          <p>{renderMultilineText(listing.team)}</p>
+          {renderMultilineText(listing.team)}
 
           <div className="text-center">
             <h3>
               Kindly support to keep this ExploreSolana project going to
               continue to add more Solana projects like {listing.name}:
             </h3>
-            <p>
+            
               <Link
                 href={"/donate"}
                 className="text-xl font-bold text-green-500"
               >
                 Kindly Donate Here - Thanks!
               </Link>
-            </p>
+            
           </div>
 
           <EmailSubscriptionForm />
 
           <div className="mt-8">
             <h2>{listing.name} Alternatives & Related Listings:</h2>
-            <p>Checkout {listing.name} alternatives below:</p>
+            Checkout {listing.name} alternatives below:
             {listing && listing.category_1_name && (
               <ListingsRelatedSuggestion
                 mainCategory={listing.category_1_name}

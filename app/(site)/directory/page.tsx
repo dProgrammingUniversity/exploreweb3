@@ -8,7 +8,7 @@ import { Metadata } from "next";
 const title = "Explore 1,000+ Solana Projects Directory - Explore Solana";
 const description = "Earn Using and Exploring Solana Projects";
 const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+const siteUrl = "https://ExploreSolana.com/directory"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

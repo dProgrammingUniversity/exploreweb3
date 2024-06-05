@@ -13,50 +13,50 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           Blockchain:
         </h4>
-        <p>{listing.blockchain}</p>
+        {listing.blockchain}
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Governance:
         </h4>
-        <p>{listing.governance}</p>
+    {listing.governance}
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           Keyword:
         </h4>
-        <p>{listing.keyword}</p>
+    {listing.keyword}
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Tokenomic:
         </h4>
-        <p>
+    
           <span className="text-green-600">
             Does {listing.name} have Token:
           </span>
           {""} {listing.tokenomic}
-        </p>
-        <p>
+        
+    
           <span className="text-green-600">{listing.name} Token Ticker:</span>
           {""} {listing.token_name}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} NFT Collection:
         </h4>
-        <p>
+    
           <span className="text-green-600">
             Does {listing.name} have NFT Collection:
           </span>
           {""} {listing.nft_collection}
-        </p>
-        <p>
+        
+    
           {listing.nft_collection_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.nft_collection_url)}
@@ -70,14 +70,14 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} NFT Collection link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Website:
         </h4>
-        <p>
+    
           {listing.website ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.website)}
@@ -91,7 +91,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Website link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       {/* Social Media Section */}
@@ -100,7 +100,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           {listing.name} Social Media:
         </h4>
 
-        <p>
+    
           {listing.twitter ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.twitter)}
@@ -114,9 +114,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Twitter link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.discord ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.discord)}
@@ -130,9 +130,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Discord link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.telegram ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.telegram)}
@@ -146,9 +146,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Telegram link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.youtube ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.youtube)}
@@ -162,9 +162,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Youtube link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.linkedin ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.linkedin)}
@@ -178,7 +178,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Linkedin link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
@@ -186,7 +186,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           {" "}
           {listing.name} Roadmap:
         </h4>
-        <p>
+    
           {listing.roadmap_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.roadmap_url)}
@@ -200,14 +200,14 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Roadmap link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Whitepaper:
         </h4>
-        <p>
+    
           {listing.whitepaper_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.whitepaper_url)}
@@ -221,20 +221,20 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Whitepaper link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} GitHub:
         </h4>
-        <p>
+    
           <span className="text-green-600">
             {listing.name} Source Code Accessibility:
           </span>
           {""} {listing.source_code_access}
-        </p>
-        <p>
+        
+    
           {listing.github_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.github_url)}
@@ -248,14 +248,14 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} GitHub link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Documentation:
         </h4>
-        <p>
+    
           {listing.documentation_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.documentation_url)}
@@ -269,8 +269,8 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Documentation link not available
             </span>
           )}
-        </p>
-        <p>
+        
+    
           {listing.faq_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.faq_url)}
@@ -284,7 +284,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} FAQs link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
@@ -292,7 +292,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           Contact {listing.name} Support:
         </h4>
 
-        <p>
+    
           {listing.support_website_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.support_website_url)}
@@ -306,9 +306,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Support Website link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.support_livechat_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.support_livechat_url)}
@@ -322,9 +322,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Support Live Chat link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.support_email ? (
             <a
               href={`mailto:${listing.support_email}`}
@@ -337,9 +337,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Support Email link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.support_discord_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.support_discord_url)}
@@ -353,9 +353,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Support Discord link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.support_twitter_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.support_twitter_url)}
@@ -369,9 +369,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Support X (Twitter) link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.support_telegram_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.support_telegram_url)}
@@ -385,7 +385,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Support Telegram link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       <div className="animate_top mb-10 rounded-md border border-stroke bg-white p-9 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
@@ -393,7 +393,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           Download {listing.name} dApp:
         </h4>
 
-        <p>
+    
           {listing.download_solana_dapp_store_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(
@@ -409,7 +409,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Solana dApp Store link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       {/* Download section */}
@@ -418,7 +418,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           Download {listing.name} App:
         </h4>
 
-        <p>
+    
           {listing.download_google_play_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(
@@ -434,9 +434,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Android (Google Play Store) link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.download_apple_app_store_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(
@@ -452,9 +452,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Apple iOS (App Store) link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.download_chrome_extension_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(
@@ -470,9 +470,9 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Chrome Extension link not available
             </span>
           )}
-        </p>
+        
 
-        <p>
+    
           {listing.download_website_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.download_website_url)}
@@ -486,7 +486,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Download Website link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       {/* Bounty section */}
@@ -495,7 +495,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           {listing.name} Bounty:
         </h4>
 
-        <p>
+    
           {listing.bounty_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.bounty_url)}
@@ -509,7 +509,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Bug Bounty / General Bounty link not available
             </span>
           )}
-        </p>
+        
       </div>
 
       {/* Grant section */}
@@ -518,7 +518,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           {listing.name} Grants:
         </h4>
 
-        <p>
+    
           {listing.grant_url ? (
             <Link
               href={AppendSiteUrlToExternalLink(listing.grant_url)}
@@ -532,7 +532,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Grants link not available
             </span>
           )}
-        </p>
+        
       </div>     
 
       {/* Jobs / Careers section */}
@@ -541,12 +541,12 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
           {listing.name} Jobs / Careers Opportunities:
         </h4>
 
-        <p>
+    
           {listing.job_url ? (
             <>
-              <p>
+          
               Click below to see if there is still available job openings with {listing.name}:
-              </p>
+              
             <Link
               href={AppendSiteUrlToExternalLink(listing.job_url)}
               target="_blank"
@@ -560,7 +560,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingTypes }> = ({
               {listing.name} Jobs/Careers Opportunities link not available
             </span>
           )}
-        </p>
+        
       </div>        
     </div>
   );
