@@ -25,8 +25,6 @@ const ProjectInfo = ({
   handleCategoryChange
 }) => (
   <>
-    
-
     <div className="col-span-full">
       <label className="mb-2 capitalize text-purple-500 text-xl">Category 1:</label>
       <br/>
@@ -442,22 +440,6 @@ const ProjectInfo = ({
         />
       </div>
     ))}
-
-    <div className="flex flex-col col-span-full">
-      <label htmlFor="team" className="mb-2 capitalize text-purple-500 text-xl">Team:</label>
-      <span className="text-sm text-gray-400 mb-1">solo founder or team name and social media</span>
-      <textarea
-        id="team"
-        name="team"
-        value={formData.team || ""}
-        onChange={handleInputChange}
-        rows={3}
-        maxLength={1000}
-        className="border-2 border-gray-300 p-2 rounded bg-black resize-vertical"
-        placeholder="Enter team details"
-      />
-    </div>
-    
   </>
 );
 

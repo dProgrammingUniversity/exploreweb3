@@ -11,6 +11,7 @@ import SocialMediaInfo from "./SocialMediaInfo";
 import SupportInfo from "./SupportInfo";
 import DownloadInfo from "./DownloadInfo";
 import UploadInfo from "./UploadInfo";
+import TeamInfo from "./TeamInfo"; // Import the new TeamInfo component
 
 // Define types for categories and other fetched options
 interface Category {
@@ -72,12 +73,32 @@ const CreateListings = () => {
     job_url: "",
     bounty_url: "",
     grant_url: "",
+    team_1_name: "",
+    team_1_x_url: "",
+    team_1_linkedin_url: "",
+    team_2_name: "",
+    team_2_x_url: "",
+    team_2_linkedin_url: "",
+    team_3_name: "",
+    team_3_x_url: "",
+    team_3_linkedin_url: "",
+    team_4_name: "",
+    team_4_x_url: "",
+    team_4_linkedin_url: "",
+    team_5_name: "",
+    team_5_x_url: "",
+    team_5_linkedin_url: "",
+    team_all_x_url: "",
+    team_all_linkedin_url: "",
+    team_all_website_url: "",
   };
 
   // State variables
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{ text: string; type: string; } | null>(null);
+  const [message, setMessage] = useState<{ text: string; type: string } | null>(
+    null,
+  );
   const [image, setImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -453,7 +474,7 @@ const CreateListings = () => {
       setSelectedCategory2={setSelectedCategory2}
       selectedCategory3={selectedCategory3}
       setSelectedCategory3={setSelectedCategory3}
-      selectedCategory4={selectedCategory4}
+      selectedCategory4={setSelectedCategory4}
       setSelectedCategory4={setSelectedCategory4}
       selectedCategory5={selectedCategory5}
       setSelectedCategory5={setSelectedCategory5}
@@ -481,6 +502,11 @@ const CreateListings = () => {
       handleInputChange={handleInputChange}
       loading={loading}
     />,
+    <TeamInfo // Add the new TeamInfo step here
+      formData={formData}
+      handleInputChange={handleInputChange}
+      loading={loading}
+    />,
     <UploadInfo
       image={image}
       handleFileSelect={handleFileSelect}
@@ -502,6 +528,7 @@ const CreateListings = () => {
     "Social Media Info",
     "Support Info",
     "Download Info",
+    "Team Info", // Add the new step title here
     "Upload Image",
   ];
 
@@ -511,6 +538,7 @@ const CreateListings = () => {
     "Share social media account links for your project.",
     "Enter support-related details for your project.",
     "Provide download links for your project.",
+    "Enter team information.", // Add the new step summary here
     "Upload the project logo or screenshot (must be 600(Width)x400(Height)px).",
   ];
 
@@ -523,7 +551,8 @@ const CreateListings = () => {
               {stepTitles.map((title, index) => (
                 <div
                   key={index}
-                  className={`rounded p-2 ${currentStep === index ? "bg-green-500 text-white" : "bg-gray-500 text-gray-300"} mb-2`}
+                  className={`rounded p-2 ${currentStep === index ? "bg-green-500 text-white" : "bg-gray-500 text-gray-300"} mb-2 cursor-pointer`} // Added cursor-pointer for better UX
+                  onClick={() => setCurrentStep(index)} // Added onClick handler
                 >
                   {index + 1}. {title}
                 </div>
@@ -564,7 +593,6 @@ const CreateListings = () => {
                 Submit
               </button>
             )}
-
             <button
               type="button"
               className="btn rounded bg-yellow-500 p-2 text-white hover:bg-yellow-700"
@@ -586,8 +614,8 @@ const CreateListings = () => {
                   message.type === "error"
                     ? "text-red-500"
                     : message.type === "success"
-                    ? "text-green-500"
-                    : "text-yellow-500"
+                      ? "text-green-500"
+                      : "text-yellow-500"
                 }`}
               >
                 {message.text}
