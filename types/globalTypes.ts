@@ -40,7 +40,7 @@ type DisplayListingTypes = {
   use_case: string;
   pricing: string;
   roadmap_url: string;
-  whitepaper_url: string;  
+  whitepaper_url: string;
   nft_collection: string;
   nft_collection_url: string;
   tokenomic: string;
@@ -66,11 +66,28 @@ type DisplayListingTypes = {
   faq_url: string;
   source_code_access: string;
   linkedin: string;
-  job_url: string,
-  bounty_url: string,
-  grant_url: string,
-}
-
+  job_url: string;
+  bounty_url: string;
+  grant_url: string;
+  team_1_name: string;
+  team_1_x_url: string;
+  team_1_linkedin_url: string;
+  team_2_name: string;
+  team_2_x_url: string;
+  team_2_linkedin_url: string;
+  team_3_name: string;
+  team_3_x_url: string;
+  team_3_linkedin_url: string;
+  team_4_name: string;
+  team_4_x_url: string;
+  team_4_linkedin_url: string;
+  team_5_name: string;
+  team_5_x_url: string;
+  team_5_linkedin_url: string;
+  team_all_x_url: string;
+  team_all_linkedin_url: string;
+  team_all_website_url: string;
+};
 
 /*
 TYPE DEFINITION 2: for exploresol/components/CreateListings.tsx
@@ -81,7 +98,7 @@ NOTE: commented out  like "id" means not needed for this form submission types
 and leaving it there will cause error during form submission
 */
 type CreateListingTypes = {
-  // id: number; 
+  // id: number;
   // author_id: string;
   // author: string;
   name: string;
@@ -135,11 +152,28 @@ type CreateListingTypes = {
   faq_url: string;
   source_code_access: string;
   linkedin: string;
-  job_url: string,
-  bounty_url: string,
-  grant_url: string,
-}
-
+  job_url: string;
+  bounty_url: string;
+  grant_url: string;
+  team_1_name: string;
+  team_1_x_url: string;
+  team_1_linkedin_url: string;
+  team_2_name: string;
+  team_2_x_url: string;
+  team_2_linkedin_url: string;
+  team_3_name: string;
+  team_3_x_url: string;
+  team_3_linkedin_url: string;
+  team_4_name: string;
+  team_4_x_url: string;
+  team_4_linkedin_url: string;
+  team_5_name: string;
+  team_5_x_url: string;
+  team_5_linkedin_url: string;
+  team_all_x_url: string;
+  team_all_linkedin_url: string;
+  team_all_website_url: string;
+};
 
 /*
 TYPE DEFINITION 3: for Categories types in 
@@ -150,7 +184,7 @@ to fix listings type errors
 type CategoryListingTypes = {
   id: number;
   name: string;
-}
+};
 
 /*
 TYPE DEFINITION 4: for Categories name by IDs types 
@@ -160,7 +194,6 @@ to fix listings type errors
 interface CategoryNamesById {
   [key: string]: string;
 }
-
 
 /*
 TYPE DEFINITION 5: for ListingsFullDetailsPageProps types 
@@ -180,7 +213,6 @@ interface CategoryNamesWithId {
   //empty
 }
 
-
 /*
 TYPE DEFINITION 7: for favorite props types 
 Define a type for listing data and it can be used anywhere in the app 
@@ -191,8 +223,6 @@ interface FavoritePageProps {
   userId: string | null;
   listingId: number | null;
 }
-
-
 
 /*
 TYPE DEFINITION 8: for ratings reviews types 
@@ -217,8 +247,6 @@ interface RatingReviewsProps {
   userId: string | null;
 }
 
-
-
 /*
 TYPE DEFINITION 9: for User types 
 Define a type for listing data and it can be used anywhere in the app 
@@ -229,7 +257,6 @@ type User = {
   email?: string;
   username?: string;
 };
-
 
 /*
 TYPE DEFINITION 10: for analytics events parameters types 
