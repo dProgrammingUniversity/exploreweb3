@@ -85,6 +85,7 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
           <h2>{listing.name} Use Case:</h2>
           {renderMultilineText(listing.use_case)}
 
+          <div className="mb-7">
           <h2>{listing.name} Demo:</h2>
           
             {listing.demo_url ? (
@@ -100,10 +101,12 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
                 {listing.name} Demo Video link not available
               </span>
             )}
+            </div>
           
-
+          <div className="mb-7">
           <h2>{listing.name} Team Details:</h2>
           {renderMultilineText(listing.team)}
+          </div>
 
           <div className="text-center">
             <h3>
