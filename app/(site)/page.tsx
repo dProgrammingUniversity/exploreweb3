@@ -16,10 +16,36 @@ import Testimonial from "@/components/Testimonial";
 import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 
+// Define fixed metadata values
+const title = "Explore Solana Ecosystem Projects - Explore Solana";
+const description = "Earn Using and Exploring Solana Projects";
+const ogImage = "/opengraph-image.png";
+const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+
+// Create metadata object
 export const metadata: Metadata = {
-  title: "Home - Explore Solana",
-  description: "Earn Using and Exploring Solana Projects",
-  // other metadata
+  title: title,
+  description: description,
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
 };
 
 export default function Home() {
