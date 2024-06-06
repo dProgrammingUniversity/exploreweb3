@@ -87,10 +87,10 @@ const ListingDetailPage = async ({ params }) => {
   // Fetch the user data
   const { data: userData, error: userError } = await supabase.auth.getUser();
 
-  if (userError) {
-    console.error("Error fetching user data (user id):", userError);
-    return <div>User not found</div>;
-  }
+  // if (userError) {
+  //   console.error("Error fetching user data (user id):", userError);
+  //   return <div>User not found</div>;
+  // }
 
   const userId = userData.user ? userData.user.id : null;
 
