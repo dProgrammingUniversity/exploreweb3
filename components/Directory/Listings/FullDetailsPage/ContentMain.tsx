@@ -20,7 +20,7 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
     } else {
       return (
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <table className="divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-800">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -98,7 +98,7 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
               })}
               {listing.team_all_linkedin_url || listing.team_all_website_url || listing.team_all_x_url ? (
                 <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
                     Learn more about the {listing.name} team
                     </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
