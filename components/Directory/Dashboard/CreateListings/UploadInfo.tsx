@@ -38,7 +38,8 @@ const UploadInfo: React.FC<UploadInfoProps> = ({
     >
       <div className="flex flex-col items-center justify-center pt-5 pb-6">
         <p>Drag and drop listing image here, or click to select files</p>
-        <em>(Only *.jpeg and *.png images will be accepted. Max 600x400px less than 100KB)</em>
+        <em>Only *.jpeg and *.png images will be accepted.</em>
+        <em>MUST be 1200x630px (HeightxWidth) Precisely and less than 750KB.</em>
       </div>
       <input
         ref={fileInputRef}
