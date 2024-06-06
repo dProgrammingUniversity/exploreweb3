@@ -211,8 +211,8 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
               src={listing.logo_url || defaultImageUrl}
               alt={listing.name}
               className="rounded-md object-cover object-center"
-              width={600}
-              height={400}
+              width={1200}
+              height={630}
             />
           </div>
         </div>
