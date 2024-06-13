@@ -4,7 +4,6 @@ It is a project with aim to create a platform to connect Solana projects team an
 
 Learn more at [Explore Solana](https://exploresolana.com/about)
 
-
 ## Explore Solana Uses Custom Template - Open Source Directory Template with Solid Design
 
 Explore Solana custom template is an open-source directory template built with Next.js, React, and TypeScript.
@@ -13,20 +12,17 @@ Created by [Solomon Foskaay](https://x.com/SolomonFoskaay) of [dProgrammingUnive
 
 I had to build the project from scratch (in about 2 months) after I bought a directory template from Themeforest that didn't work (Cool - I was able to get a refund!) and couldn't find free quality template out there with up-to-date integration with Nextjs /app directory.
 
+## Explore Solana Uses Custom Template
 
-## Explore Solana Uses Custom Template - Open Source Directory Template with Solid Design
-
-This project merges a custom directory design with the responsive shell from the Solid SaaS template to create a comprehensive platform for discovering Solana projects. 
+This project merges a custom directory design with the responsive shell from the Solid SaaS template to create a comprehensive platform for discovering Solana projects.
 
 The goal is to provide an intuitive, visually appealing, and functional directory for Solana projects, complete with necessary integrations and features.
 
-Solid is a free Next.js template specifically crafted for startups, SaaS, and software websites. It provides an extensive array of necessary sections, elements, and pages required to build a fully-equipped website. 
+Solid is a free Next.js template specifically crafted for startups, SaaS, and software websites. It provides an extensive array of necessary sections, elements, and pages required to build a fully-equipped website.
 
 This project leverages the responsive design from Solid while integrating a custom-built directory to suit the specific needs of the Solana community.
 
-___
-#### [Solid TEMPLATE](https://nextjstemplates.com/templates/solid)
-
+### [Solid TEMPLATE](https://nextjstemplates.com/templates/solid)
 
 ## Project Features
 
