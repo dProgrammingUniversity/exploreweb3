@@ -8,8 +8,9 @@ import { ThemeProvider } from "next-themes";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ToasterContext from "./context/ToastContext";
-import { GA_TRACKING_ID } from "@/utils/analytics/analytics";
-import Analytics from "@/components/Directory/Analytics/Analytics";
+import { GA_TRACKING_ID } from "@/utils/analytics/analytics"; //Google analytics
+import Analytics from "@/components/Directory/Analytics/Analytics"; //Google Analytics
+import { SpeedInsights } from '@vercel/speed-insights/next'; //Vercel Insight
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,6 +55,7 @@ export default function RootLayout({
           <Header />
           <ToasterContext />
           {children}
+          <SpeedInsights />
           <Footer />
           <ScrollToTop />
         </ThemeProvider>
