@@ -11,6 +11,7 @@ import ToasterContext from "./context/ToastContext";
 import { GA_TRACKING_ID } from "@/utils/analytics/analytics"; //Google analytics
 import Analytics from "@/components/Directory/Analytics/Analytics"; //Google Analytics
 import { SpeedInsights } from '@vercel/speed-insights/next'; //Vercel Insight
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react" //Vercel Analytics
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,6 +57,7 @@ export default function RootLayout({
           <ToasterContext />
           {children}
           <SpeedInsights />
+          <VercelAnalytics />
           <Footer />
           <ScrollToTop />
         </ThemeProvider>
