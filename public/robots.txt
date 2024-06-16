@@ -1,0 +1,18 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /dashboard/admin
+Disallow: /dashboard/create-listings
+Disallow: /dashboard/favorites
+Disallow: /dashboard/moderator
+Disallow: /dashboard/profile
+Disallow: /dashboard/update-password
+Disallow: /dashboard/user
+
+# Host
+Host: https://exploresolana.com
+
+# Sitemaps
+Sitemap: https://exploresolana.com/sitemap.xml
+Sitemap: https://exploresolana.com/sitemap/index.xml
