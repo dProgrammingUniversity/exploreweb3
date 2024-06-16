@@ -1,4 +1,4 @@
-// /app/listings-sitemap.xml/route.ts
+// /app/sitemap/directory-listings.xml/route.ts
 
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 import { createClient } from "@/utils/supabase/server";

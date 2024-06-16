@@ -3,7 +3,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
     siteUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://exploresolana.com',
-    generateRobotsTxt: false,
+    generateRobotsTxt: true,
     sitemapSize: 500,
     generateIndexSitemap: true,
     exclude: ['/dashboard/*'],
