@@ -10,8 +10,8 @@ import "./globals.css";
 import ToasterContext from "./context/ToastContext";
 import { GA_TRACKING_ID } from "@/utils/analytics/analytics"; //Google analytics
 import Analytics from "@/components/Directory/Analytics/Analytics"; //Google Analytics
-import { SpeedInsights } from '@vercel/speed-insights/next'; //Vercel Insight
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react" //Vercel Analytics
+import { SpeedInsights } from "@vercel/speed-insights/next"; //Vercel Insight
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"; //Vercel Analytics
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +44,13 @@ export default function RootLayout({
             />
           </>
         )}
+
+        {/* Umami Analytics */}
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="50665529-146d-4e5f-af3a-12b4ec4b363f"
+        ></script>
       </head>
       <body className={`dark:bg-black ${inter.className}`}>
         <Analytics />
