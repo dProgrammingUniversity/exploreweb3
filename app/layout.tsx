@@ -51,6 +51,12 @@ export default function RootLayout({
           src="https://cloud.umami.is/script.js"
           data-website-id="50665529-146d-4e5f-af3a-12b4ec4b363f"
         ></script>
+
+        {/* Google Analytics HTML Tag - for second account due to issues from above account - so if want to remove one of the analytics later, it should be this first */}
+        <meta
+          name="google-site-verification"
+          content="m-Q68-M51r-c7pPZWemHiBAepq7zp-AAqoFFg7K7sLY"
+        />
       </head>
       <body className={`dark:bg-black ${inter.className}`}>
         <Analytics />
