@@ -8,6 +8,7 @@ import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 import AuthButton from "./AuthButton";
 import SubmitProjectButton from "./SubmitProjectButton";
+import NotificationBar from "../NotificationBar";
 
 const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -37,6 +38,7 @@ const Header = () => {
           : ""
       }`}
     >
+      {/* <NotificationBar /> */}
       <div className="relative mx-auto max-w-c-1390 items-center justify-between px-4 md:px-8 xl:flex 2xl:px-0">
         <div className="flex w-full items-center justify-between xl:w-1/4">
           <a href="/">
@@ -180,6 +182,8 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <NotificationBar />
+
     </header>
   );
 };
