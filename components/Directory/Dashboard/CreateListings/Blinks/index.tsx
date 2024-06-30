@@ -17,6 +17,11 @@ interface Category {
   name: string;
 }
 
+interface ProjectList {
+  id: number;
+  name: string;
+}
+
 const CreateListingsBlinks = () => {
   // Initial form data state
   const initialFormData = {
@@ -77,6 +82,7 @@ const CreateListingsBlinks = () => {
   const [statuses, setStatuses] = useState([]);
   const [blinksRegistryStatusOptions, setBlinksRegistryStatusOptions] = useState([]);
   const [sourceCodeAccessOptions, setSourceCodeAccessOptions] = useState([]);
+  const [projectListOptions, setProjectListOptions] = useState<ProjectList[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
 
@@ -91,7 +97,9 @@ const CreateListingsBlinks = () => {
       if (error) {
         console.error("Error fetching categories:", error);
       } else {
-        setCategories(data);
+        // Sort the retrieved project list alphabetically before set in state
+        const sortedCategoriesData = data.sort((a, b) => a.name.localeCompare(b.name));
+        setCategories(sortedCategoriesData);
       }
     }
 
@@ -126,6 +134,20 @@ const CreateListingsBlinks = () => {
       }
     }
 
+    // Fetch project name and id
+    async function fetchProjectList() {
+      const { data, error } = await supabaseClient
+        .from("listings")
+        .select("id, name");
+      if (error) {
+        console.error("Error fetching listings:", error);
+      } else {
+        // Sort the retrieved project list alphabetically before set in state
+        const sortedProjectListData = data.sort((a, b) => a.name.localeCompare(b.name));
+        setProjectListOptions(sortedProjectListData);
+      }
+    }
+
     // Fetch user information and initial data
     const fetchData = async () => {
       const {
@@ -139,6 +161,7 @@ const CreateListingsBlinks = () => {
       fetchStatuses();
       fetchBlinksRegistryStatusOptions();
       fetchSourceCodeAccessOptions();
+      fetchProjectList();
     };
 
     fetchData();
@@ -391,6 +414,7 @@ const CreateListingsBlinks = () => {
       blinksRegistryStatusOptions={blinksRegistryStatusOptions}
       sourceCodeAccessOptions={sourceCodeAccessOptions}
       handleCategoryChange={handleCategoryChange}
+      projectListOptions={projectListOptions}
     />,
     <SocialMediaInfo
       formData={formData}

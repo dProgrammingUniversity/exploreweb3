@@ -1,5 +1,5 @@
 // /components/Directory/Dashboard/CreateListings/Blinks/ProjectInfo.tsx
-import React from 'react';
+import React, { useState } from 'react';
 
 const BlinksInfo = ({
   formData,
@@ -18,9 +18,30 @@ const BlinksInfo = ({
   loading,
   blinksRegistryStatusOptions,
   sourceCodeAccessOptions,
-  handleCategoryChange
+  handleCategoryChange,
+  projectListOptions,
 }) => (
   <>
+
+  {/* Project List Options dropdown input */}
+  <div className="flex flex-col">
+      <label htmlFor="project" className="mb-2 capitalize text-purple-500 text-xl">Project:</label>
+      <span className="text-sm text-gray-400 mb-1">Select the project this blink is associated with</span>
+      <select
+        id="project"
+        name="project"
+        value={formData.project}
+        onChange={handleInputChange}
+        className="border-2 border-gray-300 p-2 rounded bg-black text-white"
+      >
+        <option value="">Select a Project</option>
+        {projectListOptions.map((project) => (
+          <option key={project.id} value={project.id}>
+            {project.name}
+          </option>
+        ))}
+      </select>
+    </div>
 
   {/* Category 1 dropdown options */}
     <div className="col-span-full">
