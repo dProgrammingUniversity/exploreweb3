@@ -138,7 +138,7 @@ const CreateListingsProjects = () => {
       if (error) {
         console.error("Error fetching categories:", error);
       } else {
-        // Sort the retrieved project list alphabetically before set in state
+        // Sort the retrieved categories list alphabetically before set in state
         const sortedCategoriesData = data.sort((a, b) => a.name.localeCompare(b.name));
         setCategories(sortedCategoriesData);
       }
