@@ -1,75 +1,48 @@
 // /components/Directory/Dashboard/CreateListings/Blinks/BasicInfo.tsx
-import React from 'react';
+import React from "react";
 
-const BasicInfo = ({ formData, handleInputChange, statuses, loading }) => (
+const BasicInfo = ({
+  formData,
+  handleInputChange,
+  projectListOptions,
+}) => (
   <>
-    <div className="flex flex-col">
-      <label htmlFor="name" className="mb-2 capitalize text-purple-500 text-xl">Name:</label>
-      <span className="text-sm text-gray-400 mb-1">max of 50 characters</span>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        value={formData.name}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
-        disabled={loading}
-        placeholder="Enter name"
-      />
-    </div>
-
-    <div className="flex flex-col">
-      <label htmlFor="website" className="mb-2 capitalize text-purple-500 text-xl">Blinks URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresolana.com</span>
-      <input
-        type="text"
-        id="website"
-        name="website"
-        value={formData.blinks_url}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
-        disabled={loading}
-        placeholder="Enter blinks url"
-      />
-    </div>
-
-    <div key="year_founded" className="flex flex-col">
-      <label htmlFor="year_founded" className="mb-2 capitalize text-purple-500 text-xl">Year Created:</label>
-      <span className="text-sm text-gray-400 mb-1">when this blinks was launched</span>
-      <input
-        type="number"
-        id="year_created"
-        name="year_created"
-        value={formData.year_created}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
-        disabled={loading}
-        placeholder="YYYY"
-        min="2024"
-        max={new Date().getFullYear()}
-      />
-    </div>
-
-    <div className="flex flex-col">
-      <label htmlFor="status" className="mb-2 capitalize text-purple-500 text-xl">Status:</label>
-      <span className="text-sm text-gray-400 mb-1">current status of the blinks</span>
-      <select
-        id="status"
-        name="status"
-        value={formData.status || ""}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
+    {/* Project List Options dropdown input */}
+    <div className="col-span-full">
+      <label
+        htmlFor="project"
+        className="mb-2 text-xl capitalize text-purple-500"
       >
-        <option value="">Select Status</option>
-        {statuses.map((status) => (
-          <option key={status} value={status}>
-            {status}
+        Project:
+      </label>
+      <br />
+      <span className="mb-2  text-gray-400">
+        Select the project this blink is associated with.
+        <br />
+        To maintain quality listings, Blinks need to be associated with an existing Solana project or it will not be approved. 
+        <br /> 
+        If your associated project not listed yet. Kindly, submit it 
+        <a href='/dashboard/create-listings/projects'>
+        {" "}  <b>Here</b> and have is listed first before submitting the Blinks associated with it.
+        </a>
+      </span>
+      <select
+        id="project"
+        name="project"
+        value={formData.project}
+        onChange={handleInputChange}
+        className="w-full rounded border-2 border-gray-300 bg-black p-2 text-white"
+      >
+        <option value="">Select a Project</option>
+        {projectListOptions.map((project) => (
+          <option key={project.id} value={project.id}>
+            {project.name}
           </option>
         ))}
       </select>
     </div>
+
   </>
 );
 
 export default BasicInfo;
-

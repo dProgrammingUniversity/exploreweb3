@@ -388,17 +388,25 @@ const CreateListingsBlinks = () => {
 
   const [currentStep, setCurrentStep] = useState(0);
 
+  const handleNextStep = () => {
+    if (currentStep === 0 && !formData.project) {
+      setMessage({ text: "Please select a project before proceeding.", type: "error" });
+      return;
+    }
+    setCurrentStep(currentStep + 1);
+  };
+
   // Steps for the multi-step form
   const steps = [
     <BasicInfo
       formData={formData}
       handleInputChange={handleInputChange}
-      statuses={statuses}
-      loading={loading}
-    />,
-    <BlinksInfo
+      projectListOptions={projectListOptions}
+      />,
+      <BlinksInfo
       formData={formData}
       handleInputChange={handleInputChange}
+      statuses={statuses}
       categories={categories}
       selectedCategory1={selectedCategory1}
       setSelectedCategory1={setSelectedCategory1}
@@ -413,8 +421,7 @@ const CreateListingsBlinks = () => {
       loading={loading}
       blinksRegistryStatusOptions={blinksRegistryStatusOptions}
       sourceCodeAccessOptions={sourceCodeAccessOptions}
-      handleCategoryChange={handleCategoryChange}
-      projectListOptions={projectListOptions}
+      handleCategoryChange={handleCategoryChange}      
     />,
     <SocialMediaInfo
       formData={formData}
@@ -459,87 +466,92 @@ const CreateListingsBlinks = () => {
 
   return (
     <>
-      <div className="flex w-full flex-1 flex-col items-center px-4 py-6">
-        <div className="w-full max-w-4xl rounded bg-gray-700 p-5 shadow">
-          <div className="col-span-full mb-4">
-            <div className="mb-2 flex flex-wrap items-center justify-between">
-              {stepTitles.map((title, index) => (
-                <div
-                  key={index}
-                  className={`rounded p-2 ${currentStep === index ? "bg-green-500 text-white" : "bg-gray-500 text-gray-300"} mb-2 cursor-pointer`} // Added cursor-pointer for better UX
-                  onClick={() => setCurrentStep(index)} // Added onClick handler
-                >
-                  {index + 1}. {title}
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-white">
-              {stepSummaries[currentStep]}
-            </p>
+    <div className="flex w-full flex-1 flex-col items-center px-4 py-6">
+      <div className="w-full max-w-4xl rounded bg-gray-700 p-5 shadow">
+        <div className="col-span-full mb-4">
+          <div className="mb-2 flex flex-wrap items-center justify-between">
+            {stepTitles.map((title, index) => (
+              <div
+                key={index}
+                className={`rounded p-2 ${currentStep === index ? "bg-green-500 text-white" : "bg-gray-500 text-gray-300"} mb-2 cursor-pointer`} 
+                onClick={() => {
+                  if (index === 0 || formData.project) {
+                    setCurrentStep(index);
+                  }
+                }}
+              >
+                {index + 1}. {title}
+              </div>
+            ))}
           </div>
-          <form className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {steps[currentStep]}
-          </form>
-          <div className="col-span-full mt-4 flex justify-between">
-            {currentStep > 0 && (
-              <button
-                type="button"
-                className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
-                onClick={() => setCurrentStep(currentStep - 1)}
-              >
-                Previous
-              </button>
-            )}
-            {currentStep < steps.length - 1 ? (
-              <button
-                type="button"
-                className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
-                onClick={() => setCurrentStep(currentStep + 1)}
-              >
-                Next
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="btn mx-auto mt-6 rounded bg-green-500 p-2 text-white hover:bg-green-700"
-                onClick={handleSubmit}
-                disabled={loading}
-              >
-                Submit
-              </button>
-            )}
+          <p className="text-center text-white">
+            {stepSummaries[currentStep]}
+          </p>
+        </div>
+        <form className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {steps[currentStep]}
+        </form>
+        <div className="col-span-full mt-4 flex justify-between">
+          {currentStep > 0 && (
             <button
               type="button"
-              className="btn rounded bg-yellow-500 p-2 text-white hover:bg-yellow-700"
-              onClick={saveDraft}
+              className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
+              onClick={() => setCurrentStep(currentStep - 1)}
             >
-              Save Draft
+              Previous
             </button>
-          </div>
-          {message && (
-            <motion.div
-              className="col-span-full mt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <p
-                className={`text-m ${
-                  message.type === "error"
-                    ? "text-red-500"
-                    : message.type === "success"
-                      ? "text-green-500"
-                      : "text-yellow-500"
-                }`}
-              >
-                {message.text}
-              </p>
-            </motion.div>
           )}
+          {currentStep < steps.length - 1 ? (
+            <button
+              type="button"
+              className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
+              onClick={() => setCurrentStep(currentStep + 1)}
+              disabled={!formData.project}
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn mx-auto mt-6 rounded bg-green-500 p-2 text-white hover:bg-green-700"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              Submit
+            </button>
+          )}
+          <button
+            type="button"
+            className="btn rounded bg-yellow-500 p-2 text-white hover:bg-yellow-700"
+            onClick={saveDraft}
+          >
+            Save Draft
+          </button>
         </div>
+        {message && (
+          <motion.div
+            className="col-span-full mt-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p
+              className={`text-m ${
+                message.type === "error"
+                  ? "text-red-500"
+                  : message.type === "success"
+                    ? "text-green-500"
+                    : "text-yellow-500"
+              }`}
+            >
+              {message.text}
+            </p>
+          </motion.div>
+        )}
       </div>
-    </>
+    </div>
+  </>
   );
 };
 
