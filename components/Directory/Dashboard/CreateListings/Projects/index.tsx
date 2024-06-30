@@ -474,7 +474,7 @@ const CreateListingsProjects = () => {
       setSelectedCategory2={setSelectedCategory2}
       selectedCategory3={selectedCategory3}
       setSelectedCategory3={setSelectedCategory3}
-      selectedCategory4={setSelectedCategory4}
+      selectedCategory4={selectedCategory4}
       setSelectedCategory4={setSelectedCategory4}
       selectedCategory5={selectedCategory5}
       setSelectedCategory5={setSelectedCategory5}

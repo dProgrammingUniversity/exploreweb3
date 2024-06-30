@@ -269,3 +269,96 @@ interface AnalyticsEventParams {
   label: string;
   value: number;
 }
+
+/*
+TYPE DEFINITION 11: 
+Define a type for Blinks listing data and it can be used anywhere in the app 
+to fix listings type errors
+*/
+type DisplayListingBlinksTypes = {
+  id: number;
+  name: string;
+  moderation_status: string;
+  status: string;
+  short_description: string;
+  blinks_registry_status: string;
+  blinks_url: string;
+  blinks_actions_json_url: string;
+  source_code_access: string;
+  blinks_actions_repo_url: string;
+  category: string;
+  category_1: string;
+  category_2: string;
+  category_3: string;
+  category_4: string;
+  category_5: string;
+  category_1_name?: string;
+  category_2_name?: string;
+  category_3_name?: string;
+  category_4_name?: string;
+  category_5_name?: string;
+  project: string;
+  year_created: number;
+  image_url: string;
+  demo_url: string;
+  created_at: string;
+  updated_at: string;
+  slug: string;
+  team_1_name: string;
+  team_1_x_url: string;
+  team_1_linkedin_url: string;
+  team_2_name: string;
+  team_2_x_url: string;
+  team_2_linkedin_url: string;
+  team_all_x_url: string;
+  team_all_linkedin_url: string;
+  team_all_website_url: string;
+};
+
+/*
+TYPE DEFINITION 12: 
+Define a type for Blinks listing data and it can be used anywhere in the app 
+to fix listings type errors
+
+NOTE: commented out  like "id" means not needed for this form submission types
+and leaving it there might cause error during form submission
+*/
+type CreateListingBlinksTypes = {
+  // id: number;
+  name: string;
+  moderation_status: string;
+  status: string;
+  short_description: string;
+  blinks_registry_status: string;
+  blinks_url: string;
+  blinks_actions_json_url: string;
+  source_code_access: string;
+  blinks_actions_repo_url: string;
+  category: string;
+  category_1: string;
+  category_2: string;
+  category_3: string;
+  category_4: string;
+  category_5: string;
+  category_1_name?: string;
+  category_2_name?: string;
+  category_3_name?: string;
+  category_4_name?: string;
+  category_5_name?: string;
+  project: string;
+  year_created: number;
+  image_url: string;
+  demo_url: string;
+  // created_at: string;
+  // updated_at: string;
+  // slug: string;
+  team_1_name: string;
+  team_1_x_url: string;
+  team_1_linkedin_url: string;
+  team_2_name: string;
+  team_2_x_url: string;
+  team_2_linkedin_url: string;
+  team_all_x_url: string;
+  team_all_linkedin_url: string;
+  team_all_website_url: string;
+};

@@ -19,55 +19,40 @@ const BasicInfo = ({ formData, handleInputChange, statuses, loading }) => (
     </div>
 
     <div className="flex flex-col">
-      <label htmlFor="keyword" className="mb-2 capitalize text-purple-500 text-xl">Keyword:</label>
-      <span className="text-sm text-gray-400 mb-1">format sol, wallet, swap</span>
-      <input
-        type="text"
-        id="keyword"
-        name="keyword"
-        value={formData.keyword}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
-        disabled={loading}
-        placeholder="Enter keyword"
-      />
-    </div>
-
-    <div className="flex flex-col">
-      <label htmlFor="website" className="mb-2 capitalize text-purple-500 text-xl">Website:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz</span>
+      <label htmlFor="website" className="mb-2 capitalize text-purple-500 text-xl">Blinks URL:</label>
+      <span className="text-sm text-gray-400 mb-1">format https://exploresolana.com</span>
       <input
         type="text"
         id="website"
         name="website"
-        value={formData.website}
+        value={formData.blinks_url}
         onChange={handleInputChange}
         className="border-2 border-gray-300 p-2 rounded bg-black"
         disabled={loading}
-        placeholder="Enter website"
+        placeholder="Enter blinks url"
       />
     </div>
 
     <div key="year_founded" className="flex flex-col">
-      <label htmlFor="year_founded" className="mb-2 capitalize text-purple-500 text-xl">Year Founded:</label>
-      <span className="text-sm text-gray-400 mb-1">when project launched</span>
+      <label htmlFor="year_founded" className="mb-2 capitalize text-purple-500 text-xl">Year Created:</label>
+      <span className="text-sm text-gray-400 mb-1">when this blinks was launched</span>
       <input
         type="number"
-        id="year_founded"
-        name="year_founded"
-        value={formData.year_founded}
+        id="year_created"
+        name="year_created"
+        value={formData.year_created}
         onChange={handleInputChange}
         className="border-2 border-gray-300 p-2 rounded bg-black"
         disabled={loading}
         placeholder="YYYY"
-        min="1900"
+        min="2024"
         max={new Date().getFullYear()}
       />
     </div>
 
     <div className="flex flex-col">
       <label htmlFor="status" className="mb-2 capitalize text-purple-500 text-xl">Status:</label>
-      <span className="text-sm text-gray-400 mb-1">current status of the project</span>
+      <span className="text-sm text-gray-400 mb-1">current status of the blinks</span>
       <select
         id="status"
         name="status"

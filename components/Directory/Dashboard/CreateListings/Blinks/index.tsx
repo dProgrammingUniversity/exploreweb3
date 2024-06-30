@@ -6,10 +6,8 @@ import { createClient } from "@/utils/supabase/client";
 import axios from "axios";
 import { motion } from "framer-motion";
 import BasicInfo from "./BasicInfo";
-import ProjectInfo from "./ProjectInfo";
+import BlinksInfo from "./BlinksInfo";
 import SocialMediaInfo from "./SocialMediaInfo";
-import SupportInfo from "./SupportInfo";
-import DownloadInfo from "./DownloadInfo";
 import UploadInfo from "./UploadInfo";
 import TeamInfo from "./TeamInfo"; // Import the new TeamInfo component
 
@@ -22,75 +20,34 @@ interface Category {
 const CreateListingsBlinks = () => {
   // Initial form data state
   const initialFormData = {
-    name: "",
-    logo_url: "",
-    category_1: "",
-    category_2: "",
-    category_3: "",
-    category_4: "",
-    category_5: "",
-    status: "",
-    keyword: "",
-    year_founded: 2050,
-    short_description: "",
-    full_description: "",
-    website: "",
-    twitter: "",
-    discord: "",
-    telegram: "",
-    youtube: "",
-    pros: "",
-    cons: "",
-    team: "",
-    governance: "",
-    blockchain: "",
-    use_case: "",
-    pricing: "",
-    roadmap_url: "",
-    whitepaper_url: "",
-    nft_collection: "",
-    nft_collection_url: "",
-    tokenomic: "",
-    token_name: "",
-    demo_url: "",
-    moderation_status: "pending",
-    github_url: "",
-    documentation_url: "",
-    support_website_url: "",
-    support_livechat_url: "",
-    support_email: "",
-    support_discord_url: "",
-    support_twitter_url: "",
-    support_telegram_url: "",
-    download_google_play_url: "",
-    download_apple_app_store_url: "",
-    download_solana_dapp_store_url: "",
-    download_chrome_extension_url: "",
-    download_website_url: "",
-    faq_url: "",
-    source_code_access: "",
-    linkedin: "",
-    job_url: "",
-    bounty_url: "",
-    grant_url: "",
-    team_1_name: "",
-    team_1_x_url: "",
-    team_1_linkedin_url: "",
-    team_2_name: "",
-    team_2_x_url: "",
-    team_2_linkedin_url: "",
-    team_3_name: "",
-    team_3_x_url: "",
-    team_3_linkedin_url: "",
-    team_4_name: "",
-    team_4_x_url: "",
-    team_4_linkedin_url: "",
-    team_5_name: "",
-    team_5_x_url: "",
-    team_5_linkedin_url: "",
-    team_all_x_url: "",
-    team_all_linkedin_url: "",
-    team_all_website_url: "",
+  name: "",
+  moderation_status: "pending",
+  short_description: "",
+  blinks_registry_status: "",
+  blinks_url: "",
+  blinks_actions_json_url: "",
+  source_code_access: "",
+  blinks_actions_repo_url: "",
+  category: "",
+  category_1: "",
+  category_2: "",
+  category_3: "",
+  category_4: "",
+  category_5: "",
+  status: "",
+  project: "",
+  image_url: "",
+  demo_url: "",
+  team_1_name: "",
+  team_1_x_url: "",
+  team_1_linkedin_url: "",
+  team_2_name: "",
+  team_2_x_url: "",
+  team_2_linkedin_url: "",
+  team_all_x_url: "",
+  team_all_linkedin_url: "",
+  team_all_website_url: "",
+  year_created: 2050,
   };
 
   // State variables
@@ -118,11 +75,7 @@ const CreateListingsBlinks = () => {
     null,
   );
   const [statuses, setStatuses] = useState([]);
-  const [pricingOptions, setPricingOptions] = useState([]);
-  const [blockchainOptions, setBlockchainOptions] = useState([]);
-  const [tokenomicOptions, setTokenomicOptions] = useState([]);
-  const [nftcollectionOptions, setNftCollectionOptions] = useState([]);
-  const [governanceOptions, setGovernanceOptions] = useState([]);
+  const [blinksRegistryStatusOptions, setBlinksRegistryStatusOptions] = useState([]);
   const [sourceCodeAccessOptions, setSourceCodeAccessOptions] = useState([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
@@ -151,54 +104,14 @@ const CreateListingsBlinks = () => {
       }
     }
 
-    async function fetchPricingOptions() {
-      const { data, error } = await supabaseClient.rpc("enum_pricing_values");
-      if (error) {
-        console.error("Error fetching pricing options:", error);
-      } else {
-        setPricingOptions(data);
-      }
-    }
-
-    async function fetchBlockchainOptions() {
+    async function fetchBlinksRegistryStatusOptions() {
       const { data, error } = await supabaseClient.rpc(
-        "enum_blockchain_values",
+        "enum_blinks_registry_status_values",
       );
       if (error) {
-        console.error("Error fetching blockchain options:", error);
+        console.error("Error fetching Official Blinks Registry Status Options:", error);
       } else {
-        setBlockchainOptions(data);
-      }
-    }
-
-    async function fetchTokenomicOptions() {
-      const { data, error } = await supabaseClient.rpc("enum_tokenomic_values");
-      if (error) {
-        console.error("Error fetching tokenomic options:", error);
-      } else {
-        setTokenomicOptions(data);
-      }
-    }
-
-    async function fetchNftCollectionOptions() {
-      const { data, error } = await supabaseClient.rpc(
-        "enum_nft_collection_values",
-      );
-      if (error) {
-        console.error("Error fetching NFT Collection options:", error);
-      } else {
-        setNftCollectionOptions(data);
-      }
-    }
-
-    async function fetchGovernanceOptions() {
-      const { data, error } = await supabaseClient.rpc(
-        "enum_governance_values",
-      );
-      if (error) {
-        console.error("Error fetching Governance options:", error);
-      } else {
-        setGovernanceOptions(data);
+        setBlinksRegistryStatusOptions(data);
       }
     }
 
@@ -224,11 +137,7 @@ const CreateListingsBlinks = () => {
       }
       fetchCategories();
       fetchStatuses();
-      fetchPricingOptions();
-      fetchBlockchainOptions();
-      fetchTokenomicOptions();
-      fetchNftCollectionOptions();
-      fetchGovernanceOptions();
+      fetchBlinksRegistryStatusOptions();
       fetchSourceCodeAccessOptions();
     };
 
@@ -464,7 +373,7 @@ const CreateListingsBlinks = () => {
       statuses={statuses}
       loading={loading}
     />,
-    <ProjectInfo
+    <BlinksInfo
       formData={formData}
       handleInputChange={handleInputChange}
       categories={categories}
@@ -474,30 +383,16 @@ const CreateListingsBlinks = () => {
       setSelectedCategory2={setSelectedCategory2}
       selectedCategory3={selectedCategory3}
       setSelectedCategory3={setSelectedCategory3}
-      selectedCategory4={setSelectedCategory4}
+      selectedCategory4={selectedCategory4}
       setSelectedCategory4={setSelectedCategory4}
       selectedCategory5={selectedCategory5}
       setSelectedCategory5={setSelectedCategory5}
       loading={loading}
-      blockchainOptions={blockchainOptions}
-      tokenomicOptions={tokenomicOptions}
-      nftcollectionOptions={nftcollectionOptions}
-      governanceOptions={governanceOptions}
+      blinksRegistryStatusOptions={blinksRegistryStatusOptions}
       sourceCodeAccessOptions={sourceCodeAccessOptions}
-      pricingOptions={pricingOptions}
       handleCategoryChange={handleCategoryChange}
     />,
     <SocialMediaInfo
-      formData={formData}
-      handleInputChange={handleInputChange}
-      loading={loading}
-    />,
-    <SupportInfo
-      formData={formData}
-      handleInputChange={handleInputChange}
-      loading={loading}
-    />,
-    <DownloadInfo
       formData={formData}
       handleInputChange={handleInputChange}
       loading={loading}
@@ -524,22 +419,18 @@ const CreateListingsBlinks = () => {
   // Titles and summaries for each step
   const stepTitles = [
     "Basic Info",
-    "Project Info",
+    "Blinks Info",
     "Social Media Info",
-    "Support Info",
-    "Download Info",
     "Team Info", // Add the new step title here
     "Upload Image",
   ];
 
   const stepSummaries = [
-    "Enter the basic information about your project.",
-    "Provide detailed information about your project.",
-    "Share social media account links for your project.",
-    "Enter support-related details for your project.",
-    "Provide download links for your project.",
+    "Enter the basic information about your blinks.",
+    "Provide detailed information about your blinks.",
+    "Share social media account links for your blinks.",
     "Enter team information.", // Add the new step summary here
-    "Upload the project logo or screenshot (must be 600(Width)x400(Height)px).",
+    "Upload the blinks screenshot (must be 600(Width)x400(Height)px).",
   ];
 
   return (
