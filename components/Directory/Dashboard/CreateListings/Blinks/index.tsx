@@ -19,7 +19,7 @@ interface Category {
   name: string;
 }
 
-const CreateListingsProjects = () => {
+const CreateListingsBlinks = () => {
   // Initial form data state
   const initialFormData = {
     name: "",
@@ -628,4 +628,4 @@ const CreateListingsProjects = () => {
   );
 };
 
-export default CreateListingsProjects;
+export default CreateListingsBlinks;

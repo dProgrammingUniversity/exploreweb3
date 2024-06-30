@@ -1,7 +1,7 @@
 // /app/dashboard/create-listings/blinks/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import CreateListingsProjects from "@/components/Directory/Dashboard/CreateListings/Projects";
+import CreateListingsBlinks from "@/components/Directory/Dashboard/CreateListings/Blinks";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
@@ -80,7 +80,7 @@ const CreateListingsPage = async () => {
             </div>
           </div>
 
-          <CreateListingsProjects />
+          <CreateListingsBlinks />
         </div>
       </section>
     </>
