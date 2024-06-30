@@ -1,13 +1,14 @@
-// /app/dashboard/create-listings/page.tsx
+// /app/dashboard/create-listings/blinks/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import CreateListingsProjects from "@/components/Directory/Dashboard/CreateListings/Projects";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Create Listings - Explore Solana",
-  description: "Add your Solana project or Blink to Explore Solana platform",
+  title: "Create Listings For Blinks - Explore Solana",
+  description: "Add your Solana project to Explore Solana platform",
   // other metadata
 };
 
@@ -64,38 +65,22 @@ const CreateListingsPage = async () => {
               Back
             </Link>
           </div>
-
+          
           <h1 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-            CREATE LISTINGS - DASHBOARD PAGE
+            CREATE BLINKS LISTINGS - DASHBOARD PAGE
           </h1>
 
           <div className="mb-5 text-center">
-            <div>Welcome to Explore Solana!</div>
+            <div>Use this to add a Solana Blink.</div>
             <div>
-              There are multiple explorers and directories on Explore Solana
-              that you can submit your listings to.
-            </div>
-            <div>
-              Please select one that match
-              your listings type to get started 
-              <br />
-              (Submitting Blinks for example as
-              a projects listings will be rejected and deleted not moved over to
-              blinks because they are separate directories):
-            </div>
-            <div className="mt-4">
-              <button className="m-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-                <Link href="/dashboard/create-listings/projects">
-                  Create Listings For Project
-                </Link>
-              </button>
-              <button className="m-2 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">
-                <Link href="/dashboard/create-listings/blinks">
-                  Create Listings For Blinks
-                </Link>
-              </button>
+              Want to earn adding Solana blinks? {"=>"}
+              <span className="text-green-500">
+                <Link href="/earn"> Start Earning!</Link>
+              </span>
             </div>
           </div>
+
+          <CreateListingsProjects />
         </div>
       </section>
     </>

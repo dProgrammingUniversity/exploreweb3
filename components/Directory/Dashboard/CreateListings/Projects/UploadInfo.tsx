@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/UploadInfo.tsx
+// /components/Directory/Dashboard/CreateListings/Projects/UploadInfo.tsx
 import React from 'react';
 
 interface UploadInfoProps {

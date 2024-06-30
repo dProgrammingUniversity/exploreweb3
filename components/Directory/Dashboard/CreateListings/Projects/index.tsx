@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/index.tsx
+// /components/Directory/Dashboard/CreateListings/Projects/index.tsx
 
 "use client";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
@@ -19,7 +19,7 @@ interface Category {
   name: string;
 }
 
-const CreateListings = () => {
+const CreateListingsProjects = () => {
   // Initial form data state
   const initialFormData = {
     name: "",
@@ -628,4 +628,4 @@ const CreateListings = () => {
   );
 };
 
-export default CreateListings;
+export default CreateListingsProjects;
