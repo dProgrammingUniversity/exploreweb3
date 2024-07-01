@@ -190,7 +190,7 @@ const CreateListingsBlinks = () => {
 
   // Load draft from the database
   const loadDraft = async (userId: string) => {
-    const { data, error } = await supabaseClient.rpc("get_draft", {
+    const { data, error } = await supabaseClient.rpc("blinks_get_draft", {
       user_uuid: userId,
     });
 
@@ -203,7 +203,7 @@ const CreateListingsBlinks = () => {
       setSelectedCategory4(draft.category_4);
       setSelectedCategory5(draft.category_5);
     } else if (error) {
-      console.error("Error loading draft:", error);
+      console.error("Error loading Blinks draft:", error);
     }
   };
 
@@ -220,7 +220,7 @@ const CreateListingsBlinks = () => {
       category_5: selectedCategory5,
     };
 
-    const { error } = await supabaseClient.rpc("save_draft", {
+    const { error } = await supabaseClient.rpc("blinks_save_draft", {
       user_uuid: userId,
       form: draftData,
     });
@@ -402,7 +402,7 @@ const CreateListingsBlinks = () => {
     if (!userId) return;
 
     const { error } = await supabaseClient
-      .from("listings_drafts")
+      .from("blinks_drafts")
       .delete()
       .eq("user_id", userId);
 
@@ -547,6 +547,8 @@ const CreateListingsBlinks = () => {
               Save Draft
             </button>
           </div>
+
+          {/* Display feedback messages */}
           {message && (
             <motion.div
               className="col-span-full mt-2"
