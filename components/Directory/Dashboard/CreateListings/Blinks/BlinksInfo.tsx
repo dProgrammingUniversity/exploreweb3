@@ -45,7 +45,7 @@ const BlinksInfo = ({
     {/* Blinks URL input */}
     <div className="flex flex-col">
       <label
-        htmlFor="website"
+        htmlFor="blinks_url"
         className="mb-2 text-xl capitalize text-purple-500"
       >
         Blinks URL:
@@ -55,8 +55,8 @@ const BlinksInfo = ({
       </span>
       <input
         type="text"
-        id="website"
-        name="website"
+        id="blinks_url"
+        name="blinks_url"
         value={formData.blinks_url}
         onChange={handleInputChange}
         className="rounded border-2 border-gray-300 bg-black p-2"

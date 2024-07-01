@@ -196,7 +196,6 @@ const CreateListingsBlinks = () => {
     });
   
     if (data && data.length > 0) {
-      console.log("Draft retrieved successfully:", data); // Console log
       const draft = data[0].form_data;
       setFormData(draft);
       setSelectedCategory1(draft.category_1);
@@ -362,7 +361,7 @@ const CreateListingsBlinks = () => {
 
     const submissionData = {
       ...formData,
-      logo_url: imageUrl,
+      image_url: imageUrl,
       category_1: selectedCategory1 ? parseInt(selectedCategory1) : null,
       category_2: selectedCategory2 ? parseInt(selectedCategory2) : null,
       category_3: selectedCategory3 ? parseInt(selectedCategory3) : null,
@@ -372,12 +371,12 @@ const CreateListingsBlinks = () => {
 
     try {
       const { data, error } = await supabaseClient
-        .from("listings")
+        .from("blinks")
         .insert([submissionData]);
       if (error) {
         throw error;
       }
-      setMessage({ text: "Listing added successfully!", type: "success" });
+      setMessage({ text: "Blinks listing added successfully!", type: "success" });
       setLoading(false);
       setFormData(initialFormData);
       setImage(null);
