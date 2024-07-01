@@ -189,12 +189,14 @@ const CreateListingsBlinks = () => {
   }, [formData]);
 
   // Load draft from the database
+  
   const loadDraft = async (userId: string) => {
     const { data, error } = await supabaseClient.rpc("blinks_get_draft", {
       user_uuid: userId,
     });
-
-    if (data) {
+  
+    if (data && data.length > 0) {
+      console.log("Draft retrieved successfully:", data); // Console log
       const draft = data[0].form_data;
       setFormData(draft);
       setSelectedCategory1(draft.category_1);
@@ -204,8 +206,12 @@ const CreateListingsBlinks = () => {
       setSelectedCategory5(draft.category_5);
     } else if (error) {
       console.error("Error loading Blinks draft:", error);
+    } else {
+      console.log("No draft found for user:");
     }
   };
+  
+  
 
   // Save draft to the database
   const saveDraft = async () => {
@@ -411,16 +417,6 @@ const CreateListingsBlinks = () => {
 
   const [currentStep, setCurrentStep] = useState(0);
 
-  const handleNextStep = () => {
-    if (currentStep === 0 && !formData.project) {
-      setMessage({
-        text: "Please select a project before proceeding.",
-        type: "error",
-      });
-      return;
-    }
-    setCurrentStep(currentStep + 1);
-  };
 
   // Steps for the multi-step form
   const steps = [
