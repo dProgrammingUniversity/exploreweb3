@@ -286,7 +286,6 @@ type DisplayListingBlinksTypes = {
   blinks_actions_json_url: string;
   source_code_access: string;
   blinks_actions_repo_url: string;
-  category: string;
   category_1: string;
   category_2: string;
   category_3: string;
@@ -335,7 +334,6 @@ type CreateListingBlinksTypes = {
   blinks_actions_json_url: string;
   source_code_access: string;
   blinks_actions_repo_url: string;
-  category: string;
   category_1: string;
   category_2: string;
   category_3: string;

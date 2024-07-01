@@ -541,7 +541,7 @@ const CreateListingsProjects = () => {
     "Enter support-related details for your project.",
     "Provide download links for your project.",
     "Enter team information.", // Add the new step summary here
-    "Upload the project logo or screenshot (must be 600(Width)x400(Height)px).",
+    "Upload the project logo or screenshot (must be 1200(Width)x630(Height)px).",
   ];
 
   return (

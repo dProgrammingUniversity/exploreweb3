@@ -27,7 +27,6 @@ const CreateListingsBlinks = () => {
     blinks_actions_json_url: "",
     source_code_access: "",
     blinks_actions_repo_url: "",
-    category: "",
     category_1: "",
     category_2: "",
     category_3: "",
@@ -341,7 +340,7 @@ const CreateListingsBlinks = () => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET!);
+      formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET_BLINKS!);
 
       try {
         const response = await axios.post(
@@ -475,7 +474,7 @@ const CreateListingsBlinks = () => {
     "Select Project your Blinks is connected to.",
     "Provide detailed information about your blinks.",
     "Share platform(s) your blinks can be accessed from.",
-    "Upload the blinks screenshot (must be 600(Width)x400(Height)px).",
+    "Upload the blinks screenshot (must be 800(Width)x800(Height)px).",
   ];
 
   return (
