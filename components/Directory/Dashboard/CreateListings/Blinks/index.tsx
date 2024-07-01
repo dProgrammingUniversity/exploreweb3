@@ -7,7 +7,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import BasicInfo from "./BasicInfo";
 import BlinksInfo from "./BlinksInfo";
-import SocialMediaInfo from "./SocialMediaInfo";
+import PlatformInfo from "./PlatformInfo";
 import UploadInfo from "./UploadInfo";
 import TeamInfo from "./TeamInfo"; // Import the new TeamInfo component
 
@@ -423,7 +423,7 @@ const CreateListingsBlinks = () => {
       sourceCodeAccessOptions={sourceCodeAccessOptions}
       handleCategoryChange={handleCategoryChange}      
     />,
-    <SocialMediaInfo
+    <PlatformInfo
       formData={formData}
       handleInputChange={handleInputChange}
       loading={loading}
@@ -451,7 +451,7 @@ const CreateListingsBlinks = () => {
   const stepTitles = [
     "Basic Info",
     "Blinks Info",
-    "Social Media Info",
+    "Platform Info",
     "Team Info", // Add the new step title here
     "Upload Image",
   ];
@@ -459,7 +459,7 @@ const CreateListingsBlinks = () => {
   const stepSummaries = [
     "Enter the basic information about your blinks.",
     "Provide detailed information about your blinks.",
-    "Share social media account links for your blinks.",
+    "Share platform(s) your blinks can be accessed from.",
     "Enter team information.", // Add the new step summary here
     "Upload the blinks screenshot (must be 600(Width)x400(Height)px).",
   ];

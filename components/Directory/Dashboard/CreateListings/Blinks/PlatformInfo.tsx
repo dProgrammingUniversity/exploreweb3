@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
+const PlatformInfo = ({ formData, handleInputChange, loading }) => (
   <>
 
   {/* Twitter input box */}
@@ -87,4 +87,4 @@ const SocialMediaInfo = ({ formData, handleInputChange, loading }) => (
   </>
 );
 
-export default SocialMediaInfo;
+export default PlatformInfo;

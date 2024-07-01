@@ -21,7 +21,7 @@ const BasicInfo = ({
         <br />
         To maintain quality listings, Blinks need to be associated with an existing Solana project or it will not be approved. 
         <br /> 
-        If your associated project not listed yet. Kindly, submit it 
+        If your associated project not listed yet on Explore Solana. Kindly, submit it 
         <a href='/dashboard/create-listings/projects'>
         {" "}  <b>Here</b> and have is listed first before submitting the Blinks associated with it.
         </a>

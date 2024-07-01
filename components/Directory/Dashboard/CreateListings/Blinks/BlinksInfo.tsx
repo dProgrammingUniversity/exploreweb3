@@ -276,6 +276,7 @@ const BlinksInfo = ({
       />
     </div>
     
+    {/* Demo video url input */}
     <div className="flex flex-col">
       <label htmlFor="demo_url" className="mb-2 capitalize text-purple-500 text-xl">Video Demo URL:</label>
       <span className="text-sm text-gray-400 mb-1">format https://youtube.com/video</span>
@@ -291,40 +292,7 @@ const BlinksInfo = ({
       />
     </div>
 
-    <div className="flex flex-col">
-      <label htmlFor="token_name" className="mb-2 capitalize text-purple-500 text-xl">Token Name:</label>
-      <span className="text-sm text-gray-400 mb-1">ticker only like - Sol</span>
-      <input
-        type="text"
-        id="token_name"
-        name="token_name"
-        value={formData.token_name}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
-        disabled={loading}
-        placeholder="Enter token name"
-      />
-    </div>
-
-    <div className="flex flex-col">
-      <label htmlFor="nft_collection_url" className="mb-2 capitalize text-purple-500 text-xl">NFT Collection URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://tensor.trade/trade/nftname</span>
-      <input
-        type="text"
-        id="nft_collection_url"
-        name="nft_collection_url"
-        value={formData.nft_collection_url}
-        onChange={handleInputChange}
-        className="border-2 border-gray-300 p-2 rounded bg-black"
-        disabled={loading}
-        placeholder="Enter NFT collection URL"
-      />
-    </div>
-
-   
-
-
-
+    {/* Short description input */}
     <div className="flex flex-col col-span-full">
       <label htmlFor="short_description" className="mb-2 capitalize text-purple-500 text-xl">Short Description:</label>
       <br/>
