@@ -5,19 +5,13 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { createClient } from "@/utils/supabase/client";
 import axios from "axios";
 import { motion } from "framer-motion";
-import BasicInfo from "./BasicInfo";
+import ProjectInfo from "./ProjectInfo";
 import BlinksInfo from "./BlinksInfo";
 import PlatformInfo from "./PlatformInfo";
 import UploadInfo from "./UploadInfo";
-import TeamInfo from "./TeamInfo"; // Import the new TeamInfo component
 
 // Define types for categories and other fetched options
-interface Category {
-  id: number;
-  name: string;
-}
-
-interface ProjectList {
+interface IdName {
   id: number;
   name: string;
 }
@@ -25,34 +19,26 @@ interface ProjectList {
 const CreateListingsBlinks = () => {
   // Initial form data state
   const initialFormData = {
-  name: "",
-  moderation_status: "pending",
-  short_description: "",
-  blinks_registry_status: "",
-  blinks_url: "",
-  blinks_actions_json_url: "",
-  source_code_access: "",
-  blinks_actions_repo_url: "",
-  category: "",
-  category_1: "",
-  category_2: "",
-  category_3: "",
-  category_4: "",
-  category_5: "",
-  status: "",
-  project: "",
-  image_url: "",
-  demo_url: "",
-  team_1_name: "",
-  team_1_x_url: "",
-  team_1_linkedin_url: "",
-  team_2_name: "",
-  team_2_x_url: "",
-  team_2_linkedin_url: "",
-  team_all_x_url: "",
-  team_all_linkedin_url: "",
-  team_all_website_url: "",
-  year_created: 2050,
+    name: "",
+    moderation_status: "pending",
+    short_description: "",
+    blinks_registry_status: "",
+    blinks_url: "",
+    blinks_actions_json_url: "",
+    source_code_access: "",
+    blinks_actions_repo_url: "",
+    category: "",
+    category_1: "",
+    category_2: "",
+    category_3: "",
+    category_4: "",
+    category_5: "",
+    status: "",
+    project: "",
+    image_url: "",
+    demo_url: "",
+    year_created: 2050,
+    platform_ids: [], // Initialize as an empty array
   };
 
   // State variables
@@ -80,16 +66,19 @@ const CreateListingsBlinks = () => {
     null,
   );
   const [statuses, setStatuses] = useState([]);
-  const [blinksRegistryStatusOptions, setBlinksRegistryStatusOptions] = useState([]);
+  const [blinksRegistryStatusOptions, setBlinksRegistryStatusOptions] =
+    useState([]);
   const [sourceCodeAccessOptions, setSourceCodeAccessOptions] = useState([]);
-  const [projectListOptions, setProjectListOptions] = useState<ProjectList[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [projectListOptions, setProjectListOptions] = useState<IdName[]>([]);
+  const [categories, setCategories] = useState<IdName[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
+  const [platforms, setPlatforms] = useState<IdName[]>([]);
 
   const supabaseClient = createClient();
 
   // Fetch initial data and user information
   useEffect(() => {
+    // Fetch categories
     async function fetchCategories() {
       const { data, error } = await supabaseClient
         .from("categories")
@@ -98,11 +87,14 @@ const CreateListingsBlinks = () => {
         console.error("Error fetching categories:", error);
       } else {
         // Sort the retrieved categories list alphabetically before set in state
-        const sortedCategoriesData = data.sort((a, b) => a.name.localeCompare(b.name));
+        const sortedCategoriesData = data.sort((a, b) =>
+          a.name.localeCompare(b.name),
+        );
         setCategories(sortedCategoriesData);
       }
     }
 
+    // Fetch Status Enum
     async function fetchStatuses() {
       const { data, error } = await supabaseClient.rpc("enum_status_values");
       if (error) {
@@ -112,17 +104,22 @@ const CreateListingsBlinks = () => {
       }
     }
 
+    // Fetch Official Blinks Registry Status Enum
     async function fetchBlinksRegistryStatusOptions() {
       const { data, error } = await supabaseClient.rpc(
         "enum_blinks_registry_status_values",
       );
       if (error) {
-        console.error("Error fetching Official Blinks Registry Status Options:", error);
+        console.error(
+          "Error fetching Official Blinks Registry Status Options:",
+          error,
+        );
       } else {
         setBlinksRegistryStatusOptions(data);
       }
     }
 
+    // Fetch  Source Code Access Enum
     async function fetchSourceCodeAccessOptions() {
       const { data, error } = await supabaseClient.rpc(
         "enum_source_code_access_values",
@@ -143,8 +140,22 @@ const CreateListingsBlinks = () => {
         console.error("Error fetching listings:", error);
       } else {
         // Sort the retrieved project list alphabetically before set in state
-        const sortedProjectListData = data.sort((a, b) => a.name.localeCompare(b.name));
+        const sortedProjectListData = data.sort((a, b) =>
+          a.name.localeCompare(b.name),
+        );
         setProjectListOptions(sortedProjectListData);
+      }
+    }
+
+    // Fetch Platforms Name and Id
+    async function fetchPlatforms() {
+      const { data, error } = await supabaseClient
+        .from("blinks_platforms")
+        .select("id, name");
+      if (error) {
+        console.error("Error fetching platforms:", error);
+      } else {
+        setPlatforms(data);
       }
     }
 
@@ -162,6 +173,7 @@ const CreateListingsBlinks = () => {
       fetchBlinksRegistryStatusOptions();
       fetchSourceCodeAccessOptions();
       fetchProjectList();
+      fetchPlatforms();
     };
 
     fetchData();
@@ -256,6 +268,17 @@ const CreateListingsBlinks = () => {
       default:
         break;
     }
+  };
+
+  // Handle platform changes
+  // Ensure platform_ids is always an array before use
+  const handlePlatformChange = (selectedOptions) => {
+    setFormData({
+      ...formData,
+      platform_ids: selectedOptions
+        ? selectedOptions.map((option) => option.value)
+        : [],
+    });
   };
 
   // Handle file selection for image upload
@@ -390,7 +413,10 @@ const CreateListingsBlinks = () => {
 
   const handleNextStep = () => {
     if (currentStep === 0 && !formData.project) {
-      setMessage({ text: "Please select a project before proceeding.", type: "error" });
+      setMessage({
+        text: "Please select a project before proceeding.",
+        type: "error",
+      });
       return;
     }
     setCurrentStep(currentStep + 1);
@@ -398,12 +424,12 @@ const CreateListingsBlinks = () => {
 
   // Steps for the multi-step form
   const steps = [
-    <BasicInfo
+    <ProjectInfo
       formData={formData}
       handleInputChange={handleInputChange}
       projectListOptions={projectListOptions}
-      />,
-      <BlinksInfo
+    />,
+    <BlinksInfo
       formData={formData}
       handleInputChange={handleInputChange}
       statuses={statuses}
@@ -421,17 +447,12 @@ const CreateListingsBlinks = () => {
       loading={loading}
       blinksRegistryStatusOptions={blinksRegistryStatusOptions}
       sourceCodeAccessOptions={sourceCodeAccessOptions}
-      handleCategoryChange={handleCategoryChange}      
+      handleCategoryChange={handleCategoryChange}
     />,
     <PlatformInfo
       formData={formData}
-      handleInputChange={handleInputChange}
-      loading={loading}
-    />,
-    <TeamInfo // Add the new TeamInfo step here
-      formData={formData}
-      handleInputChange={handleInputChange}
-      loading={loading}
+      platforms={platforms} // Pass platforms here
+      handlePlatformChange={handlePlatformChange} // New handler for platform change
     />,
     <UploadInfo
       image={image}
@@ -449,109 +470,107 @@ const CreateListingsBlinks = () => {
 
   // Titles and summaries for each step
   const stepTitles = [
-    "Basic Info",
+    "Project Info",
     "Blinks Info",
     "Platform Info",
-    "Team Info", // Add the new step title here
     "Upload Image",
   ];
 
   const stepSummaries = [
-    "Enter the basic information about your blinks.",
+    "Select Project your Blinks is connected to.",
     "Provide detailed information about your blinks.",
     "Share platform(s) your blinks can be accessed from.",
-    "Enter team information.", // Add the new step summary here
     "Upload the blinks screenshot (must be 600(Width)x400(Height)px).",
   ];
 
   return (
     <>
-    <div className="flex w-full flex-1 flex-col items-center px-4 py-6">
-      <div className="w-full max-w-4xl rounded bg-gray-700 p-5 shadow">
-        <div className="col-span-full mb-4">
-          <div className="mb-2 flex flex-wrap items-center justify-between">
-            {stepTitles.map((title, index) => (
-              <div
-                key={index}
-                className={`rounded p-2 ${currentStep === index ? "bg-green-500 text-white" : "bg-gray-500 text-gray-300"} mb-2 cursor-pointer`} 
-                onClick={() => {
-                  if (index === 0 || formData.project) {
-                    setCurrentStep(index);
-                  }
-                }}
-              >
-                {index + 1}. {title}
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-white">
-            {stepSummaries[currentStep]}
-          </p>
-        </div>
-        <form className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {steps[currentStep]}
-        </form>
-        <div className="col-span-full mt-4 flex justify-between">
-          {currentStep > 0 && (
-            <button
-              type="button"
-              className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
-              onClick={() => setCurrentStep(currentStep - 1)}
-            >
-              Previous
-            </button>
-          )}
-          {currentStep < steps.length - 1 ? (
-            <button
-              type="button"
-              className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
-              onClick={() => setCurrentStep(currentStep + 1)}
-              disabled={!formData.project}
-            >
-              Next
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="btn mx-auto mt-6 rounded bg-green-500 p-2 text-white hover:bg-green-700"
-              onClick={handleSubmit}
-              disabled={loading}
-            >
-              Submit
-            </button>
-          )}
-          <button
-            type="button"
-            className="btn rounded bg-yellow-500 p-2 text-white hover:bg-yellow-700"
-            onClick={saveDraft}
-          >
-            Save Draft
-          </button>
-        </div>
-        {message && (
-          <motion.div
-            className="col-span-full mt-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <p
-              className={`text-m ${
-                message.type === "error"
-                  ? "text-red-500"
-                  : message.type === "success"
-                    ? "text-green-500"
-                    : "text-yellow-500"
-              }`}
-            >
-              {message.text}
+      <div className="flex w-full flex-1 flex-col items-center px-4 py-6">
+        <div className="w-full max-w-4xl rounded bg-gray-700 p-5 shadow">
+          <div className="col-span-full mb-4">
+            <div className="mb-2 flex flex-wrap items-center justify-between">
+              {stepTitles.map((title, index) => (
+                <div
+                  key={index}
+                  className={`rounded p-2 ${currentStep === index ? "bg-green-500 text-white" : "bg-gray-500 text-gray-300"} mb-2 cursor-pointer`}
+                  onClick={() => {
+                    if (index === 0 || formData.project) {
+                      setCurrentStep(index);
+                    }
+                  }}
+                >
+                  {index + 1}. {title}
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-white">
+              {stepSummaries[currentStep]}
             </p>
-          </motion.div>
-        )}
+          </div>
+          <form className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {steps[currentStep]}
+          </form>
+          <div className="col-span-full mt-4 flex justify-between">
+            {currentStep > 0 && (
+              <button
+                type="button"
+                className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
+                onClick={() => setCurrentStep(currentStep - 1)}
+              >
+                Previous
+              </button>
+            )}
+            {currentStep < steps.length - 1 ? (
+              <button
+                type="button"
+                className="btn rounded bg-blue-500 p-2 text-white hover:bg-blue-700"
+                onClick={() => setCurrentStep(currentStep + 1)}
+                disabled={!formData.project}
+              >
+                Next
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn mx-auto mt-6 rounded bg-green-500 p-2 text-white hover:bg-green-700"
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                Submit
+              </button>
+            )}
+            <button
+              type="button"
+              className="btn rounded bg-yellow-500 p-2 text-white hover:bg-yellow-700"
+              onClick={saveDraft}
+            >
+              Save Draft
+            </button>
+          </div>
+          {message && (
+            <motion.div
+              className="col-span-full mt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p
+                className={`text-m ${
+                  message.type === "error"
+                    ? "text-red-500"
+                    : message.type === "success"
+                      ? "text-green-500"
+                      : "text-yellow-500"
+                }`}
+              >
+                {message.text}
+              </p>
+            </motion.div>
+          )}
+        </div>
       </div>
-    </div>
-  </>
+    </>
   );
 };
 

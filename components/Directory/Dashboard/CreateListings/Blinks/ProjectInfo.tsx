@@ -1,11 +1,7 @@
-// /components/Directory/Dashboard/CreateListings/Blinks/BasicInfo.tsx
+// /components/Directory/Dashboard/CreateListings/Blinks/ProjectInfo.tsx
 import React from "react";
 
-const BasicInfo = ({
-  formData,
-  handleInputChange,
-  projectListOptions,
-}) => (
+const ProjectInfo = ({ formData, handleInputChange, projectListOptions }) => (
   <>
     {/* Project List Options dropdown input */}
     <div className="col-span-full">
@@ -19,12 +15,22 @@ const BasicInfo = ({
       <span className="mb-2  text-gray-400">
         Select the project this blink is associated with.
         <br />
-        To maintain quality listings, Blinks need to be associated with an existing Solana project or it will not be approved. 
-        <br /> 
-        If your associated project not listed yet on Explore Solana. Kindly, submit it 
-        <a href='/dashboard/create-listings/projects'>
-        {" "}  <b>Here</b> and have is listed first before submitting the Blinks associated with it.
-        </a>
+        1. To maintain quality listings, Blinks need to be associated with an
+        existing Solana project or it will not be approved.
+        <br />
+        2. If your associated project not listed yet on Explore Solana. Kindly,
+        submit it
+        <a href="/dashboard/create-listings/projects">
+          {" "}
+          <b>Here</b> and have it approved and listed first before submitting the Blinks
+          associated with it.
+        </a>. 
+        <br />
+        3. Need help/got questions? Kindly reach out to me via 
+        <a href="/support">
+          {" "}
+          <b>Support</b>.
+        </a>. 
       </span>
       <select
         id="project"
@@ -41,8 +47,7 @@ const BasicInfo = ({
         ))}
       </select>
     </div>
-
   </>
 );
 
-export default BasicInfo;
+export default ProjectInfo;

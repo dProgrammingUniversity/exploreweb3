@@ -313,6 +313,7 @@ type DisplayListingBlinksTypes = {
   team_all_x_url: string;
   team_all_linkedin_url: string;
   team_all_website_url: string;
+  platform_ids: string[];
 };
 
 /*
@@ -361,4 +362,5 @@ type CreateListingBlinksTypes = {
   team_all_x_url: string;
   team_all_linkedin_url: string;
   team_all_website_url: string;
+  platform_ids: string[];
 };
