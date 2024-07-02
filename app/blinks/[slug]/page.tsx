@@ -84,17 +84,34 @@ const BlinksListingDetailPage = async ({ params }) => {
     category_5_name: categoryNamesWithId[listing.category_5],
   };
 
+  // Fetch the project name and slug using the project ID
+  const { data: projectData, error: projectError } = await supabase
+    .from("listings")
+    .select("name, slug")
+    .eq("id", listing.project)
+    .single();
+
+  if (projectError) {
+    console.error("Error fetching project:", projectError);
+  }
+
+  // Add project name and slug to the listing data
+  const listingWithProjectName = {
+    ...updatedListing,
+    project_name: projectData?.name || "Unknown", //add name
+    project_slug: projectData?.slug || "", //add slug
+  };
+
+
   // Fetch the user data
   const { data: userData, error: userError } = await supabase.auth.getUser();
-
-
   const userId = userData.user ? userData.user.id : null;
 
   return (
     <section className="pb-20 pt-35 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
       <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
         <div className="flex flex-col-reverse gap-7.5 lg:flex-row xl:gap-12.5">
-          <BlinksListingsFullDetailsPage listing={updatedListing} userId={userId} />
+          <BlinksListingsFullDetailsPage listing={listingWithProjectName} userId={userId} />
         </div>
       </div>
     </section>

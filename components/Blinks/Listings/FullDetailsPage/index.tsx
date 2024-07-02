@@ -5,7 +5,7 @@ import ContentSidebar from "./ContentSidebar";
 import ContentMain from "./ContentMain";
 
 const BlinksListingsFullDetailsPage: React.FC<{
-  listing: DisplayListingTypes;
+  listing: DisplayListingBlinksTypes;
   userId: string | null;
 }> = ({ listing, userId }) => {
 

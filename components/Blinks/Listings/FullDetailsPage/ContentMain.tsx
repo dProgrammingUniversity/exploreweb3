@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AppendSiteUrlToExternalLink } from "@/utils/AppendSiteUrlToExternalLink";
 import EmailSubscriptionForm from "@/components/Directory/Newsletter/EmailSubscriptionForm";
 import { renderMultilineText } from "@/utils/FormatText";
-import ListingsRelatedSuggestion from "@/components/Directory/Listings/ListingsRelatedSuggestion";
+import ListingsBlinksRelatedSuggestion from "../ListingsBlinksRelatedSuggestion";
 import FavoritesButton from "@/components/Directory/Favorite/FavoritesButton";
 import RatingReviewsForm from "@/components/Directory/RatingsReviews/RatingReviewsForm";
 import RatingReviewsList from "@/components/Directory/RatingsReviews/RatingReviewsList";
@@ -115,7 +115,7 @@ const ContentMain: React.FC<{
             <h2>{listing.name} Alternatives & Related Listings:</h2>
             Checkout {listing.name} alternatives below:
             {listing && listing.category_1_name && (
-              <ListingsRelatedSuggestion
+              <ListingsBlinksRelatedSuggestion
                 mainCategory={listing.category_1_name}
               />
             )}
