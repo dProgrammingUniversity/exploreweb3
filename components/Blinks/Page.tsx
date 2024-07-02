@@ -2,7 +2,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
-import ListingsCard from "./Listings/ListingsCard";
+import ListingsTableCard from "./Listings/ListingsTableCard";
 
 const BlinksPage = () => {
   const [listings, setListings] = useState<DisplayListingBlinksTypes[]>([]);
@@ -345,7 +345,7 @@ const BlinksPage = () => {
           {/* Table Body */}
           <tbody className="divide-y divide-gray-200">
             {currentListings.map((listing, index) => (
-              <ListingsCard
+              <ListingsTableCard
                 key={listing.id}
                 listing={listing}
                 index={index + 1 + (currentPage - 1) * itemsPerPage}

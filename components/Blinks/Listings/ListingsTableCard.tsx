@@ -1,4 +1,4 @@
-// /components/Blinks/Listings/ListingCard.tsx
+// /components/Blinks/Listings/ListingTableCard.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import Link from "next/link";
@@ -9,7 +9,7 @@ type Props = {
   index: number;
 };
 
-const ListingsCard: React.FC<Props> = ({ listing, index }) => {
+const ListingsTableCard: React.FC<Props> = ({ listing, index }) => {
   // State to hold category names
   const [categoryNames, setCategoryNames] = useState<string[]>([]);
   // State to hold platform names
@@ -88,5 +88,5 @@ const ListingsCard: React.FC<Props> = ({ listing, index }) => {
   );
 };
 
-export default ListingsCard;
+export default ListingsTableCard;
 

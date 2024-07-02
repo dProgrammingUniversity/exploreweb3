@@ -41,7 +41,7 @@ const BlinksListingDetailPage = async ({ params }) => {
 
   // Fetch the listing data
   const { data: listing, error: listingError } = await supabase
-    .from("listings")
+    .from("blinks")
     .select("*")
     .eq("slug", slug)
     .eq("moderation_status", "approved")
@@ -49,7 +49,7 @@ const BlinksListingDetailPage = async ({ params }) => {
 
   if (listingError) {
     console.error("Error fetching listing:", listingError);
-    return <div>Listing not found</div>;
+    return <div>Blinks Listing not found</div>;
   }
 
   const categoryIds = [
