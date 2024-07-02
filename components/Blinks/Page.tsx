@@ -1,5 +1,4 @@
 // /components/Blinks/Page.tsx
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -225,19 +224,25 @@ const BlinksPage = () => {
 
   return (
     <>
+
+    {/* Filters */}
       <div className="mb-4 flex flex-col justify-between md:flex-row">
+    {/* Category Filter */}
         <select
           className="rounded border bg-gray-700 p-2 text-white"
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
         >
           <option value="All">All Categories ({totalListings})</option>
-          {categories.map((category, idx) => (
-            <option key={idx} value={category.name}>
-              {category.name} ({category.count})
-            </option>
-          ))}
+          {categories
+            .filter(category => category.count > 0) // Only show categories with at least 1 blink
+            .map((category, idx) => (
+              <option key={idx} value={category.name}>
+                {category.name} ({category.count})
+              </option>
+            ))}
         </select>
+        {/* Platform Filter */}
         <select
           className="rounded border bg-purple-800 p-2 text-white"
           value={filterPlatform}
@@ -250,6 +255,7 @@ const BlinksPage = () => {
             </option>
           ))}
         </select>
+        {/* Status Filter */}
         <select
           className="rounded border bg-gray-700 p-2 text-white"
           value={filterStatus}
@@ -262,6 +268,7 @@ const BlinksPage = () => {
             </option>
           ))}
         </select>
+        {/* Registry Filter */}
         <select
           className="rounded border bg-purple-800 p-2 text-white"
           value={filterRegistry}
@@ -274,6 +281,7 @@ const BlinksPage = () => {
             </option>
           ))}
         </select>
+        {/* Search box Filter */}
         <input
           type="text"
           className="mb-4 w-full rounded border bg-purple-800 p-2 text-white md:mb-0"
@@ -282,6 +290,7 @@ const BlinksPage = () => {
         />
       </div>
 
+        {/* Blinks Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-500">
           {/* Table Header */}
