@@ -36,8 +36,8 @@ const BlinksPage = () => {
   const fetchCategories = async () => {
     setLoading(true);
     const { data, error } = await supabaseClient
-      .from("categories_counting")
-      .select("category_name, total_listings");
+      .from("blinks_categories_count")
+      .select("category_name, total_blinks");
 
     if (error) {
       console.error("Error fetching categories:", error);
@@ -45,7 +45,7 @@ const BlinksPage = () => {
       setCategories(
         data.map((category) => ({
           name: category.category_name,
-          count: category.total_listings,
+          count: category.total_blinks,
         })),
       );
     }
