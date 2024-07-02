@@ -239,6 +239,12 @@ const BlinksPage = () => {
               </th>
               <th
                 className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("status")}
+              >
+                Registry
+              </th>
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
                 onClick={() => sortListings("platforms")}
               >
                 Platforms

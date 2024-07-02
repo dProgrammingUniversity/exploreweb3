@@ -64,6 +64,9 @@ const ListingsCard: React.FC<Props> = ({ listing, index }) => {
         <div className="text-sm text-gray-900">{listing.status}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm text-gray-900">{listing.blinks_registry_status}</div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{platformNames.join(', ')}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
