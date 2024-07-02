@@ -1,11 +1,11 @@
 // /app/blinks/[slug]/page.tsx
 import { createClient } from "@/utils/supabase/server";
-import ListingsFullDetailsPage from "@/components/Directory/Listings/FullDetailsPage";
+import BlinksListingsFullDetailsPage from "@/components/Blinks/Listings/FullDetailsPage";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Explore 1,000+ Solana Projects Directory - Explore Solana"; // dynamically replace value with actual "title" of specific listing been displayed
-const description = "Earn Using and Exploring Solana Projects"; // dynamically replace value with actual  "short_description" of specific listing been displayed
+const title = "Explore Solana Blinks - Explore Solana"; // dynamically replace value with actual "title" of specific listing been displayed
+const description = "Earn Using and Exploring Solana Projects& Blinks"; // dynamically replace value with actual  "short_description" of specific listing been displayed
 const ogImage = "https://ExploreSolana.com/images/opengraph-image.png"; // dynamically replace value with actual image_url of specific listing been displayed
 const siteUrl = "https://ExploreSolana.com"; 
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ListingDetailPage = async ({ params }) => {
+const BlinksListingDetailPage = async ({ params }) => {
   const supabase = createClient();
   const slug = params.slug;
 
@@ -94,13 +94,13 @@ const ListingDetailPage = async ({ params }) => {
     <section className="pb-20 pt-35 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
       <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
         <div className="flex flex-col-reverse gap-7.5 lg:flex-row xl:gap-12.5">
-          <ListingsFullDetailsPage listing={updatedListing} userId={userId} />
+          <BlinksListingsFullDetailsPage listing={updatedListing} userId={userId} />
         </div>
       </div>
     </section>
   );
 };
 
-export default ListingDetailPage;
+export default BlinksListingDetailPage;
 
 

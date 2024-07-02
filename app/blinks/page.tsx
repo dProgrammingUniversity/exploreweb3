@@ -1,12 +1,12 @@
 // /app/blinks/page.tsx
-import DirectoryPage from "@/components/Directory/DirectoryPage";
+import BlinksPage from "@/components/Blinks/Page";
 import EmailSubscriptionForm from "@/components/Directory/Newsletter/EmailSubscriptionForm";
 import AnimatedTitle from "@/components/Directory/AnimatedTitle";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Explore 1,000+ Solana Projects Directory - Explore Solana";
-const description = "Earn Using and Exploring Solana Projects";
+const title = "Explore Solana Blinks - Explore Solana";
+const description = "Earn Using and Exploring Solana Projects& Blinks";
 const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
 const siteUrl = "https://ExploreSolana.com/directory"; // Replace with your actual site URL
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-const DirectoryHomePage = () => {
+const BlinksHomePage = () => {
   
   return (
     <>
@@ -50,7 +50,7 @@ const DirectoryHomePage = () => {
             <AnimatedTitle />
 
             {/* Directory Page */}
-            <DirectoryPage />
+            <BlinksPage />
           </div>
         </div>
       </section>
@@ -58,4 +58,4 @@ const DirectoryHomePage = () => {
   );
 };
 
-export default DirectoryHomePage;
+export default BlinksHomePage;
