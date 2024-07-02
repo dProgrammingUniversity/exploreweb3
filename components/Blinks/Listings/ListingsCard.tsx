@@ -4,10 +4,11 @@ import { createClient } from '@/utils/supabase/client';
 import Link from "next/link";
 
 type Props = {
-  listing: DisplayListingBlinksTypes; // Using the type from /globalTypes.ts
+  listing: DisplayListingBlinksTypes;
+  index: number;
 };
 
-const ListingsCard: React.FC<Props> = ({ listing }) => {
+const ListingsCard: React.FC<Props> = ({ listing, index }) => {
   const [categoryNames, setCategoryNames] = useState<string[]>([]);
   const [platformNames, setPlatformNames] = useState<string[]>([]);
   const supabaseClient = createClient();
@@ -49,6 +50,7 @@ const ListingsCard: React.FC<Props> = ({ listing }) => {
 
   return (
     <tr>
+      <td className="px-6 py-4 whitespace-nowrap">{index}</td>
       <td className="px-6 py-4 whitespace-nowrap">
         <Link 
           href={`/blinks/${listing.slug}`} 

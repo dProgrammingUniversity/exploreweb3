@@ -7,9 +7,7 @@ import ListingsCard from "./Listings/ListingsCard";
 
 const BlinksPage = () => {
   const [listings, setListings] = useState<DisplayListingBlinksTypes[]>([]);
-  const [categories, setCategories] = useState<
-    { name: string; count: number }[]
-  >([]);
+  const [categories, setCategories] = useState<{ name: string; count: number }[]>([]);
   const [totalListings, setTotalListings] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
@@ -19,12 +17,10 @@ const BlinksPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [statuses, setStatuses] = useState([]);
-  const [platforms, setPlatforms] = useState<{ id: number; name: string }[]>(
-    [],
-  );
-  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>(
-    {},
-  );
+  const [platforms, setPlatforms] = useState<{ id: number; name: string }[]>([]);
+  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>({});
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   const supabaseClient = createClient();
 
@@ -37,12 +33,10 @@ const BlinksPage = () => {
     if (error) {
       console.error("Error fetching categories:", error);
     } else {
-      setCategories(
-        data.map((category) => ({
-          name: category.category_name,
-          count: category.total_listings,
-        })),
-      );
+      setCategories(data.map((category) => ({
+        name: category.category_name,
+        count: category.total_listings
+      })));
     }
     setLoading(false);
   };
@@ -131,10 +125,25 @@ const BlinksPage = () => {
     initCategoryNamesById();
   }, []);
 
+  const sortListings = (column: string) => {
+    const direction = sortColumn === column && sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(direction);
+    setSortColumn(column);
+    setListings((prevListings) =>
+      [...prevListings].sort((a, b) => {
+        if (a[column] < b[column]) {
+          return direction === "asc" ? -1 : 1;
+        }
+        if (a[column] > b[column]) {
+          return direction === "asc" ? 1 : -1;
+        }
+        return 0;
+      }),
+    );
+  };
+
   const filteredListings = listings.filter((listing) => {
-    const searchMatch = listing.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+    const searchMatch = listing.name.toLowerCase().includes(searchTerm.toLowerCase());
     const categoryMatch =
       filterCategory === "All" ||
       categoryNamesById[listing.category_1] === filterCategory ||
@@ -143,21 +152,15 @@ const BlinksPage = () => {
       categoryNamesById[listing.category_4] === filterCategory ||
       categoryNamesById[listing.category_5] === filterCategory;
 
-    const statusMatch =
-      filterStatus === "All" || listing.status === filterStatus;
-    const platformMatch =
-      filterPlatform === "All" ||
-      listing.platform_ids.includes(parseInt(filterPlatform));
+    const statusMatch = filterStatus === "All" || listing.status === filterStatus;
+    const platformMatch = filterPlatform === "All" || listing.platform_ids.includes(parseInt(filterPlatform));
 
     return searchMatch && categoryMatch && statusMatch && platformMatch;
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentListings = filteredListings.slice(
-    indexOfFirstItem,
-    indexOfLastItem,
-  );
+  const currentListings = filteredListings.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -216,26 +219,47 @@ const BlinksPage = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
-              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("index")}
+              >
+                #
+              </th>
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("name")}
+              >
                 Name
               </th>
-              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("status")}
+              >
                 Status
               </th>
-              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("platforms")}
+              >
                 Platforms
               </th>
-              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("year_created")}
+              >
                 Year Created
               </th>
-              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer"
+                onClick={() => sortListings("categories")}
+              >
                 Categories
               </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {currentListings.map((listing) => (
-              <ListingsCard key={listing.id} listing={listing} />
+            {currentListings.map((listing, index) => (
+              <ListingsCard key={listing.id} listing={listing} index={index + 1 + (currentPage - 1) * itemsPerPage} />
             ))}
           </tbody>
         </table>
