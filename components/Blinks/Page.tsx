@@ -6,7 +6,7 @@ import { createClient } from "@/utils/supabase/client";
 import ListingsCard from "./Listings/ListingsCard";
 
 const BlinksPage = () => {
-  const [listings, setListings] = useState<DisplayListingTypes[]>([]);
+  const [listings, setListings] = useState<DisplayListingBlinksTypes[]>([]);
   const [categories, setCategories] = useState<{ name: string, count: number }[]>([]);
   const [totalListings, setTotalListings] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
