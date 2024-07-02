@@ -15,6 +15,7 @@ import Testimonial from "@/components/Testimonial";
 import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 import { Metadata } from "next";
+import StaticTitle from "@/components/Header/StaticTitle";
 
 // Define fixed metadata values
 const title = "Explore Solana Ecosystem Projects - Explore Solana";
@@ -52,6 +53,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <StaticTitle />
       <Brands />
       {/* <Feature /> */}
       <Directory />
