@@ -61,7 +61,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
         <span className="block text-gray-500">
           {listing.name} was created by{" "}
           <Link
-            href={`/directory/${listing.project_slug}`}
+            href={`/projects/${listing.project_slug}`}
             className="text-blue-400 hover:text-blue-300"
           >
             {listing.project_name}

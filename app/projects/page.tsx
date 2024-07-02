@@ -1,4 +1,4 @@
-// /app/directory/page.tsx
+// /app/projects/page.tsx
 import DirectoryPage from "@/components/Directory/DirectoryPage";
 import AnimatedTitle from "@/components/Header/TitleAnimated";
 import { Metadata } from "next";
