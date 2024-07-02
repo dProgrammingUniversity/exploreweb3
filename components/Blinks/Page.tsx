@@ -7,20 +7,26 @@ import ListingsCard from "./Listings/ListingsCard";
 
 const BlinksPage = () => {
   const [listings, setListings] = useState<DisplayListingBlinksTypes[]>([]);
-  const [categories, setCategories] = useState<{ name: string, count: number }[]>([]);
+  const [categories, setCategories] = useState<
+    { name: string; count: number }[]
+  >([]);
   const [totalListings, setTotalListings] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
-  const [filterPricing, setFilterPricing] = useState("All");
+  const [filterPlatform, setFilterPlatform] = useState("All");
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [statuses, setStatuses] = useState([]);
-  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>({});
+  const [platforms, setPlatforms] = useState<{ id: number; name: string }[]>(
+    [],
+  );
+  const [categoryNamesById, setCategoryNamesById] = useState<CategoryNamesById>(
+    {},
+  );
 
   const supabaseClient = createClient();
-  const pricings = ["Free", "Freemium", "Premium"];
 
   const fetchCategories = async () => {
     setLoading(true);
@@ -31,10 +37,12 @@ const BlinksPage = () => {
     if (error) {
       console.error("Error fetching categories:", error);
     } else {
-      setCategories(data.map((category) => ({
-        name: category.category_name,
-        count: category.total_listings
-      })));
+      setCategories(
+        data.map((category) => ({
+          name: category.category_name,
+          count: category.total_listings,
+        })),
+      );
     }
     setLoading(false);
   };
@@ -83,6 +91,18 @@ const BlinksPage = () => {
     }
   };
 
+  const fetchPlatforms = async () => {
+    const { data, error } = await supabaseClient
+      .from("blinks_platforms")
+      .select("id, name");
+
+    if (error) {
+      console.error("Error fetching platforms:", error);
+    } else {
+      setPlatforms(data);
+    }
+  };
+
   const fetchAllCategoryNames = async () => {
     const { data, error } = await supabaseClient
       .from("categories")
@@ -107,11 +127,14 @@ const BlinksPage = () => {
     fetchCategories();
     fetchTotalListings();
     fetchStatuses();
+    fetchPlatforms();
     initCategoryNamesById();
   }, []);
 
   const filteredListings = listings.filter((listing) => {
-    const searchMatch = listing.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const searchMatch = listing.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const categoryMatch =
       filterCategory === "All" ||
       categoryNamesById[listing.category_1] === filterCategory ||
@@ -120,15 +143,21 @@ const BlinksPage = () => {
       categoryNamesById[listing.category_4] === filterCategory ||
       categoryNamesById[listing.category_5] === filterCategory;
 
-    const statusMatch = filterStatus === "All" || listing.status === filterStatus;
-    const pricingMatch = filterPricing === "All" || listing.pricing === filterPricing;
+    const statusMatch =
+      filterStatus === "All" || listing.status === filterStatus;
+    const platformMatch =
+      filterPlatform === "All" ||
+      listing.platform_ids.includes(parseInt(filterPlatform));
 
-    return searchMatch && categoryMatch && statusMatch && pricingMatch;
+    return searchMatch && categoryMatch && statusMatch && platformMatch;
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentListings = filteredListings.slice(indexOfFirstItem, indexOfLastItem);
+  const currentListings = filteredListings.slice(
+    indexOfFirstItem,
+    indexOfLastItem,
+  );
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -153,13 +182,13 @@ const BlinksPage = () => {
         </select>
         <select
           className="rounded border bg-purple-800 p-2"
-          value={filterPricing}
-          onChange={(e) => setFilterPricing(e.target.value)}
+          value={filterPlatform}
+          onChange={(e) => setFilterPlatform(e.target.value)}
         >
-          <option value="All">All Pricing</option>
-          {pricings.map((pricing, idx) => (
-            <option key={idx} value={pricing}>
-              {pricing}
+          <option value="All">All Platforms</option>
+          {platforms.map((platform, idx) => (
+            <option key={idx} value={platform.id}>
+              {platform.name}
             </option>
           ))}
         </select>
@@ -187,19 +216,26 @@ const BlinksPage = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
-              <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year Created</th>
-              <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pricing</th>
-              <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categories</th>
+              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                Name
+              </th>
+              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                Status
+              </th>
+              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                Platforms
+              </th>
+              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                Year Created
+              </th>
+              <th className="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                Categories
+              </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="divide-y divide-gray-200 bg-white">
             {currentListings.map((listing) => (
-              <ListingsCard
-                key={listing.id}
-                listing={listing}
-              />
+              <ListingsCard key={listing.id} listing={listing} />
             ))}
           </tbody>
         </table>

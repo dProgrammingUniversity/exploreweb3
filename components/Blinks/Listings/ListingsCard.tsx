@@ -7,12 +7,9 @@ type Props = {
   listing: DisplayListingBlinksTypes; // Using the type from /globalTypes.ts
 };
 
-// default listings image when no image logo_url found
-const defaultImageUrl =
-  "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
-
 const ListingsCard: React.FC<Props> = ({ listing }) => {
   const [categoryNames, setCategoryNames] = useState<string[]>([]);
+  const [platformNames, setPlatformNames] = useState<string[]>([]);
   const supabaseClient = createClient();
 
   useEffect(() => {
@@ -34,26 +31,41 @@ const ListingsCard: React.FC<Props> = ({ listing }) => {
       }
     };
 
+    const fetchPlatformNames = async () => {
+      const platformIds = listing.platform_ids;
+      const { data, error } = await supabaseClient
+        .from('blinks_platforms')
+        .select('name')
+        .in('id', platformIds);
+
+      if (!error) {
+        setPlatformNames(data.map((platform) => platform.name));
+      }
+    };
+
     fetchCategoryNames();
+    fetchPlatformNames();
   }, [listing]);
 
   return (
     <tr>
       <td className="px-6 py-4 whitespace-nowrap">
         <Link 
-        href={`/blinks/${listing.slug}`} 
-        passHref
-        className="text-sm font-medium text-blue-600 hover:text-blue-900">{listing.name}
+          href={`/blinks/${listing.slug}`} 
+          passHref
+          className="text-sm font-medium text-blue-600 hover:text-blue-900"
+        >
+          {listing.name}
         </Link>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900">{listing.year_created}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{listing.status}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900">{listing.pricing}</div>
+        <div className="text-sm text-gray-900">{platformNames.join(', ')}</div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm text-gray-900">{listing.year_created}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{categoryNames.join(', ')}</div>
