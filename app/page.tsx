@@ -15,7 +15,7 @@ import Testimonial from "@/components/Testimonial";
 import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 import { Metadata } from "next";
-import StaticTitle from "@/components/Header/StaticTitle";
+import StaticTitle from "@/components/Header/TitleStatic";
 
 // Define fixed metadata values
 const title = "Explore Solana Ecosystem Projects - Explore Solana";

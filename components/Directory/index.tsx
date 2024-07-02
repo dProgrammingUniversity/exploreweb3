@@ -1,7 +1,7 @@
 // /components/Directory/index.tsx
 "use client";
 import { motion } from "framer-motion";
-import AnimatedTitle from "./AnimatedTitle";
+import AnimatedTitle from "../Header/TitleAnimated";
 import DirectoryPage from "./DirectoryPage";
 
 const Directory = () => {

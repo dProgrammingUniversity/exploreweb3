@@ -1,8 +1,8 @@
 // /app/blinks/page.tsx
 import BlinksPage from "@/components/Blinks/Page";
-import AnimatedTitle from "@/components/Directory/AnimatedTitle";
+import AnimatedTitle from "@/components/Header/TitleAnimated";
 import { Metadata } from "next";
-import StaticTitle from "@/components/Header/StaticTitle";
+import StaticTitle from "@/components/Header/TitleStatic";
 
 // Define fixed metadata values
 const title = "Explore Solana Blinks - Explore Solana";

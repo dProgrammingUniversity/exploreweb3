@@ -1,8 +1,8 @@
 // /app/directory/page.tsx
 import DirectoryPage from "@/components/Directory/DirectoryPage";
-import AnimatedTitle from "@/components/Directory/AnimatedTitle";
+import AnimatedTitle from "@/components/Header/TitleAnimated";
 import { Metadata } from "next";
-import StaticTitle from "@/components/Header/StaticTitle";
+import StaticTitle from "@/components/Header/TitleStatic";
 
 // Define fixed metadata values
 const title = "Explore 1,000+ Solana Projects Directory - Explore Solana";
