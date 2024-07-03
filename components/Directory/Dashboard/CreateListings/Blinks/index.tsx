@@ -38,6 +38,7 @@ const CreateListingsBlinks = () => {
     demo_url: "",
     year_created: 2050,
     platform_ids: [], // Initialize as an empty array
+    key_features: "",
   };
 
   // State variables

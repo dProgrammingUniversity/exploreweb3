@@ -95,11 +95,23 @@ const BlinksListingDetailPage = async ({ params }) => {
     console.error("Error fetching project:", projectError);
   }
 
-  // Add project name and slug to the listing data
-  const listingWithProjectName = {
+  // Fetch the platforms data using the platform IDs
+  const platformIds = listing.platform_ids;
+  const { data: platformsData, error: platformsError } = await supabase
+    .from("blinks_platforms")
+    .select("name")
+    .in("id", platformIds);
+
+  if (platformsError) {
+    console.error("Error fetching platforms:", platformsError);
+  }
+
+  // Add project name, slug, and platforms to the listing data
+  const listingWithDetails = {
     ...updatedListing,
-    project_name: projectData?.name || "Unknown", //add name
-    project_slug: projectData?.slug || "", //add slug
+    project_name: projectData?.name || "Unknown",
+    project_slug: projectData?.slug || "",
+    platforms: platformsData?.map(platform => platform.name) || [],
   };
 
 
@@ -111,7 +123,7 @@ const BlinksListingDetailPage = async ({ params }) => {
     <section className="pb-20 pt-35 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
       <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
         <div className="flex flex-col-reverse gap-7.5 lg:flex-row xl:gap-12.5">
-          <BlinksListingsFullDetailsPage listing={listingWithProjectName} userId={userId} />
+          <BlinksListingsFullDetailsPage listing={listingWithDetails} userId={userId} />
         </div>
       </div>
     </section>
@@ -119,5 +131,3 @@ const BlinksListingDetailPage = async ({ params }) => {
 };
 
 export default BlinksListingDetailPage;
-
-
