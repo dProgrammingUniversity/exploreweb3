@@ -1,8 +1,8 @@
 // /app/blinks/page.tsx
 import Blinks from "@/components/Blinks";
-import AnimatedTitle from "@/components/Header/TitleAnimated";
+import TitleAnimated from "@/components/Header/TitleAnimated";
 import { Metadata } from "next";
-import StaticTitle from "@/components/Header/TitleStatic";
+import TitleStaticBlinks from "@/components/Header/TitleStaticBlinks";
 
 // Define fixed metadata values
 const title = "Explore Solana Blinks - Explore Solana";
@@ -43,11 +43,11 @@ const BlinksHomePage = () => {
       <section className="pb-20 pt-35 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <div className="flex flex-col gap-7.5">
-            {/* Top text section with highlighted text */}
-            <StaticTitle />
+          {/* Top text section with highlighted text */}
+            <TitleStaticBlinks />
 
             {/* Animated text component */}
-            <AnimatedTitle />
+            <TitleAnimated />
 
             {/* Directory Page */}
             <Blinks />
