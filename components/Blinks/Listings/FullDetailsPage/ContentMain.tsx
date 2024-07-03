@@ -23,7 +23,7 @@ const ContentMain: React.FC<{
       <div className="animate_top rounded-md border border-stroke bg-white p-7.5 shadow-solid-13 dark:border-strokedark dark:bg-blacksection md:p-10">
         {/* Title */}
         <h1 className="mb-5 mt-11 text-center text-5xl font-semibold text-black dark:text-white 2xl:text-sectiontitle2">
-          {listing.name}
+          {listing.name} Blinks
         </h1>
         {/* Status */}
         <ul className="mb-9 flex flex-wrap gap-5 2xl:gap-7.5">
@@ -58,15 +58,17 @@ const ContentMain: React.FC<{
         </div>
 
         <div className="blog-details">
+          
           {/* Favorite Button */}
           <FavoritesButton userId={userId} listingId={listing.id} />
+          
           {/* Registry Status */}
           <ul className="mb-9">
             <li>
               <span className="text-black dark:text-white">
                 Registry Status:{" "}
               </span>{" "}
-              {listing.blinks_registry_status}
+              {listing.blinks_registry_status} Blinks
             </li>
             <li>
               <span className="text-black dark:text-white">Categories: </span>{" "}
@@ -75,19 +77,25 @@ const ContentMain: React.FC<{
               {listing.category_5_name}
             </li>
           </ul>
+          
           {/* Summary */}
-          <h2>{listing.name} Summary:</h2>
+          <h2>{listing.name} Blinks Summary:</h2>
           {renderMultilineText(listing.short_description)}
+
+          {/* Key Features */}
+          <h2>{listing.name} Blinks Key Features:</h2>
+          {renderMultilineText(listing.key_features)}
+          
           {/* Demo Video */}
           <div className="mb-7">
-            <h2>{listing.name} Demo:</h2>
+            <h2>{listing.name} Blinks Demo:</h2>
             {listing.demo_url ? (
               <Link
                 href={AppendSiteUrlToExternalLink(listing.demo_url)}
                 target="_blank"
                 className="text-blue-400 hover:text-blue-300"
               >
-                Watch {listing.name} Demo Video
+                Watch {listing.name} Blinks Demo Video
               </Link>
             ) : (
               <span className="text-gray-500">
@@ -98,10 +106,10 @@ const ContentMain: React.FC<{
 
           {/* Donate */}
           <div className="text-center">
-            <h3>
+            <h4>
               Kindly support to keep this ExploreSolana project going to
               continue to add more Solana projects like {listing.name}:
-            </h3>
+            </h4>
             <Link href={"/donate"} className="text-xl font-bold text-green-500">
               Kindly Donate Here - Thanks!
             </Link>
@@ -112,8 +120,8 @@ const ContentMain: React.FC<{
 
           {/* Related Blinks Listings */}
           <div className="mt-8">
-            <h2>{listing.name} Alternatives & Related Listings:</h2>
-            Checkout {listing.name} alternatives below:
+            <h2>{listing.name} Blinks Alternatives & Related Listings:</h2>
+            Checkout {listing.name} Blinks alternatives below:
             {listing && listing.category_1_name && (
               <ListingsBlinksRelatedSuggestion
                 mainCategory={listing.category_1_name}
@@ -123,11 +131,11 @@ const ContentMain: React.FC<{
 
           {/* Rate and Review */}
           <div className="mt-8">
-            <h2>Rate & Review {listing.name}:</h2>
+            <h2>Rate & Review {listing.name} Blinks:</h2>
             <RatingReviewsForm listingId={listing?.id} userId={userId} />
           </div>
           <div className="mt-8">
-            <h2>{listing.name} Users Ratings & Reviews:</h2>
+            <h2>{listing.name} Blinks Users Ratings & Reviews:</h2>
             <span>Discover other users experience with {listing.name}:</span>
             <RatingReviewsList listingId={listing?.id} userId={null} />
           </div>

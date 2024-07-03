@@ -9,10 +9,11 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
 }) => {
   return (
     <div className="md:w-1/2 lg:w-[32%]">
+      
       {/* Blinks URL */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
-          {listing.name} Website:
+          {listing.name} Blinks Website:
         </h4>
         {listing.blinks_url ? (
           <Link
@@ -20,11 +21,11 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
             target="_blank"
             className="block text-blue-400 hover:text-blue-300"
           >
-            {listing.name} URL
+            {listing.name} Blinks URL
           </Link>
         ) : (
           <span className="block text-gray-500">
-            {listing.name} Website link not available
+            {listing.name} Blinks Website link not available
           </span>
         )}
       </div>
@@ -32,7 +33,7 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
       {/* Repository URL */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
-          {listing.name} GitHub:
+          {listing.name} Blinks Repo URL:
         </h4>
         <span className="block text-green-600">
           {listing.name} Source Code Accessibility:
@@ -44,11 +45,11 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
             target="_blank"
             className="block text-blue-400 hover:text-blue-300"
           >
-            {listing.name} Repository URL
+            {listing.name} Blinks Repository URL
           </Link>
         ) : (
           <span className="block text-gray-500">
-            {listing.name} Repository link not available
+            {listing.name} Blinks Repository link not available
           </span>
         )}
       </div>
@@ -56,10 +57,10 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
       {/* Blinks Creator */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
-          {listing.name} Creator:
+          {listing.name} Blinks Creator:
         </h4>
         <span className="block text-gray-500">
-          {listing.name} was created by{" "}
+          {listing.name} Blinks was created by{" "}
           <Link
             href={`/projects/${listing.project_slug}`}
             className="text-blue-400 hover:text-blue-300"

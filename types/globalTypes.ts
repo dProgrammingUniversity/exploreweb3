@@ -315,7 +315,7 @@ type DisplayListingBlinksTypes = {
   platform_ids: number[];
   project_name: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
   project_slug: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
-  key_features: String;
+  key_features: string;
 };
 
 /*
@@ -366,5 +366,5 @@ type CreateListingBlinksTypes = {
   platform_ids: number[];
   // project_name: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
   // project_slug: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
-  key_features: String;
+  key_features: string;
 };
