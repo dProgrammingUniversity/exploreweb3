@@ -10,6 +10,26 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
   return (
     <div className="md:w-1/2 lg:w-[32%]">
       
+      {/* Blinks Platforms */}
+      <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
+        <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
+          {listing.name} Blinks Platforms:
+        </h4>
+        {listing.platforms && listing.platforms.length > 0 ? (
+          <ul>
+            {listing.platforms.map((platform, index) => (
+              <li key={index} className="block text-gray-500">
+                {platform}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span className="block text-gray-500">
+            No platforms available
+          </span>
+        )}
+      </div>
+      
       {/* Blinks URL */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">

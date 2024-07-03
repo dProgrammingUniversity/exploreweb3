@@ -33,7 +33,7 @@ const ContentMain: React.FC<{
           </li>
           {/* Year Created */}
           <li>
-            <span className="text-black dark:text-white">Year Founded: </span>{" "}
+            <span className="text-black dark:text-white">Year Created: </span>{" "}
             {listing.year_created}
           </li>
           {/* Moderation Status */}
