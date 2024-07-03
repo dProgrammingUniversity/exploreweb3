@@ -1,11 +1,11 @@
-// /components/Directory/AnimatedTitle.tsx
+// /components/Header/TitleAnimated.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
 
-const AnimatedTitle = () => {
+const TitleAnimated = () => {
   const [currentWord, setCurrentWord] = useState("dApps");
   const [totalListings, setTotalListings] = useState(0); // State to hold total number of listings
   const words = [
@@ -23,17 +23,34 @@ const AnimatedTitle = () => {
 
   // Function to fetch the total number of unique approved listings
   const fetchTotalListings = async () => {
-    const { count, error } = await supabaseClient
-      .from("listings")
-      .select("*", { count: "exact" })
-      .eq("moderation_status", "approved");
+    try {
+      // Fetch count of listings from 'listings' table
+      const { count: listingsCount, error: listingsError } = await supabaseClient
+        .from("listings")
+        .select("*", { count: "exact" })
+        .eq("moderation_status", "approved");
 
-    if (error) {
+      if (listingsError) {
+        throw listingsError;
+      }
+
+      // Fetch count of listings from 'blinks' table
+      const { count: blinksCount, error: blinksError } = await supabaseClient
+        .from("blinks")
+        .select("*", { count: "exact" })
+        .eq("moderation_status", "approved");
+
+      if (blinksError) {
+        throw blinksError;
+      }
+
+      // Sum the counts from both tables
+      const totalCount = (listingsCount ?? 0) + (blinksCount ?? 0);
+
+      setTotalListings(totalCount); // Update the state with the total count
+    } catch (error) {
       console.error("Error fetching total listings:", error);
-      return;
     }
-
-    setTotalListings(count ?? 0); // Ensure count is a number
   };
 
   useEffect(() => {
@@ -91,4 +108,4 @@ const AnimatedTitle = () => {
   );
 };
 
-export default AnimatedTitle;
+export default TitleAnimated;

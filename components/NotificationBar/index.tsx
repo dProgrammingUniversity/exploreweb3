@@ -17,12 +17,12 @@ const NotificationBar = () => {
           <div className="flex items-center gap-4">
             <strong>New Feature:</strong>
             <span>
-              Solana Blinks Explorer!{" "}
+              Solana Blinks Explorer Launched - {" "}
               <a
-                href="#"
+                href="/blinks"
                 className="underline hover:text-yellow-300"
               >
-                Coming Soon
+                Explore!
               </a>
             </span>
           </div>

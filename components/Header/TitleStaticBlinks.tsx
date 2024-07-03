@@ -1,23 +1,23 @@
-// /components/Header/TitleStatic.tsx
+// /components/Header/TitleStaticBlinks.tsx
 import React from "react";
 
-const TitleStatic = () => {
+const TitleStaticBlinks = () => {
   return (
     <div className="container mx-auto py-8"> {/* Added mx-auto to center the container */}
       <div className="text-center">
         <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl">
-          Explore <span className="text-purple-400">Solana Ecosystem</span>
+          Explore <span className="text-purple-400">Solana BLINKS Explorer</span>
         </h1>
-        <h2 className="text-xl font-semibold text-white md:text-2xl">
+        {/* <h2 className="text-xl font-semibold text-white md:text-2xl">
           & Discover Opportunities!
-        </h2>
-        <p className="mt-2 px-4 text-sm text-purple-300 md:text-base">
+        </h2> */}
+        {/* <p className="mt-2 px-4 text-sm text-purple-300 md:text-base">
           Experience Solana <span className="text-pink-600">"S"</span> ecosystem easily, exclusive
           dApps/tools/resources/blinks updates, insights and opportunities (jobs, grants, bounty etc.) await you:
-        </p>
+        </p> */}
       </div>
     </div>
   );
 };
 
-export default TitleStatic;
+export default TitleStaticBlinks;
