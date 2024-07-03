@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/DownloadInfo.tsx
+// /components/Directory/Dashboard/CreateListings/Projects/DownloadInfo.tsx
 import React from 'react';
 
 interface DownloadInfoProps {

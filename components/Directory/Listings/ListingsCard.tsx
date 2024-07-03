@@ -34,7 +34,7 @@ const ListingsCard: React.FC<Props> = ({ listing, isListView = false }) => {
 
   return (
     <Link
-      href={`/directory/${listing.slug}`}
+      href={`/projects/${listing.slug}`}
       // target="_blank"
       passHref
       className={`border rounded-lg p-4 shadow-lg ${

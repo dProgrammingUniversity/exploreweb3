@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/ProjectInfo.tsx
+// /components/Directory/Dashboard/CreateListings/Projects/ProjectInfo.tsx
 import React from 'react';
 
 const ProjectInfo = ({
@@ -43,7 +43,7 @@ const ProjectInfo = ({
       </select>
     </div>
 
-    <div className="col-span-full">
+    <div className="flex flex-col">
       <label className="mb-2 capitalize text-purple-500 text-xl">Category 2 (optional):</label>
       <select
         className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
@@ -59,7 +59,7 @@ const ProjectInfo = ({
       </select>
     </div>
 
-    <div className="col-span-full">
+    <div className="flex flex-col">
       <label className="mb-2 capitalize text-purple-500 text-xl">Category 3 (optional):</label>
       <select
         className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
@@ -75,7 +75,7 @@ const ProjectInfo = ({
       </select>
     </div>
 
-    <div className="col-span-full">
+    <div className="flex flex-col">
       <label className="mb-2 capitalize text-purple-500 text-xl">Category 4 (Optional):</label>
       <select
         className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
@@ -91,7 +91,7 @@ const ProjectInfo = ({
       </select>
     </div>
 
-    <div className="col-span-full">
+    <div className="flex flex-col">
       <label className="mb-2 capitalize text-purple-500 text-xl">Category 5 (optional):</label>
       <select
         className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"

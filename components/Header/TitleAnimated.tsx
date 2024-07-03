@@ -15,6 +15,7 @@ const AnimatedTitle = () => {
     "Features",
     "Protocols",
     "Communities",
+    "Blinks",
   ];
 
   // Initialize Supabase client
@@ -58,7 +59,7 @@ const AnimatedTitle = () => {
         transition={{ duration: 1 }}
       >
         <div className="flex items-center justify-center gap-1">
-          <span>Search {totalListings}/1,000+ Solana Projects</span>
+          <span>Search {totalListings}/1,000+ Solana Projects & Blinks</span>
           <span>{"=>"}</span>
           <motion.span
             className="inline-block text-center text-purple-400"

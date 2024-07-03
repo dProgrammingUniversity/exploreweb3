@@ -13,6 +13,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/directory/:path*',
+        destination: '/projects/:path*',
+        permanent: true, // This indicates that the redirect is permanent (301)
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;

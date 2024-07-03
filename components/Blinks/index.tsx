@@ -1,15 +1,15 @@
-// /components/Directory/index.tsx
+// /components/Blinks/index.tsx
 "use client";
 import { motion } from "framer-motion";
-import DirectoryPage from "./DirectoryPage";
+import BlinksPage from "./Page";
 
-const Directory = () => {
+const Blinks = () => {
   return (
     <>
       <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
         <div className="mx-auto max-w-c-1235 px-4 md:px-8 xl:px-0">
           <div className="flex-col items-center gap-8 lg:gap-32.5">
-            {/* DirectoryPage component */}
+            {/* BlinksPage component */}
             <motion.div
               variants={{
                 hidden: {
@@ -28,9 +28,9 @@ const Directory = () => {
               viewport={{ once: true }}
               className="animate_left "
             >
-              {/* Directory Page */}
+              {/* Blinks Page */}
               {/* <AnimatedTitle /> */}
-              <DirectoryPage />
+              <BlinksPage />
             </motion.div>
           </div>
         </div>
@@ -39,4 +39,4 @@ const Directory = () => {
   );
 };
 
-export default Directory;
+export default Blinks;

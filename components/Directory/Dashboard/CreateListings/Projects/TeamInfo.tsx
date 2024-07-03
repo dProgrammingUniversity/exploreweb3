@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/TeamInfo.tsx
+// /components/Directory/Dashboard/CreateListings/Projects/TeamInfo.tsx
 import React from 'react';
 
 const TeamInfo = ({ formData, handleInputChange, loading }) => (
