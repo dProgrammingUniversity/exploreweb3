@@ -1,5 +1,5 @@
 // /app/blinks/page.tsx
-import BlinksPage from "@/components/Blinks/Page";
+import Blinks from "@/components/Blinks";
 import AnimatedTitle from "@/components/Header/TitleAnimated";
 import { Metadata } from "next";
 import StaticTitle from "@/components/Header/TitleStatic";
@@ -50,7 +50,7 @@ const BlinksHomePage = () => {
             <AnimatedTitle />
 
             {/* Directory Page */}
-            <BlinksPage />
+            <Blinks />
           </div>
         </div>
       </section>

@@ -1,7 +1,6 @@
 // /components/Blinks/index.tsx
 "use client";
 import { motion } from "framer-motion";
-import AnimatedTitle from "../Header/TitleAnimated";
 import BlinksPage from "./Page";
 
 const Blinks = () => {
@@ -30,7 +29,7 @@ const Blinks = () => {
               className="animate_left "
             >
               {/* Blinks Page */}
-              <AnimatedTitle />
+              {/* <AnimatedTitle /> */}
               <BlinksPage />
             </motion.div>
           </div>

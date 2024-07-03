@@ -16,6 +16,8 @@ import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 import { Metadata } from "next";
 import StaticTitle from "@/components/Header/TitleStatic";
+import BlinksTab from "@/components/Blinks/Tab";
+import AnimatedTitle from "@/components/Header/TitleAnimated";
 
 // Define fixed metadata values
 const title = "Explore Solana Ecosystem Projects - Explore Solana";
@@ -56,7 +58,9 @@ export default function Home() {
       <StaticTitle />
       <Brands />
       {/* <Feature /> */}
-      <Directory />
+      <AnimatedTitle />
+      <BlinksTab />
+      {/* <Directory /> */}
       <DirectoryTab />
       {/* <About /> */}
       {/* <FeaturesTab /> */}

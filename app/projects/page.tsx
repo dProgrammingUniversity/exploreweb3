@@ -1,5 +1,5 @@
 // /app/projects/page.tsx
-import DirectoryPage from "@/components/Directory/DirectoryPage";
+import Directory from "@/components/Directory";
 import AnimatedTitle from "@/components/Header/TitleAnimated";
 import { Metadata } from "next";
 import StaticTitle from "@/components/Header/TitleStatic";
@@ -50,7 +50,7 @@ const DirectoryHomePage = () => {
             <AnimatedTitle />
 
             {/* Directory Page */}
-            <DirectoryPage />
+            <Directory />
           </div>
         </div>
       </section>

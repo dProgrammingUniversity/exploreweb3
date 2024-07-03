@@ -1,7 +1,6 @@
 // /components/Directory/index.tsx
 "use client";
 import { motion } from "framer-motion";
-import AnimatedTitle from "../Header/TitleAnimated";
 import DirectoryPage from "./DirectoryPage";
 
 const Directory = () => {
@@ -30,7 +29,7 @@ const Directory = () => {
               className="animate_left "
             >
               {/* Directory Page */}
-              <AnimatedTitle />
+              {/* <AnimatedTitle /> */}
               <DirectoryPage />
             </motion.div>
           </div>
