@@ -296,11 +296,29 @@ const BlinksInfo = ({
     <div className="flex flex-col col-span-full">
       <label htmlFor="short_description" className="mb-2 capitalize text-purple-500 text-xl">Short Description:</label>
       <br/>
-      <span className="text-sm text-gray-400 mb-1">minimum of 100 characters</span>
+      <span className="text-sm text-gray-400 mb-1">minimum of 150 characters</span>
       <textarea
         id="short_description"
         name="short_description"
         value={formData.short_description}
+        onChange={handleInputChange}
+        disabled={loading}
+        rows={5}
+        maxLength={1000}
+        style={{ minHeight: '50px', resize: 'vertical' }}
+        className="flex flex-col justify-center w-full bg-gray-800 text-white rounded-lg border-2"
+      />
+    </div>
+
+     {/* Key features input */}
+     <div className="flex flex-col col-span-full">
+      <label htmlFor="key_features" className="mb-2 capitalize text-purple-500 text-xl">Key Features:</label>
+      <br/>
+      <span className="text-sm text-gray-400 mb-1">minimum of 150 characters - create it in list format</span>
+      <textarea
+        id="key_features"
+        name="key_features"
+        value={formData.key_features}
         onChange={handleInputChange}
         disabled={loading}
         rows={5}

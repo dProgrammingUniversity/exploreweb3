@@ -315,6 +315,7 @@ type DisplayListingBlinksTypes = {
   platform_ids: number[];
   project_name: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
   project_slug: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
+  key_features: String;
 };
 
 /*
@@ -363,4 +364,7 @@ type CreateListingBlinksTypes = {
   team_all_linkedin_url: string;
   team_all_website_url: string;
   platform_ids: number[];
+  // project_name: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
+  // project_slug: string; //used in /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
+  key_features: String;
 };
