@@ -1,17 +1,17 @@
-// /components/Directory/RatingsReviews/RatingReviewsList.tsx
+// /components/Blinks/RatingsReviews/List.tsx
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline';
 
-const RatingReviewsList = ({ listingId }: RatingReviewsProps) => {
+const BlinksRatingReviewsList = ({ blinksId }: BlinksRatingReviewsProps) => {
   const [reviews, setReviews] = useState<RatingsReviewsType[]>([]);
   const supabaseClient = createClient();
 
   useEffect(() => {
     const fetchReviews = async () => {
       const { data, error } = await supabaseClient
-        .rpc('ratings_reviews_fetch_approved', { _listing_id: listingId });
+        .rpc('blinks_ratings_reviews_fetch_approved', { _blinks_id: blinksId });
 
       if (error) {
         console.error('Error fetching reviews:', error);
@@ -21,7 +21,7 @@ const RatingReviewsList = ({ listingId }: RatingReviewsProps) => {
     };
 
     fetchReviews();
-  }, [listingId]);
+  }, [blinksId]);
 
   return (
     <div>
@@ -56,4 +56,4 @@ const RatingReviewsList = ({ listingId }: RatingReviewsProps) => {
   );
 };
 
-export default RatingReviewsList;
+export default BlinksRatingReviewsList;
