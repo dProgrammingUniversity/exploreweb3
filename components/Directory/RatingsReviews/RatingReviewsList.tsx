@@ -31,9 +31,9 @@ const RatingReviewsList = ({ listingId }: RatingReviewsProps) => {
             <p className="mr-2 text-l font-bold text-purple-500">Rating:</p>
             {[...Array(5)].map((_, index) => (
               index < review.rating ? (
-                <StarIcon className="w-5 h-5 text-yellow-400" />
+                <StarIcon key={`${review.id}-${index}`} className="w-5 h-5 text-yellow-400" />
               ) : (
-                <StarOutlineIcon className="w-5 h-5 text-gray-400" />
+                <StarOutlineIcon key={`${review.id}-${index}`} className="w-5 h-5 text-gray-400" />
               )
             ))}
           </div>
