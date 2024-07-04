@@ -1,7 +1,7 @@
 // /app/dashboard/favorites/blinks/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import FavoritePage from "@/components/Directory/Favorites/ProjectsPage";
+import FavoritesBlinksPage from "@/components/Blinks/Favorites/BlinksPage";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
@@ -70,7 +70,7 @@ export default async function BlinksFavoriteListingsPage() {
             BLINKS FAVORITES LISTINGS - DASHBOARD PAGE
           </h2>
 
-          <FavoritePage />
+          <FavoritesBlinksPage />
         </div>
       </section>
     </>
