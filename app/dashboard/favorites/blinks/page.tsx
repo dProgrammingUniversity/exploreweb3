@@ -1,7 +1,7 @@
-// /app/dashboard/favorites//blinks/page.tsx
+// /app/dashboard/favorites/blinks/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import FavoritePage from "@/components/Directory/Dashboard/FavoritePage";
+import FavoritePage from "@/components/Dashboard/FavoritePage";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";

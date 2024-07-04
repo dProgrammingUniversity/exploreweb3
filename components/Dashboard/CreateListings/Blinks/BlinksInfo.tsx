@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Blinks/BlinksInfo.tsx
+// /components/Dashboard/CreateListings/Blinks/BlinksInfo.tsx
 import React, { useState } from 'react';
 
 const BlinksInfo = ({

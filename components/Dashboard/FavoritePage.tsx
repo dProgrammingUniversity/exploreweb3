@@ -1,8 +1,8 @@
-// /components/Directory/Dashboard/FavoritePage.tsx
+// /components/Dashboard/FavoritePage.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-import ListingsCard from "../Listings/ListingsCard";
+import ListingsCard from "../Directory/Listings/ListingsCard";
 import Pagination from "@/components/Pagination"; // Ensure this import path is correct based on your project structure
 
 const FavoritePage = () => {

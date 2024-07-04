@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import UsernamesForm from "@/components/Directory/Dashboard/UsernamesForm";
+import UsernamesForm from "@/components/Dashboard/UsernamesForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

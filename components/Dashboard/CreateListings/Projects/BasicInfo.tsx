@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Projects/BasicInfo.tsx
+// /components/Dashboard/CreateListings/Projects/BasicInfo.tsx
 import React from 'react';
 
 const BasicInfo = ({ formData, handleInputChange, statuses, loading }) => (

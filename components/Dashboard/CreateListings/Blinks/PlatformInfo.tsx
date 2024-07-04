@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Blinks/PlatformInfo.tsx
+// /components/Dashboard/CreateListings/Blinks/PlatformInfo.tsx
 
 import React from 'react';
 import Select from 'react-select';
