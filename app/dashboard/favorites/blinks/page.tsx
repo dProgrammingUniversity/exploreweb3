@@ -1,7 +1,7 @@
 // /app/dashboard/favorites/blinks/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import FavoritePage from "@/components/Dashboard/FavoritePage";
+import FavoritePage from "@/components/Directory/Favorites/ProjectsPage";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-export default async function FavoriteListingsPage() {
+export default async function BlinksFavoriteListingsPage() {
   const supabase = createClient();
   const {
     data: { user },
