@@ -1,10 +1,10 @@
-// /components/Directory/Analytics/Analytics.tsx
+// /components/Analytics/AnalyticsGoogle.tsx
 "use client";
 import { useEffect } from 'react';
 import { pageview } from '@/utils/analytics/analytics';
 
 
-const Analytics = () => {
+const AnalyticsGoogle = () => {
   useEffect(() => {
     // Ensure GA_TRACKING_ID is available
     if (!window.GA_TRACKING_ID) return;
@@ -32,5 +32,5 @@ const Analytics = () => {
   return null;
 };
 
-export default Analytics;
+export default AnalyticsGoogle;
 

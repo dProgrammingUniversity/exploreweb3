@@ -9,9 +9,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ToasterContext from "./context/ToastContext";
 import { GA_TRACKING_ID } from "@/utils/analytics/analytics"; //Google analytics
-import Analytics from "@/components/Directory/Analytics/Analytics"; //Google Analytics
+import AnalyticsGoogle from "@/components/Analytics/AnalyticsGoogle"; //Google Analytics
 import { SpeedInsights } from "@vercel/speed-insights/next"; //Vercel Insight
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react"; //Vercel Analytics
+import { Analytics as AnalyticsVercel } from "@vercel/analytics/react"; //Vercel Analytics
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,7 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`dark:bg-black ${inter.className}`}>
-        <Analytics />
+        <AnalyticsGoogle />
         <ThemeProvider
           enableSystem={false}
           attribute="class"
@@ -70,7 +70,7 @@ export default function RootLayout({
           <ToasterContext />
           {children}
           <SpeedInsights />
-          <VercelAnalytics />
+          <AnalyticsVercel />
           <Footer />
           <ScrollToTop />
         </ThemeProvider>

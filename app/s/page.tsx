@@ -1,5 +1,5 @@
 // /app/s/page.tsx
-import EmailSubscriptionForm from "@/components/Directory/Newsletter/EmailSubscriptionForm";
+import EmailSubscriptionForm from "@/components/Newsletter/EmailSubscriptionForm";
 import S from "@/components/S";
 import Image from "next/image";
 import Link from "next/link";

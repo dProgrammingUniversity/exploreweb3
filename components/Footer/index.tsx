@@ -2,7 +2,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import EmailSubscriptionForm from "../Directory/Newsletter/EmailSubscriptionForm";
+import EmailSubscriptionForm from "../Newsletter/EmailSubscriptionForm";
 import DisclosureDisclaimer from "../Legal/DisclosureDisclaimer";
 
 const Footer = () => {
