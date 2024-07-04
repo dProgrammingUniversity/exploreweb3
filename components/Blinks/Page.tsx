@@ -291,69 +291,13 @@ const BlinksPage = () => {
       </div>
 
         {/* Blinks Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-500">
-          {/* Table Header */}
-          <thead>
-            <tr>
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("index")}
-              >
-                #
-              </th>
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("name")}
-              >
-                Name
-              </th>
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("status")}
-              >
-                Status
-              </th>
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("blinks_registry_status")}
-              >
-                Registry
-              </th>
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("platforms")}
-              >
-                Platforms
-              </th>
+        <ListingsTableCard
+  listings={currentListings}
+  currentPage={currentPage}
+  itemsPerPage={itemsPerPage}
+  sortListings={sortListings}
+/>
 
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("year_created")}
-              >
-                Year Created
-              </th>
-              <th
-                className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                onClick={() => sortListings("categories")}
-              >
-                Categories
-              </th>
-            </tr>
-          </thead>
-
-          {/* Table Body */}
-          <tbody className="divide-y divide-gray-200">
-            {currentListings.map((listing, index) => (
-              <ListingsTableCard
-                key={listing.id}
-                listing={listing}
-                index={index + 1 + (currentPage - 1) * itemsPerPage}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
 
       {/* Pagination */}
       <div className="mt-4 flex justify-center">
