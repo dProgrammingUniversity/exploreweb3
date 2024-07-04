@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Blinks/ProjectInfo.tsx
+// /components/Dashboard/CreateListings/Blinks/ProjectInfo.tsx
 import React from "react";
 
 const ProjectInfo = ({ formData, handleInputChange, projectListOptions }) => (

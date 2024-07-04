@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/UsernamesForm.tsx
+// /components/Dashboard/UsernamesForm.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";

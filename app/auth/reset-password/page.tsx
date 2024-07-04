@@ -1,5 +1,5 @@
 // /app/auth/reset-password/page.tsx
-import ResetPassword from "@/components/Directory/SupabaseAuth/ResetPassword";
+import ResetPassword from "@/components/SupabaseAuth/ResetPassword";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";

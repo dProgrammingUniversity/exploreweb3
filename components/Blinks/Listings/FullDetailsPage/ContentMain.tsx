@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { AppendSiteUrlToExternalLink } from "@/utils/AppendSiteUrlToExternalLink";
-import EmailSubscriptionForm from "@/components/Directory/Newsletter/EmailSubscriptionForm";
+import EmailSubscriptionForm from "@/components/Newsletter/EmailSubscriptionForm";
 import { renderMultilineText } from "@/utils/FormatText";
 import ListingsBlinksRelatedSuggestion from "../ListingsBlinksRelatedSuggestion";
 import BlinksFavoritesButton from "../../Favorites/Button";

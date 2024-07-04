@@ -1,4 +1,4 @@
-// /components/Directory/Newsletter/EmailSubscriptionForm.tsx
+// /components/Newsletter/EmailSubscriptionForm.tsx
 import React from "react";
 import Iframe from "react-iframe"; // import Iframe from react-iframe to render subscribe form
 

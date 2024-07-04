@@ -1,4 +1,4 @@
-// /components/Directory/SupabaseAuth/ResetPassword.tsx
+// /components/SupabaseAuth/ResetPassword.tsx
 "use client";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";

@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Projects/ProjectInfo.tsx
+// /components/Dashboard/CreateListings/Projects/ProjectInfo.tsx
 import React from 'react';
 
 const ProjectInfo = ({

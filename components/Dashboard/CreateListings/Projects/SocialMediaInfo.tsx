@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Projects/SocialMediaInfo.tsx
+// /components/CreateListings/Projects/SocialMediaInfo.tsx
 
 import React from 'react';
 

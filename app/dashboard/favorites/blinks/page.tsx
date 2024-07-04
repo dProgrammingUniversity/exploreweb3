@@ -1,6 +1,7 @@
-// /app/dashboard/favorites/page.tsx
+// /app/dashboard/favorites/blinks/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import FavoritePage from "@/components/Dashboard/FavoritePage";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
@@ -66,21 +67,10 @@ export default async function FavoriteListingsPage() {
           </div>
 
           <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-            FAVORITES LISTINGS - DASHBOARD PAGE
+            BLINKS FAVORITES LISTINGS - DASHBOARD PAGE
           </h2>
 
-          <div className="flex justify-center space-x-4">
-            <Link href="/dashboard/favorites/projects">
-              <button className="px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-                Favorite Projects
-              </button>
-            </Link>
-            <Link href="/dashboard/favorites/blinks">
-              <button className="px-6 py-3 text-white bg-green-500 rounded-lg hover:bg-green-600">
-                Favorite Blinks
-              </button>
-            </Link>
-          </div>
+          <FavoritePage />
         </div>
       </section>
     </>

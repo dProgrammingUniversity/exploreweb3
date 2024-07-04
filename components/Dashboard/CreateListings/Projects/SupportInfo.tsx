@@ -1,4 +1,4 @@
-// /components/Directory/Dashboard/CreateListings/Projects/SupportInfo.tsx
+// /components/Dashboard/CreateListings/Projects/SupportInfo.tsx
 
 import React from 'react';
 
