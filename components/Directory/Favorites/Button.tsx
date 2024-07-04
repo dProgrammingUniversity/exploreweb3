@@ -1,9 +1,9 @@
-// /components/Favorites/FavoritesButton.tsx
+// /components/Directory/Favorites/Button.tsx
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { HeartIcon } from '@heroicons/react/24/outline'; // Import the icons
 
-const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
+const ProjectsFavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0); // State to hold the favorites count
   const supabase = createClient();
@@ -28,7 +28,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
 
   // Toggle favorite button function
   const toggleFavorite = async () => {
-    //check if user loggedin or not
+    // Check if user logged in or not
     if (!userId) {
       // Redirect non-authenticated users to login
       window.location.href = "/auth/login";
@@ -44,7 +44,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
       if (error) {
         console.error('Error deleting project from projects favorites:', error);
       } else {
-        console.log('Project deleted from projects Favorites successfully');
+        console.log('Project deleted from projects favorites successfully');
         setIsFavorite(!isFavorite);
         fetchFavoritesCount(); // Update the favorites count after deletion
       }
@@ -77,13 +77,14 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
       if (error) {
         throw error;
       }
+      // console.log('Favorites count:', data.projects_favorites_count);
       setFavoritesCount(data.projects_favorites_count);
     } catch (error) {
       console.error('Error fetching projects favorites count:', error);
     }
   };
 
-  //trigger functions when component mounts or updates
+  // Trigger functions when component mounts or updates
   useEffect(() => {
     checkFavorite();
     fetchFavoritesCount();
@@ -111,4 +112,4 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   );
 };
 
-export default FavoritesButton;
+export default ProjectsFavoritesButton;

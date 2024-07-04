@@ -6,7 +6,7 @@ import { AppendSiteUrlToExternalLink } from "@/utils/AppendSiteUrlToExternalLink
 import EmailSubscriptionForm from "../../Newsletter/EmailSubscriptionForm";
 import { renderMultilineText } from "@/utils/FormatText";
 import ListingsRelatedSuggestion from "../ListingsRelatedSuggestion";
-import FavoritesButton from "../../Favorite/FavoritesButton";
+import ProjectsFavoritesButton from "../../Favorites/Button";
 import RatingReviewsForm from "../../RatingsReviews/RatingReviewsForm";
 import RatingReviewsList from "../../RatingsReviews/RatingReviewsList";
 import Image from "next/image";
@@ -218,7 +218,7 @@ const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | nul
         </div>
 
         <div className="blog-details">
-          <FavoritesButton userId={userId} listingId={listing.id} />
+          <ProjectsFavoritesButton userId={userId} listingId={listing.id} />
 
           <ul className="mb-9">
             <li>
