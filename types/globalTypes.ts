@@ -224,6 +224,11 @@ interface FavoritePageProps {
   listingId: number | null;
 }
 
+interface BlinksFavoritePageProps {
+  userId: string | null;
+  blinksId: number | null;
+}
+
 /*
 TYPE DEFINITION 8: for ratings reviews types 
 Define a type for listing data and it can be used anywhere in the app 
