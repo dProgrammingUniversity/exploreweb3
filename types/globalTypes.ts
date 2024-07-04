@@ -252,6 +252,11 @@ interface RatingReviewsProps {
   userId: string | null;
 }
 
+interface BlinksRatingReviewsProps {
+  blinksId: number | null;
+  userId: string | null;
+}
+
 /*
 TYPE DEFINITION 9: for User types 
 Define a type for listing data and it can be used anywhere in the app 

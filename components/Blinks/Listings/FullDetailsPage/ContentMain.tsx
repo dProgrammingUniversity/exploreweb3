@@ -7,8 +7,8 @@ import EmailSubscriptionForm from "@/components/Newsletter/EmailSubscriptionForm
 import { renderMultilineText } from "@/utils/FormatText";
 import ListingsBlinksRelatedSuggestion from "../ListingsBlinksRelatedSuggestion";
 import BlinksFavoritesButton from "../../Favorites/Button";
-import RatingReviewsForm from "@/components/Directory/RatingsReviews/RatingReviewsForm";
-import RatingReviewsList from "@/components/Directory/RatingsReviews/RatingReviewsList";
+import BlinksRatingReviewsForm from "../../RatingsReviews/Form";
+import BlinksRatingReviewsList from "../../RatingsReviews/List";
 import Image from "next/image";
 
 const ContentMain: React.FC<{
@@ -132,12 +132,12 @@ const ContentMain: React.FC<{
           {/* Rate and Review */}
           <div className="mt-8">
             <h2>Rate & Review {listing.name} Blinks:</h2>
-            <RatingReviewsForm listingId={listing?.id} userId={userId} />
+            <BlinksRatingReviewsForm blinksId={listing?.id} userId={userId} />
           </div>
           <div className="mt-8">
             <h2>{listing.name} Blinks Users Ratings & Reviews:</h2>
             <span>Discover other users experience with {listing.name}:</span>
-            <RatingReviewsList listingId={listing?.id} userId={null} />
+            <BlinksRatingReviewsList listingId={listing?.id} userId={null} />
           </div>
         </div>
       </div>
