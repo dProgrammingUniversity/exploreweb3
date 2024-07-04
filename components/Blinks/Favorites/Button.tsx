@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { HeartIcon } from '@heroicons/react/24/outline'; // Import the icons
 
-const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
+const BlinksFavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0); // State to hold the favorites count
   const supabase = createClient();
@@ -112,4 +112,4 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   );
 };
 
-export default FavoritesButton;
+export default BlinksFavoritesButton;
