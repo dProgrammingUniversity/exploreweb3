@@ -6,7 +6,7 @@ import { AppendSiteUrlToExternalLink } from "@/utils/AppendSiteUrlToExternalLink
 import EmailSubscriptionForm from "../../Newsletter/EmailSubscriptionForm";
 import { renderMultilineText } from "@/utils/FormatText";
 import ListingsRelatedSuggestion from "../ListingsRelatedSuggestion";
-import FavoritesButton from "../../Favorite/FavoritesButton";
+import FavoritesButton from "../../Favorites/Button";
 import RatingReviewsForm from "../../RatingsReviews/RatingReviewsForm";
 import RatingReviewsList from "../../RatingsReviews/RatingReviewsList";
 import Image from "next/image";
