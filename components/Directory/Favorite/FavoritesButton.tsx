@@ -14,7 +14,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
     if (!userId) return;
     try {
       const { data, error } = await supabase
-        .from('favorites')
+        .from('projects_favorites')
         .select('*')
         .eq('user_id', userId)
         .eq('listing_id', listingId);
@@ -23,7 +23,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   
       setIsFavorite(data.length > 0);
     } catch (error) {
-      console.error('Error checking favorite status:', error);
+      console.error('Error checking projects favorites status:', error);
     }
   };
 
@@ -38,26 +38,26 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
 
     if (isFavorite) {
       // RPC call to delete favorites
-      const { data, error } = await supabase.rpc('favorites_delete', { 
+      const { data, error } = await supabase.rpc('projects_favorites_delete', { 
         input_user_id: userId, 
         input_listing_id: listingId 
       });
       if (error) {
-        console.error('Error deleting favorite:', error);
+        console.error('Error deleting project from projects favorites:', error);
       } else {
-        console.log('Favorite deleted successfully');
+        console.log('Project deleted from projects Favorites successfully');
         setIsFavorite(!isFavorite);
       }
     } else {
       // RPC call to add favorites
-      const { data, error } = await supabase.rpc('favorites_add', { 
+      const { data, error } = await supabase.rpc('projects_favorites_add', { 
         user_id: userId, 
         listing_id: listingId 
       });
       if (error) {
-        console.error('Error adding favorite:', error);
+        console.error('Error adding Project to projects favorites:', error);
       } else {
-        console.log('Favorite added successfully');
+        console.log('Project added to projects favorites successfully');
         setIsFavorite(!isFavorite);
       }
     }
@@ -69,14 +69,14 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   const fetchFavoritesCount = async () => {
     try {
       const { data, error } = await supabase
-        .rpc('favorites_listings_count', { input_listing_id: listingId });
+        .rpc('projects_favorites_listings_count', { input_listing_id: listingId });
 
       if (error) {
         throw error;
       }
       setFavoritesCount(data);
     } catch (error) {
-      console.error('Error fetching favorites count:', error);
+      console.error('Error fetching projects favorites count:', error);
     }
   };
 
