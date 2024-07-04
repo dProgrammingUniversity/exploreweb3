@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { HeartIcon } from '@heroicons/react/24/outline'; // Import the icons
 
-
 const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0); // State to hold the favorites count
@@ -47,6 +46,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
       } else {
         console.log('Project deleted from projects Favorites successfully');
         setIsFavorite(!isFavorite);
+        fetchFavoritesCount(); // Update the favorites count after deletion
       }
     } else {
       // RPC call to add favorites
@@ -59,27 +59,29 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
       } else {
         console.log('Project added to projects favorites successfully');
         setIsFavorite(!isFavorite);
+        fetchFavoritesCount(); // Update the favorites count after addition
       }
     }
-        
   };
 
-
   // Function to fetch the count of favorites for the listing
+  // Note: Unlike others, this is linked to view "projects_favorites_count" table not function
   const fetchFavoritesCount = async () => {
     try {
       const { data, error } = await supabase
-        .rpc('projects_favorites_listings_count', { input_listing_id: listingId });
+        .from('projects_favorites_count')
+        .select('projects_favorites_count')
+        .eq('listing_id', listingId)
+        .single();
 
       if (error) {
         throw error;
       }
-      setFavoritesCount(data);
+      setFavoritesCount(data.projects_favorites_count);
     } catch (error) {
       console.error('Error fetching projects favorites count:', error);
     }
   };
-
 
   //trigger functions when component mounts or updates
   useEffect(() => {
@@ -87,9 +89,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
     fetchFavoritesCount();
   }, [userId, listingId]);
 
-  
   return (
-
     <button
       onClick={toggleFavorite}
       className={`px-4 py-2 rounded text-white font-semibold flex items-center ${
@@ -108,7 +108,6 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
         </>
       )}
     </button>
-
   );
 };
 
