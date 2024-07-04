@@ -67,7 +67,7 @@ export default async function FavoriteListingsPage() {
           </div>
 
           <h2 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-            FAVORITES LISTINGS - DASHBOARD PAGE
+            PROJECTS FAVORITES LISTINGS - DASHBOARD PAGE
           </h2>
 
           <FavoritePage />

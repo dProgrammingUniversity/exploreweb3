@@ -28,7 +28,7 @@ const FavoritePage = () => {
     const fetchFavorites = async () => {
       if (!userId) return; // Ensure userId is not null
 
-      const { data, error } = await supabaseClient.rpc("favorites_fetch_all_at_once", { user_id: userId });
+      const { data, error } = await supabaseClient.rpc("projects_favorites_fetch_all_at_once", { user_id: userId });
 
       if (!error && data) {
         setFavoriteListings(data);
