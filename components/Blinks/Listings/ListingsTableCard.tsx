@@ -5,28 +5,26 @@ import Link from "next/link";
 
 // Define the Props type, expecting listing data and an index
 type Props = {
-  listing: DisplayListingBlinksTypes;
-  index: number;
+  listings: DisplayListingBlinksTypes[];
+  currentPage: number;
+  itemsPerPage: number;
+  sortListings: (column: string) => void;
 };
 
-const ListingsTableCard: React.FC<Props> = ({ listing, index }) => {
-  // State to hold category names
-  const [categoryNames, setCategoryNames] = useState<string[]>([]);
-  // State to hold platform names
-  const [platformNames, setPlatformNames] = useState<string[]>([]);
-  // Initialize Supabase client
+const ListingsTableCard: React.FC<Props> = ({ listings, currentPage, itemsPerPage, sortListings }) => {
+  const [categoryNames, setCategoryNames] = useState<{ [key: number]: string[] }>({});
+  const [platformNames, setPlatformNames] = useState<{ [key: number]: string[] }>({});
   const supabaseClient = createClient();
 
-  // Fetch category names based on category IDs
   useEffect(() => {
-    const fetchCategoryNames = async () => {
+    const fetchCategoryNames = async (listing) => {
       const categoryIds = [
         listing.category_1,
         listing.category_2,
         listing.category_3,
         listing.category_4,
         listing.category_5,
-      ].filter(Boolean); // Filter out any undefined or null values
+      ].filter(Boolean);
 
       const { data, error } = await supabaseClient
         .from('categories')
@@ -34,12 +32,14 @@ const ListingsTableCard: React.FC<Props> = ({ listing, index }) => {
         .in('id', categoryIds);
 
       if (!error) {
-        setCategoryNames(data.map((category) => category.name));
+        setCategoryNames(prevState => ({
+          ...prevState,
+          [listing.id]: data.map((category) => category.name),
+        }));
       }
     };
 
-    // Fetch platform names based on platform IDs
-    const fetchPlatformNames = async () => {
+    const fetchPlatformNames = async (listing) => {
       const platformIds = listing.platform_ids;
       const { data, error } = await supabaseClient
         .from('blinks_platforms')
@@ -47,46 +47,81 @@ const ListingsTableCard: React.FC<Props> = ({ listing, index }) => {
         .in('id', platformIds);
 
       if (!error) {
-        setPlatformNames(data.map((platform) => platform.name));
+        setPlatformNames(prevState => ({
+          ...prevState,
+          [listing.id]: data.map((platform) => platform.name),
+        }));
       }
     };
 
-    // Call the fetch functions
-    fetchCategoryNames();
-    fetchPlatformNames();
-  }, [listing]);
+    listings.forEach((listing) => {
+      fetchCategoryNames(listing);
+      fetchPlatformNames(listing);
+    });
+  }, [listings]);
 
-  // Render the table row with listing details
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentListings = listings.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
-    <tr>
-      <td className="px-6 py-4 whitespace-nowrap text-white">{index}</td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <Link 
-          href={`/blinks/${listing.slug}`} 
-          passHref
-          className="text-sm font-medium text-blue-600 hover:text-blue-900"
-        >
-          {listing.name}
-        </Link>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-white">{listing.status}</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-white">{listing.blinks_registry_status}</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-white">{platformNames.join(', ')}</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-white">{listing.year_created}</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-white">{categoryNames.join(', ')}</div>
-      </td>
-    </tr>
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-500">
+        <thead>
+          <tr>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("index")}>
+              #
+            </th>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("name")}>
+              Name
+            </th>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("status")}>
+              Status
+            </th>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("blinks_registry_status")}>
+              Registry
+            </th>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("platforms")}>
+              Platforms
+            </th>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("year_created")}>
+              Year Created
+            </th>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("categories")}>
+              Categories
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200">
+          {currentListings.map((listing, index) => (
+            <tr key={listing.id}>
+              <td className="px-6 py-4 whitespace-nowrap text-white">{index + 1 + (currentPage - 1) * itemsPerPage}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <Link href={`/blinks/${listing.slug}`} passHref className="text-sm font-medium text-blue-600 hover:text-blue-900">
+                  {listing.name}
+                </Link>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-white">{listing.status}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-white">{listing.blinks_registry_status}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-white">{platformNames[listing.id]?.join(', ')}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-white">{listing.year_created}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-white">{categoryNames[listing.id]?.join(', ')}</div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
 export default ListingsTableCard;
-

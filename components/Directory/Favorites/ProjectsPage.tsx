@@ -1,11 +1,11 @@
-// /components/Dashboard/FavoritePage.tsx
+// /components/Directory/Favorites/Projects.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-import ListingsCard from "../Directory/Listings/ListingsCard";
+import ListingsCard from "../Listings/ListingsCard";
 import Pagination from "@/components/Pagination"; // Ensure this import path is correct based on your project structure
 
-const FavoritePage = () => {
+const FavoritesProjectsPage = () => {
   const [favoriteListings, setFavoriteListings] = useState<DisplayListingTypes[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,4 +62,4 @@ const FavoritePage = () => {
   );
 };
 
-export default FavoritePage;
+export default FavoritesProjectsPage;

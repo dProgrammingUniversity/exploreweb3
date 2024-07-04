@@ -1,7 +1,7 @@
 // /app/dashboard/favorites/projects/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import FavoritePage from "@/components/Dashboard/FavoritePage";
+import FavoritesProjectsPage from "@/components/Directory/Favorites/ProjectsPage";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-export default async function FavoriteListingsPage() {
+export default async function ProjectsFavoriteListingsPage() {
   const supabase = createClient();
   const {
     data: { user },
@@ -70,7 +70,7 @@ export default async function FavoriteListingsPage() {
             PROJECTS FAVORITES LISTINGS - DASHBOARD PAGE
           </h2>
 
-          <FavoritePage />
+          <FavoritesProjectsPage />
         </div>
       </section>
     </>
