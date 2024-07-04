@@ -137,7 +137,7 @@ const ContentMain: React.FC<{
           <div className="mt-8">
             <h2>{listing.name} Blinks Users Ratings & Reviews:</h2>
             <span>Discover other users experience with {listing.name}:</span>
-            <BlinksRatingReviewsList listingId={listing?.id} userId={null} />
+            <BlinksRatingReviewsList blinksId={listing?.id} userId={null} />
           </div>
         </div>
       </div>

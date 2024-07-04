@@ -4,14 +4,14 @@ import { createClient } from '@/utils/supabase/client';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline';
 
-const BlinksRatingReviewsList = ({ listingId }: RatingReviewsProps) => {
+const BlinksRatingReviewsList = ({ blinksId }: BlinksRatingReviewsProps) => {
   const [reviews, setReviews] = useState<RatingsReviewsType[]>([]);
   const supabaseClient = createClient();
 
   useEffect(() => {
     const fetchReviews = async () => {
       const { data, error } = await supabaseClient
-        .rpc('ratings_reviews_fetch_approved', { _listing_id: listingId });
+        .rpc('blinks_ratings_reviews_fetch_approved', { _blinks_id: blinksId });
 
       if (error) {
         console.error('Error fetching reviews:', error);
@@ -21,7 +21,7 @@ const BlinksRatingReviewsList = ({ listingId }: RatingReviewsProps) => {
     };
 
     fetchReviews();
-  }, [listingId]);
+  }, [blinksId]);
 
   return (
     <div>
