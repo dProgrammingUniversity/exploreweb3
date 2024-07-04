@@ -77,7 +77,7 @@ const FavoritesButton = ({ userId, listingId }: FavoritePageProps) => {
       if (error) {
         throw error;
       }
-      console.log('Favorites count:', data.projects_favorites_count);
+      // console.log('Favorites count:', data.projects_favorites_count);
       setFavoritesCount(data.projects_favorites_count);
     } catch (error) {
       console.error('Error fetching projects favorites count:', error);
