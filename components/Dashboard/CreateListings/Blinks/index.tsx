@@ -200,7 +200,6 @@ const CreateListingsBlinks = () => {
   }, [formData]);
 
   // Load draft from the database
-
   const loadDraft = async (userId: string) => {
     const { data, error } = await supabaseClient.rpc("blinks_get_draft", {
       user_uuid: userId,
@@ -214,10 +213,12 @@ const CreateListingsBlinks = () => {
       setSelectedCategory3(draft.category_3);
       setSelectedCategory4(draft.category_4);
       setSelectedCategory5(draft.category_5);
+      //Set showCreatorFields based on the loaded draft
+      setShowCreatorFields(draft.project === "0");
     } else if (error) {
       console.error("Error loading Blinks draft:", error);
     } else {
-      console.log("No draft found for user:");
+      console.log("No blinks draft found for user:");
     }
   };
 
