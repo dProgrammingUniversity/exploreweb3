@@ -19,7 +19,33 @@ const ProjectInfo = ({
       <br />
       <span className="mb-2 text-gray-400">
         Select the project this blink is associated with.
-        {/* Additional description */}
+        <br />
+        <br />
+        <b>IMPORTANT NOTES:</b>
+        <br />
+        <b>(1).</b> To maintain quality listings, Blinks need to be associated with an
+        existing Solana project or it will likely not be approved.
+        <br />
+        <b>(2).</b> If your associated project not listed yet on Explore Solana.
+        Kindly, submit it
+        <a href="/dashboard/create-listings/projects">
+          {" "}
+          <b>Here</b> and have it approved and listed first before submitting
+          the Blinks associated with it.
+        </a>
+        .
+        <br />
+        <b>(3).</b> Need help/got questions? Kindly reach out to me via
+        <a href="/support">
+          {" "}
+          <b>Support</b>.
+        </a>
+        .
+        <br />
+        <br />
+        <b>Update:</b> You can now submit Blinks even if not directly associated with a
+        listed project on Explore Solana. To do that, select
+        "0-Non-Listed-Project" option below which will allow you to fill additional details to increase chance of your Blinks getting approved without a linked project.
       </span>
       <select
         id="project"
@@ -70,7 +96,8 @@ const ProjectInfo = ({
             Creator X URL:
           </label>
           <span className="mb-1 text-sm text-gray-400">
-            creator/dev or project X (Twitter) handle. Preferably point to the tweet used to announce this Blinks.
+            creator/dev or project X (Twitter) handle. Preferably point to the
+            tweet used to announce this Blinks.
           </span>
           <input
             type="url"
