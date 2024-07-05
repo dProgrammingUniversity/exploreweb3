@@ -14,7 +14,7 @@ const SubmitProjectButton = () => {
           href="/dashboard/create-listings"
           className="flex items-center justify-center rounded-full bg-green-600 w-35 h-12 text-regular text-white duration-300 ease-in-out hover:bg-green-700"
         >
-          Submit Project 🚀
+          Submit Listing 🚀
         </Link>
       )}
     </>
