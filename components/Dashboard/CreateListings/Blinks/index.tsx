@@ -147,7 +147,10 @@ const CreateListingsBlinks = () => {
           a.name.localeCompare(b.name),
         );
         // Add "0-Non-Listed-Project" to the project list
-        setProjectListOptions([{ id: 0, name: "0-Non-Listed-Project" }, ...sortedProjectListData]);
+        setProjectListOptions([
+          { id: 0, name: "0-Non-Listed-Project" },
+          ...sortedProjectListData,
+        ]);
       }
     }
 
@@ -157,9 +160,13 @@ const CreateListingsBlinks = () => {
         .from("blinks_platforms")
         .select("id, name");
       if (error) {
-        console.error("Error fetching platforms:", error);
+        console.error("Error fetching blinks platforms:", error);
       } else {
-        setPlatforms(data);
+        // Sort blinks platforms alphabetically
+        const sortedPlatforms = data.sort((a, b) =>
+          a.name.localeCompare(b.name),
+        );
+        setPlatforms(sortedPlatforms);
       }
     }
 
@@ -193,12 +200,12 @@ const CreateListingsBlinks = () => {
   }, [formData]);
 
   // Load draft from the database
-  
+
   const loadDraft = async (userId: string) => {
     const { data, error } = await supabaseClient.rpc("blinks_get_draft", {
       user_uuid: userId,
     });
-  
+
     if (data && data.length > 0) {
       const draft = data[0].form_data;
       setFormData(draft);
@@ -213,8 +220,6 @@ const CreateListingsBlinks = () => {
       console.log("No draft found for user:");
     }
   };
-  
-  
 
   // Save draft to the database
   const saveDraft = async () => {
@@ -351,7 +356,10 @@ const CreateListingsBlinks = () => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET_BLINKS!);
+      formData.append(
+        "upload_preset",
+        process.env.NEXT_PUBLIC_UPLOAD_PRESET_BLINKS!,
+      );
 
       try {
         const response = await axios.post(
@@ -386,7 +394,10 @@ const CreateListingsBlinks = () => {
       if (error) {
         throw error;
       }
-      setMessage({ text: "Blinks listing added successfully!", type: "success" });
+      setMessage({
+        text: "Blinks listing added successfully!",
+        type: "success",
+      });
       setLoading(false);
       setFormData(initialFormData);
       setImage(null);
@@ -425,7 +436,6 @@ const CreateListingsBlinks = () => {
   };
 
   const [currentStep, setCurrentStep] = useState(0);
-
 
   // Steps for the multi-step form
   const steps = [
