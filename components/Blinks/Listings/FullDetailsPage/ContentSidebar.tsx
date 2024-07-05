@@ -50,6 +50,26 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
         )}
       </div>
 
+      {/* Blinks Actions.json URL */}
+      <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
+        <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
+          {listing.name} Blinks Actions.json:
+        </h4>
+        {listing.blinks_actions_json_url ? (
+          <Link
+            href={AppendSiteUrlToExternalLink(listing.blinks_actions_json_url)}
+            target="_blank"
+            className="block text-blue-400 hover:text-blue-300"
+          >
+            {listing.name} Blinks Actions.json URL
+          </Link>
+        ) : (
+          <span className="block text-gray-500">
+            {listing.name} Blinks Actions.json URL link not available
+          </span>
+        )}
+      </div>
+
       {/* Repository URL */}
       <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
