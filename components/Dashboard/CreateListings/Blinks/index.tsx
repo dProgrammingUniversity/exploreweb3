@@ -379,6 +379,7 @@ const CreateListingsBlinks = () => {
 
     const submissionData = {
       ...formData,
+      project: formData.project || null, // Ensure project is null if "0-Non-Listed-Project" was selected
       image_url: imageUrl,
       category_1: selectedCategory1 ? parseInt(selectedCategory1) : null,
       category_2: selectedCategory2 ? parseInt(selectedCategory2) : null,
