@@ -276,10 +276,10 @@ const BlinksInfo = ({
       />
     </div>
     
-    {/* Demo video url input */}
+    {/* Demo url input */}
     <div className="flex flex-col">
-      <label htmlFor="demo_url" className="mb-2 capitalize text-purple-500 text-xl">Video Demo URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://youtube.com/video</span>
+      <label htmlFor="demo_url" className="mb-2 capitalize text-purple-500 text-xl">Demo URL:</label>
+      <span className="text-sm text-gray-400 mb-1">format https://youtube.com/video (or could be demo tweet with the blinks in action)</span>
       <input
         type="text"
         id="demo_url"

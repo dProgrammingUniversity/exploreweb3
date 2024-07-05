@@ -100,11 +100,11 @@ const ContentMain: React.FC<{
                 target="_blank"
                 className="text-blue-400 hover:text-blue-300"
               >
-                Watch {listing.name} Blinks Demo Video
+                See {listing.name} Blinks Demo
               </Link>
             ) : (
               <span className="text-gray-500">
-                {listing.name} Demo Video link not available
+                {listing.name} Demo link not available
               </span>
             )}
           </div>
