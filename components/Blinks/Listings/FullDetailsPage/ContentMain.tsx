@@ -58,10 +58,9 @@ const ContentMain: React.FC<{
         </div>
 
         <div className="blog-details">
-          
           {/* Favorite Button */}
           <BlinksFavoritesButton userId={userId} blinksId={listing.id} />
-          
+
           {/* Registry Status */}
           <ul className="mb-9">
             <li>
@@ -77,15 +76,21 @@ const ContentMain: React.FC<{
               {listing.category_5_name}
             </li>
           </ul>
-          
+
           {/* Summary */}
           <h2>{listing.name} Blinks Summary:</h2>
           {renderMultilineText(listing.short_description)}
+          <div>
+            <b>Note:</b> Kindly check the blinks integrated platforms section to see current platforms
+            where {listing.name} Blinks are available.
+            <br />
+            <br />
+          </div>
 
           {/* Key Features */}
           <h2>{listing.name} Blinks Key Features:</h2>
           {renderMultilineText(listing.key_features)}
-          
+
           {/* Demo Video */}
           <div className="mb-7">
             <h2>{listing.name} Blinks Demo:</h2>
