@@ -39,6 +39,8 @@ const CreateListingsBlinks = () => {
     year_created: 2050,
     platform_ids: [], // Initialize as an empty array
     key_features: "",
+    creator_name: "",
+    creator_x_url: "",
   };
 
   // State variables
@@ -73,6 +75,7 @@ const CreateListingsBlinks = () => {
   const [categories, setCategories] = useState<IdName[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
   const [platforms, setPlatforms] = useState<IdName[]>([]);
+  const [showCreatorFields, setShowCreatorFields] = useState(false);
 
   const supabaseClient = createClient();
 
@@ -137,13 +140,14 @@ const CreateListingsBlinks = () => {
         .from("listings")
         .select("id, name");
       if (error) {
-        console.error("Error fetching listings:", error);
+        console.error("Error fetching projects listings:", error);
       } else {
         // Sort the retrieved project list alphabetically before set in state
         const sortedProjectListData = data.sort((a, b) =>
           a.name.localeCompare(b.name),
         );
-        setProjectListOptions(sortedProjectListData);
+        // Add "0-Non-Listed-Project" to the project list
+        setProjectListOptions([{ id: 0, name: "0-Non-Listed-Project" }, ...sortedProjectListData]);
       }
     }
 
@@ -243,13 +247,19 @@ const CreateListingsBlinks = () => {
   // Handle form input changes
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
+    // Date validity verification
     if (name === "year_founded") {
       const currentYear = new Date().getFullYear();
       if (value.length === 4 && (value < 1900 || value > currentYear)) {
         return;
       }
     }
+    // Set form data
     setFormData({ ...formData, [name]: value });
+    // Show/hide creator fields based on project selection
+    if (name === "project") {
+      setShowCreatorFields(value === "0");
+    }
   };
 
   // Handle category changes
@@ -423,6 +433,7 @@ const CreateListingsBlinks = () => {
       formData={formData}
       handleInputChange={handleInputChange}
       projectListOptions={projectListOptions}
+      showCreatorFields={showCreatorFields}
     />,
     <BlinksInfo
       formData={formData}

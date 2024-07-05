@@ -1,7 +1,12 @@
 // /components/Dashboard/CreateListings/Blinks/ProjectInfo.tsx
 import React from "react";
 
-const ProjectInfo = ({ formData, handleInputChange, projectListOptions }) => (
+const ProjectInfo = ({
+  formData,
+  handleInputChange,
+  projectListOptions,
+  showCreatorFields,
+}) => (
   <>
     {/* Project List Options dropdown input */}
     <div className="col-span-full">
@@ -12,25 +17,9 @@ const ProjectInfo = ({ formData, handleInputChange, projectListOptions }) => (
         Project:
       </label>
       <br />
-      <span className="mb-2  text-gray-400">
+      <span className="mb-2 text-gray-400">
         Select the project this blink is associated with.
-        <br />
-        (1). To maintain quality listings, Blinks need to be associated with an
-        existing Solana project or it will not be approved.
-        <br />
-        (2). If your associated project not listed yet on Explore Solana. Kindly,
-        submit it
-        <a href="/dashboard/create-listings/projects">
-          {" "}
-          <b>Here</b> and have it approved and listed first before submitting the Blinks
-          associated with it.
-        </a>. 
-        <br />
-        (3). Need help/got questions? Kindly reach out to me via 
-        <a href="/support">
-          {" "}
-          <b>Support</b>.
-        </a>. 
+        {/* Additional description */}
       </span>
       <select
         id="project"
@@ -47,6 +36,54 @@ const ProjectInfo = ({ formData, handleInputChange, projectListOptions }) => (
         ))}
       </select>
     </div>
+
+    {showCreatorFields && (
+      <>
+        {/* Creator Name Input */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="creator_name"
+            className="mb-2 text-xl capitalize text-purple-500"
+          >
+            Creator Name:
+          </label>
+          <span className="mb-1 text-sm text-gray-400">
+            creator/dev and if its under a project not listed above kindly use
+            the project name instead.
+          </span>
+          <input
+            type="text"
+            id="creator_name"
+            name="creator_name"
+            value={formData.creator_name}
+            onChange={handleInputChange}
+            className="w-full rounded border-2 border-gray-300 bg-black p-2 text-white"
+            placeholder="Enter creator or unlisted project name"
+          />
+        </div>
+        {/* Creator URL Input */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="creator_x_url"
+            className="mb-2 text-xl capitalize text-purple-500"
+          >
+            Creator X URL:
+          </label>
+          <span className="mb-1 text-sm text-gray-400">
+            creator/dev or project X (Twitter) handle. Preferably point to the tweet used to announce this Blinks.
+          </span>
+          <input
+            type="url"
+            id="creator_x_url"
+            name="creator_x_url"
+            value={formData.creator_x_url}
+            onChange={handleInputChange}
+            className="w-full rounded border-2 border-gray-300 bg-black p-2 text-white"
+            placeholder="Enter creator x (Twitter) URL"
+          />
+        </div>
+      </>
+    )}
   </>
 );
 
