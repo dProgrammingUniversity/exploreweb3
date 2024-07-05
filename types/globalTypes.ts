@@ -327,6 +327,8 @@ type DisplayListingBlinksTypes = {
   project_slug: string; // used in display slug for projects in a Blinks full details page /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
   key_features: string;
   platforms: number[]; // used to display Blinks platforms in Blinks full details page /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
+  creator_name: string;
+  creator_x_url: string;
 };
 
 /*
@@ -379,4 +381,6 @@ type CreateListingBlinksTypes = {
   // project_slug: string; // used in display slug for projects in a Blinks full details page /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
   key_features: string;
   // platforms: number[]; // used to display Blinks platforms names in Blinks full details page /components/Blinks/Listings/FullDetailsPage/ContentSidebar.tsx
+  creator_name: string;
+  creator_x_url: string;
 };
