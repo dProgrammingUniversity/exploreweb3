@@ -1,4 +1,4 @@
-// /app/sitemap/directory-listings.xml/route.ts
+// /app/sitemap/blinks-listings.xml/route.ts
 
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 import { createClient } from "@/utils/supabase/server";
@@ -13,13 +13,13 @@ export async function GET(request: Request) {
 
   // Fetch the listings data from the Supabase database
   const { data: listings } = await supabaseClient
-    .from('listings')
+    .from('blinks')
     .select('slug, updated_at')
     .eq('moderation_status', 'approved');
 
   // Handle the case where no listings are found
   if (!listings) {
-    return new Response('<error>No listings found</error>', {
+    return new Response('<error>No blinks listings found</error>', {
       status: 404,
       headers: {
         'Content-Type': 'text/xml'
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
 
   // Map the listings to the ISitemapField format required by next-sitemap
   const sitemapEntries: ISitemapField[] = listings.map((listing) => ({
-    loc: `${process.env.NEXT_PUBLIC_BASE_URL}/directory/${listing.slug}`,
+    loc: `${process.env.NEXT_PUBLIC_BASE_URL}/blinks/${listing.slug}`,
     lastmod: listing.updated_at,
     changefreq: 'monthly',
     priority: 0.8,
