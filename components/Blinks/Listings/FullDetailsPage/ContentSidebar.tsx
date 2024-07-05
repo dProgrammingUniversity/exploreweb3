@@ -74,22 +74,36 @@ const ContentSidebar: React.FC<{ listing: DisplayListingBlinksTypes }> = ({
         )}
       </div>
 
-      {/* Blinks Creator */}
-      <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
+       {/* Blinks Creator */}
+       <div className="animate_top mb-10 rounded-md border border-stroke bg-transparent p-9 shadow-solid-13 dark:border-strokedark dark:bg-transparent">
         <h4 className="mb-7.5 text-2xl font-semibold text-black dark:text-white">
           {listing.name} Blinks Creator:
         </h4>
-        <span className="block text-gray-500">
-          {listing.name} Blinks was created by{" "}
-          <Link
-            href={`/projects/${listing.project_slug}`}
-            className="text-blue-400 hover:text-blue-300"
-          >
-            {listing.project_name}
-          </Link>{" "}
-          (Click to See the full project details, team, grants, jobs, bounty and
-          more on Explore Solana Project Explorer)
-        </span>
+        {listing.project_name && listing.project_slug ? (
+          <span className="block text-gray-500">
+            {listing.name} Blinks was created by{" "}
+            <Link
+              href={`/projects/${listing.project_slug}`}
+              className="text-blue-400 hover:text-blue-300"
+            >
+              {listing.project_name}
+            </Link>{" "}
+            (Click to See the full project details, team, grants, jobs, bounty and
+            more on Explore Solana Project Explorer)
+          </span>
+        ) : (
+          <span className="block text-gray-500">
+            {listing.name} Blinks was created by{" "}
+            <a
+              href={AppendSiteUrlToExternalLink(listing.creator_x_url)}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              {listing.creator_name}
+            </a>{" "}
+            {/* (Click to see more details) */}
+          </span>
+        )}
       </div>
     </div>
   );
