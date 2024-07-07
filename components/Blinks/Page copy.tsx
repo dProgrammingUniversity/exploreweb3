@@ -9,6 +9,7 @@ const BlinksPage = () => {
   const [categories, setCategories] = useState<
     { name: string; count: number }[]
   >([]);
+  const [totalListings, setTotalListings] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
@@ -16,8 +17,7 @@ const BlinksPage = () => {
   const [filterRegistry, setFilterRegistry] = useState("All");
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-  const [totalListings, setTotalListings] = useState(0);
+  const itemsPerPage = 10;
   const [statuses, setStatuses] = useState([]);
   const [platforms, setPlatforms] = useState<{ id: number; name: string }[]>(
     [],
@@ -84,7 +84,6 @@ const BlinksPage = () => {
     }
 
     setListings(data);
-    setTotalListings(data.length); // Set total listings count
     setLoading(false);
   };
 
@@ -207,10 +206,10 @@ const BlinksPage = () => {
     );
   });
 
-  // Filter and paginate listings
+  // Paginate filtered listings
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentListings = listings.slice(
+  const currentListings = filteredListings.slice(
     indexOfFirstItem,
     indexOfLastItem,
   );
@@ -294,25 +293,23 @@ const BlinksPage = () => {
         {/* Blinks Table */}
         <ListingsTableCard
   listings={currentListings}
-  // currentPage={currentPage}
-  // itemsPerPage={itemsPerPage}
-  // sortListings={sortListings}
+  currentPage={currentPage}
+  itemsPerPage={itemsPerPage}
+  sortListings={sortListings}
 />
 
 
       {/* Pagination */}
       <div className="mt-4 flex justify-center">
-      {Array.from(
-              Array(Math.ceil(totalListings / itemsPerPage)),
-              (_, index) => (
-                <button
-                  key={index}
-                  onClick={() => paginate(index + 1)}
-                  className={`mx-1 rounded border p-2 ${
-                    currentPage === index + 1 ? "bg-blue-500 text-white" : ""
-                  }`}
-                >
-                  {index + 1}
+        {Array.from(
+          Array(Math.ceil(filteredListings.length / itemsPerPage)),
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => paginate(index + 1)}
+              className={`mx-1 rounded border p-2 ${currentPage === index + 1 ? "bg-blue-500 text-white" : ""}`}
+            >
+              {index + 1}
             </button>
           ),
         )}
