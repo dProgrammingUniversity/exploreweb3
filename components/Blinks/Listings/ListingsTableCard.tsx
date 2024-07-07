@@ -6,9 +6,12 @@ import Link from "next/link";
 // Define the Props type, expecting listing data and an index
 type Props = {
   listings: DisplayListingBlinksTypes[];
+  currentPage: number;
+  itemsPerPage: number;
+  sortListings: (column: string) => void;
 };
 
-const ListingsTableCard: React.FC<Props> = ({ listings }) => {
+const ListingsTableCard: React.FC<Props> = ({ listings, currentPage, itemsPerPage, sortListings }) => {
   const [categoryNames, setCategoryNames] = useState<{ [key: number]: string[] }>({});
   const [platformNames, setPlatformNames] = useState<{ [key: number]: string[] }>({});
   const supabaseClient = createClient();
@@ -88,7 +91,9 @@ const ListingsTableCard: React.FC<Props> = ({ listings }) => {
         <tbody className="divide-y divide-gray-200">
           {listings.map((listing, index) => (
             <tr key={listing.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-white">{index + 1}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-white">
+                {index + 1 + (currentPage - 1) * itemsPerPage}
+              </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link href={`/blinks/${listing.slug}`} passHref className="text-sm font-medium text-blue-600 hover:text-blue-900">
                   {listing.name}
@@ -118,3 +123,4 @@ const ListingsTableCard: React.FC<Props> = ({ listings }) => {
 };
 
 export default ListingsTableCard;
+
