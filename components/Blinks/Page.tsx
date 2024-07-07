@@ -16,7 +16,7 @@ const BlinksPage = () => {
   const [filterRegistry, setFilterRegistry] = useState("All");
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 20;
   const [totalListings, setTotalListings] = useState(0);
   const [statuses, setStatuses] = useState([]);
   const [platforms, setPlatforms] = useState<{ id: number; name: string }[]>(
@@ -294,9 +294,9 @@ const BlinksPage = () => {
         {/* Blinks Table */}
         <ListingsTableCard
   listings={currentListings}
-  // currentPage={currentPage}
-  // itemsPerPage={itemsPerPage}
-  // sortListings={sortListings}
+  currentPage={currentPage}
+  itemsPerPage={itemsPerPage}
+  sortListings={sortListings}
 />
 
 
