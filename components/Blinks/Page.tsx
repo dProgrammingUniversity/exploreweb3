@@ -210,7 +210,7 @@ const BlinksPage = () => {
   // Filter and paginate listings
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentListings = listings.slice(
+  const currentListings = filteredListings.slice(
     indexOfFirstItem,
     indexOfLastItem,
   );
