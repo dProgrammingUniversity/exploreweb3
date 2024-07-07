@@ -6,12 +6,9 @@ import Link from "next/link";
 // Define the Props type, expecting listing data and an index
 type Props = {
   listings: DisplayListingBlinksTypes[];
-  currentPage: number;
-  itemsPerPage: number;
-  sortListings: (column: string) => void;
 };
 
-const ListingsTableCard: React.FC<Props> = ({ listings, currentPage, itemsPerPage, sortListings }) => {
+const ListingsTableCard: React.FC<Props> = ({ listings }) => {
   const [categoryNames, setCategoryNames] = useState<{ [key: number]: string[] }>({});
   const [platformNames, setPlatformNames] = useState<{ [key: number]: string[] }>({});
   const supabaseClient = createClient();
@@ -60,42 +57,38 @@ const ListingsTableCard: React.FC<Props> = ({ listings, currentPage, itemsPerPag
     });
   }, [listings]);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentListings = listings.slice(indexOfFirstItem, indexOfLastItem);
-
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-500">
         <thead>
           <tr>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("index")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               #
             </th>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("name")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               Name
             </th>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("status")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               Status
             </th>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("blinks_registry_status")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               Registry
             </th>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("platforms")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               Platforms
             </th>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("year_created")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               Year Created
             </th>
-            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500" onClick={() => sortListings("categories")}>
+            <th className="cursor-pointer bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               Categories
             </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {currentListings.map((listing, index) => (
+          {listings.map((listing, index) => (
             <tr key={listing.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-white">{index + 1 + (currentPage - 1) * itemsPerPage}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-white">{index + 1}</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link href={`/blinks/${listing.slug}`} passHref className="text-sm font-medium text-blue-600 hover:text-blue-900">
                   {listing.name}
