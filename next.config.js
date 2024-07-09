@@ -20,6 +20,12 @@ const nextConfig = {
         destination: '/projects/:path*',
         permanent: true, // This indicates that the redirect is permanent (301)
       },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'exploresol.xyz' }],
+        destination: 'https://exploresolana.com/:path*',
+        permanent: true,
+      },
     ]
   },
 };
