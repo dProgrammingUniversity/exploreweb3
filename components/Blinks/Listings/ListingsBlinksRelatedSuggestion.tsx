@@ -1,7 +1,7 @@
 // /components/Blinks/Listings/ListingsBlinksRelatedSuggestion.tsx
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import ListingsCard from '@/components/Directory/Listings/ListingsCard';
+import ListingsCardBlinks from './ListingsCardBlinks';
 
 type Props = {
   mainCategory: string;
@@ -43,7 +43,7 @@ const ListingsBlinksRelatedSuggestion: React.FC<Props> = ({ mainCategory }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {relatedListings.map((listing) => (
-        <ListingsCard key={listing.id} listing={listing} />
+        <ListingsCardBlinks key={listing.id} listing={listing} />
       ))}
     </div>
   );
