@@ -12,7 +12,7 @@ type Props = {
 const defaultImageUrl =
   "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
 
-const ListingsCard: React.FC<Props> = ({ listing, isListView = false }) => {
+const ListingsCardBlinks: React.FC<Props> = ({ listing, isListView = false }) => {
   const [categoryNames, setCategoryNames] = useState<string[]>([]);
   const supabaseClient = createClient();
 
@@ -67,4 +67,4 @@ const ListingsCard: React.FC<Props> = ({ listing, isListView = false }) => {
   );
 };
 
-export default ListingsCard;
+export default ListingsCardBlinks;
