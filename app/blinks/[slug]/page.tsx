@@ -85,6 +85,7 @@ const BlinksListingDetailPage = async ({ params }) => {
   };
 
   // Fetch the project name and slug using the project ID
+  // Used to display creator details when linked to existing project in project explorer
   const { data: projectData, error: projectError } = await supabase
     .from("listings")
     .select("name, slug")
