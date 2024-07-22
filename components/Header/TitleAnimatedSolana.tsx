@@ -1,11 +1,11 @@
-// /components/Header/TitleAnimated.tsx
+// /components/Header/TitleAnimatedSolana.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
 
-const TitleAnimated = () => {
+const TitleAnimatedSolana = () => {
   const [currentWord, setCurrentWord] = useState("dApps");
   const [totalListings, setTotalListings] = useState(0); // State to hold total number of listings
   const words = [
@@ -76,7 +76,7 @@ const TitleAnimated = () => {
         transition={{ duration: 1 }}
       >
         <div className="flex items-center justify-center gap-1">
-          <span>Search {totalListings}/1,000+ Web3 Projects</span>
+          <span>Search {totalListings} Solana Projects & Blinks</span>
           <span>{"=>"}</span>
           <motion.span
             className="inline-block text-center text-purple-400"
@@ -108,4 +108,4 @@ const TitleAnimated = () => {
   );
 };
 
-export default TitleAnimated;
+export default TitleAnimatedSolana;
