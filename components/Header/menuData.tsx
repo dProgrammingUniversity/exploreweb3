@@ -15,6 +15,12 @@ const menuData: Menu[] = [
     submenu: [
       {
         id: 2.1,
+        title: "Solana Ecosystem",
+        newTab: false,
+        path: "/solana-blockchain-ecosystem",
+      },
+      {
+        id: 2.1,
         title: "Projects",
         newTab: false,
         path: "/projects",
