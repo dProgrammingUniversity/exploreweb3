@@ -23,7 +23,13 @@ const nextConfig = {
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'exploresol.xyz' }],
-        destination: 'https://exploresolana.com/:path*',
+        destination: 'https://exploreweb3.xyz/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'exploresolana.com' }],
+        destination: 'https://exploreweb3.xyz/:path*',
         permanent: true,
       },
     ]
