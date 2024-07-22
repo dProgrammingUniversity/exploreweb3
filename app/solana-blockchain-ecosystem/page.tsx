@@ -1,4 +1,4 @@
-// /app/(site)/page.tsx
+// /app/solana-blockchain-ecosystem/page.tsx
 import Hero from "@/components/Hero";
 import Brands from "@/components/Brands";
 import Feature from "@/components/Features";
@@ -15,12 +15,12 @@ import Testimonial from "@/components/Testimonial";
 import Directory from "@/components/Directory";
 import DirectoryTab from "@/components/Directory/Tab";
 import { Metadata } from "next";
-import TitleStatic from "@/components/Header/TitleStatic";
+import TitleStaticSolana from "@/components/Header/TitleStaticSolana";
 import BlinksTab from "@/components/Blinks/Tab";
-import TitleAnimated from "@/components/Header/TitleAnimated";
+import TitleAnimatedSolana from "@/components/Header/TitleAnimatedSolana";
 
 // Define fixed metadata values
-const title = "Explore 1,000+ Web3 Projects - Explore Web3";
+const title = "Explore Solana Ecosystem Projects - Explore Web3";
 const description = "Explore Web3 Blockchains Ecosystems Projects (dApps, tools, content, artists, communities etc)";
 const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
 const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
@@ -55,10 +55,10 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <TitleStatic />
+      <TitleStaticSolana />
       <Brands />
       {/* <Feature /> */}
-      <TitleAnimated />
+      <TitleAnimatedSolana />
       <BlinksTab />
       {/* <Directory /> */}
       <DirectoryTab />

@@ -41,7 +41,7 @@ const Footer = () => {
                     href="/support"
                     className="text-itemtitle font-medium text-black dark:text-white"
                   >
-                    ExploreSolana (Beta)
+                    ExploreWeb3 (Beta)
                   </a>
                 </p>
                 {/* <a href="index.html" className="relative">
@@ -62,9 +62,9 @@ const Footer = () => {
                 </a> */}
 
                 <p className="mb-10 mt-5">
-                  Explore Solana projects and discover opportunities to earn
+                  Explore Web3 like Solana ecosystem projects and discover opportunities to earn
                   rewards, favorite projects (re-access later) and help other
-                  users and Solana projects teams with your feedbacks via
+                  users and Web3 projects teams with your feedbacks via
                   rating/review!
                 </p>
 
@@ -289,7 +289,7 @@ const Footer = () => {
               className="animate_top"
             >
               <p>
-                &copy; 2024 - {new Date().getFullYear()} Explore Solana. All
+                &copy; 2024 - {new Date().getFullYear()} Explore Web3. All
                 rights reserved
               </p>
             </motion.div>
