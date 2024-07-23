@@ -14,7 +14,7 @@ const Earn = () => {
   return (
     <>
       <h1 className="text-2xl font-bold text-center my-6 text-purple-500">
-        HOW TO EARN ON ExploreWeb3 PLATFORM
+        HOW TO EARN ON ExploreSolana PLATFORM
       </h1>
 
       {/* Introduction Section */}
@@ -26,22 +26,22 @@ const Earn = () => {
         this platform first to understand this earning opportunities better.
       </p>
       <p className="text-md mb-4 text-justify">
-        <Link href="/about">Click here to learn more about ExploreWeb3</Link>
+        <Link href="/about">Click here to learn more about ExploreSolana</Link>
       </p>
       <h3 className="text-xl font-bold my-6 text-purple-500">🔔 Hint:</h3>
       <p className="text-md mb-4 text-justify">
-        The term "Web3 project(s)" throughout this content refers to dApps,
+        The term "Solana project(s)" throughout this content refers to dApps,
         tools, content, protocols, features, communities, DAOs, and much more in
-        the Solana and other Blockchains ecosystem.
+        the Solana ecosystem.
       </p>
 
       {/* Earn Path/Amount Section */}
       <h2 className="text-2xl font-bold my-6 text-purple-500">
-        B. EARN PATHS OFFERED BY ExploreWeb3:
+        B. EARN PATHS OFFERED BY ExploreSolana:
       </h2>
       <p className="text-md mb-4 text-justify">
         See the existing earning paths and amount of dPUT reward each can earn
-        you on ExploreWeb3 platform below:
+        you on ExploreSolana platform below:
       </p>
       <div>
         {problemsAndSolutions.map((item, index) => (
@@ -77,7 +77,7 @@ const Earn = () => {
       </div>
 
       {/* Earning rewards calculations Section */}
-      {/* <div className="my-6">
+      <div className="my-6">
         <h2 className="text-2xl font-bold my-6 text-purple-500">
           C. dPUT REWARD TOKEN CALCULATION:
         </h2>
@@ -98,12 +98,12 @@ const Earn = () => {
           to reflect the current exchange rate of dPU to SOL at time of the
           reward payment. it may be more or less.
         </p>
-      </div> */}
+      </div>
 
       {/* Earning rewards payment Section */}
-      {/* <div className="my-6">
+      <div className="my-6">
         <h2 className="text-2xl font-bold my-6 text-purple-500">
-          D. ExploreWeb3 dPUT PAYMENT CYCLE:
+          D. ExploreSolana dPUT PAYMENT CYCLE:
         </h2>
         <p className="text-md mb-4 text-justify">
           The dPUT earned reward payment is done on weekly bases every Monday.
@@ -114,7 +114,7 @@ const Earn = () => {
         <p className="text-md mb-4 text-justify">Minimum Payment Threshold?</p>
         <p className="text-md mb-4 text-justify">
           No minimum threshold, you get your dPUT sent to your wallet on
-          ExploreWeb3.xyz based on the amount you have earn through the week.
+          ExploreSolana.xyz based on the amount you have earn through the week.
         </p>
         <p className="text-md mb-4 text-justify">
           For example if you get 5 Solana projects listings approved within 1
@@ -125,16 +125,16 @@ const Earn = () => {
           If you don't have any listing approved in the week, you will get 0
           dPUT.
         </p>
-      </div> */}
+      </div>
 
       {/* Earning Opportunities Section */}
-      {/* <div className="my-6">
+      <div className="my-6">
         <h2 className="text-2xl font-bold my-6 text-purple-500">
-          E. WHAT IS ExploreWeb3 dPUT REWARD TOKEN:
+          E. WHAT IS ExploreSolana dPUT REWARD TOKEN:
         </h2>
         <p className="text-md mb-4 text-justify">
           The dPUT earned is the official utility token of dProgramming
-          University (dPU) ecosystem and ExploreWeb3 is one of the project in the
+          University (dPU) ecosystem and ExploreSolana is one of the project in the
           dPU ecosystem that qualify to reward users with dPUT.
         </p>
         <p className="text-md mb-4 text-justify">
@@ -150,7 +150,7 @@ const Earn = () => {
             dPUT Whitepaper
           </Link>
         </p>
-      </div> */}
+      </div>
     </>
   );
 };
@@ -160,27 +160,27 @@ const problemsAndSolutions = [
   {
     title: "Earn Path 1: Submit Listings",
     description:
-      "Earn reward for approved project submissions.",
-    reward: "TBD",
+      "Earn dPUT (utility token) reward for approved project submissions.",
+    reward: "$2(USDT)SOL worth of dPUT (see section C below for details)",
   },
   {
     title: "Earn Path 2: Participate in Social Campaigns",
     description:
-      "Earn reward for engaging with project-specific campaigns.",
-    reward: "TBD",
+      "Earn dPUT (utility token) reward for engaging with project-specific campaigns.",
+    reward: "$1(USDT)SOL worth of dPUT (see section C below for details)",
   },
   {
     title: "Earn Path 3: Referral Program",
     description:
-      "Earn reward for referring others to subscribe to the ExploreWeb3 'S' Newsletter..",
-    reward: "TBD",
+      "Earn dPUT (utility token) reward for referring others to subscribe to the ExploreSolana 'S' Newsletter..",
+    reward: "$0.10(USDT)SOL worth of dPUT (see section C below for details)",
   },
   {
     title: "Earn Path 4: Stay Tuned for More",
     description:
-      "Earn reward for Future opportunities are on the horizon, ensuring our community remains vibrant and rewarded.",
+      "Earn dPUT (utility token) reward for Future opportunities are on the horizon, ensuring our community remains vibrant and rewarded.",
     reward:
-      "More earning is planned towards community rewards for users and contributors to Solana projects across dProgramming University (dPU) ecosystem",
+      "More dPUT is planned towards community rewards for users and contributors to Solana projects across dProgramming University (dPU) ecosystem",
   },
   // More earning paths and amount
 ];
