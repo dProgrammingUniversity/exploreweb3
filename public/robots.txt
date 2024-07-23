@@ -11,8 +11,8 @@ Disallow: /dashboard/update-password
 Disallow: /dashboard/user
 
 # Host
-Host: https://exploresolana.com
+Host: https://exploreweb3.xyz
 
 # Sitemaps
-Sitemap: https://exploresolana.com/sitemap.xml
-Sitemap: https://exploresolana.com/sitemap/index.xml
+Sitemap: https://exploreweb3.xyz/sitemap.xml
+Sitemap: https://exploreweb3.xyz/sitemap/index.xml
