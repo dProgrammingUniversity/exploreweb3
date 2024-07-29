@@ -6,7 +6,9 @@ const TitleStaticSolana = () => {
     <div className="container mx-auto py-8"> {/* Added mx-auto to center the container */}
       <div className="text-center">
         <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl">
-          Explore <span className="text-purple-400">Solana Ecosystem</span>
+          Explore 
+          {" "}<span className="text-purple-400">Solana Ecosystem</span> PROJECTS
+          {" "}<span className="text-purple-400">Explorer</span>
         </h1>
         <h2 className="text-xl font-semibold text-white md:text-2xl">
           & Discover Opportunities!

@@ -107,7 +107,7 @@ const Contact = () => {
                 <p>
                   <Link
                     href={AppendSiteUrlToExternalLink(
-                      "https://twitter.com/ExploreSolana",
+                      "https://twitter.com/ExploreWeb3xyz",
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
