@@ -190,10 +190,18 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="/directory"
+                        href="/projects"
                         className="mb-3 inline-block hover:text-primary"
                       >
-                        Directory
+                        Projects
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/blinks"
+                        className="mb-3 inline-block hover:text-primary"
+                      >
+                        Blinks
                       </a>
                     </li>
                   </ul>
@@ -316,7 +324,7 @@ const Footer = () => {
                 {/* Twitter icon */}
                 <li>
                   <a
-                    href="https://Twitter.com/ExploreSolana"
+                    href="https://Twitter.com/ExploreWeb3xyz"
                     aria-label="social icon"
                     target="_blank"
                   >
