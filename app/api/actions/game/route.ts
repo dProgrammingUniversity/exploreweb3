@@ -18,7 +18,7 @@ import {
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
-    title: "Explore Web3 Quiz Game",
+    title: "Explore Web3 Quiz Game Ep1",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
@@ -123,7 +123,7 @@ export const POST = async (req: Request) => {
       }),
       new TransactionInstruction({
         programId: new PublicKey(MEMO_PROGRAM_ID),
-        data: Buffer.from(`My Explore Web3 Quiz Game (Phantom Wallet) Answer Is: ${answer}`, "utf8"),
+        data: Buffer.from(`My Explore Web3 Quiz Game Ep1 (Phantom Wallet) Answer Is: ${answer}`, "utf8"),
         keys: [],
       }),
     );
