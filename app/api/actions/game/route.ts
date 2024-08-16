@@ -28,6 +28,7 @@ export const GET = async (req: Request) => {
 
       Test your knowledge about Phantom Wallet and earn rewards!
       Select the correct answer combination in sequence.
+      HINT: Read about Phantom Wallet on ExploreWeb3.xyz first before attempting the quiz.
       
       Q1: What year was Phantom Wallet founded?
       - A: 2020
@@ -122,7 +123,7 @@ export const POST = async (req: Request) => {
       }),
       new TransactionInstruction({
         programId: new PublicKey(MEMO_PROGRAM_ID),
-        data: Buffer.from(`Quiz Answer: ${answer}`, "utf8"),
+        data: Buffer.from(`My Explore Web3 Quiz Game (Phantom Wallet) Answer Is: ${answer}`, "utf8"),
         keys: [],
       }),
     );
@@ -133,10 +134,11 @@ export const POST = async (req: Request) => {
       await connection.getLatestBlockhash()
     ).blockhash;
 
+    // Create a response payload
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
-        transaction,
-        message: "Your answer has been successfully submitted and recorded on-chain!",
+        transaction,  // Pass the unsigned transaction here
+        message: `Your answer has been successfully submitted and recorded on-chain!`,
       },
     });
 
