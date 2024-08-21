@@ -19,10 +19,7 @@ import {
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
     title: "Explore Web3 Daily Quiz Game Ep1",
-    icon: new URL(
-      "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
-      new URL(req.url).origin,
-    ).toString(),
+    icon: "https://exploreweb3.xyz/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
     description: `
       Quiz Focus (Project): Phantom Wallet
 
