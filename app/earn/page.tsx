@@ -5,10 +5,10 @@ import Earn from "@/components/Earn";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Earn - Explore Solana";
-const description = "Earn Using and Exploring Solana Projects";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+const title = "Earn - Explore Web3";
+const description = "Earn Using and Exploring Web3 Ecosystem Projects";
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

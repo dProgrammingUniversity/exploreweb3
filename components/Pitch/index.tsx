@@ -82,13 +82,13 @@ const Pitch = () => {
         <ol className="list-decimal space-y-2 pl-6">
           <li>
             <strong>
-              Explore Solana Website ({" "}
+              Explore Web3/Solana projects Website ({" "}
               <Link
-                href="https://ExploreSolana.com"
+                href="https://ExploreWeb3.xyz"
                 target="_blank"
                 className="text-blue-400 underline"
               >
-                https://ExploreSolana.com
+                https://ExploreWeb3.xyz
               </Link>{" "}
               ):
             </strong>
@@ -226,13 +226,13 @@ Do you think that will help save more people especially new users from such scam
         </p>
         <ol className="list-decimal space-y-2 pl-6">
           <li>
-            Explore Solana Website ({" "}
+            Explore Web3/Solana Projects Website ({" "}
             <Link
-              href="https://ExploreSolana.com"
+              href="https://ExploreWeb3.xyz"
               target="_blank"
               className="text-blue-400 underline"
             >
-              https://ExploreSolana.com
+              https://ExploreWeb3.xyz
             </Link>{" "}
             )
           </li>
@@ -273,11 +273,11 @@ Do you think that will help save more people especially new users from such scam
             Added 50+ Solana projects (Total of 75+ Solana projects now featured
             at{" "}
             <Link
-              href="https://ExploreSolana.com"
+              href="https://ExploreWeb3.xyz"
               target="_blank"
               className="text-blue-400 underline"
             >
-              https://ExploreSolana.com
+              https://ExploreWeb3.xyz
             </Link>{" "}
             )
           </li>

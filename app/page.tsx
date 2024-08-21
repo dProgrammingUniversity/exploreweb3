@@ -22,8 +22,8 @@ import TitleAnimated from "@/components/Header/TitleAnimated";
 // Define fixed metadata values
 const title = "Explore 1,000+ Web3 Projects - Explore Web3";
 const description = "Explore Web3 Blockchains Ecosystems Projects (dApps, tools, content, artists, communities etc)";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

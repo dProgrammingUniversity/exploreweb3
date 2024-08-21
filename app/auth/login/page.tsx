@@ -3,10 +3,10 @@ import Login from "@/components/Auth/Login";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Login Page - Explore Solana";
-const description = "This is Login/Register page for Explore Solana";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+const title = "Login Page - Explore Web3";
+const description = "This is Login/Register page for Explore Web3";
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

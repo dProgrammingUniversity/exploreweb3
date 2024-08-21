@@ -5,10 +5,10 @@ import { Metadata } from "next";
 import TitleStaticProjects from "@/components/Header/TitleStaticProjects";
 
 // Define fixed metadata values
-const title = "Explore 1,000+ Solana Projects Directory - Explore Solana";
-const description = "Earn Using and Exploring Solana Projects";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com/directory"; // Replace with your actual site URL
+const title = "Explore 1,000+ Web3 Projects Directory - Explore Web3";
+const description = "Earn Using and Exploring Web3 Projects";
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz/projects"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {
