@@ -1,10 +1,10 @@
-// /components/Hero/index.tsx
+// /components/Hero/HeroSolana.tsx
 "use client";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const Hero = () => {
+const HeroSolana = () => {
   const controls = useAnimation();
   const [isHovering, setIsHovering] = useState(false);
 
@@ -61,14 +61,14 @@ const Hero = () => {
                 >
                   <Image
                     className="shadow-solid-l dark:hidden"
-                    src="/images/hero/ExploreWeb3-Logo-01b-Transparent.png"
+                    src="/images/hero/ExploreSolana-Banner-03a2-Website-Banner-Light-Transparent-bg.png"
                     alt="Solana Ecosystem Map"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="hidden shadow-solid-l dark:block"
-                    src="/images/hero/ExploreWeb3-Logo-01b-Transparent.png"
+                    src="/images/hero/ExploreSolana-Banner-03a2-Website-Banner-Light-Transparent-bg.png"
                     alt="Solana Ecosystem Map"
                     layout="fill"
                     objectFit="contain"
@@ -83,4 +83,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroSolana;
