@@ -2,13 +2,13 @@
 
 It is a project with aim to create a platform to connect Solana projects team and users with earning and rewards opportunities for user and medium of acquiring new users + feedbacks for Solana projects team/developers..
 
-Learn more at [Explore Solana](https://exploresolana.com/about)
+Learn more at [Explore Solana](https://ExploreWeb3.xyz/about)
 
 ## Explore Solana Uses Custom Template - Open Source Directory Template with Solid Design
 
 Explore Solana custom template is an open-source directory template built with Next.js, React, and TypeScript.
 
-Created by [Solomon Foskaay](https://x.com/SolomonFoskaay) of [dProgrammingUniversity](https://dProgrammingUniversity.com) for [Explore Solana](https://ExploreSolana.com) Project.
+Created by [Solomon Foskaay](https://x.com/SolomonFoskaay) of [dProgrammingUniversity](https://dProgrammingUniversity.com) for [Explore Solana](https://ExploreWeb3.xyz) Project.
 
 I had to build the project from scratch (in about 2 months) after I bought a directory template from Themeforest that didn't work (Cool - I was able to get a refund!) and couldn't find free quality template out there with up-to-date integration with Nextjs /app directory.
 

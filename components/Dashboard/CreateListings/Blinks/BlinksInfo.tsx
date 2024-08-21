@@ -51,7 +51,7 @@ const BlinksInfo = ({
         Blinks URL:
       </label>
       <span className="mb-1 text-sm text-gray-400">
-        format https://exploresolana.com
+        format https://ExploreWeb3.xyz
       </span>
       <input
         type="text"
@@ -227,7 +227,7 @@ const BlinksInfo = ({
 {/* Blinks Actions.json URL input box */}
     <div className="flex flex-col">
       <label htmlFor="blinks_actions_json_url" className="mb-2 capitalize text-purple-500 text-xl">Blinks Actions.json URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresolana.com/actions.json</span>
+      <span className="text-sm text-gray-400 mb-1">format https://ExploreWeb3.xyz/actions.json</span>
       <input
         type="text"
         id="blinks_actions_json_url"

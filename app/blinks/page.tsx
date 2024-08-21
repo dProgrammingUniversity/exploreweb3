@@ -5,10 +5,10 @@ import { Metadata } from "next";
 import TitleStaticBlinks from "@/components/Header/TitleStaticBlinks";
 
 // Define fixed metadata values
-const title = "Explore Solana Blinks - Explore Solana";
+const title = "Explore Solana Blinks - Explore Web3";
 const description = "Earn Using and Exploring Solana Projects& Blinks";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com/directory"; // Replace with your actual site URL
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz/directory"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

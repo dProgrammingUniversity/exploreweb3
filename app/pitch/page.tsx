@@ -5,10 +5,10 @@ import Pitch from "@/components/Pitch";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Pitch Deck - Explore Solana";
-const description = "Discover and Support Explore Solana to promote Solana Projects";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+const title = "Pitch Deck - Explore Web3";
+const description = "Discover and Support Explore Web3 to promote Web3/Solana Projects";
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

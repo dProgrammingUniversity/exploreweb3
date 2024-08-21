@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Update Password - Explore Solana";
-const description = "This is Update Password page for Explore Solana";
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png";
-const siteUrl = "https://ExploreSolana.com"; // Replace with your actual site URL
+const title = "Update Password - Explore Web3";
+const description = "This is Update Password page for Explore Web3";
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
 
 // Create metadata object
 export const metadata: Metadata = {

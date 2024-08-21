@@ -4,10 +4,10 @@ import BlinksListingsFullDetailsPage from "@/components/Blinks/Listings/FullDeta
 import { Metadata } from "next";
 
 // Define fixed metadata values
-const title = "Explore Solana Blinks - Explore Solana"; // dynamically replace value with actual "title" of specific listing been displayed
+const title = "Explore Solana Blinks - Explore Web3"; // dynamically replace value with actual "title" of specific listing been displayed
 const description = "Earn Using and Exploring Solana Projects& Blinks"; // dynamically replace value with actual  "short_description" of specific listing been displayed
-const ogImage = "https://ExploreSolana.com/images/opengraph-image.png"; // dynamically replace value with actual image_url of specific listing been displayed
-const siteUrl = "https://ExploreSolana.com"; 
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png"; // dynamically replace value with actual image_url of specific listing been displayed
+const siteUrl = "https://ExploreWeb3.xyz"; 
 
 // Create metadata object
 export const metadata: Metadata = {
