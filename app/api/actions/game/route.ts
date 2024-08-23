@@ -19,10 +19,12 @@ import {
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
     title: "Explore Web3 Daily Quiz Game Ep1",
-    icon: "https://exploreweb3.xyz/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
+    icon: new URL(
+      "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
+      new URL(req.url).origin,
+    ).toString(),
     description: `
       Quiz Focus (Project): Phantom Wallet
-
       Test your knowledge about Phantom Wallet and earn rewards!
       Select the correct answer combination in sequence.
       HINT: Read about Phantom Wallet on ExploreWeb3.xyz first before attempting the quiz.
@@ -31,22 +33,18 @@ export const GET = async (req: Request) => {
       - A: 2020
       - B: 2021
       - C: 2019
-
       Q2: Which of these blockchains does Phantom recently announced it will support in addition to already supporting Solana, ETH, BTC, Polygon?
       - D: Avalanche
       - E: Solana L2
       - F: Monad
-
       Q3: What is one of the unique features of Phantom Wallet?
       - G: In-wallet token swaps
       - H: Multi-signature support
       - I: Cold storage capability
-
       Q4: What type of wallet is Phantom?
       - J: Non-custodial
       - K: Custodial
       - L: Paper Wallet
-
       Q5: Which of these is NOT a feature of Phantom Wallet?
       - M: Fiat currency wallet
       - N: Crypto wallet
@@ -84,20 +82,16 @@ export const GET = async (req: Request) => {
       ],
     },
   };
-
   return Response.json(payload, {
     headers: ACTIONS_CORS_HEADERS,
   });
 };
-
 export const OPTIONS = GET;
-
 export const POST = async (req: Request) => {
   try {
     const url = new URL(req.url);
     const answer = url.searchParams.get("answer") || "No answer provided";
     const body: ActionPostRequest = await req.json();
-
     // Validate the user public key
     let account: PublicKey;
     try {
@@ -108,12 +102,10 @@ export const POST = async (req: Request) => {
         headers: ACTIONS_CORS_HEADERS,
       });
     }
-
     // Create a Solana transaction
     const connection = new Connection(
       process.env.SOLANA_RPC! || clusterApiUrl("mainnet-beta"),
     );
-
     const transaction = new Transaction().add(
       ComputeBudgetProgram.setComputeUnitPrice({
         microLamports: 1000,
@@ -124,13 +116,10 @@ export const POST = async (req: Request) => {
         keys: [],
       }),
     );
-
     transaction.feePayer = account;
-
     transaction.recentBlockhash = (
       await connection.getLatestBlockhash()
     ).blockhash;
-
     // Create a response payload
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
@@ -138,7 +127,6 @@ export const POST = async (req: Request) => {
         message: `Your answer has been successfully submitted and recorded on-chain!`,
       },
     });
-
     return Response.json(payload, {
       headers: ACTIONS_CORS_HEADERS,
     });
