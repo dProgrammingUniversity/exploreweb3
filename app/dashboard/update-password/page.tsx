@@ -18,9 +18,9 @@ const UpdatePasswordPage = async () => {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    return redirect("/auth/login");
-  }
+  // if (!user) {
+  //   return redirect("/auth/login");
+  // }
 
   return (
     <>
