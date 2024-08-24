@@ -38,7 +38,7 @@ export const GET = async (req: Request) => {
       - E: Solana L2
       - F: Monad
       Q3: What is one of the unique features of Phantom Wallet?
-      - G: In-wallet token swaps
+      - G: In-wallet token swaps 
       - H: Multi-signature support
       - I: Cold storage capability
       Q4: What type of wallet is Phantom?
