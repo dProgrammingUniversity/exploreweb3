@@ -27,7 +27,7 @@ export const GET = async (req: Request) => {
       Quiz Focus (Project): Phantom Wallet
       Test your knowledge about Phantom Wallet and earn rewards!
       Select the correct answer combination in sequence.
-      HINT: Read about Phantom Wallet on ExploreWeb3.xyz first before attempting the quiz.
+      HINT: Read about Phantom Wallet on ExploreWeb3.xyz website first before attempting the quiz.
       
       Q1: What year was Phantom Wallet founded?
       - A: 2020
