@@ -15,12 +15,7 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { BlinksightsClient } from 'blinksights-sdk';
 
-// Blinksights client
-const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
-
-// Blinks GET Request
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
     title: "Explore Web3 Daily Quiz Game Ep1",
@@ -87,20 +82,11 @@ export const GET = async (req: Request) => {
       ],
     },
   };
-
-  // Blinksights Track Render/View Event
-  client.trackRenderV1(req.url, payload);
-
-  // GET Request response
   return Response.json(payload, {
     headers: ACTIONS_CORS_HEADERS,
   });
 };
-
-// Blinks OPTIONS Request
 export const OPTIONS = GET;
-
-// Blinks POST Request
 export const POST = async (req: Request) => {
   try {
     const url = new URL(req.url);
@@ -141,12 +127,6 @@ export const POST = async (req: Request) => {
         message: `Your answer has been successfully submitted and recorded on-chain!`,
       },
     });
-
-    // Blinksights Track Interaction Events
-    // The payer's public key will be in the request body
-    client.trackActionV1(req.headers, body.account, req.url);
-
-    // Blink POST request response
     return Response.json(payload, {
       headers: ACTIONS_CORS_HEADERS,
     });
