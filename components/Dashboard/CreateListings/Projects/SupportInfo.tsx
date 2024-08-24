@@ -6,7 +6,7 @@ const SupportInfo = ({ formData, handleInputChange, loading }) => (
   <>
     <div className="flex flex-col">
       <label htmlFor="support_website_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Website) URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/support</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz/support</span>
       <input
         type="text"
         id="support_website_url"
@@ -21,7 +21,7 @@ const SupportInfo = ({ formData, handleInputChange, loading }) => (
 
     <div className="flex flex-col">
       <label htmlFor="support_livechat_url" className="mb-2 capitalize text-purple-500 text-xl">Support (Livechat) URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/livechat</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz/livechat</span>
       <input
         type="text"
         id="support_livechat_url"
@@ -36,7 +36,7 @@ const SupportInfo = ({ formData, handleInputChange, loading }) => (
 
     <div className="flex flex-col">
       <label htmlFor="support_email" className="mb-2 capitalize text-purple-500 text-xl">Support (Email):</label>
-      <span className="text-sm text-gray-400 mb-1">format support@exploresol.xyz</span>
+      <span className="text-sm text-gray-400 mb-1">format support@exploreweb3.xyz</span>
       <input
         type="text"
         id="support_email"

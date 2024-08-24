@@ -128,7 +128,7 @@ const ProjectInfo = ({
 
     <div className="flex flex-col">
       <label htmlFor="documentation_url" className="mb-2 capitalize text-purple-500 text-xl">Documentation URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/docs</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz/docs</span>
       <input
         type="text"
         id="documentation_url"
@@ -143,7 +143,7 @@ const ProjectInfo = ({
 
     <div className="flex flex-col">
       <label htmlFor="faq_url" className="mb-2 capitalize text-purple-500 text-xl">FAQs URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/faqs</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz/faqs</span>
       <input
         type="text"
         id="faq_url"
@@ -173,7 +173,7 @@ const ProjectInfo = ({
 
     <div className="flex flex-col">
       <label htmlFor="roadmap_url" className="mb-2 capitalize text-purple-500 text-xl">Roadmap URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/roadmap</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz/roadmap</span>
       <input
         type="text"
         id="roadmap_url"
@@ -188,7 +188,7 @@ const ProjectInfo = ({
 
     <div className="flex flex-col">
       <label htmlFor="whitepaper_url" className="mb-2 capitalize text-purple-500 text-xl">Whitepaper URL:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz/whitepaper</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz/whitepaper</span>
       <input
         type="text"
         id="whitepaper_url"

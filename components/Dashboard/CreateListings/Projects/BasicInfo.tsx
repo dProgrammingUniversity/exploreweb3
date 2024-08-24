@@ -35,7 +35,7 @@ const BasicInfo = ({ formData, handleInputChange, statuses, loading }) => (
 
     <div className="flex flex-col">
       <label htmlFor="website" className="mb-2 capitalize text-purple-500 text-xl">Website:</label>
-      <span className="text-sm text-gray-400 mb-1">format https://exploresol.xyz</span>
+      <span className="text-sm text-gray-400 mb-1">format https://exploreweb3.xyz</span>
       <input
         type="text"
         id="website"

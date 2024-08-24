@@ -25,8 +25,7 @@ const Roadmap = () => {
               <li className="mb-7 text-lg text-gray-300">
                 <strong>Alpha launched 5th May 2024:</strong>
                 <p className="mb-3">
-                  Alpha launched with just about 5 Solana projects listed on
-                  ExploreSol.xyz domain.
+                  Alpha launched with just about 5 Solana projects listed.
                 </p>
                 <p>Received feedback on UX/UI and improved for beta launch.</p>
               </li>
