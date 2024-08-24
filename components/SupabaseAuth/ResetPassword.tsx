@@ -11,7 +11,7 @@ const ResetPassword = () => {
   const handleReset = async () => {
     const supabaseClient = createClient();
     const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://exploresol.xyz/dashboard/update-password',
+      redirectTo: 'https://exploreweb3.xyz/dashboard/update-password',
     });
 
     if (error) {
