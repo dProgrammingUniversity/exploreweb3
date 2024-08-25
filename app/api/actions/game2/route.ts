@@ -1,4 +1,4 @@
-// /app/api/actions/donate/route.ts
+// /app/api/actions/game2/route.ts
 import {
   ActionGetResponse,
   ACTIONS_CORS_HEADERS,
@@ -25,7 +25,7 @@ const client = new BlinksightsClient(
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
-    title: "Explore Web3 Daily Quiz Game Ep1",
+    title: "Daily Earn Game Ep1: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
@@ -76,35 +76,25 @@ export const GET = async (req: Request) => {
     links: {
       actions: [
         {
-          href: "/api/actions/game2?amount=0&answer=BFGJM",
+          href: `${req.url}?amount=0&answer=BFGJM"`,
           label: "BFGJM",
         },
         {
-          href: "/api/actions/game2?amount=0&answer=ADGKN",
+          href: `${req.url}?amount=0&answer=ADGKN"`,
           label: "ADGKN",
         },
         {
-          href: "/api/actions/game2?amount=0&answer=BDGLM",
+          href: `${req.url}?amount=0&answer=BDGLM"`,
           label: "BDGLM",
         },
         {
-          href: "/api/actions/game2?amount=0&answer=ADGCM",
+          href: `${req.url}?amount=0&answer=ADGCM"`,
           label: "ADGCM",
         },
         {
-          href: "/api/actions/game2?amount=0&answer=BDGKN",
+          href: `${req.url}?amount=0&answer=BDGKN"`,
           label: "BDGKN",
         },
-        // {
-        //   href: "/api/actions/game2?amount={amount}&answer=CustomAmountCoffee",
-        //   label: "Submit answer",
-        //   parameters: [
-        //     {
-        //       name: "amount",
-        //       label: "Enter Answer",
-        //     },
-        //   ],
-        // },
       ],
     },
   };
@@ -117,8 +107,10 @@ export const GET = async (req: Request) => {
   });
 };
 
+// Blinks OPTIONS Request
 export const OPTIONS = GET;
 
+// Blinks POST Request
 export const POST = async (req: Request) => {
   try {
     const url = new URL(req.url);
@@ -132,7 +124,7 @@ export const POST = async (req: Request) => {
     }
 
     let amount: number = 0;
-    let answer: string = "No answer Provided";
+    let answer: string = "No-Answer-Provided";
 
     if (url.searchParams.has("amount")) {
       try {
@@ -161,7 +153,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `My Explore Web3 Daily Quiz Game Ep1 (Phantom Wallet) Answer Is: ${answer}`,
+          `My Explore Web3 Daily Quiz Game Ep1 ANSWER For Phantom Wallet Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
