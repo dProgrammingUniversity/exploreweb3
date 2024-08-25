@@ -17,44 +17,7 @@ import {
   TransactionInstruction,
 } from "@solana/web3.js";
 import { BlinksightsClient } from 'blinksights-sdk';
-import { Metadata } from "next";
 
-
-// Define fixed metadata values
-const title = "ExploreWeb3 Donate Blinks - Explore Web3";
-const description = "ExploreWeb3 Donations Blinks Page";
-const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
-const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
-
-// Create metadata object
-export const metadata: Metadata = {
-  title: title,
-  description: description,
-  openGraph: {
-    url: siteUrl,
-    type: 'website',
-    title: title,
-    description: description,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: title,
-    description: description,
-    images: [ogImage],
-  },
-  other: {
-    "dscvr:canvas:version": "vNext",
-    "og:image": ogImage,
-  },
-};
 
 // Initialize Blinksights client
 const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
