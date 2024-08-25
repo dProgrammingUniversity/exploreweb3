@@ -17,25 +17,66 @@ import {
   TransactionInstruction,
 } from "@solana/web3.js";
 import { BlinksightsClient } from 'blinksights-sdk';
+import { Metadata } from "next";
+
+
+// Define fixed metadata values
+const title = "ExploreWeb3 Donate Blinks - Explore Web3";
+const description = "ExploreWeb3 Donations Blinks Page";
+const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png";
+const siteUrl = "https://ExploreWeb3.xyz"; // Replace with your actual site URL
+
+// Create metadata object
+export const metadata: Metadata = {
+  title: title,
+  description: description,
+  openGraph: {
+    url: siteUrl,
+    type: 'website',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [ogImage],
+  },
+  other: {
+    "dscvr:canvas:version": "vNext",
+    "og:image": ogImage,
+  },
+};
 
 // Initialize Blinksights client
 const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
-    title: "ExploreWeb3 - Buy Me a Coffee",
-    icon: new URL(
-        "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
-        new URL(req.url).origin,
-      ).toString(),
+    title: "Support Explore Web3 - Kindly DONATE To Keep This Project Going!",
+    icon: "https://res.cloudinary.com/difhad1rl/image/upload/v1720684490/ExploreSolana-Banner-03a5a-Website-Banner-Light-Transparent-bg-Animated-1024x1024.gif",
     label: "Donate",
     description:
-      "Buy me a coffee with SOL using this super sweet blink of mine :)",
+      `Explore Web3 platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects for FREE!
+
+Featuring SOLANA Ecosystem Projects and Blinks for FREE for easy discovery by new/existing Solana ecosystem users/the world.
+
+However, it may not last long due to the lack of funding. Thus, Kindly consider DONATING to keep it on and promoting Web3 Projects for FREE!
+
+NOTE:- All donation wallets will qualify for future appreciation (hint - WL😀)!!!`,
     links: {
       actions: [
         {
-          href: "/api/actions/donate?amount=0.001&note=SmallCoffee",
-          label: "0.001 SOL",
+          href: "/api/actions/donate?amount=0.1&note=SmallCoffee",
+          label: "0.1 SOL",
         },
         {
           href: "/api/actions/donate?amount=0.5&note=BigCoffee",
@@ -46,12 +87,24 @@ export const GET = async (req: Request) => {
           label: "1.0 SOL",
         },
         {
+          href: "/api/actions/donate?amount=3.0&note=CoffeeFor2Week",
+          label: "3 SOL",
+        },
+        {
+          href: "/api/actions/donate?amount=5.0&note=CoffeeFor3Week",
+          label: "5 SOL",
+        },
+        {
+          href: "/api/actions/donate?amount=10.0&note=CoffeeFor1Month",
+          label: "10 SOL",
+        },
+        {
           href: "/api/actions/donate?amount={amount}&note=CustomAmountCoffee",
-          label: "Send SOL",
+          label: "Donate",
           parameters: [
             {
               name: "amount",
-              label: "Enter a SOL amount",
+              label: "Enter a custom SOL amount",
             },
           ],
         },
@@ -81,12 +134,12 @@ export const POST = async (req: Request) => {
       throw "Invalid 'account' provided. It is not a real pubkey.";
     }
 
-    let amount: number = 0;
+    let amount: number = 2;
     let note: string = "No Note Provided";
 
     if (url.searchParams.has("amount")) {
       try {
-        amount = parseFloat(url.searchParams.get("amount") || "0.000051") || amount;
+        amount = parseFloat(url.searchParams.get("amount") || "1.5") || amount;
       } catch (err) {
         throw "Invalid 'amount' input.";
       }
@@ -122,7 +175,7 @@ export const POST = async (req: Request) => {
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction,
-        message: "Thanks for the coffee and the note fren :)",
+        message: "Thanks for the support donation and the note!!! :)",
       },
     });
 

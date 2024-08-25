@@ -5,7 +5,7 @@ import {
   ActionPostRequest,
   createPostResponse,
   ActionPostResponse,
-  MEMO_PROGRAM_ID
+  MEMO_PROGRAM_ID,
 } from "@solana/actions";
 import {
   clusterApiUrl,
@@ -16,25 +16,29 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { BlinksightsClient } from 'blinksights-sdk';
+import { BlinksightsClient } from "blinksights-sdk";
 
 // Initialize Blinksights client
-const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
+const client = new BlinksightsClient(
+  `${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`,
+);
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
     title: "Explore Web3 Daily Quiz Game Ep1",
     icon: new URL(
-        "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
-        new URL(req.url).origin,
-      ).toString(),
+      "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
+      new URL(req.url).origin,
+    ).toString(),
     description: `
-      Quiz Focus (Project): Phantom Wallet
+    ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
+      
+    Quiz Focus (Project): Phantom Wallet
       
       Test your knowledge about Phantom Wallet and earn rewards!
       Select the correct answer combination in sequence.
       
-      HINT: Read about Phantom Wallet on ExploreWeb3.xyz website first before attempting the quiz.
+      HINT: Read about Phantom Wallet at https://ExploreWeb3.xyz/projects/phantom first before attempting the quiz.
       
       Q1: What year was Phantom Wallet founded?
       - A: 2020
@@ -156,7 +160,10 @@ export const POST = async (req: Request) => {
       }),
       new TransactionInstruction({
         keys: [],
-        data: Buffer.from(`My Explore Web3 Daily Quiz Game Ep1 (Phantom Wallet) Answer Is: ${answer}`, "utf-8"),
+        data: Buffer.from(
+          `My Explore Web3 Daily Quiz Game Ep1 (Phantom Wallet) Answer Is: ${answer}`,
+          "utf-8",
+        ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
       }),
     );
@@ -168,7 +175,8 @@ export const POST = async (req: Request) => {
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction,
-        message: "Your answer has been successfully submitted and recorded on-chain!",
+        message:
+          "Your answer has been successfully submitted and recorded on-chain!",
       },
     });
 
