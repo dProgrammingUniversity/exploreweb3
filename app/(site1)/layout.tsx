@@ -6,8 +6,8 @@ import Lines from "@/components/Lines";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ThemeProvider } from "next-themes";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import ToasterContext from "./context/ToastContext";
+import "../globals.css";
+import ToasterContext from "../context/ToastContext";
 import { GA_TRACKING_ID } from "@/utils/analytics/analytics"; //Google analytics
 import AnalyticsGoogle from "@/components/Analytics/AnalyticsGoogle"; //Google Analytics
 import { SpeedInsights } from "@vercel/speed-insights/next"; //Vercel Insight

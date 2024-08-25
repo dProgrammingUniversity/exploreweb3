@@ -1,0 +1,17 @@
+/* /pages/blinks-canvas.css */
+
+/* Background gradient for the full page */
+body {
+    background: linear-gradient(to right, #122863, #210835);
+    color: #FFFFFF; /* Ensure text is white for contrast */
+}
+
+/* Center the Blink component with padding */
+.blink-container {
+    max-width: 450px; /* Limit the width of the Blink component */
+    margin: 0 auto; /* Center horizontally */
+    padding: 0px; /* Add padding */
+    background: #0A0A0A; /* Dark background for Blink component */
+    border-radius: 8px; /* Slight rounding of edges */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}

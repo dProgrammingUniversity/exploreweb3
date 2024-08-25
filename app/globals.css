@@ -1,3 +1,4 @@
+/* /app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -125,3 +126,14 @@ pre {
 .active-tab {
   @apply bg-stroke text-black dark:bg-blackho dark:text-white;
 }
+
+
+/* Additional styles for the Blinks Canvas background and layout */
+/* body {
+  @apply bg-gradient-to-r from-blue-900 to-purple-900;
+  color: white;
+}
+
+.main {
+  @apply max-w-screen-md mx-auto py-10 px-4;
+} */
