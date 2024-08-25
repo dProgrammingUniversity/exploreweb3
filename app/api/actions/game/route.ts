@@ -25,7 +25,7 @@ const client = new BlinksightsClient(
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
-    title: "Daily Earn Game Ep1: Explore Web3 Daily Quiz Game",
+    title: "Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
