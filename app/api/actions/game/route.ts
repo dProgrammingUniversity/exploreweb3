@@ -141,7 +141,7 @@ export const POST = async (req: Request) => {
     const connection = new Connection(clusterApiUrl("mainnet-beta"));
 
     const TO_PUBKEY = new PublicKey(
-      "63t6dZ78VFW1yX7uFJV678qFbZweDpUDenjLYEsq2J7q",
+      "ESemxjctXHob9GrnAAEjD9g4znVnaAgdWu5r7fGsp1Tp",
     );
 
     const transaction = new Transaction().add(
