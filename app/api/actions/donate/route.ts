@@ -83,8 +83,10 @@ NOTE:- All donation wallets will qualify for future appreciation (hint - WL😀)
   });
 };
 
+// Blinks OPTIONS Request
 export const OPTIONS = GET;
 
+// Blinks POST Request
 export const POST = async (req: Request) => {
   try {
     const url = new URL(req.url);
