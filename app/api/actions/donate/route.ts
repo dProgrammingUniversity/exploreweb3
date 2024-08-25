@@ -5,7 +5,7 @@ import {
   ActionPostRequest,
   createPostResponse,
   ActionPostResponse,
-  MEMO_PROGRAM_ID,
+  MEMO_PROGRAM_ID
 } from "@solana/actions";
 import {
   clusterApiUrl,
@@ -16,19 +16,19 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { BlinksightsClient } from "blinksights-sdk";
+import { BlinksightsClient } from 'blinksights-sdk';
+
 
 // Initialize Blinksights client
-const client = new BlinksightsClient(
-  `${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`,
-);
+const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
     title: "Support Explore Web3 - Kindly DONATE To Keep This Project Going!",
     icon: "https://res.cloudinary.com/difhad1rl/image/upload/v1720684490/ExploreSolana-Banner-03a5a-Website-Banner-Light-Transparent-bg-Animated-1024x1024.gif",
     label: "Donate",
-    description: `Explore Web3 platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects for FREE!
+    description:
+      `Explore Web3 platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects for FREE!
 
 Featuring SOLANA Ecosystem Projects and Blinks for FREE for easy discovery by new/existing Solana ecosystem users/the world.
 
@@ -38,31 +38,31 @@ NOTE:- All donation wallets will qualify for future appreciation (hint - WL😀)
     links: {
       actions: [
         {
-          href: "/api/actions/donate?amount=0.1&note=SmallCoffee",
+          href: `${req.url}?amount=0.1&note=SmallCoffee`,
           label: "0.1 SOL",
         },
         {
-          href: "/api/actions/donate?amount=0.5&note=BigCoffee",
+          href: `${req.url}?amount=0.5&note=BigCoffee`,
           label: "0.5 SOL",
         },
         {
-          href: "/api/actions/donate?amount=1.0&note=CoffeeFor1Week",
+          href: `${req.url}?amount=1.0&note=CoffeeFor1Week`,
           label: "1.0 SOL",
         },
         {
-          href: "/api/actions/donate?amount=3.0&note=CoffeeFor2Week",
+          href: `${req.url}?amount=3.0&note=CoffeeFor2Week`,
           label: "3 SOL",
         },
         {
-          href: "/api/actions/donate?amount=5.0&note=CoffeeFor3Week",
+          href: `${req.url}?amount=5.0&note=CoffeeFor3Week`,
           label: "5 SOL",
         },
         {
-          href: "/api/actions/donate?amount=10.0&note=CoffeeFor1Month",
+          href: `${req.url}?amount=10.0&note=CoffeeFor1Month`,
           label: "10 SOL",
         },
         {
-          href: "/api/actions/donate?amount={amount}&note=CustomAmountCoffee",
+          href: `${req.url}?amount={amount}&note=CustomAmountCoffee`,
           label: "Donate",
           parameters: [
             {
@@ -98,7 +98,7 @@ export const POST = async (req: Request) => {
     }
 
     let amount: number = 2;
-    let note: string = "NoNoteProvided";
+    let note: string = "No-Note-Provided";
 
     if (url.searchParams.has("amount")) {
       try {
