@@ -37,7 +37,8 @@ const ListingDetailPage = () => {
 
   // Effect to fetch data on mount and when pathname changes
   useEffect(() => {
-    const slug = pathname.split('/').pop();
+    // Ensure pathname is not null
+    const slug = pathname?.split('/').pop();
     if (slug) {
       fetchListingData(slug);
     }
