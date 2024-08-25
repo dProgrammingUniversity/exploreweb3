@@ -5,7 +5,7 @@ import {
   ActionPostRequest,
   createPostResponse,
   ActionPostResponse,
-  MEMO_PROGRAM_ID
+  MEMO_PROGRAM_ID,
 } from "@solana/actions";
 import {
   clusterApiUrl,
@@ -16,10 +16,12 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { BlinksightsClient } from 'blinksights-sdk';
+import { BlinksightsClient } from "blinksights-sdk";
 
 // Initialize Blinksights client
-const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
+const client = new BlinksightsClient(
+  `${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`,
+);
 
 export const GET = async (req: Request) => {
   const payload: ActionGetResponse = {
@@ -36,31 +38,31 @@ NOTE:- All donation wallets will qualify for future appreciation (hint - WL😀)
     links: {
       actions: [
         {
-          href: `/api/actions/donate?amount=0.1&note=${encodeURIComponent("SmallCoffee")}`,
+          href: "/api/actions/donate?amount=0.1&note=SmallCoffee",
           label: "0.1 SOL",
         },
         {
-          href: `/api/actions/donate?amount=0.5&note=${encodeURIComponent("BigCoffee")}`,
+          href: "/api/actions/donate?amount=0.5&note=BigCoffee",
           label: "0.5 SOL",
         },
         {
-          href: `/api/actions/donate?amount=1.0&note=${encodeURIComponent("CoffeeFor1Week")}`,
+          href: "/api/actions/donate?amount=1.0&note=CoffeeFor1Week",
           label: "1.0 SOL",
         },
         {
-          href: `/api/actions/donate?amount=3.0&note=${encodeURIComponent("CoffeeFor2Week")}`,
+          href: "/api/actions/donate?amount=3.0&note=CoffeeFor2Week",
           label: "3 SOL",
         },
         {
-          href: `/api/actions/donate?amount=5.0&note=${encodeURIComponent("CoffeeFor3Week")}`,
+          href: "/api/actions/donate?amount=5.0&note=CoffeeFor3Week",
           label: "5 SOL",
         },
         {
-          href: `/api/actions/donate?amount=10.0&note=${encodeURIComponent("CoffeeFor1Month")}`,
+          href: "/api/actions/donate?amount=10.0&note=CoffeeFor1Month",
           label: "10 SOL",
         },
         {
-          href: `/api/actions/donate?amount={amount}&note=${encodeURIComponent("CustomAmountCoffee")}`,
+          href: "/api/actions/donate?amount={amount}&note=CustomAmountCoffee",
           label: "Donate",
           parameters: [
             {
@@ -96,7 +98,7 @@ export const POST = async (req: Request) => {
     }
 
     let amount: number = 2;
-    let note: string = "No Note Provided";
+    let note: string = "NoNoteProvided";
 
     if (url.searchParams.has("amount")) {
       try {
@@ -160,4 +162,3 @@ export const POST = async (req: Request) => {
     );
   }
 };
-
