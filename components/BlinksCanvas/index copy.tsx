@@ -7,14 +7,9 @@ import { Action, Blink, type ActionAdapter, useActionsRegistryInterval } from "@
 // import { useActionSolanaWalletAdapter } from "@dialectlabs/blinks/hooks/solana";
 // import { clusterApiUrl } from '@solana/web3.js';
 
-
-interface BlinksCanvasProps {
-  actionApiUrl: string;
-}
-
-const BlinksCanvas: React.FC<BlinksCanvasProps> = ({ actionApiUrl }) => {
+const BlinksCanvas = () => {
   const [action, setAction] = useState<Action | null>(null);
-  // const actionApiUrl = 'https://exploreweb3.xyz/api/actions/game'; // Hardcoded action URL
+  const actionApiUrl = 'https://exploreweb3.xyz/api/actions/game'; // Hardcoded action URL
 
   // Initiating the registry interval check
   const { isRegistryLoaded } = useActionsRegistryInterval();

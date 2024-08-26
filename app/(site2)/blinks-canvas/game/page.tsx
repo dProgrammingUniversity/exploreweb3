@@ -1,8 +1,7 @@
-// /app/(site2)/blinks-canvas/page.tsx
+// /app/(site2)/blinks-canvas/game/page.tsx
 import BlinksCanvas from "@/components/BlinksCanvas";
 import { Metadata } from 'next';
-import BlinksCanvasLayout from "../layout";
-import "../../(site2)/blinks-canvas.css"; 
+import "../../../(site2)/blinks-canvas.css"; 
 
 export const metadata: Metadata = {
   title: "Explore Web3 Blinks",
@@ -18,9 +17,12 @@ export const metadata: Metadata = {
 };
 
 export default function BlinksPage() {
+
+  const actionApiUrl = 'https://exploreweb3.xyz/api/actions/game'; // Action URL for the game
+
   return (
     <main className="blink-container">
-      <BlinksCanvas />
+      <BlinksCanvas actionApiUrl={actionApiUrl} />
     </main>
   );
 }
