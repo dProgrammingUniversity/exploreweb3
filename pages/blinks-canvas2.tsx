@@ -4,12 +4,10 @@ import BlinksCanvas from "@/components/BlinksCanvas";
 import "./blinks-canvas.css"; // Import the custom CSS
 import { useSearchParams } from 'next/navigation'; // Import the hook to get query parameters
 
-
 export default function BlinksPage() {
-
   const searchParams = useSearchParams();
-  // const actionApiUrl = 'https://exploreweb3.xyz/api/actions/game'; // Action URL for the game
-  const actionApiUrl = searchParams.get('action') || 'https://exploreweb3.xyz/api/actions/game'; // Default to the hardcoded URL if none is provided
+  // Ensure `searchParams` is not null and get the action parameter or default to the hardcoded URL
+  const actionApiUrl = (searchParams && searchParams.get('action')) || 'https://exploreweb3.xyz/api/actions/game';
 
   return (
     <>
