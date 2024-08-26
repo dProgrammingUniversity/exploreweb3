@@ -24,6 +24,16 @@ const client = new BlinksightsClient(
 );
 
 export const GET = async (req: Request) => {
+
+  const headers = req.headers;
+  const acceptHeader = headers.get("Accept");
+
+  if (acceptHeader && acceptHeader.includes("text/html")) {
+    // Serve a user-friendly HTML page if the request is from a browser
+    return Response.redirect("https://dial.to/?action=solana-action:https://exploreweb3.xyz/api/actions/game", 302);
+  }
+
+  // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
     title: "Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game",
     icon: new URL(
