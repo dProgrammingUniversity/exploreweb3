@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function BlinksPage() {
 
-  const actionApiUrl = 'https://exploreweb3.xyz/api/actions/'; // Action URL for the game
+  const actionApiUrl = 'https://exploreweb3.xyz/api/actions/game'; // Action URL for the game
 
   return (
     <main className="blink-container">
