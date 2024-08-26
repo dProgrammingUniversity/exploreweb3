@@ -23,6 +23,17 @@ import { BlinksightsClient } from 'blinksights-sdk';
 const client = new BlinksightsClient(`${process.env.NEXT_PUBLIC_BLINKSIGHTS_API_KEY}`);
 
 export const GET = async (req: Request) => {
+
+  // Check to serve either API route or page 
+  // based on source requesting from this url/api endpoint
+  const headers = req.headers;
+  const acceptHeader = headers.get("Accept");
+  if (acceptHeader && acceptHeader.includes("text/html")) {
+    // Serve a user-friendly HTML page if the request is from a browser
+    return Response.redirect("https://dial.to/?action=solana-action:https://exploreweb3.xyz/api/actions/donate", 302);
+  }
+
+  // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
     title: "Support Explore Web3 - Kindly DONATE To Keep This Project Going!",
     icon: "https://res.cloudinary.com/difhad1rl/image/upload/v1720684490/ExploreSolana-Banner-03a5a-Website-Banner-Light-Transparent-bg-Animated-1024x1024.gif",
