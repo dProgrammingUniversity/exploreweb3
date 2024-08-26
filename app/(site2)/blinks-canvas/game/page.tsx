@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   other: {
     "dscvr:canvas:version": "vNext",
     "og:image": "https://exploreweb3.xyz/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
+    "Content-Security-Policy": "default-src 'self'; connect-src 'self' https://exploreweb3.xyz https://*.dial.to https://*.dial.to/* https://*.dscvr.one https://*.helius-rpc.com; script-src 'self' https://exploreweb3.xyz https://*.dial.to https://*.dial.to/* https://*.dscvr.one; style-src 'self' https://exploreweb3.xyz https://*.dial.to https://*.dial.to/* https://*.dscvr.one; img-src 'self' https://exploreweb3.xyz https://*.dial.to https://*.dial.to/* https://*.dscvr.one data:; font-src 'self' https://exploreweb3.xyz https://*.dial.to https://*.dial.to/* https://*.dscvr.one; frame-src 'self';"
   },
 };
 
