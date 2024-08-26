@@ -30,8 +30,36 @@ export const GET = async (req: Request) => {
   const headers = req.headers;
   const acceptHeader = headers.get("Accept");
   if (acceptHeader && acceptHeader.includes("text/html")) {
-    // Serve a user-friendly HTML page if the request is from a browser
-    return Response.redirect("https://dial.to/?action=solana-action:https://exploreweb3.xyz/api/actions/game2", 302);
+    // Serve the metadata for social media platforms
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game" />
+        <meta property="og:description" content="ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE! Quiz Focus (Project): Phantom Wallet." />
+        <meta property="og:image" content="https://exploreweb3.xyz/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg" />
+        <meta property="og:url" content="https://exploreweb3.xyz/learn-earn-game" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@ExploreWeb3" />
+        <meta name="twitter:title" content="Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game" />
+        <meta name="twitter:description" content="ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE! Quiz Focus (Project): Phantom Wallet." />
+        <meta name="twitter:image" content="https://exploreweb3.xyz/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg" />
+        <title>Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game</title>
+      </head>
+      <body>
+        <script>
+          window.location.href = "https://dial.to/?action=solana-action:https://exploreweb3.xyz/api/actions/game2";
+        </script>
+      </body>
+      </html>
+    `;
+    return new Response(htmlContent, {
+      headers: {
+        "Content-Type": "text/html",
+      },
+    });
   }
 
   // Serve the JSON response for Blinks or other API consumers
