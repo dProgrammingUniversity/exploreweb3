@@ -4,6 +4,9 @@ import BlinksCanvas from "@/components/BlinksCanvas";
 import "./blinks-canvas.css"; // Import the custom CSS
 
 export default function BlinksPage() {
+
+  const actionApiUrl = 'https://exploreweb3.xyz/api/actions/'; // Action URL for the game
+
   return (
     <>
       <Head>
@@ -15,7 +18,7 @@ export default function BlinksPage() {
         <meta property="og:image" content="https://exploreweb3.xyz/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg" />
       </Head>
       <main className="blink-container">
-        <BlinksCanvas />
+        <BlinksCanvas actionApiUrl={actionApiUrl} />
       </main>
     </>
   );
