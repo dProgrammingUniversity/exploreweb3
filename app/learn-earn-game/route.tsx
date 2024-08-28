@@ -24,89 +24,91 @@ const client = new BlinksightsClient(
 );
 
 export const GET = async (req: Request) => {
-
   const headers = req.headers;
   const acceptHeader = headers.get("Accept");
 
   if (acceptHeader && acceptHeader.includes("text/html")) {
     // Serve a user-friendly HTML page if the request is from a browser
-    return Response.redirect("https://dial.to/?action=solana-action:https://exploreweb3.xyz/learn-earn-game", 302);
+    return Response.redirect(
+      "https://dial.to/?action=solana-action:https://exploreweb3.xyz/learn-earn-game",
+      302,
+    );
   }
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game",
+    title: "Learn&Earn Game Ep2: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
     ).toString(),
     description: `
-    ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
-      
-    Quiz Focus (Project): Phantom Wallet
-      
-      Test your knowledge about Phantom Wallet and earn rewards!
-      Select the correct answer combination in sequence.
-      
-      HINT: Read about Phantom Wallet at https://ExploreWeb3.xyz/projects/phantom first before attempting the quiz.
-      
-      Q1: What year was Phantom Wallet founded?
-      - A: 2020
-      - B: 2021
-      - C: 2019
-      
-      Q2: Which of these blockchains does Phantom recently announced it will support in addition to already supporting Solana, ETH, BTC, Polygon?
-      - D: Avalanche
-      - E: Solana L2
-      - F: Monad
-      
-      Q3: What is one of the unique features of Phantom Wallet?
-      - G: In-wallet token swaps 
-      - H: Multi-signature support
-      - I: Cold storage capability
-      
-      Q4: What type of wallet is Phantom?
-      - J: Non-custodial
-      - K: Custodial
-      - L: Paper Wallet
-      
-      Q5: Which of these is NOT a feature of Phantom Wallet?
-      - M: Fiat currency wallet
-      - N: Crypto wallet
-      - O: Built-in staking support
-      
-      INSTRUCTIONS:
-      Select the correct answer combination in order (e.g., ADGBN means Q1 answer is A, Q2 is D, etc.). 
-      
-      All answers are recorded on-chain!
-      
-      WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
-    `,
+        ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
+
+        Quiz Focus (Project): DSCVR
+
+        Test your knowledge about DSCVR and earn rewards!
+        Select the correct answer combination in sequence.
+
+        HINT: Read about DSCVR at https://ExploreWeb3.xyz/projects/dscvr first before attempting the quiz.
+
+        Q1: Which new signup/login option was recently added by DSCVR?
+        - A: Apple ID
+        - B: SolanaID
+        - C: Worldcoin
+
+        Q2: What feature does DSCVR recently integrate to allow users to interact with Apps/dApps directly within the platform feed?
+        - D: Canvas
+        - E: Portal
+        - F: Blinks
+
+        Q3: Which category does DSCVR fall under?
+        - G: Social Media
+        - H: NFT Launchpad
+        - I: GameFi
+
+        Q4: What is one of the core DSCVR's advantages for new users?
+        - J: Direct crypto/fiat payments
+        - K: Easy Web3 Adoption
+        - L: Multi-chain support
+
+        Q5: What year was DSCVR founded?
+        - M: 2024
+        - N: 2023
+        - O: 2018
+
+        INSTRUCTIONS:
+        Select the correct answer combination in order (e.g., ACBDFS means Q1 answer is A, Q2 is C, etc.).
+
+        All answers are recorded on-chain!
+
+        WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
+      `,
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=BFGJM"`,
+          href: `${req.url}?amount=0&answer=CFGKN`, // option 1
+          label: "CFGKN",
+        },
+        {
+          href: `${req.url}?amount=0&answer=ADGLM`, // option 2
+          label: "ADGLM",
+        },
+        {
+          href: `${req.url}?amount=0&answer=BFGJM`, // option 3
           label: "BFGJM",
         },
         {
-          href: `${req.url}?amount=0&answer=ADGKN"`,
-          label: "ADGKN",
+          href: `${req.url}?amount=0&answer=CDGKN`,  // option 4
+          label: "CDGKN",
         },
         {
-          href: `${req.url}?amount=0&answer=BDGLM"`,
-          label: "BDGLM",
-        },
-        {
-          href: `${req.url}?amount=0&answer=ADGCM"`,
-          label: "ADGCM",
-        },
-        {
-          href: `${req.url}?amount=0&answer=BDGKN"`,
-          label: "BDGKN",
+          href: `${req.url}?amount=0&answer=CFGCM`, // option 5
+          label: "CFGCM",
         },
       ],
-    },
+    },    
   };
 
   // Track Render/View Event with BlinkSights
@@ -163,7 +165,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `My Explore Web3 Daily Quiz Game Ep1 ANSWER For Phantom Wallet Is: ${answer}`,
+          `My ExploreWeb3.xyz Daily Quiz Game Ep2 ANSWER For DSCVR Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
