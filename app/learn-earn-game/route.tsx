@@ -165,7 +165,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `My Explore Web3 Daily Quiz Game Ep2 ANSWER For DSCVR Is: ${answer}`,
+          `My ExploreWeb3.xyz Daily Quiz Game Ep2 ANSWER For DSCVR Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
