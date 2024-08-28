@@ -27,7 +27,7 @@
     "@vercel/speed-insights": "^1.0.12",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.8",
-    "blinksights-sdk": "^1.0.8",
+    "blinksights-sdk": "^1.0.9",
     "cloudinary": "^2.1.0",
     "dotenv": "^16.4.5",
     "eslint": "8.41.0",
