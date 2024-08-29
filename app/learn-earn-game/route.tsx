@@ -37,78 +37,78 @@ export const GET = async (req: Request) => {
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn&Earn Game Ep2: Explore Web3 Daily Quiz Game",
+    title: "Learn+Earn Game Ep3: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
     ).toString(),
     description: `
-        ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
+      ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
 
-        Quiz Focus (Project): DSCVR
+      Quiz Focus (Project): DRiP
 
-        Test your knowledge about DSCVR and earn rewards!
-        Select the correct answer combination in sequence.
+      Test your knowledge about DRiP and earn rewards!
+      Select the correct answer combination in sequence.
 
-        HINT: Read about DSCVR at https://ExploreWeb3.xyz/projects/dscvr first before attempting the quiz.
+      HINT: Read about DRiP at https://ExploreWeb3.xyz/projects/drip first before attempting the quiz.
 
-        Q1: Which new signup/login option was recently added by DSCVR?
-        - A: Apple ID
-        - B: SolanaID
-        - C: Worldcoin
+      Q1: Which recent feature did DRiP introduce to allow collectors to give Droplets to fellow collectors?
+      - A: Gifts
+      - B: Thanks
+      - C: Airdrops
 
-        Q2: What feature does DSCVR recently integrate to allow users to interact with Apps/dApps directly within the platform feed?
-        - D: Canvas
-        - E: Portal
-        - F: Blinks
+      Q2: Who is the most popular and OG DRiP artist on DRiP.haus?
+      - D: SolJakey
+      - E: Degen Poet
+      - F: Jane Smith
 
-        Q3: Which category does DSCVR fall under?
-        - G: Social Media
-        - H: NFT Launchpad
-        - I: GameFi
+      Q3: What category does DRiP fall under?
+      - G: Social Media
+      - H: NFT Tools
+      - I: GameFi
 
-        Q4: What is one of the core DSCVR's advantages for new users?
-        - J: Direct crypto/fiat payments
-        - K: Easy Web3 Adoption
-        - L: Multi-chain support
+      Q4: What is one of DRiP's advantages for creators?
+      - J: Access to financial advisors
+      - K: Monetization through limited edition NFT drops
+      - L: Free advertising credits
 
-        Q5: What year was DSCVR founded?
-        - M: 2024
-        - N: 2023
-        - O: 2018
+      Q5: In what year was DRiP founded?
+      - M: 2023
+      - N: 2022
+      - O: 2021
 
-        INSTRUCTIONS:
-        Select the correct answer combination in order (e.g., ACBDFS means Q1 answer is A, Q2 is C, etc.).
+      INSTRUCTIONS:
+      Select the correct answer combination in order (e.g., BECGF means Q1 answer is B, Q2 is E, etc.).
 
-        All answers are recorded on-chain!
+      All answers are recorded on-chain!
 
-        WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
-      `,
+      WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
+    `,
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=CFGKN`, // option 1
-          label: "CFGKN",
+          href: `${req.url}?amount=0&answer=CFGLM`, // option 1
+          label: "CFGLM",
         },
         {
-          href: `${req.url}?amount=0&answer=ADGLM`, // option 2
-          label: "ADGLM",
+          href: `${req.url}?amount=0&answer=AEGKM`, // option 2
+          label: "AEGKM",
         },
         {
-          href: `${req.url}?amount=0&answer=BFGJM`, // option 3
-          label: "BFGJM",
+          href: `${req.url}?amount=0&answer=CFGKM`, // option 3
+          label: "CFGKM",
         },
         {
-          href: `${req.url}?amount=0&answer=CDGKN`,  // option 4
+          href: `${req.url}?amount=0&answer=AEGLM`,  // option 4
+          label: "AEGLM",
+        },
+        {
+          href: `${req.url}?amount=0&answer=CDGKN`, // option 5
           label: "CDGKN",
         },
-        {
-          href: `${req.url}?amount=0&answer=CFGCM`, // option 5
-          label: "CFGCM",
-        },
       ],
-    },    
+    },      
   };
 
   // Track Render/View Event with BlinkSights
@@ -165,7 +165,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `My ExploreWeb3.xyz Daily Quiz Game Ep2 ANSWER For DSCVR Is: ${answer}`,
+          `My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep3 (DRiP) ANSWER Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
