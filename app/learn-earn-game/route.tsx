@@ -37,7 +37,7 @@ export const GET = async (req: Request) => {
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn+Earn Game Ep3: Explore Web3 Daily Quiz Game",
+    title: "Learn+Earn Game Ep4: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
@@ -45,70 +45,71 @@ export const GET = async (req: Request) => {
     description: `
       ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
 
-      Quiz Focus (Project): DRiP
+      Quiz Focus (Project): AstroKidz
 
-      Test your knowledge about DRiP and earn rewards!
+      Test your knowledge about AstroKidz and earn rewards!
       Select the correct answer combination in sequence.
 
-      HINT: Read about DRiP at https://ExploreWeb3.xyz/projects/drip first before attempting the quiz.
+      HINT: Read about AstroKidz at https://ExploreWeb3.xyz/projects/astrokidz first before attempting the quiz.
 
-      Q1: Which recent feature did DRiP introduce to allow collectors to give Droplets to fellow collectors?
-      - A: Gifts
-      - B: Thanks
-      - C: Airdrops
+      Q1: What is the unique platform that AstroKidz built on for its game infrastructure?
+      - A: Unity
+      - B: Godot
+      - C: The Vorld
 
-      Q2: Who is the most popular and OG DRiP artist on DRiP.haus?
-      - D: SolJakey
-      - E: Degen Poet
-      - F: Jane Smith
+      Q2: Which unique accessory is part of the AstroKidz avatar gear?
+      - D: SupplyStrap
+      - E: KidzArmor
+      - F: SolarShield
 
-      Q3: What category does DRiP fall under?
-      - G: Social Media
-      - H: NFT Tools
-      - I: GameFi
+      Q3: Which Exploration Path is not a part of the AstroKidz game?
+      - G: GenCore
+      - H: FaunaMaster
+      - I: StarWarlord
 
-      Q4: What is one of DRiP's advantages for creators?
-      - J: Access to financial advisors
-      - K: Monetization through limited edition NFT drops
-      - L: Free advertising credits
+      Q4: AstroKidz recently launched "Monoliths of Aquatica" on which platform?
+      - J: MinecraftGame
+      - K: RobloxGame
+      - L: FortniteGame
 
-      Q5: In what year was DRiP founded?
-      - M: 2023
-      - N: 2022
-      - O: 2021
+      Q5: On 22nd August 2024, AstroKidz Discord's posted a free game in the "Fun-Zone"'s "free-games" channel named:
+      - M: Space Raider
+      - N: Weapon of Choice DX
+      - O: Tropico 4
 
       INSTRUCTIONS:
-      Select the correct answer combination in order (e.g., BECGF means Q1 answer is B, Q2 is E, etc.).
+      Select the correct answer combination in order (e.g., BEGKM means Q1 answer is B, Q2 is E, etc.).
 
       All answers are recorded on-chain!
 
       WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
     `,
+
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=CFGLM`, // option 1
-          label: "CFGLM",
-        },
-        {
-          href: `${req.url}?amount=0&answer=AEGKM`, // option 2
-          label: "AEGKM",
-        },
-        {
-          href: `${req.url}?amount=0&answer=CFGKM`, // option 3
+          href: `${req.url}?amount=0&answer=CFGKM`, // option 1
           label: "CFGKM",
         },
         {
-          href: `${req.url}?amount=0&answer=AEGLM`,  // option 4
-          label: "AEGLM",
+          href: `${req.url}?amount=0&answer=ADGLN`, // option 2
+          label: "ADGLN",
         },
         {
-          href: `${req.url}?amount=0&answer=CDGKN`, // option 5
+          href: `${req.url}?amount=0&answer=BFGJM`, // option 3
+          label: "BFGJM",
+        },
+        {
+          href: `${req.url}?amount=0&answer=CDGKN`, // option 4
           label: "CDGKN",
         },
+        {
+          href: `${req.url}?amount=0&answer=CDGLN`, // option 5
+          label: "CDGLN",
+        },
       ],
-    },      
+    },         
   };
 
   // Track Render/View Event with BlinkSights
@@ -165,7 +166,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep3 (DRiP) ANSWER Is: ${answer}`,
+          `Ep4: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep4 (AstroKidz) ANSWER Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
