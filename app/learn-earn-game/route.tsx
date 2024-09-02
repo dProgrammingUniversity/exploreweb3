@@ -37,7 +37,7 @@ export const GET = async (req: Request) => {
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn+Earn Game Ep4: Explore Web3 Daily Quiz Game",
+    title: "Learn+Earn Game Ep5: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
@@ -45,71 +45,70 @@ export const GET = async (req: Request) => {
     description: `
       ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
 
-      Quiz Focus (Project): AstroKidz
+      Quiz Focus (Project): Cupcake
 
-      Test your knowledge about AstroKidz and earn rewards!
+      Test your knowledge about Cupcake and earn rewards!
       Select the correct answer combination in sequence.
 
-      HINT: Read about AstroKidz at https://ExploreWeb3.xyz/projects/astrokidz first before attempting the quiz.
+      HINT: Read about Cupcake at https://ExploreWeb3.xyz/projects/cupcake first before attempting the quiz.
 
-      Q1: What is the unique platform that AstroKidz built on for its game infrastructure?
-      - A: Unity
-      - B: Godot
-      - C: The Vorld
+      Q1: Cupcake recently launched a new season of the game. Which season is it?
+      - A: Season 1
+      - B: Season 2
+      - C: Season 3
 
-      Q2: Which unique accessory is part of the AstroKidz avatar gear?
-      - D: SupplyStrap
-      - E: KidzArmor
-      - F: SolarShield
+      Q2: What does UBI stand for in the Cupcake gaming ecosystem?
+      - D: Universal Basic Income
+      - E: Universal Baking Income
+      - F: Universal Blockchain Income
 
-      Q3: Which Exploration Path is not a part of the AstroKidz game?
-      - G: GenCore
-      - H: FaunaMaster
-      - I: StarWarlord
+      Q3: Which feature is part of Cupcake’s unique gameplay mechanics?
+      - G: Proof of Cake (PoC)
+      - H: Proof of Stake (PoS)
+      - I: Proof of Work (PoW)
 
-      Q4: AstroKidz recently launched "Monoliths of Aquatica" on which platform?
-      - J: MinecraftGame
-      - K: RobloxGame
-      - L: FortniteGame
+      Q4: Cupcake offers which type of gaming experience?
+      - J: Single-player only
+      - K: Social gaming with crypto rewards
+      - L: Competitive eSports
 
-      Q5: On 22nd August 2024, AstroKidz Discord's posted a free game in the "Fun-Zone"'s "free-games" channel named:
-      - M: Space Raider
-      - N: Weapon of Choice DX
-      - O: Tropico 4
+      Q5: What blockchain does Cupcake run on?
+      - M: Solana
+      - N: Ethereum
+      - O: Binance Smart Chain
 
       INSTRUCTIONS:
-      Select the correct answer combination in order (e.g., BEGKM means Q1 answer is B, Q2 is E, etc.).
+      Select the correct answer combination in order (e.g., AFHLO means Q1 answer is A, Q2 is F, etc.).
 
       All answers are recorded on-chain!
 
       WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
     `,
-
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=CFGKM`, // option 1
-          label: "CFGKM",
+          href: `${req.url}?amount=0&answer=BEGKM`, // option 1
+          label: "BEGKM",
         },
         {
           href: `${req.url}?amount=0&answer=ADGLN`, // option 2
           label: "ADGLN",
         },
         {
-          href: `${req.url}?amount=0&answer=BFGJM`, // option 3
+          href: `${req.url}?amount=0&answer=CFGKM`, // option 3
+          label: "CFGKM",
+        },
+        {
+          href: `${req.url}?amount=0&answer=BFGJM`, // option 4
           label: "BFGJM",
         },
         {
-          href: `${req.url}?amount=0&answer=CDGKN`, // option 4
+          href: `${req.url}?amount=0&answer=CDGKN`, // option 5
           label: "CDGKN",
         },
-        {
-          href: `${req.url}?amount=0&answer=CDGLN`, // option 5
-          label: "CDGLN",
-        },
       ],
-    },         
+  },             
   };
 
   // Track Render/View Event with BlinkSights
@@ -166,7 +165,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `Ep4: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep4 (AstroKidz) ANSWER Is: ${answer}`,
+          `Ep5: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep5 (Cupcake) ANSWER Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
