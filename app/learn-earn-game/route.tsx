@@ -37,7 +37,7 @@ export const GET = async (req: Request) => {
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn+Earn Game Ep5: Explore Web3 Daily Quiz Game",
+    title: "Learn+Earn Game Ep6: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
@@ -45,37 +45,37 @@ export const GET = async (req: Request) => {
     description: `
       ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
 
-      Quiz Focus (Project): Cupcake
+      Quiz Focus (Project): AssetDash
 
-      Test your knowledge about Cupcake and earn rewards!
+      Test your knowledge about AssetDash and earn rewards!
       Select the correct answer combination in sequence.
 
-      HINT: Read about Cupcake at https://ExploreWeb3.xyz/projects/cupcake first before attempting the quiz.
+      HINT: Read about AssetDash at https://ExploreWeb3.xyz/projects/assetdash first before attempting the quiz.
 
-      Q1: Cupcake recently launched a new season of the game. Which season is it?
-      - A: Season 1
-      - B: Season 2
-      - C: Season 3
+      Q1: AssetDash is known for its versatile all-in-one portfolio tracker. Which year did AssetDash rebrand from Stonks App?
+      - A: 2020
+      - B: 2021
+      - C: 2022
 
-      Q2: What does UBI stand for in the Cupcake gaming ecosystem?
-      - D: Universal Basic Income
-      - E: Universal Baking Income
-      - F: Universal Blockchain Income
+      Q2: AssetDash incorporates an all-in-one approach. What does it allow users to track?
+      - D: Only crypto assets
+      - E: NFTs, crypto, DeFi, and traditional assets
+      - F: Just NFTs and DeFi
 
-      Q3: Which feature is part of Cupcake’s unique gameplay mechanics?
-      - G: Proof of Cake (PoC)
-      - H: Proof of Stake (PoS)
-      - I: Proof of Work (PoW)
+      Q3: What feature in AssetDash allows easy swapping of assets with rewards?
+      - G: Super Swap
+      - H: Asset Auctions
+      - I: Portfolio Management
 
-      Q4: Cupcake offers which type of gaming experience?
-      - J: Single-player only
-      - K: Social gaming with crypto rewards
-      - L: Competitive eSports
+      Q4: What can AssetDash Coins be used for?
+      - J: Unlocking additional blockchain layers
+      - K: Spending on NFTs, whitelist spots, and gift cards
+      - L: Access to free crypto classes
 
-      Q5: What blockchain does Cupcake run on?
-      - M: Solana
-      - N: Ethereum
-      - O: Binance Smart Chain
+      Q5: What platform is AssetDash available on?
+      - M: Mobile only
+      - N: Web only
+      - O: iOS, Android, and Web
 
       INSTRUCTIONS:
       Select the correct answer combination in order (e.g., AFHLO means Q1 answer is A, Q2 is F, etc.).
@@ -83,32 +83,32 @@ export const GET = async (req: Request) => {
       All answers are recorded on-chain!
 
       WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
-    `,
+  `,
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=BEGKM`, // option 1
-          label: "BEGKM",
+          href: `${req.url}?amount=0&answer=BFGKO`, // option 1
+          label: "BFGKO",
         },
         {
           href: `${req.url}?amount=0&answer=ADGLN`, // option 2
           label: "ADGLN",
         },
         {
-          href: `${req.url}?amount=0&answer=CFGKM`, // option 3
-          label: "CFGKM",
+          href: `${req.url}?amount=0&answer=CEGKO`, // option 3
+          label: "CEGKO",
         },
         {
           href: `${req.url}?amount=0&answer=BFGJM`, // option 4
           label: "BFGJM",
         },
         {
-          href: `${req.url}?amount=0&answer=CDGKN`, // option 5
-          label: "CDGKN",
+          href: `${req.url}?amount=0&answer=CDGKO`, // option 5
+          label: "CDGKO",
         },
       ],
-  },             
+    },                 
   };
 
   // Track Render/View Event with BlinkSights
@@ -165,7 +165,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `Ep5: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep5 (Cupcake) ANSWER Is: ${answer}`,
+          `Ep6: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep6 (AssetDash) ANSWER Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
