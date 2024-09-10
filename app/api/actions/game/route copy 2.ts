@@ -1,4 +1,4 @@
-// /app/learn-earn-game/route.ts
+// /app/api/actions/game/route.ts
 import {
   ActionGetResponse,
   ACTIONS_CORS_HEADERS,
@@ -24,91 +24,89 @@ const client = new BlinksightsClient(
 );
 
 export const GET = async (req: Request) => {
+
   const headers = req.headers;
   const acceptHeader = headers.get("Accept");
 
   if (acceptHeader && acceptHeader.includes("text/html")) {
     // Serve a user-friendly HTML page if the request is from a browser
-    return Response.redirect(
-      "https://dial.to/?action=solana-action:https://exploreweb3.xyz/learn-earn-game",
-      302,
-    );
+    return Response.redirect("https://dial.to/?action=solana-action:https://exploreweb3.xyz/api/actions/game", 302);
   }
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn+Earn Game Ep7: Explore Web3 Daily Quiz Game",
+    title: "Learn&Earn Game Ep1: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
     ).toString(),
     description: `
-      ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
-
-      Quiz Focus (Project): SonarWatch
-
-      Test your knowledge about SonarWatch and earn rewards!
+    ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
+      
+    Quiz Focus (Project): Phantom Wallet
+      
+      Test your knowledge about Phantom Wallet and earn rewards!
       Select the correct answer combination in sequence.
-
-      HINT: Read about SonarWatch at https://ExploreWeb3.xyz/projects/sonarwatch first before attempting the quiz.
-
-      Q1: SonarWatch is known for providing which tool?
-      - A: Portfolio Tracker
-      - B: Multi-chain Explorer
-      - C: Trading Terminal
-
-      Q2: SonarWatch supports assets from how many blockchains?
-      - D: Solana Only
-      - E: Ethereum/EVM Only
-      - F: Multiple Blockchains
-
-      Q3: What is the unique feature SonarWatch offers for identifying token distribution?
-      - G: Airdrop Checker
-      - H: Staking Pools 
-      - I: Asset Auctions
-
-      Q4: What feature does SonarWatch offer to developers?
-      - J: API Service
-      - K: Portfolio Marketplaces
-      - L: NFT Marketplaces
-
-      Q5: SonarWatch offers tracking for which types of assets?
-      - M: Forex and Crypto
-      - N: Stocks and Bonds
-      - O: Tokens and NFTs
-
+      
+      HINT: Read about Phantom Wallet at https://ExploreWeb3.xyz/projects/phantom first before attempting the quiz.
+      
+      Q1: What year was Phantom Wallet founded?
+      - A: 2020
+      - B: 2021
+      - C: 2019
+      
+      Q2: Which of these blockchains does Phantom recently announced it will support in addition to already supporting Solana, ETH, BTC, Polygon?
+      - D: Avalanche
+      - E: Solana L2
+      - F: Monad
+      
+      Q3: What is one of the unique features of Phantom Wallet?
+      - G: In-wallet token swaps 
+      - H: Multi-signature support
+      - I: Cold storage capability
+      
+      Q4: What type of wallet is Phantom?
+      - J: Non-custodial
+      - K: Custodial
+      - L: Paper Wallet
+      
+      Q5: Which of these is NOT a feature of Phantom Wallet?
+      - M: Fiat currency wallet
+      - N: Crypto wallet
+      - O: Built-in staking support
+      
       INSTRUCTIONS:
-      Select the correct answer combination in order (e.g., ADHLO means Q1 answer is A, Q2 is D, etc.).
-
+      Select the correct answer combination in order (e.g., ADGBN means Q1 answer is A, Q2 is D, etc.). 
+      
       All answers are recorded on-chain!
-
+      
       WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
     `,
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=AFGJO`, // option 1
-          label: "AFGJO",
-        },
-        {
-          href: `${req.url}?amount=0&answer=BFGKN`, // option 2
-          label: "BFGKN",
-        },
-        {
-          href: `${req.url}?amount=0&answer=CFGKM`, // option 3
-          label: "CFGKM",
-        },
-        {
-          href: `${req.url}?amount=0&answer=ADGLM`, // option 4
-          label: "ADGLM",
-        },
-        {
-          href: `${req.url}?amount=0&answer=BFGJM`, // option 5
+          href: `${req.url}?amount=0&answer=BFGJM"`,
           label: "BFGJM",
         },
+        {
+          href: `${req.url}?amount=0&answer=ADGKN"`,
+          label: "ADGKN",
+        },
+        {
+          href: `${req.url}?amount=0&answer=BDGLM"`,
+          label: "BDGLM",
+        },
+        {
+          href: `${req.url}?amount=0&answer=ADGCM"`,
+          label: "ADGCM",
+        },
+        {
+          href: `${req.url}?amount=0&answer=BDGKN"`,
+          label: "BDGKN",
+        },
       ],
-    },                   
+    },
   };
 
   // Track Render/View Event with BlinkSights
@@ -165,7 +163,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `Ep7: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep7 (SonarWatch) ANSWER Is: ${answer}`,
+          `My Explore Web3 Daily Quiz Game Ep1 ANSWER For Phantom Wallet Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
