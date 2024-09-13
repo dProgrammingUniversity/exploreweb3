@@ -37,7 +37,7 @@ export const GET = async (req: Request) => {
 
   // Serve the JSON response for Blinks or other API consumers
   const payload: ActionGetResponse = {
-    title: "Learn+Earn Game Ep7: Explore Web3 Daily Quiz Game",
+    title: "Learn+Earn Game Ep8: Explore Web3 Daily Quiz Game",
     icon: new URL(
       "/images/blinks/ExploreWeb3-Quiz-Game-image-01b-WITH-LOGO.jpg",
       new URL(req.url).origin,
@@ -45,67 +45,67 @@ export const GET = async (req: Request) => {
     description: `
       ExploreWeb3.xyz platform is a PUBLIC GOOD project that Showcases and Promotes Amazing Web3 Ecosystems Projects and Their Opportunities for FREE!
 
-      Quiz Focus (Project): SonarWatch
+      Quiz Focus (Project): Anyw3ar
 
-      Test your knowledge about SonarWatch and earn rewards!
+      Test your knowledge about Anyw3ar and earn rewards!
       Select the correct answer combination in sequence.
 
-      HINT: Read about SonarWatch at https://ExploreWeb3.xyz/projects/sonarwatch first before attempting the quiz.
+      HINT: Read about Anyw3ar at https://ExploreWeb3.xyz/projects/anyw3ar first before attempting the quiz.
 
-      Q1: SonarWatch is known for providing which tool?
-      - A: Portfolio Tracker
-      - B: Multi-chain Explorer
-      - C: Trading Terminal
+      Q1: Which unique feature does Anyw3ar's clothing offer for Web3 enthusiasts?
+      - A: Blockchain-Integrated Souvenir
+      - B: Limited-Edition NFT Clothes
+      - C: Customizable Wearable Patches
 
-      Q2: SonarWatch supports assets from how many blockchains?
-      - D: Solana Only
-      - E: Ethereum/EVM Only
-      - F: Multiple Blockchains
+      Q2: What problem does Anyw3ar address for individuals in Web3?
+      - D: Access to Exclusive NFTs
+      - E: The need for multiple garments to represent digital assets
+      - F: Direct Cryptocurrency Payments
 
-      Q3: What is the unique feature SonarWatch offers for identifying token distribution?
-      - G: Airdrop Checker
-      - H: Staking Pools 
-      - I: Asset Auctions
+      Q3: Which aspect of Anyw3ar enhances community engagement?
+      - G: Easy swapping of patches to promote various Web3 projects
+      - H: In-game Currency Rewards
+      - I: Live Streaming Events
 
-      Q4: What feature does SonarWatch offer to developers?
-      - J: API Service
-      - K: Portfolio Marketplaces
-      - L: NFT Marketplaces
+      Q4: What is a key benefit of using Anyw3ar patches for Web3 projects representation?
+      - J: Automatic Staking Rewards
+      - K: Flexibility in promoting multiple projects with one garment
+      - L: Free Clothing for Every User
 
-      Q5: SonarWatch offers tracking for which types of assets?
-      - M: Forex and Crypto
-      - N: Stocks and Bonds
-      - O: Tokens and NFTs
+      Q5: Which category does Anyw3ar mainly fall under in the Solana ecosystem?
+      - M: Gaming
+      - N: Fashion
+      - O: DeFi
 
       INSTRUCTIONS:
-      Select the correct answer combination in order (e.g., ADHLO means Q1 answer is A, Q2 is D, etc.).
+      Select the correct answer combination in order (e.g., AFHLO means Q1 answer is A, Q2 is F, etc.).
 
       All answers are recorded on-chain!
 
-      WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entry.
+      WARNING: Only one attempt is allowed per wallet. Multiple attempts will invalidate all your entries.
     `,
     label: "Submit Answer",
     links: {
       actions: [
         {
-          href: `${req.url}?amount=0&answer=AFGJO`, // option 1
-          label: "AFGJO",
+          href: `${req.url}?amount=0&answer=BEGJO`, // option 1
+          label: "BEGJO",
         },
         {
-          href: `${req.url}?amount=0&answer=BFGKN`, // option 2
-          label: "BFGKN",
+          href: `${req.url}?amount=0&answer=AFGKN`, // option 2
+          label: "AFGKN",
         },
         {
-          href: `${req.url}?amount=0&answer=CFGKM`, // option 3
-          label: "CFGKM",
+          href: `${req.url}?amount=0&answer=CEGKN`, // option 3
+          label: "CEGKN",
         },
         {
           href: `${req.url}?amount=0&answer=ADGLM`, // option 4
           label: "ADGLM",
         },
         {
-          href: `${req.url}?amount=0&answer=BFGJM`, // option 5
-          label: "BFGJM",
+          href: `${req.url}?amount=0&answer=CEGJN`, // option 5
+          label: "CEGJN",
         },
       ],
     },                   
@@ -165,7 +165,7 @@ export const POST = async (req: Request) => {
       new TransactionInstruction({
         keys: [],
         data: Buffer.from(
-          `Ep7: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep7 (SonarWatch) ANSWER Is: ${answer}`,
+          `Ep8: My ExploreWeb3.xyz Learn+Earn Daily Quiz Game Ep8 (Anyw3ar) ANSWER Is: ${answer}`,
           "utf-8",
         ),
         programId: new PublicKey(MEMO_PROGRAM_ID),
