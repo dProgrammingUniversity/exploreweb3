@@ -1,39 +1,54 @@
 // /app/projects/[slug]/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import ListingsFullDetailsPage from "@/components/Directory/Listings/FullDetailsPage";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 
-// Define fixed metadata values
-const title = "Explore 1,000+ Web3 Projects Directory - Explore Web3"; // dynamically replace value with actual "title" of specific listing been displayed
-const description = "Earn Using and Exploring Web3 Projects"; // dynamically replace value with actual  "short_description" of specific listing been displayed
-const ogImage = "https://ExploreWeb3.xyz/images/opengraph-image.png"; // dynamically replace value with actual image_url of specific listing been displayed
-const siteUrl = "https://ExploreWeb3.xyz"; 
+// Type for the params object
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-// Create metadata object
-export const metadata: Metadata = {
-  title: title,
-  description: description,
-  openGraph: {
-    url: siteUrl,
-    type: 'website',
-    title: title,
-    description: description,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: title,
-    description: description,
-    images: [ogImage],
-  },
-};
+// Function to generate dynamic metadata
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // Create a Supabase client
+  const supabase = createClient();
+
+  // Fetch the project data
+  const { data: listing, error } = await supabase
+    .from('listings')
+    .select('*')
+    .eq('slug', params.slug)
+    .single();
+
+  if (error || !listing) {
+    console.error('Error fetching listing:', error);
+    return {
+      title: 'Project Not Found',
+      description: 'The requested project could not be found.',
+    };
+  }
+
+  // Construct the metadata object
+  return {
+    title: `${listing.name} - Explore Web3`,
+    description: listing.short_description || listing.description,
+    openGraph: {
+      title: `${listing.name} - Explore Web3`,
+      description: listing.short_description || listing.description,
+      images: [{ url: listing.logo_url }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${listing.name} - Explore Web3`,
+      description: listing.short_description || listing.description,
+      images: [listing.logo_url],
+    },
+  };
+}
 
 const ListingDetailPage = async ({ params }) => {
   const supabase = createClient();
