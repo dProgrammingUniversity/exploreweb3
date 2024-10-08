@@ -6,6 +6,7 @@ export async function GET(request: Request) {
   // Define the static sitemap URLs
   const sitemaps = [
     `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap/projects-listings.xml`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap/categories.xml`,
     `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap/blinks-listings.xml`,
     // `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap/projects-category.xml`,
   ];
