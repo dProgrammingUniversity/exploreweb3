@@ -12,7 +12,7 @@ import RatingReviewsList from "../../RatingsReviews/RatingReviewsList";
 import Image from "next/image";
 
 const ContentMain: React.FC<{ listing: DisplayListingTypes; userId: string | null }> = ({ listing, userId }) => {
-  const defaultImageUrl = "https://res.cloudinary.com/difhad1rl/image/upload/v1712648696/ExploreSol-Banner-01_qgtopx.jpg";
+  const defaultImageUrl = "https://exploreweb3.xyz/images/opengraph-image.png";
 
   const renderTeamDetails = () => {
     if (listing.team) {
