@@ -11,7 +11,7 @@ const CategoryPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [totalProjects, setTotalProjects] = useState(0);
-  const itemsPerPage = 30;
+  const itemsPerPage = 12;
   const supabaseClient = createClient();
 
   useEffect(() => {
