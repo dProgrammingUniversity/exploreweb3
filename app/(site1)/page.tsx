@@ -18,6 +18,7 @@ import { Metadata } from "next";
 import TitleStatic from "@/components/Header/TitleStatic";
 import BlinksTab from "@/components/Blinks/Tab";
 import TitleAnimated from "@/components/Header/TitleAnimated";
+import CategoryTab from "@/components/Category/Tab";
 
 // Define fixed metadata values
 const title = "Explore 1,000+ Web3 Projects - Explore Web3";
@@ -61,6 +62,7 @@ export default function Home() {
       <TitleAnimated />
       <BlinksTab />
       {/* <Directory /> */}
+      <CategoryTab />
       <DirectoryTab />
       {/* <About /> */}
       {/* <FeaturesTab /> */}
