@@ -19,7 +19,7 @@ const CategoryPage = () => {
       setLoading(true);
       const { data, error } = await supabaseClient
         .from("categories")
-        .select("id, name");
+        .select("id, name, slug");
   
       if (error) {
         console.error("Error fetching categories:", error);
