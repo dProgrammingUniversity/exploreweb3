@@ -2,8 +2,13 @@
 "use client"
 import { useEffect, useState } from "react";
 
+type Heading = {
+  text: string | null;
+  id: string;
+};
+
 const GuidesTableOfContents = ({ content }) => {
-  const [headings, setHeadings] = useState([]);
+  const [headings, setHeadings] = useState<Heading[]>([]);
 
   useEffect(() => {
     const parser = new DOMParser();
