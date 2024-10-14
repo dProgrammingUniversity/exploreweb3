@@ -16,25 +16,25 @@ const Login = async ({ searchParams }: { searchParams: { message: string } }) =>
   // Signin function
   const signIn = async (formData: FormData) => {
     "use server";
-
+  
     const email = formData.get("identifier") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
-
+  
     // Attempt login with email or username
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
+  
     if (error) {
-      console.error("Error logging in:", error.message);
-
+      console.error("Error logging in:", error.message, error); // Log the entire error object
       return redirect(`/auth/login?message=Error signing in: ${error.message}`);
     }
-
+  
     return redirect("/auth/login");
   };
+  
 
   return (
     <>

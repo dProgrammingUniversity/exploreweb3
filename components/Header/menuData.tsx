@@ -26,6 +26,12 @@ const menuData: Menu[] = [
         path: "/projects",
       },
       {
+        id: 2.1,
+        title: "Guides",
+        newTab: false,
+        path: "/guides",
+      },
+      {
         id: 2.2,
         title: "Solana Ecosystem",
         newTab: false,
@@ -103,6 +109,12 @@ const menuData: Menu[] = [
         title: "Create Listings",
         newTab: false,
         path: "/dashboard/create-listings",
+      },
+      {
+        id: 3.3,
+        title: "Create Guides",
+        newTab: false,
+        path: "/dashboard/guides/create",
       },
       {
         id: 3.4,

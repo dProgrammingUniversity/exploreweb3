@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["localhost", "res.cloudinary.com"],
+    domains: ["localhost", "exploreweb3.xyz", "res.cloudinary.com"],
     remotePatterns: [
       {
         protocol: "https",
