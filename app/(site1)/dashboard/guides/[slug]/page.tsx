@@ -1,6 +1,6 @@
 // /app/(site1)/dashboard/guides/[slug]/page.tsx
 import { createClient } from "@/utils/supabase/server";
-import GuidesIndex from "@/components/Guides";
+import GuidesIndex from "@/components/Guides/DetailsPage";
 import { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata({ params }: { params: { slug: string } }, resolve: ResolvingMetadata): Promise<Metadata> {

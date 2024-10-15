@@ -1,16 +1,16 @@
-// /app/(site1)/guides/[slug]/page.tsx
+// /app/(site1)/guides/[projectSlug]/[guideSlug]/page.tsx
 import { createClient } from "@/utils/supabase/server";
-import GuidesIndex from "@/components/Guides";
+import GuidesIndex from "@/components/Guides/DetailsPage";
 import { Metadata, ResolvingMetadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }, resolve: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { projectSlug: string, guideSlug: string } }, resolve: ResolvingMetadata): Promise<Metadata> {
   const supabase = createClient();
-  const { slug } = params;
+  const { projectSlug, guideSlug } = params;
 
   const { data: guide } = await supabase
     .from("guides")
     .select("title, summary_content, image_url")
-    .eq("slug", slug)
+    .eq("slug", guideSlug)
     .eq("moderation_status", "approved")
     .single();
 
@@ -41,13 +41,13 @@ export async function generateMetadata({ params }: { params: { slug: string } },
 
 const GuidePage = async ({ params }) => {
   const supabase = createClient();
-  const { slug } = params;
+  const { projectSlug,guideSlug } = params;
 
   // Fetch the current guide
   const { data: guide, error } = await supabase
     .from("guides")
     .select("*")
-    .eq("slug", slug)
+    .eq("slug", guideSlug)
     .eq("moderation_status", "approved")
     .single();
 
@@ -86,7 +86,7 @@ const GuidePage = async ({ params }) => {
   // Fetch all projects
   const { data: projects, error: projectsError } = await supabase
     .from("listings")
-    .select("id, name");
+    .select("id, name, slug");
 
   if (projectsError) {
     console.error("Error fetching projects:", projectsError);
