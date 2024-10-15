@@ -1,4 +1,4 @@
-// /components/Guides/GuidesTableOfContents.tsx
+// /components/Guides/DetailsPage/GuidesTableOfContents.tsx
 "use client"
 import { useEffect, useState } from "react";
 

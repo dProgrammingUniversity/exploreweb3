@@ -1,4 +1,4 @@
-// /components/Guides/GuidesMainContent.tsx
+// /components/Guides/DetailsPage/GuidesMainContent.tsx
 "use client"
 import Image from "next/image";
 import { useEffect, useState } from "react";
