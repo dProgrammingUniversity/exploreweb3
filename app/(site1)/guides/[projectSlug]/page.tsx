@@ -67,13 +67,13 @@ const ProjectGuidesPage = async ({ params }) => {
   }
 
   return (
-    <div className="flex-grow pb-12.5 pt-32.5 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
-      <div className="relative z-1 mx-auto w-full max-w-none px-7.5 pb-7.5 pt-10 lg:px-15 lg:pt-15 xl:px-20 xl:pt-20 text-center">
+    <div className="container mx-auto px-4 py-8 pt-40 pb-10">
+      <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-blue-500">{project.name} Guides</h1>
         <p className="text-xl mb-8 text-gray-300">
           Welcome to the comprehensive guide collection for {project.name}. Dive into detailed tutorials and resources designed to enhance your expertise in the Web3 ecosystem. Whether you're a beginner or an expert, explore the innovative solutions and insights {project.name} offers to empower your journey in the decentralized world.
         </p>
-  
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {guides.map((guide) => (
             <Link href={`/guides/${projectSlug}/${guide.slug}`} key={guide.slug} className="block">

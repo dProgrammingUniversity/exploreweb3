@@ -24,13 +24,13 @@ const GuidesIndex = ({ latestGuides, projects }) => {
   const paginateProjects = (pageNumber) => setCurrentProjectPage(pageNumber);
 
   return (
-    <div className="flex-grow pb-12.5 pt-32.5 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
-      <div className="relative z-1 mx-auto w-full max-w-none px-7.5 pb-7.5 pt-10 lg:px-15 lg:pt-15 xl:px-20 xl:pt-20">
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold mb-4 text-center text-blue-500">Explore Web3 Guides</h1>
         <p className="text-xl mb-8 text-center text-gray-300">
           Discover the latest guides and resources in the Web3 ecosystem. Explore guides by project and enhance your knowledge.
         </p>
-
+  
         <section className="mb-12">
           <h2 className="text-3xl font-semibold mb-4">Latest Guides</h2>
           <p className="text-lg mb-4 text-gray-300">
@@ -63,7 +63,7 @@ const GuidesIndex = ({ latestGuides, projects }) => {
             currentPage={currentGuidePage}
           />
         </section>
-
+  
         <section>
           <h2 className="text-3xl font-semibold mb-4">Guides by Project</h2>
           <p className="text-lg mb-4 text-gray-300">

@@ -47,7 +47,11 @@ const GuidesHomePage = async () => {
     return <div>Error loading projects</div>;
   }
 
-  return <GuidesIndex latestGuides={latestGuides} projects={projects} />;
+  return (
+    <div className="pt-40 pb-10">
+      <GuidesIndex latestGuides={latestGuides} projects={projects} />
+    </div>
+  );
 };
 
 export default GuidesHomePage;
