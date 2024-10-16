@@ -48,7 +48,7 @@ const GuidesHomePage = async () => {
   }
 
   return (
-    <div className="pt-20 pb-10">
+    <div className="pt-40 pb-10">
       <GuidesIndex latestGuides={latestGuides} projects={projects} />
     </div>
   );
