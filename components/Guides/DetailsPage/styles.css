@@ -1,0 +1,66 @@
+/* /components/Guides/DetailsPage/styles.css */
+/* Make Table Of Content sticky */
+.sticky-toc {
+  position: sticky;
+  top: 80px; /* Adjust as needed to match your header height */
+  max-height: calc(100vh - 80px); /* Adjust to fit within the viewport */
+  overflow-y: auto;
+  padding-left: 20px; /* Add some padding for the indicator */
+}
+
+/* Scroll animation for Table Of Content */
+.toc-scroll-indicator {
+  position: absolute;
+  left: 0;
+  width: 3px;
+  background-color: #3b82f6;
+  transition: top 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+/* guide content display styles */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  margin-top: 3em;
+  margin-bottom: 2em;
+  font-weight: bold;
+}
+
+.prose h1 {
+  font-size: 2.5em;
+}
+
+.prose h2 {
+  font-size: 2em;
+}
+
+.prose h3 {
+  font-size: 1.75em;
+}
+
+.prose h4 {
+  font-size: 1.5em;
+}
+
+.prose h5 {
+  font-size: 1.25em;
+}
+
+.prose h6 {
+  font-size: 1em;
+}
+
+.prose p {
+  margin-bottom: 2em;
+  color: #a0a3a7; /* Dimmed white */
+}
+
+.prose ol, .prose ul {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.prose blockquote {
+  margin: 1em 0;
+  padding: 1em;
+  background-color: #2d3748;
+  border-left: 4px solid #3b82f6;
+}

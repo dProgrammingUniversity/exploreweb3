@@ -53,7 +53,7 @@ const GuidePage = async ({ params }) => {
 
   if (error || !guide) {
     console.error("Error fetching guide:", error);
-    return <div>Guide not found</div>;
+    return <div>Guide not found - Might be network issues. Kindly reload page!</div>;
   }
 
   // Fetch author details using author id/user id
@@ -103,14 +103,12 @@ const GuidePage = async ({ params }) => {
   }, {});
 
   return (
-    <div className="flex-grow pb-12.5 pt-32.5 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
-      <div className="relative z-1 mx-auto w-full max-w-none px-7.5 pb-7.5 pt-10 lg:px-15 lg:pt-15 xl:px-20 xl:pt-20">
+    <div className="pt-40 pb-10">
         <GuidesIndex
           guide={guide}
           authorName={authorName}
           projectsMap={projectsMap}
         />
-      </div>
     </div>
   );
 };
