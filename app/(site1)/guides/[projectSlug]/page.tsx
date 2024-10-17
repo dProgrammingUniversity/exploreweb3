@@ -87,7 +87,7 @@ const ProjectGuidesPage = async ({ params }) => {
                 />
                 <div className="p-6">
                   <h2 className="text-xl font-semibold mb-2">{guide.short_title}</h2>
-                  <p className="text-gray-400 mb-4">{guide.summary_content.substring(0, 100)}...</p>
+                  <p className="text-gray-400 mb-4">{guide.summary_content.substring(0, 20)}...</p>
                   <span className="text-blue-500 hover:underline">Read more</span>
                 </div>
               </div>
