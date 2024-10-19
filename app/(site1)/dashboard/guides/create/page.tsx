@@ -1,7 +1,7 @@
-// /app/(site1)/dashboard/guides/page.tsx
+// /app/(site1)/dashboard/guides/create/page.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import GuidesIndex from "@/components/Dashboard/Guides";
+import GuidesIndex from "@/components/Dashboard/Guides/Create";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -32,10 +32,12 @@ const CreateGuidePage = async () => {
     .select("id, name")
     .order("name");
 
+    const { data: draft } = await supabase.rpc("guides_drafts_retrieval", { user_uuid: user.id });
+
   return (
     <div className="flex-grow pb-12.5 pt-32.5 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
       <div className="relative z-1 mx-auto w-full max-w-none px-7.5 pb-7.5 pt-10 lg:px-15 lg:pt-15 xl:px-20 xl:pt-20">
-        <GuidesIndex projects={projects} />
+        <GuidesIndex projects={projects} draft={draft?.[0]?.form_data} userId={user.id} />
       </div>
     </div>
   );

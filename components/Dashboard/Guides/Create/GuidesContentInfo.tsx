@@ -1,4 +1,4 @@
-// /components/Dashboard/Guides/GuidesContentInfo.tsx
+// /components/Dashboard/Guides/Create/GuidesContentInfo.tsx
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
