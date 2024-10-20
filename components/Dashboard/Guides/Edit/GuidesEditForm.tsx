@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/client";
 import dynamic from "next/dynamic";
 import Image from 'next/image';
 import axios from 'axios';
+import "../styles.css";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
@@ -184,7 +185,7 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
                 <ReactQuill
                     value={formData.summary_content}
                     onChange={(value) => handleQuillChange(value, 'summary_content')}
-                    className="mt-1 bg-gray-700 text-white"
+                    className="mt-1 bg-gray-900 text-white"
                 />
             </div>
 
@@ -193,7 +194,7 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
                 <ReactQuill
                     value={formData.full_content}
                     onChange={(value) => handleQuillChange(value, 'full_content')}
-                    className="mt-1 bg-gray-700 text-white"
+                    className="mt-1 bg-gray-900 text-white"
                 />
             </div>
 
