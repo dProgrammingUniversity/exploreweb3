@@ -117,6 +117,12 @@ const menuData: Menu[] = [
         path: "/dashboard/guides/create",
       },
       {
+        id: 3.3,
+        title: "Edit Guides",
+        newTab: false,
+        path: "/dashboard/guides/edit",
+      },
+      {
         id: 3.4,
         title: "Favorites",
         newTab: false,
