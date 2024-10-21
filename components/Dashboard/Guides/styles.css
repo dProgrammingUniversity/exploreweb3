@@ -1,5 +1,20 @@
 /* /components/Dashboard/Guides/styles.css */
 .ql-editor {
-    font-size: 16px; /* Adjust the font size as needed */
-    color: #858080; /* Optional: Adjust text color */
-  }
+  font-size: 16px;
+  color: #858080;
+  max-height: 800px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+.ql-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #09090c; 
+  border-bottom: 1px solid #333;
+}
+
+.ql-container {
+  border: 1px solid #333;
+  border-radius: 4px;
+}

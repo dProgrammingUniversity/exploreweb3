@@ -43,6 +43,17 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const supabase = createClient();
 
+    //ReactQuill Customizable Toolbar Options
+    const modules = {
+        toolbar: [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ["bold", "italic", "underline", "strike", "blockquote"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ["link", "image", "video"],
+            ["clean"],
+        ],
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -185,7 +196,8 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
                 <ReactQuill
                     value={formData.summary_content}
                     onChange={(value) => handleQuillChange(value, 'summary_content')}
-                    className="mt-1 bg-gray-900 text-white"
+                    modules={modules}
+                    className="mt-1"
                 />
             </div>
 
@@ -194,7 +206,8 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
                 <ReactQuill
                     value={formData.full_content}
                     onChange={(value) => handleQuillChange(value, 'full_content')}
-                    className="mt-1 bg-gray-900 text-white"
+                    modules={modules}
+                    className="mt-1"
                 />
             </div>
 
