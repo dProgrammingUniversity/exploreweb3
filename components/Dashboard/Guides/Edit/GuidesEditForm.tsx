@@ -41,6 +41,7 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(guide.image_url);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    
     const supabase = createClient();
 
     //ReactQuill Customizable Toolbar Options
