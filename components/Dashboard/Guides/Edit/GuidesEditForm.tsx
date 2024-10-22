@@ -41,7 +41,11 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(guide.image_url);
     const fileInputRef = useRef<HTMLInputElement>(null);
-    
+    const [summaryLength, setSummaryLength] = useState(guide.summary_content.replace(/<[^>]+>/g, '').length);
+    const [summaryWords, setSummaryWords] = useState(guide.summary_content.split(/\s+/).filter(Boolean).length);
+    const [contentLength, setContentLength] = useState(guide.full_content.replace(/<[^>]+>/g, '').length);
+    const [contentWords, setContentWords] = useState(guide.full_content.split(/\s+/).filter(Boolean).length);
+
     const supabase = createClient();
 
     //ReactQuill Customizable Toolbar Options
@@ -60,8 +64,23 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    // Handle ReactQuill input, character and wors counter
     const handleQuillChange = (value: string, name: string) => {
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const plainText = value.replace(/<[^>]+>/g, '');
+        if (name === 'summary_content') {
+            if (plainText.length <= 600) {
+                setFormData(prev => ({ ...prev, [name]: value }));
+                setSummaryLength(plainText.length);
+                setSummaryWords(plainText.split(/\s+/).filter(Boolean).length);
+            } else {
+                // Prevent further input by setting the content back to the last valid state
+                setFormData(prev => ({ ...prev, [name]: formData.summary_content }));
+            }
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+            setContentLength(plainText.length);
+            setContentWords(plainText.split(/\s+/).filter(Boolean).length);
+        }
     };
 
     const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -200,6 +219,9 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
                     modules={modules}
                     className="mt-1"
                 />
+                <div className="text-sm text-gray-400 mt-1">
+                    {summaryLength} / 600 characters | {summaryWords} words
+                </div>
             </div>
 
             <div>
@@ -210,6 +232,9 @@ const GuidesEditForm: React.FC<GuidesEditFormProps> = ({ guide, projects }) => {
                     modules={modules}
                     className="mt-1"
                 />
+                <div className="text-sm text-gray-400 mt-1 mb-4">
+                    {contentLength} characters | {contentWords} words
+                </div>
             </div>
 
             <div>
