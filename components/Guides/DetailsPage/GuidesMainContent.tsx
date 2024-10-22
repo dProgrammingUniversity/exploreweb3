@@ -58,7 +58,7 @@ const GuidesMainContent = ({ guide, authorName }) => {
         className="my-4 w-full h-auto rounded-lg"
       />
       <div className="mt-4">
-        <blockquote className="bg-green-900 border-l-4 border-blue-500 p-4 mb-4 rounded">
+        <blockquote className="prose bg-green-900 border-l-4 border-blue-500 p-4 mb-4 rounded">
           <p className="text-gray-300 italic"><strong>TLDR:</strong></p>
           <div dangerouslySetInnerHTML={{ __html: guide.summary_content }} />
         </blockquote>

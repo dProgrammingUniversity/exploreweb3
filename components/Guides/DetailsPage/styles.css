@@ -19,21 +19,24 @@
 
 /* guide content display styles */
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-  margin-top: 3em;
-  margin-bottom: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   font-weight: bold;
+  line-height: normal;
 }
 
 .prose h1 {
-  font-size: 2.5em;
+  font-size: 3em;
 }
 
 .prose h2 {
-  font-size: 2em;
+  font-size: 2.5em;
+  color: greenyellow;
 }
 
 .prose h3 {
   font-size: 1.75em;
+  color: #3b82f6;  
 }
 
 .prose h4 {
@@ -49,18 +52,43 @@
 }
 
 .prose p {
-  margin-bottom: 2em;
+  margin-bottom: 0.2em;
   color: #868788; /* Dimmed white */
 }
 
+/* Ordered/Unordered List Styles */
 .prose ol, .prose ul {
   margin-bottom: 1em;
   padding-left: 1.5em;
+  color: #868788; /* Dimmed white */
+  list-style-position: inside; /* Ensure list markers are visible */
+  list-style-type: decimal;
+  line-height: 2;
 }
 
+/* Blockqoute styles */
 .prose blockquote {
   margin: 1em 0;
   padding: 1em;
   background-color: #2d3748;
   border-left: 4px solid #3b82f6;
+}
+
+/* Responsive video styling */
+/* Responsive video styling */
+.prose iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
+  display: block;
+  margin: 0 auto;
+  border: none;
+}
+
+.prose iframe > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
