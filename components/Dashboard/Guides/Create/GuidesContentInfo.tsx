@@ -1,4 +1,5 @@
 // /components/Dashboard/Guides/Create/GuidesContentInfo.tsx
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import "../styles.css";
 
@@ -7,7 +8,11 @@ import "react-quill/dist/quill.snow.css";
 
 const GuidesContentInfo = ({ projects, formData, setFormData }) => {
   const { title, shortTitle, projectId, content, summaryContent } = formData;
-
+  const [summaryLength, setSummaryLength] = useState(summaryContent.replace(/<[^>]+>/g, '').length);
+  const [summaryWords, setSummaryWords] = useState(summaryContent.split(/\s+/).filter(Boolean).length);
+  const [contentLength, setContentLength] = useState(content.replace(/<[^>]+>/g, '').length);
+  const [contentWords, setContentWords] = useState(content.split(/\s+/).filter(Boolean).length);
+  
   //ReactQuill Customizable Toolbar Options
   const modules = {
     toolbar: [
@@ -17,6 +22,27 @@ const GuidesContentInfo = ({ projects, formData, setFormData }) => {
       ["link", "image", "video"],
       ["clean"],
     ],
+  };
+
+  // Limit Summary content charater input
+  const handleSummaryChange = (value) => {
+    const plainText = value.replace(/<[^>]+>/g, ''); // Strip HTML tags
+    if (plainText.length <= 600) {
+      setFormData({ ...formData, summaryContent: value });
+      setSummaryLength(plainText.length);
+    } else {
+      // Prevent further input by setting the content back to the last valid state
+      setFormData({ ...formData, summaryContent: summaryContent });
+      setSummaryWords(plainText.split(/\s+/).filter(Boolean).length);
+    }
+  };
+
+  //Full content input form handling
+  const handleContentChange = (value) => {
+    const plainText = value.replace(/<[^>]+>/g, '');
+    setFormData({ ...formData, content: value });
+    setContentLength(plainText.length);
+    setContentWords(plainText.split(/\s+/).filter(Boolean).length);
   };
 
   return (
@@ -60,23 +86,25 @@ const GuidesContentInfo = ({ projects, formData, setFormData }) => {
         <label htmlFor="summaryContent" className="block text-sm font-medium text-gray-300">Summary Content (max 500 characters)</label>
         <ReactQuill
           value={summaryContent}
-          onChange={(value) => {
-            if (value.length <= 500) {
-              setFormData({ ...formData, summaryContent: value });
-            }
-          }}
+          onChange={handleSummaryChange}
           modules={modules}
           className="mt-1"
         />
+        <div className="text-sm text-gray-400 mt-1">
+          {summaryLength} / 600 characters | {summaryWords} words
+        </div>
       </div>
       <div>
         <label htmlFor="content" className="block text-sm font-medium text-gray-300">Content</label>
         <ReactQuill
           value={content}
-          onChange={(value) => setFormData({ ...formData, content: value })}
+          onChange={handleContentChange}
           modules={modules}
           className="mt-1"
         />
+        <div className="text-sm text-gray-400 mt-1 mb-4">
+          {contentLength} characters | {contentWords} words
+        </div>
       </div>
     </div>
   );
