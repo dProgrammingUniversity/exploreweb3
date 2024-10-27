@@ -120,7 +120,7 @@ const Contact = () => {
               </div>
               <div className="5 mb-7">
                 <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                Join our official dProgrammingUniversity Discord server to find the ExploreSolana channel:
+                Join our official dProgrammingUniversity Discord server to find the "ExploreWeb3 Discussions" channels:
                 </h3>
                 <p>
                 <Link
