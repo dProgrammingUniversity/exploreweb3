@@ -21,6 +21,11 @@ const featureCategories = {
             basic: false,
             donor: true,
         },
+        {
+            name: "Earning & Activity Points Increses Based On Number of Donation NFT User Holds",
+            basic: false,
+            donor: true,
+        },
     ],
     "Enhanced Project Discovery": [
         {
@@ -95,7 +100,7 @@ const featureCategories = {
             donor: true,
         },
         {
-            name: "Advance bookmarking (Unlimited)",
+            name: "Advance bookmarking (Upto 15/NFT)",
             basic: false,
             donor: true,
         },
@@ -207,7 +212,12 @@ const DonateNFT = () => {
             {/* Call to action */}
             <div className="mt-8 text-center">
                 <p className="mb-4 text-gray-300">
-                    Kindly Mint ExploreWeb3 Donor NFT today to unlock all APPRECIATION perks features and support this public good project to keep showcasing amazing web3/Solana projects and their opportunities!
+                    Kindly Mint ExploreWeb3 Donor NFT today to DONATE and unlock all APPRECIATION perks features 
+                    and support this public good project to keep showcasing amazing web3/Solana projects and their opportunities!
+                    <br/>
+                    <b>
+                    The more you DONATE (Mint), the higher the perks unlocked!
+                    </b>
                 </p>
                 <a
                     href="https://3.land/item/ppknfMRWztTEGfnt2Po5sh7xcQyeEU22Ndzy6VSpeNw"
@@ -222,7 +232,7 @@ const DonateNFT = () => {
                 <p className="mb-4 text-gray-300">
                     ALERT: <br/>
                     Please, kindly note that most of the above perks features are not yet available because they require more resources to implement. 
-                    They will kickstart when there is atleast 10 Donors NFT minted making funds available to ensure there implementation.
+                    They will kickstart when there is atleast 25-50 Donors NFT minted making funds available to ensure there implementation.
                 </p>
             </div>
         </div>
