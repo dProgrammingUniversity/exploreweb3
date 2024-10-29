@@ -106,9 +106,7 @@ const Contact = () => {
                 </h3>
                 <p>
                   <Link
-                    href={AppendSiteUrlToExternalLink(
-                      "https://twitter.com/ExploreWeb3xyz",
-                    )}
+                    href="/X"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter"
@@ -120,18 +118,18 @@ const Contact = () => {
               </div>
               <div className="5 mb-7">
                 <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                Join our official dProgrammingUniversity Discord server to find the "ExploreWeb3 Discussions" channels:
+                  Join our official dProgrammingUniversity Discord server to find the "ExploreWeb3 Discussions" channels:
                 </h3>
                 <p>
-                <Link
-            href={AppendSiteUrlToExternalLink("https://dProgrammingUniversity.com/Discord")}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Discord"
-            className="text-indigo-500 hover:text-indigo-600"
-          >
-            <FaDiscord className="h-6 w-6" />
-          </Link>
+                  <Link
+                    href="/Discord"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Discord"
+                    className="text-indigo-500 hover:text-indigo-600"
+                  >
+                    <FaDiscord className="h-6 w-6" />
+                  </Link>
                 </p>
               </div>
             </motion.div>

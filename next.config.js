@@ -32,6 +32,16 @@ const nextConfig = {
         destination: 'https://exploreweb3.xyz/:path*',
         permanent: true,
       },
+      {
+        source: '/Discord',
+        destination: 'https://dprogramminguniversity.com/discord',
+        permanent: true,
+      },
+      {
+        source: '/X',
+        destination: 'https://x.com/ExploreWeb3xyz',
+        permanent: true,
+      },
     ]
   },
 };
