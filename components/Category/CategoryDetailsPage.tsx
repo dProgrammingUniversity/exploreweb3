@@ -4,9 +4,11 @@ import React, { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import ListingsCard from "../Directory/Listings/ListingsCard";
 import Pagination from "@/components/Pagination";
+import CategoryFAQ from "./CategoryFAQ";
 
 const CategoryDetailsPage = ({ slug }: { slug: string }) => {
   const [category, setCategory] = useState<{ id: number; name: string } | null>(null);
+  const [projects, setProjects] = useState<any[]>([]);
   const [listings, setListings] = useState<DisplayListingTypes[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +87,7 @@ const CategoryDetailsPage = ({ slug }: { slug: string }) => {
   return (
     <div>
       <h1 className="mb-5 text-center text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-        Web3/Solana {category.name} Projects ({totalListings})
+      Top Best {totalListings}+ Web3/Solana {category.name} Projects 
       </h1>
       <p className="mb-8 text-center text-gray-600 dark:text-gray-300">
         {categoryDescription}
@@ -112,6 +114,13 @@ const CategoryDetailsPage = ({ slug }: { slug: string }) => {
             onPageChange={setCurrentPage}
           />
         </div>
+      )}
+      {/* Add CategoryFAQ at the bottom of the details page */}
+      {category && (
+        <CategoryFAQ 
+          categoryName={category.name} 
+          totalListings={totalListings} 
+        />
       )}
     </div>
   );
